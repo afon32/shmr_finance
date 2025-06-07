@@ -7,7 +7,7 @@ final GlobalKey<NavigatorState> _shellNavigatorKey =
     GlobalKey<NavigatorState>();
 
 class AppNavigator {
-  final router = GoRouter(navigatorKey: _rootNavigatorKey, routes: [
+  static final router = GoRouter(navigatorKey: _rootNavigatorKey, routes: [
     // рут для сплэша
     GoRoute(path: MainRoutes.initial.routeName),
     // общий рут для всей аппки. Изменяется только заполнение скафолда
