@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'app_color_theme.dart';
 part 'color_theme.dart';
 part 'theme_provider.dart';
+part 'app_icons.dart';
 
 class AppTheme {
   static ThemeData get lightTheme => ThemeData.light(

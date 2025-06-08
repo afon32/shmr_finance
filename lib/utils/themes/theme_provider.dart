@@ -1,9 +1,9 @@
 part of 'app_theme.dart';
 
 class ThemeProvider extends Cubit<ThemeMode> {
-  ThemeProvider() : super(ThemeMode.dark);
+  ThemeProvider() : super(ThemeMode.light);
 
-  ThemeMode _activeMode = ThemeMode.dark;
+  ThemeMode _activeMode = ThemeMode.light;
 
   ThemeMode get activeMode => _activeMode;
 

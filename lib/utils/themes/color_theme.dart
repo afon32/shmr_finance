@@ -12,6 +12,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     required this.disabled,
     required this.mainLogoColor,
     required this.appBarColor,
+    required this.bottomNavBarColor,
     required this.rejectButtonColor,
     required this.textContainerColor,
     required this.selectionItemsColor,
@@ -62,6 +63,9 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
   /// AppBar color
   final Color appBarColor;
 
+  /// AppBar color
+  final Color bottomNavBarColor;
+
   /// Reject button color
   final Color rejectButtonColor;
 
@@ -83,6 +87,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     Color? textColor,
     Color? secondaryTextColor,
     Color? appBarColor,
+    Color? bottomNavBarColor,
     Color? rejectButtonColor,
     Color? textContainerColor,
     Color? selectionItemsColor,
@@ -101,6 +106,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
         textColor: textColor ?? this.textColor,
         secondaryTextColor: secondaryTextColor ?? this.secondaryTextColor,
         appBarColor: appBarColor ?? this.appBarColor,
+        bottomNavBarColor: bottomNavBarColor ?? this.bottomNavBarColor,
         rejectButtonColor: rejectButtonColor ?? this.rejectButtonColor,
         textContainerColor: textContainerColor ?? this.textContainerColor,
         selectionItemsColor: selectionItemsColor ?? this.selectionItemsColor,
@@ -126,6 +132,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
         secondaryTextColor:
             Color.lerp(secondaryTextColor, other.secondaryTextColor, t)!,
         appBarColor: Color.lerp(appBarColor, other.appBarColor, t)!,
+        bottomNavBarColor: Color.lerp(bottomNavBarColor, other.bottomNavBarColor, t)!,
         rejectButtonColor:
             Color.lerp(rejectButtonColor, other.rejectButtonColor, t)!,
         textContainerColor:
