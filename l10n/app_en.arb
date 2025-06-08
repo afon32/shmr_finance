@@ -1,4 +1,7 @@
 {
-    "test": "test",
-    "test2": "test2"
+  "income": "Income",
+  "expences": "Expences",
+  "score": "Score",
+  "costItems": "Items",
+  "settings": "Settings"
 }
