@@ -37,6 +37,7 @@ class ShmrApp extends StatelessWidget {
               supportedLocales: locale.supportedLocales,
               locale: locale.locale,
               localizationsDelegates: locale.localizationDelegates,
+              builder: (context, child) => child!,
             );
           })),
     );

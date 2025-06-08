@@ -4,6 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shmr_finance/data/local/abstract/local_repository.dart';
+import 'package:shmr_finance/utils/logger/logger.dart';
 
 part 'connection_listener_state.dart';
 part 'connection_listener_cubit.freezed.dart';
@@ -17,8 +18,8 @@ class ConnectionListenerCubit extends Cubit<ConnectionState> {
     _initNetworkListener();
   }
 
-  Future<void> _onCheckNetwork() async {
-    final status = await _connectivity.checkConnectivity();
+  Future<void> _onCheckNetwork(List<ConnectivityResult> status) async {
+    // final status = await _connectivity.checkConnectivity();
     if (status.first != ConnectivityResult.none &&
         state == ConnectionState.connected()) {
       emit(ConnectionState.connected());
@@ -30,7 +31,9 @@ class ConnectionListenerCubit extends Cubit<ConnectionState> {
 
   void _initNetworkListener() {
     _subscription = _connectivity.onConnectivityChanged.listen((status) {
-      _onCheckNetwork();
+      Logger.log('New status : ${status.first}',
+          tag: LogTags.connectionListener.tag);
+      _onCheckNetwork(status);
     });
   }
 
