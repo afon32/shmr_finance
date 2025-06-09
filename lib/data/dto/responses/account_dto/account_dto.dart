@@ -4,8 +4,8 @@ part 'account_dto.freezed.dart';
 part 'account_dto.g.dart';
 
 @freezed
-abstract class AccountDto with _$AccountDto {
-  const factory AccountDto({
+abstract class ApiAccount with _$ApiAccount {
+  const factory ApiAccount({
     required int id,
     required int userId,
     required String name,
@@ -13,7 +13,7 @@ abstract class AccountDto with _$AccountDto {
     required String currency,
     required String createdAt,
     required String updatedAt,
-  }) = _AccountDto;
+  }) = _ApiAccount;
 
-  factory AccountDto.fromJson(Map<String, dynamic> json) => _$AccountDtoFromJson(json);
+  factory ApiAccount.fromJson(Map<String, dynamic> json) => _$ApiAccountFromJson(json);
 }

@@ -6,8 +6,9 @@ part of 'transaction_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_TransactionRequest _$TransactionRequestFromJson(Map<String, dynamic> json) =>
-    _TransactionRequest(
+_ApiTransactionRequest _$ApiTransactionRequestFromJson(
+        Map<String, dynamic> json) =>
+    _ApiTransactionRequest(
       accountId: (json['accountId'] as num).toInt(),
       categoryId: (json['categoryId'] as num).toInt(),
       amount: json['amount'] as String,
@@ -15,7 +16,8 @@ _TransactionRequest _$TransactionRequestFromJson(Map<String, dynamic> json) =>
       comment: json['comment'] as String?,
     );
 
-Map<String, dynamic> _$TransactionRequestToJson(_TransactionRequest instance) =>
+Map<String, dynamic> _$ApiTransactionRequestToJson(
+        _ApiTransactionRequest instance) =>
     <String, dynamic>{
       'accountId': instance.accountId,
       'categoryId': instance.categoryId,

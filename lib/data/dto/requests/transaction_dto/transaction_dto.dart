@@ -4,8 +4,8 @@ part 'transaction_dto.freezed.dart';
 part 'transaction_dto.g.dart';
 
 @freezed
-abstract class TransactionDto with _$TransactionDto {
-  const factory TransactionDto({
+abstract class ApiTransaction with _$ApiTransaction {
+  const factory ApiTransaction({
     required int id,
     required int accountId,
     required int categoryId,
@@ -14,7 +14,7 @@ abstract class TransactionDto with _$TransactionDto {
     required String? comment,
     required String createdAt,
     required String updatedAt,
-  }) = _TransactionDto;
+  }) = _ApiTransaction;
 
-  factory TransactionDto.fromJson(Map<String, dynamic> json) => _$TransactionDtoFromJson(json);
+  factory ApiTransaction.fromJson(Map<String, dynamic> json) => _$ApiTransactionFromJson(json);
 }

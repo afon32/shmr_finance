@@ -7,17 +7,17 @@ part 'transaction_response.freezed.dart';
 part 'transaction_response.g.dart';
 
 @freezed
-abstract class TransactionResponse with _$TransactionResponse {
-  const factory TransactionResponse({
+abstract class ApiTransactionResponse with _$ApiTransactionResponse {
+  const factory ApiTransactionResponse({
     required int id,
-    required AccountBrief accountId,
-    required CategoryDto category,
+    required ApiAccountBrief account,
+    required ApiCategory category,
     required String amount,
     required String transactionDate,
     required String? comment,
     required String createdAt,
     required String updatedAt,
-  }) = _TransactionResponse;
+  }) = _ApiTransactionResponse;
 
-  factory TransactionResponse.fromJson(Map<String, dynamic> json) => _$TransactionResponseFromJson(json);
+  factory ApiTransactionResponse.fromJson(Map<String, dynamic> json) => _$ApiTransactionResponseFromJson(json);
 }

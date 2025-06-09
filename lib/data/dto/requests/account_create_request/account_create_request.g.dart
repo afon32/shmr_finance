@@ -6,16 +6,16 @@ part of 'account_create_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_AccountCreateRequest _$AccountCreateRequestFromJson(
+_ApiAccountCreateRequest _$ApiAccountCreateRequestFromJson(
         Map<String, dynamic> json) =>
-    _AccountCreateRequest(
+    _ApiAccountCreateRequest(
       name: json['name'] as String,
       balance: json['balance'] as String,
       currency: json['currency'] as String,
     );
 
-Map<String, dynamic> _$AccountCreateRequestToJson(
-        _AccountCreateRequest instance) =>
+Map<String, dynamic> _$ApiAccountCreateRequestToJson(
+        _ApiAccountCreateRequest instance) =>
     <String, dynamic>{
       'name': instance.name,
       'balance': instance.balance,

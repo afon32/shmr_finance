@@ -14,7 +14,7 @@ part of 'account_dto.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$AccountDto {
+mixin _$ApiAccount {
   int get id;
   int get userId;
   String get name;
@@ -23,21 +23,21 @@ mixin _$AccountDto {
   String get createdAt;
   String get updatedAt;
 
-  /// Create a copy of AccountDto
+  /// Create a copy of ApiAccount
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $AccountDtoCopyWith<AccountDto> get copyWith =>
-      _$AccountDtoCopyWithImpl<AccountDto>(this as AccountDto, _$identity);
+  $ApiAccountCopyWith<ApiAccount> get copyWith =>
+      _$ApiAccountCopyWithImpl<ApiAccount>(this as ApiAccount, _$identity);
 
-  /// Serializes this AccountDto to a JSON map.
+  /// Serializes this ApiAccount to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AccountDto &&
+            other is ApiAccount &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.name, name) || other.name == name) &&
@@ -57,15 +57,15 @@ mixin _$AccountDto {
 
   @override
   String toString() {
-    return 'AccountDto(id: $id, userId: $userId, name: $name, balance: $balance, currency: $currency, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ApiAccount(id: $id, userId: $userId, name: $name, balance: $balance, currency: $currency, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
 /// @nodoc
-abstract mixin class $AccountDtoCopyWith<$Res> {
-  factory $AccountDtoCopyWith(
-          AccountDto value, $Res Function(AccountDto) _then) =
-      _$AccountDtoCopyWithImpl;
+abstract mixin class $ApiAccountCopyWith<$Res> {
+  factory $ApiAccountCopyWith(
+          ApiAccount value, $Res Function(ApiAccount) _then) =
+      _$ApiAccountCopyWithImpl;
   @useResult
   $Res call(
       {int id,
@@ -78,13 +78,13 @@ abstract mixin class $AccountDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AccountDtoCopyWithImpl<$Res> implements $AccountDtoCopyWith<$Res> {
-  _$AccountDtoCopyWithImpl(this._self, this._then);
+class _$ApiAccountCopyWithImpl<$Res> implements $ApiAccountCopyWith<$Res> {
+  _$ApiAccountCopyWithImpl(this._self, this._then);
 
-  final AccountDto _self;
-  final $Res Function(AccountDto) _then;
+  final ApiAccount _self;
+  final $Res Function(ApiAccount) _then;
 
-  /// Create a copy of AccountDto
+  /// Create a copy of ApiAccount
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -132,8 +132,8 @@ class _$AccountDtoCopyWithImpl<$Res> implements $AccountDtoCopyWith<$Res> {
 
 /// @nodoc
 @JsonSerializable()
-class _AccountDto implements AccountDto {
-  const _AccountDto(
+class _ApiAccount implements ApiAccount {
+  const _ApiAccount(
       {required this.id,
       required this.userId,
       required this.name,
@@ -141,8 +141,8 @@ class _AccountDto implements AccountDto {
       required this.currency,
       required this.createdAt,
       required this.updatedAt});
-  factory _AccountDto.fromJson(Map<String, dynamic> json) =>
-      _$AccountDtoFromJson(json);
+  factory _ApiAccount.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountFromJson(json);
 
   @override
   final int id;
@@ -159,17 +159,17 @@ class _AccountDto implements AccountDto {
   @override
   final String updatedAt;
 
-  /// Create a copy of AccountDto
+  /// Create a copy of ApiAccount
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$AccountDtoCopyWith<_AccountDto> get copyWith =>
-      __$AccountDtoCopyWithImpl<_AccountDto>(this, _$identity);
+  _$ApiAccountCopyWith<_ApiAccount> get copyWith =>
+      __$ApiAccountCopyWithImpl<_ApiAccount>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$AccountDtoToJson(
+    return _$ApiAccountToJson(
       this,
     );
   }
@@ -178,7 +178,7 @@ class _AccountDto implements AccountDto {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AccountDto &&
+            other is _ApiAccount &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.name, name) || other.name == name) &&
@@ -198,16 +198,16 @@ class _AccountDto implements AccountDto {
 
   @override
   String toString() {
-    return 'AccountDto(id: $id, userId: $userId, name: $name, balance: $balance, currency: $currency, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ApiAccount(id: $id, userId: $userId, name: $name, balance: $balance, currency: $currency, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$AccountDtoCopyWith<$Res>
-    implements $AccountDtoCopyWith<$Res> {
-  factory _$AccountDtoCopyWith(
-          _AccountDto value, $Res Function(_AccountDto) _then) =
-      __$AccountDtoCopyWithImpl;
+abstract mixin class _$ApiAccountCopyWith<$Res>
+    implements $ApiAccountCopyWith<$Res> {
+  factory _$ApiAccountCopyWith(
+          _ApiAccount value, $Res Function(_ApiAccount) _then) =
+      __$ApiAccountCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -221,13 +221,13 @@ abstract mixin class _$AccountDtoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$AccountDtoCopyWithImpl<$Res> implements _$AccountDtoCopyWith<$Res> {
-  __$AccountDtoCopyWithImpl(this._self, this._then);
+class __$ApiAccountCopyWithImpl<$Res> implements _$ApiAccountCopyWith<$Res> {
+  __$ApiAccountCopyWithImpl(this._self, this._then);
 
-  final _AccountDto _self;
-  final $Res Function(_AccountDto) _then;
+  final _ApiAccount _self;
+  final $Res Function(_ApiAccount) _then;
 
-  /// Create a copy of AccountDto
+  /// Create a copy of ApiAccount
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -240,7 +240,7 @@ class __$AccountDtoCopyWithImpl<$Res> implements _$AccountDtoCopyWith<$Res> {
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
-    return _then(_AccountDto(
+    return _then(_ApiAccount(
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable

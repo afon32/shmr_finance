@@ -12,29 +12,32 @@ part of 'stat_item.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+ApiStatItem _$ApiStatItemFromJson(Map<String, dynamic> json) {
+  return _StatItem.fromJson(json);
+}
 
 /// @nodoc
-mixin _$StatItem {
+mixin _$ApiStatItem {
   int get categoryId;
   String get categoryName;
   String get emoji;
   String get amount;
 
-  /// Create a copy of StatItem
+  /// Create a copy of ApiStatItem
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $StatItemCopyWith<StatItem> get copyWith =>
-      _$StatItemCopyWithImpl<StatItem>(this as StatItem, _$identity);
+  $ApiStatItemCopyWith<ApiStatItem> get copyWith =>
+      _$ApiStatItemCopyWithImpl<ApiStatItem>(this as ApiStatItem, _$identity);
 
-  /// Serializes this StatItem to a JSON map.
+  /// Serializes this ApiStatItem to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is StatItem &&
+            other is ApiStatItem &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId) &&
             (identical(other.categoryName, categoryName) ||
@@ -50,26 +53,27 @@ mixin _$StatItem {
 
   @override
   String toString() {
-    return 'StatItem(categoryId: $categoryId, categoryName: $categoryName, emoji: $emoji, amount: $amount)';
+    return 'ApiStatItem(categoryId: $categoryId, categoryName: $categoryName, emoji: $emoji, amount: $amount)';
   }
 }
 
 /// @nodoc
-abstract mixin class $StatItemCopyWith<$Res> {
-  factory $StatItemCopyWith(StatItem value, $Res Function(StatItem) _then) =
-      _$StatItemCopyWithImpl;
+abstract mixin class $ApiStatItemCopyWith<$Res> {
+  factory $ApiStatItemCopyWith(
+          ApiStatItem value, $Res Function(ApiStatItem) _then) =
+      _$ApiStatItemCopyWithImpl;
   @useResult
   $Res call({int categoryId, String categoryName, String emoji, String amount});
 }
 
 /// @nodoc
-class _$StatItemCopyWithImpl<$Res> implements $StatItemCopyWith<$Res> {
-  _$StatItemCopyWithImpl(this._self, this._then);
+class _$ApiStatItemCopyWithImpl<$Res> implements $ApiStatItemCopyWith<$Res> {
+  _$ApiStatItemCopyWithImpl(this._self, this._then);
 
-  final StatItem _self;
-  final $Res Function(StatItem) _then;
+  final ApiStatItem _self;
+  final $Res Function(ApiStatItem) _then;
 
-  /// Create a copy of StatItem
+  /// Create a copy of ApiStatItem
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -102,7 +106,7 @@ class _$StatItemCopyWithImpl<$Res> implements $StatItemCopyWith<$Res> {
 
 /// @nodoc
 @JsonSerializable()
-class _StatItem implements StatItem {
+class _StatItem implements ApiStatItem {
   const _StatItem(
       {required this.categoryId,
       required this.categoryName,
@@ -120,7 +124,7 @@ class _StatItem implements StatItem {
   @override
   final String amount;
 
-  /// Create a copy of StatItem
+  /// Create a copy of ApiStatItem
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -155,13 +159,13 @@ class _StatItem implements StatItem {
 
   @override
   String toString() {
-    return 'StatItem(categoryId: $categoryId, categoryName: $categoryName, emoji: $emoji, amount: $amount)';
+    return 'ApiStatItem(categoryId: $categoryId, categoryName: $categoryName, emoji: $emoji, amount: $amount)';
   }
 }
 
 /// @nodoc
 abstract mixin class _$StatItemCopyWith<$Res>
-    implements $StatItemCopyWith<$Res> {
+    implements $ApiStatItemCopyWith<$Res> {
   factory _$StatItemCopyWith(_StatItem value, $Res Function(_StatItem) _then) =
       __$StatItemCopyWithImpl;
   @override
@@ -176,7 +180,7 @@ class __$StatItemCopyWithImpl<$Res> implements _$StatItemCopyWith<$Res> {
   final _StatItem _self;
   final $Res Function(_StatItem) _then;
 
-  /// Create a copy of StatItem
+  /// Create a copy of ApiStatItem
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')

@@ -14,27 +14,27 @@ part of 'account_create_request.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$AccountCreateRequest {
+mixin _$ApiAccountCreateRequest {
   String get name;
   String get balance;
   String get currency;
 
-  /// Create a copy of AccountCreateRequest
+  /// Create a copy of ApiAccountCreateRequest
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $AccountCreateRequestCopyWith<AccountCreateRequest> get copyWith =>
-      _$AccountCreateRequestCopyWithImpl<AccountCreateRequest>(
-          this as AccountCreateRequest, _$identity);
+  $ApiAccountCreateRequestCopyWith<ApiAccountCreateRequest> get copyWith =>
+      _$ApiAccountCreateRequestCopyWithImpl<ApiAccountCreateRequest>(
+          this as ApiAccountCreateRequest, _$identity);
 
-  /// Serializes this AccountCreateRequest to a JSON map.
+  /// Serializes this ApiAccountCreateRequest to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AccountCreateRequest &&
+            other is ApiAccountCreateRequest &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.balance, balance) || other.balance == balance) &&
             (identical(other.currency, currency) ||
@@ -47,28 +47,28 @@ mixin _$AccountCreateRequest {
 
   @override
   String toString() {
-    return 'AccountCreateRequest(name: $name, balance: $balance, currency: $currency)';
+    return 'ApiAccountCreateRequest(name: $name, balance: $balance, currency: $currency)';
   }
 }
 
 /// @nodoc
-abstract mixin class $AccountCreateRequestCopyWith<$Res> {
-  factory $AccountCreateRequestCopyWith(AccountCreateRequest value,
-          $Res Function(AccountCreateRequest) _then) =
-      _$AccountCreateRequestCopyWithImpl;
+abstract mixin class $ApiAccountCreateRequestCopyWith<$Res> {
+  factory $ApiAccountCreateRequestCopyWith(ApiAccountCreateRequest value,
+          $Res Function(ApiAccountCreateRequest) _then) =
+      _$ApiAccountCreateRequestCopyWithImpl;
   @useResult
   $Res call({String name, String balance, String currency});
 }
 
 /// @nodoc
-class _$AccountCreateRequestCopyWithImpl<$Res>
-    implements $AccountCreateRequestCopyWith<$Res> {
-  _$AccountCreateRequestCopyWithImpl(this._self, this._then);
+class _$ApiAccountCreateRequestCopyWithImpl<$Res>
+    implements $ApiAccountCreateRequestCopyWith<$Res> {
+  _$ApiAccountCreateRequestCopyWithImpl(this._self, this._then);
 
-  final AccountCreateRequest _self;
-  final $Res Function(AccountCreateRequest) _then;
+  final ApiAccountCreateRequest _self;
+  final $Res Function(ApiAccountCreateRequest) _then;
 
-  /// Create a copy of AccountCreateRequest
+  /// Create a copy of ApiAccountCreateRequest
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -96,11 +96,11 @@ class _$AccountCreateRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _AccountCreateRequest implements AccountCreateRequest {
-  const _AccountCreateRequest(
+class _ApiAccountCreateRequest implements ApiAccountCreateRequest {
+  const _ApiAccountCreateRequest(
       {required this.name, required this.balance, required this.currency});
-  factory _AccountCreateRequest.fromJson(Map<String, dynamic> json) =>
-      _$AccountCreateRequestFromJson(json);
+  factory _ApiAccountCreateRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountCreateRequestFromJson(json);
 
   @override
   final String name;
@@ -109,18 +109,18 @@ class _AccountCreateRequest implements AccountCreateRequest {
   @override
   final String currency;
 
-  /// Create a copy of AccountCreateRequest
+  /// Create a copy of ApiAccountCreateRequest
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$AccountCreateRequestCopyWith<_AccountCreateRequest> get copyWith =>
-      __$AccountCreateRequestCopyWithImpl<_AccountCreateRequest>(
+  _$ApiAccountCreateRequestCopyWith<_ApiAccountCreateRequest> get copyWith =>
+      __$ApiAccountCreateRequestCopyWithImpl<_ApiAccountCreateRequest>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$AccountCreateRequestToJson(
+    return _$ApiAccountCreateRequestToJson(
       this,
     );
   }
@@ -129,7 +129,7 @@ class _AccountCreateRequest implements AccountCreateRequest {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AccountCreateRequest &&
+            other is _ApiAccountCreateRequest &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.balance, balance) || other.balance == balance) &&
             (identical(other.currency, currency) ||
@@ -142,30 +142,30 @@ class _AccountCreateRequest implements AccountCreateRequest {
 
   @override
   String toString() {
-    return 'AccountCreateRequest(name: $name, balance: $balance, currency: $currency)';
+    return 'ApiAccountCreateRequest(name: $name, balance: $balance, currency: $currency)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$AccountCreateRequestCopyWith<$Res>
-    implements $AccountCreateRequestCopyWith<$Res> {
-  factory _$AccountCreateRequestCopyWith(_AccountCreateRequest value,
-          $Res Function(_AccountCreateRequest) _then) =
-      __$AccountCreateRequestCopyWithImpl;
+abstract mixin class _$ApiAccountCreateRequestCopyWith<$Res>
+    implements $ApiAccountCreateRequestCopyWith<$Res> {
+  factory _$ApiAccountCreateRequestCopyWith(_ApiAccountCreateRequest value,
+          $Res Function(_ApiAccountCreateRequest) _then) =
+      __$ApiAccountCreateRequestCopyWithImpl;
   @override
   @useResult
   $Res call({String name, String balance, String currency});
 }
 
 /// @nodoc
-class __$AccountCreateRequestCopyWithImpl<$Res>
-    implements _$AccountCreateRequestCopyWith<$Res> {
-  __$AccountCreateRequestCopyWithImpl(this._self, this._then);
+class __$ApiAccountCreateRequestCopyWithImpl<$Res>
+    implements _$ApiAccountCreateRequestCopyWith<$Res> {
+  __$ApiAccountCreateRequestCopyWithImpl(this._self, this._then);
 
-  final _AccountCreateRequest _self;
-  final $Res Function(_AccountCreateRequest) _then;
+  final _ApiAccountCreateRequest _self;
+  final $Res Function(_ApiAccountCreateRequest) _then;
 
-  /// Create a copy of AccountCreateRequest
+  /// Create a copy of ApiAccountCreateRequest
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -174,7 +174,7 @@ class __$AccountCreateRequestCopyWithImpl<$Res>
     Object? balance = null,
     Object? currency = null,
   }) {
-    return _then(_AccountCreateRequest(
+    return _then(_ApiAccountCreateRequest(
       name: null == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable

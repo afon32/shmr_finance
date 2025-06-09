@@ -14,29 +14,29 @@ part of 'transaction_request.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$TransactionRequest {
+mixin _$ApiTransactionRequest {
   int get accountId;
   int get categoryId;
   String get amount;
   String get transactionDate;
   String? get comment;
 
-  /// Create a copy of TransactionRequest
+  /// Create a copy of ApiTransactionRequest
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $TransactionRequestCopyWith<TransactionRequest> get copyWith =>
-      _$TransactionRequestCopyWithImpl<TransactionRequest>(
-          this as TransactionRequest, _$identity);
+  $ApiTransactionRequestCopyWith<ApiTransactionRequest> get copyWith =>
+      _$ApiTransactionRequestCopyWithImpl<ApiTransactionRequest>(
+          this as ApiTransactionRequest, _$identity);
 
-  /// Serializes this TransactionRequest to a JSON map.
+  /// Serializes this ApiTransactionRequest to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is TransactionRequest &&
+            other is ApiTransactionRequest &&
             (identical(other.accountId, accountId) ||
                 other.accountId == accountId) &&
             (identical(other.categoryId, categoryId) ||
@@ -54,15 +54,15 @@ mixin _$TransactionRequest {
 
   @override
   String toString() {
-    return 'TransactionRequest(accountId: $accountId, categoryId: $categoryId, amount: $amount, transactionDate: $transactionDate, comment: $comment)';
+    return 'ApiTransactionRequest(accountId: $accountId, categoryId: $categoryId, amount: $amount, transactionDate: $transactionDate, comment: $comment)';
   }
 }
 
 /// @nodoc
-abstract mixin class $TransactionRequestCopyWith<$Res> {
-  factory $TransactionRequestCopyWith(
-          TransactionRequest value, $Res Function(TransactionRequest) _then) =
-      _$TransactionRequestCopyWithImpl;
+abstract mixin class $ApiTransactionRequestCopyWith<$Res> {
+  factory $ApiTransactionRequestCopyWith(ApiTransactionRequest value,
+          $Res Function(ApiTransactionRequest) _then) =
+      _$ApiTransactionRequestCopyWithImpl;
   @useResult
   $Res call(
       {int accountId,
@@ -73,14 +73,14 @@ abstract mixin class $TransactionRequestCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TransactionRequestCopyWithImpl<$Res>
-    implements $TransactionRequestCopyWith<$Res> {
-  _$TransactionRequestCopyWithImpl(this._self, this._then);
+class _$ApiTransactionRequestCopyWithImpl<$Res>
+    implements $ApiTransactionRequestCopyWith<$Res> {
+  _$ApiTransactionRequestCopyWithImpl(this._self, this._then);
 
-  final TransactionRequest _self;
-  final $Res Function(TransactionRequest) _then;
+  final ApiTransactionRequest _self;
+  final $Res Function(ApiTransactionRequest) _then;
 
-  /// Create a copy of TransactionRequest
+  /// Create a copy of ApiTransactionRequest
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -118,15 +118,15 @@ class _$TransactionRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _TransactionRequest implements TransactionRequest {
-  const _TransactionRequest(
+class _ApiTransactionRequest implements ApiTransactionRequest {
+  const _ApiTransactionRequest(
       {required this.accountId,
       required this.categoryId,
       required this.amount,
       required this.transactionDate,
       required this.comment});
-  factory _TransactionRequest.fromJson(Map<String, dynamic> json) =>
-      _$TransactionRequestFromJson(json);
+  factory _ApiTransactionRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiTransactionRequestFromJson(json);
 
   @override
   final int accountId;
@@ -139,17 +139,18 @@ class _TransactionRequest implements TransactionRequest {
   @override
   final String? comment;
 
-  /// Create a copy of TransactionRequest
+  /// Create a copy of ApiTransactionRequest
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$TransactionRequestCopyWith<_TransactionRequest> get copyWith =>
-      __$TransactionRequestCopyWithImpl<_TransactionRequest>(this, _$identity);
+  _$ApiTransactionRequestCopyWith<_ApiTransactionRequest> get copyWith =>
+      __$ApiTransactionRequestCopyWithImpl<_ApiTransactionRequest>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$TransactionRequestToJson(
+    return _$ApiTransactionRequestToJson(
       this,
     );
   }
@@ -158,7 +159,7 @@ class _TransactionRequest implements TransactionRequest {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TransactionRequest &&
+            other is _ApiTransactionRequest &&
             (identical(other.accountId, accountId) ||
                 other.accountId == accountId) &&
             (identical(other.categoryId, categoryId) ||
@@ -176,16 +177,16 @@ class _TransactionRequest implements TransactionRequest {
 
   @override
   String toString() {
-    return 'TransactionRequest(accountId: $accountId, categoryId: $categoryId, amount: $amount, transactionDate: $transactionDate, comment: $comment)';
+    return 'ApiTransactionRequest(accountId: $accountId, categoryId: $categoryId, amount: $amount, transactionDate: $transactionDate, comment: $comment)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$TransactionRequestCopyWith<$Res>
-    implements $TransactionRequestCopyWith<$Res> {
-  factory _$TransactionRequestCopyWith(
-          _TransactionRequest value, $Res Function(_TransactionRequest) _then) =
-      __$TransactionRequestCopyWithImpl;
+abstract mixin class _$ApiTransactionRequestCopyWith<$Res>
+    implements $ApiTransactionRequestCopyWith<$Res> {
+  factory _$ApiTransactionRequestCopyWith(_ApiTransactionRequest value,
+          $Res Function(_ApiTransactionRequest) _then) =
+      __$ApiTransactionRequestCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -197,14 +198,14 @@ abstract mixin class _$TransactionRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$TransactionRequestCopyWithImpl<$Res>
-    implements _$TransactionRequestCopyWith<$Res> {
-  __$TransactionRequestCopyWithImpl(this._self, this._then);
+class __$ApiTransactionRequestCopyWithImpl<$Res>
+    implements _$ApiTransactionRequestCopyWith<$Res> {
+  __$ApiTransactionRequestCopyWithImpl(this._self, this._then);
 
-  final _TransactionRequest _self;
-  final $Res Function(_TransactionRequest) _then;
+  final _ApiTransactionRequest _self;
+  final $Res Function(_ApiTransactionRequest) _then;
 
-  /// Create a copy of TransactionRequest
+  /// Create a copy of ApiTransactionRequest
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -215,7 +216,7 @@ class __$TransactionRequestCopyWithImpl<$Res>
     Object? transactionDate = null,
     Object? comment = freezed,
   }) {
-    return _then(_TransactionRequest(
+    return _then(_ApiTransactionRequest(
       accountId: null == accountId
           ? _self.accountId
           : accountId // ignore: cast_nullable_to_non_nullable

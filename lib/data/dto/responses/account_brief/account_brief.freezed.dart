@@ -14,28 +14,28 @@ part of 'account_brief.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$AccountBrief {
+mixin _$ApiAccountBrief {
   int get id;
   String get name;
   String get balance;
   String get currency;
 
-  /// Create a copy of AccountBrief
+  /// Create a copy of ApiAccountBrief
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $AccountBriefCopyWith<AccountBrief> get copyWith =>
-      _$AccountBriefCopyWithImpl<AccountBrief>(
-          this as AccountBrief, _$identity);
+  $ApiAccountBriefCopyWith<ApiAccountBrief> get copyWith =>
+      _$ApiAccountBriefCopyWithImpl<ApiAccountBrief>(
+          this as ApiAccountBrief, _$identity);
 
-  /// Serializes this AccountBrief to a JSON map.
+  /// Serializes this ApiAccountBrief to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AccountBrief &&
+            other is ApiAccountBrief &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.balance, balance) || other.balance == balance) &&
@@ -49,27 +49,28 @@ mixin _$AccountBrief {
 
   @override
   String toString() {
-    return 'AccountBrief(id: $id, name: $name, balance: $balance, currency: $currency)';
+    return 'ApiAccountBrief(id: $id, name: $name, balance: $balance, currency: $currency)';
   }
 }
 
 /// @nodoc
-abstract mixin class $AccountBriefCopyWith<$Res> {
-  factory $AccountBriefCopyWith(
-          AccountBrief value, $Res Function(AccountBrief) _then) =
-      _$AccountBriefCopyWithImpl;
+abstract mixin class $ApiAccountBriefCopyWith<$Res> {
+  factory $ApiAccountBriefCopyWith(
+          ApiAccountBrief value, $Res Function(ApiAccountBrief) _then) =
+      _$ApiAccountBriefCopyWithImpl;
   @useResult
   $Res call({int id, String name, String balance, String currency});
 }
 
 /// @nodoc
-class _$AccountBriefCopyWithImpl<$Res> implements $AccountBriefCopyWith<$Res> {
-  _$AccountBriefCopyWithImpl(this._self, this._then);
+class _$ApiAccountBriefCopyWithImpl<$Res>
+    implements $ApiAccountBriefCopyWith<$Res> {
+  _$ApiAccountBriefCopyWithImpl(this._self, this._then);
 
-  final AccountBrief _self;
-  final $Res Function(AccountBrief) _then;
+  final ApiAccountBrief _self;
+  final $Res Function(ApiAccountBrief) _then;
 
-  /// Create a copy of AccountBrief
+  /// Create a copy of ApiAccountBrief
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -102,14 +103,14 @@ class _$AccountBriefCopyWithImpl<$Res> implements $AccountBriefCopyWith<$Res> {
 
 /// @nodoc
 @JsonSerializable()
-class _AccountBrief implements AccountBrief {
-  const _AccountBrief(
+class _ApiAccountBrief implements ApiAccountBrief {
+  const _ApiAccountBrief(
       {required this.id,
       required this.name,
       required this.balance,
       required this.currency});
-  factory _AccountBrief.fromJson(Map<String, dynamic> json) =>
-      _$AccountBriefFromJson(json);
+  factory _ApiAccountBrief.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountBriefFromJson(json);
 
   @override
   final int id;
@@ -120,17 +121,17 @@ class _AccountBrief implements AccountBrief {
   @override
   final String currency;
 
-  /// Create a copy of AccountBrief
+  /// Create a copy of ApiAccountBrief
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$AccountBriefCopyWith<_AccountBrief> get copyWith =>
-      __$AccountBriefCopyWithImpl<_AccountBrief>(this, _$identity);
+  _$ApiAccountBriefCopyWith<_ApiAccountBrief> get copyWith =>
+      __$ApiAccountBriefCopyWithImpl<_ApiAccountBrief>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$AccountBriefToJson(
+    return _$ApiAccountBriefToJson(
       this,
     );
   }
@@ -139,7 +140,7 @@ class _AccountBrief implements AccountBrief {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AccountBrief &&
+            other is _ApiAccountBrief &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.balance, balance) || other.balance == balance) &&
@@ -153,30 +154,30 @@ class _AccountBrief implements AccountBrief {
 
   @override
   String toString() {
-    return 'AccountBrief(id: $id, name: $name, balance: $balance, currency: $currency)';
+    return 'ApiAccountBrief(id: $id, name: $name, balance: $balance, currency: $currency)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$AccountBriefCopyWith<$Res>
-    implements $AccountBriefCopyWith<$Res> {
-  factory _$AccountBriefCopyWith(
-          _AccountBrief value, $Res Function(_AccountBrief) _then) =
-      __$AccountBriefCopyWithImpl;
+abstract mixin class _$ApiAccountBriefCopyWith<$Res>
+    implements $ApiAccountBriefCopyWith<$Res> {
+  factory _$ApiAccountBriefCopyWith(
+          _ApiAccountBrief value, $Res Function(_ApiAccountBrief) _then) =
+      __$ApiAccountBriefCopyWithImpl;
   @override
   @useResult
   $Res call({int id, String name, String balance, String currency});
 }
 
 /// @nodoc
-class __$AccountBriefCopyWithImpl<$Res>
-    implements _$AccountBriefCopyWith<$Res> {
-  __$AccountBriefCopyWithImpl(this._self, this._then);
+class __$ApiAccountBriefCopyWithImpl<$Res>
+    implements _$ApiAccountBriefCopyWith<$Res> {
+  __$ApiAccountBriefCopyWithImpl(this._self, this._then);
 
-  final _AccountBrief _self;
-  final $Res Function(_AccountBrief) _then;
+  final _ApiAccountBrief _self;
+  final $Res Function(_ApiAccountBrief) _then;
 
-  /// Create a copy of AccountBrief
+  /// Create a copy of ApiAccountBrief
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -186,7 +187,7 @@ class __$AccountBriefCopyWithImpl<$Res>
     Object? balance = null,
     Object? currency = null,
   }) {
-    return _then(_AccountBrief(
+    return _then(_ApiAccountBrief(
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable

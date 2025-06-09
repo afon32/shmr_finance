@@ -6,19 +6,20 @@ part of 'account_history.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_AccountHistory _$AccountHistoryFromJson(Map<String, dynamic> json) =>
-    _AccountHistory(
+_ApiAccountHistory _$ApiAccountHistoryFromJson(Map<String, dynamic> json) =>
+    _ApiAccountHistory(
       id: (json['id'] as num).toInt(),
       accountId: (json['accountId'] as num).toInt(),
       changeType: json['changeType'] as String,
-      previousState:
-          AccountState.fromJson(json['previousState'] as Map<String, dynamic>),
-      newState: AccountState.fromJson(json['newState'] as Map<String, dynamic>),
+      previousState: ApiAccountState.fromJson(
+          json['previousState'] as Map<String, dynamic>),
+      newState:
+          ApiAccountState.fromJson(json['newState'] as Map<String, dynamic>),
       changeTimestamp: json['changeTimestamp'] as String,
       createdAt: json['createdAt'] as String,
     );
 
-Map<String, dynamic> _$AccountHistoryToJson(_AccountHistory instance) =>
+Map<String, dynamic> _$ApiAccountHistoryToJson(_ApiAccountHistory instance) =>
     <String, dynamic>{
       'id': instance.id,
       'accountId': instance.accountId,

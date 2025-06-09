@@ -6,17 +6,17 @@ part 'account_response.freezed.dart';
 part 'account_response.g.dart';
 
 @freezed
-abstract class AccountResponse with _$AccountResponse {
-  const factory AccountResponse(
+abstract class ApiAccountResponse with _$ApiAccountResponse {
+  const factory ApiAccountResponse(
       {required int id,
       required String name,
       required String balance,
       required String currency,
-      required List<StatItem> incomeStats,
-      required List<StatItem> expenseStats,
+      required List<ApiStatItem> incomeStats,
+      required List<ApiStatItem> expenseStats,
       required String createdAt,
-      required String updatedAt}) = _AccountResponse;
+      required String updatedAt}) = _ApiAccountResponse;
 
-  factory AccountResponse.fromJson(Map<String, dynamic> json) =>
-      _$AccountResponseFromJson(json);
+  factory ApiAccountResponse.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountResponseFromJson(json);
 }

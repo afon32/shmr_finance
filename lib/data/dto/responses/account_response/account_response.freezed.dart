@@ -14,32 +14,32 @@ part of 'account_response.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$AccountResponse {
+mixin _$ApiAccountResponse {
   int get id;
   String get name;
   String get balance;
   String get currency;
-  List<StatItem> get incomeStats;
-  List<StatItem> get expenseStats;
+  List<ApiStatItem> get incomeStats;
+  List<ApiStatItem> get expenseStats;
   String get createdAt;
   String get updatedAt;
 
-  /// Create a copy of AccountResponse
+  /// Create a copy of ApiAccountResponse
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $AccountResponseCopyWith<AccountResponse> get copyWith =>
-      _$AccountResponseCopyWithImpl<AccountResponse>(
-          this as AccountResponse, _$identity);
+  $ApiAccountResponseCopyWith<ApiAccountResponse> get copyWith =>
+      _$ApiAccountResponseCopyWithImpl<ApiAccountResponse>(
+          this as ApiAccountResponse, _$identity);
 
-  /// Serializes this AccountResponse to a JSON map.
+  /// Serializes this ApiAccountResponse to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AccountResponse &&
+            other is ApiAccountResponse &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.balance, balance) || other.balance == balance) &&
@@ -70,36 +70,36 @@ mixin _$AccountResponse {
 
   @override
   String toString() {
-    return 'AccountResponse(id: $id, name: $name, balance: $balance, currency: $currency, incomeStats: $incomeStats, expenseStats: $expenseStats, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ApiAccountResponse(id: $id, name: $name, balance: $balance, currency: $currency, incomeStats: $incomeStats, expenseStats: $expenseStats, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
 /// @nodoc
-abstract mixin class $AccountResponseCopyWith<$Res> {
-  factory $AccountResponseCopyWith(
-          AccountResponse value, $Res Function(AccountResponse) _then) =
-      _$AccountResponseCopyWithImpl;
+abstract mixin class $ApiAccountResponseCopyWith<$Res> {
+  factory $ApiAccountResponseCopyWith(
+          ApiAccountResponse value, $Res Function(ApiAccountResponse) _then) =
+      _$ApiAccountResponseCopyWithImpl;
   @useResult
   $Res call(
       {int id,
       String name,
       String balance,
       String currency,
-      List<StatItem> incomeStats,
-      List<StatItem> expenseStats,
+      List<ApiStatItem> incomeStats,
+      List<ApiStatItem> expenseStats,
       String createdAt,
       String updatedAt});
 }
 
 /// @nodoc
-class _$AccountResponseCopyWithImpl<$Res>
-    implements $AccountResponseCopyWith<$Res> {
-  _$AccountResponseCopyWithImpl(this._self, this._then);
+class _$ApiAccountResponseCopyWithImpl<$Res>
+    implements $ApiAccountResponseCopyWith<$Res> {
+  _$ApiAccountResponseCopyWithImpl(this._self, this._then);
 
-  final AccountResponse _self;
-  final $Res Function(AccountResponse) _then;
+  final ApiAccountResponse _self;
+  final $Res Function(ApiAccountResponse) _then;
 
-  /// Create a copy of AccountResponse
+  /// Create a copy of ApiAccountResponse
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -133,11 +133,11 @@ class _$AccountResponseCopyWithImpl<$Res>
       incomeStats: null == incomeStats
           ? _self.incomeStats
           : incomeStats // ignore: cast_nullable_to_non_nullable
-              as List<StatItem>,
+              as List<ApiStatItem>,
       expenseStats: null == expenseStats
           ? _self.expenseStats
           : expenseStats // ignore: cast_nullable_to_non_nullable
-              as List<StatItem>,
+              as List<ApiStatItem>,
       createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -152,20 +152,20 @@ class _$AccountResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _AccountResponse implements AccountResponse {
-  const _AccountResponse(
+class _ApiAccountResponse implements ApiAccountResponse {
+  const _ApiAccountResponse(
       {required this.id,
       required this.name,
       required this.balance,
       required this.currency,
-      required final List<StatItem> incomeStats,
-      required final List<StatItem> expenseStats,
+      required final List<ApiStatItem> incomeStats,
+      required final List<ApiStatItem> expenseStats,
       required this.createdAt,
       required this.updatedAt})
       : _incomeStats = incomeStats,
         _expenseStats = expenseStats;
-  factory _AccountResponse.fromJson(Map<String, dynamic> json) =>
-      _$AccountResponseFromJson(json);
+  factory _ApiAccountResponse.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountResponseFromJson(json);
 
   @override
   final int id;
@@ -175,17 +175,17 @@ class _AccountResponse implements AccountResponse {
   final String balance;
   @override
   final String currency;
-  final List<StatItem> _incomeStats;
+  final List<ApiStatItem> _incomeStats;
   @override
-  List<StatItem> get incomeStats {
+  List<ApiStatItem> get incomeStats {
     if (_incomeStats is EqualUnmodifiableListView) return _incomeStats;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_incomeStats);
   }
 
-  final List<StatItem> _expenseStats;
+  final List<ApiStatItem> _expenseStats;
   @override
-  List<StatItem> get expenseStats {
+  List<ApiStatItem> get expenseStats {
     if (_expenseStats is EqualUnmodifiableListView) return _expenseStats;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_expenseStats);
@@ -196,17 +196,17 @@ class _AccountResponse implements AccountResponse {
   @override
   final String updatedAt;
 
-  /// Create a copy of AccountResponse
+  /// Create a copy of ApiAccountResponse
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$AccountResponseCopyWith<_AccountResponse> get copyWith =>
-      __$AccountResponseCopyWithImpl<_AccountResponse>(this, _$identity);
+  _$ApiAccountResponseCopyWith<_ApiAccountResponse> get copyWith =>
+      __$ApiAccountResponseCopyWithImpl<_ApiAccountResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$AccountResponseToJson(
+    return _$ApiAccountResponseToJson(
       this,
     );
   }
@@ -215,7 +215,7 @@ class _AccountResponse implements AccountResponse {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AccountResponse &&
+            other is _ApiAccountResponse &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.balance, balance) || other.balance == balance) &&
@@ -246,16 +246,16 @@ class _AccountResponse implements AccountResponse {
 
   @override
   String toString() {
-    return 'AccountResponse(id: $id, name: $name, balance: $balance, currency: $currency, incomeStats: $incomeStats, expenseStats: $expenseStats, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ApiAccountResponse(id: $id, name: $name, balance: $balance, currency: $currency, incomeStats: $incomeStats, expenseStats: $expenseStats, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$AccountResponseCopyWith<$Res>
-    implements $AccountResponseCopyWith<$Res> {
-  factory _$AccountResponseCopyWith(
-          _AccountResponse value, $Res Function(_AccountResponse) _then) =
-      __$AccountResponseCopyWithImpl;
+abstract mixin class _$ApiAccountResponseCopyWith<$Res>
+    implements $ApiAccountResponseCopyWith<$Res> {
+  factory _$ApiAccountResponseCopyWith(
+          _ApiAccountResponse value, $Res Function(_ApiAccountResponse) _then) =
+      __$ApiAccountResponseCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -263,21 +263,21 @@ abstract mixin class _$AccountResponseCopyWith<$Res>
       String name,
       String balance,
       String currency,
-      List<StatItem> incomeStats,
-      List<StatItem> expenseStats,
+      List<ApiStatItem> incomeStats,
+      List<ApiStatItem> expenseStats,
       String createdAt,
       String updatedAt});
 }
 
 /// @nodoc
-class __$AccountResponseCopyWithImpl<$Res>
-    implements _$AccountResponseCopyWith<$Res> {
-  __$AccountResponseCopyWithImpl(this._self, this._then);
+class __$ApiAccountResponseCopyWithImpl<$Res>
+    implements _$ApiAccountResponseCopyWith<$Res> {
+  __$ApiAccountResponseCopyWithImpl(this._self, this._then);
 
-  final _AccountResponse _self;
-  final $Res Function(_AccountResponse) _then;
+  final _ApiAccountResponse _self;
+  final $Res Function(_ApiAccountResponse) _then;
 
-  /// Create a copy of AccountResponse
+  /// Create a copy of ApiAccountResponse
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -291,7 +291,7 @@ class __$AccountResponseCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
-    return _then(_AccountResponse(
+    return _then(_ApiAccountResponse(
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -311,11 +311,11 @@ class __$AccountResponseCopyWithImpl<$Res>
       incomeStats: null == incomeStats
           ? _self._incomeStats
           : incomeStats // ignore: cast_nullable_to_non_nullable
-              as List<StatItem>,
+              as List<ApiStatItem>,
       expenseStats: null == expenseStats
           ? _self._expenseStats
           : expenseStats // ignore: cast_nullable_to_non_nullable
-              as List<StatItem>,
+              as List<ApiStatItem>,
       createdAt: null == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable

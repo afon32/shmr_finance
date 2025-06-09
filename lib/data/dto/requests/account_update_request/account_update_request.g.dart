@@ -6,16 +6,16 @@ part of 'account_update_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_AccountUpdateRequest _$AccountUpdateRequestFromJson(
+_ApiAccountUpdateRequest _$ApiAccountUpdateRequestFromJson(
         Map<String, dynamic> json) =>
-    _AccountUpdateRequest(
+    _ApiAccountUpdateRequest(
       name: json['name'] as String,
       balance: json['balance'] as String,
       currency: json['currency'] as String,
     );
 
-Map<String, dynamic> _$AccountUpdateRequestToJson(
-        _AccountUpdateRequest instance) =>
+Map<String, dynamic> _$ApiAccountUpdateRequestToJson(
+        _ApiAccountUpdateRequest instance) =>
     <String, dynamic>{
       'name': instance.name,
       'balance': instance.balance,

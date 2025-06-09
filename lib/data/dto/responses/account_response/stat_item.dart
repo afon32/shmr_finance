@@ -4,10 +4,13 @@ part 'stat_item.freezed.dart';
 part 'stat_item.g.dart';
 
 @freezed
-abstract class StatItem with _$StatItem{
-  const factory StatItem({
-    required int categoryId, required String categoryName, required String emoji, required String amount
-  }) = _StatItem;
+abstract class ApiStatItem with _$ApiStatItem {
+  const factory ApiStatItem(
+      {required int categoryId,
+      required String categoryName,
+      required String emoji,
+      required String amount}) = _StatItem;
 
-  factory StatItem.fromJson(Map<String, dynamic> json) => _$StatItemFromJson(json);
+  factory ApiStatItem.fromJson(Map<String, dynamic> json) =>
+      _$ApiStatItemFromJson(json);
 }

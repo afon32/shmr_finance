@@ -6,8 +6,8 @@ part of 'transaction_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_TransactionDto _$TransactionDtoFromJson(Map<String, dynamic> json) =>
-    _TransactionDto(
+_ApiTransaction _$ApiTransactionFromJson(Map<String, dynamic> json) =>
+    _ApiTransaction(
       id: (json['id'] as num).toInt(),
       accountId: (json['accountId'] as num).toInt(),
       categoryId: (json['categoryId'] as num).toInt(),
@@ -18,7 +18,7 @@ _TransactionDto _$TransactionDtoFromJson(Map<String, dynamic> json) =>
       updatedAt: json['updatedAt'] as String,
     );
 
-Map<String, dynamic> _$TransactionDtoToJson(_TransactionDto instance) =>
+Map<String, dynamic> _$ApiTransactionToJson(_ApiTransaction instance) =>
     <String, dynamic>{
       'id': instance.id,
       'accountId': instance.accountId,

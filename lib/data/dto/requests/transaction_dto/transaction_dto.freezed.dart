@@ -14,7 +14,7 @@ part of 'transaction_dto.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$TransactionDto {
+mixin _$ApiTransaction {
   int get id;
   int get accountId;
   int get categoryId;
@@ -24,22 +24,22 @@ mixin _$TransactionDto {
   String get createdAt;
   String get updatedAt;
 
-  /// Create a copy of TransactionDto
+  /// Create a copy of ApiTransaction
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $TransactionDtoCopyWith<TransactionDto> get copyWith =>
-      _$TransactionDtoCopyWithImpl<TransactionDto>(
-          this as TransactionDto, _$identity);
+  $ApiTransactionCopyWith<ApiTransaction> get copyWith =>
+      _$ApiTransactionCopyWithImpl<ApiTransaction>(
+          this as ApiTransaction, _$identity);
 
-  /// Serializes this TransactionDto to a JSON map.
+  /// Serializes this ApiTransaction to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is TransactionDto &&
+            other is ApiTransaction &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.accountId, accountId) ||
                 other.accountId == accountId) &&
@@ -62,15 +62,15 @@ mixin _$TransactionDto {
 
   @override
   String toString() {
-    return 'TransactionDto(id: $id, accountId: $accountId, categoryId: $categoryId, amount: $amount, transactionDate: $transactionDate, comment: $comment, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ApiTransaction(id: $id, accountId: $accountId, categoryId: $categoryId, amount: $amount, transactionDate: $transactionDate, comment: $comment, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
 /// @nodoc
-abstract mixin class $TransactionDtoCopyWith<$Res> {
-  factory $TransactionDtoCopyWith(
-          TransactionDto value, $Res Function(TransactionDto) _then) =
-      _$TransactionDtoCopyWithImpl;
+abstract mixin class $ApiTransactionCopyWith<$Res> {
+  factory $ApiTransactionCopyWith(
+          ApiTransaction value, $Res Function(ApiTransaction) _then) =
+      _$ApiTransactionCopyWithImpl;
   @useResult
   $Res call(
       {int id,
@@ -84,14 +84,14 @@ abstract mixin class $TransactionDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TransactionDtoCopyWithImpl<$Res>
-    implements $TransactionDtoCopyWith<$Res> {
-  _$TransactionDtoCopyWithImpl(this._self, this._then);
+class _$ApiTransactionCopyWithImpl<$Res>
+    implements $ApiTransactionCopyWith<$Res> {
+  _$ApiTransactionCopyWithImpl(this._self, this._then);
 
-  final TransactionDto _self;
-  final $Res Function(TransactionDto) _then;
+  final ApiTransaction _self;
+  final $Res Function(ApiTransaction) _then;
 
-  /// Create a copy of TransactionDto
+  /// Create a copy of ApiTransaction
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -144,8 +144,8 @@ class _$TransactionDtoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _TransactionDto implements TransactionDto {
-  const _TransactionDto(
+class _ApiTransaction implements ApiTransaction {
+  const _ApiTransaction(
       {required this.id,
       required this.accountId,
       required this.categoryId,
@@ -154,8 +154,8 @@ class _TransactionDto implements TransactionDto {
       required this.comment,
       required this.createdAt,
       required this.updatedAt});
-  factory _TransactionDto.fromJson(Map<String, dynamic> json) =>
-      _$TransactionDtoFromJson(json);
+  factory _ApiTransaction.fromJson(Map<String, dynamic> json) =>
+      _$ApiTransactionFromJson(json);
 
   @override
   final int id;
@@ -174,17 +174,17 @@ class _TransactionDto implements TransactionDto {
   @override
   final String updatedAt;
 
-  /// Create a copy of TransactionDto
+  /// Create a copy of ApiTransaction
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$TransactionDtoCopyWith<_TransactionDto> get copyWith =>
-      __$TransactionDtoCopyWithImpl<_TransactionDto>(this, _$identity);
+  _$ApiTransactionCopyWith<_ApiTransaction> get copyWith =>
+      __$ApiTransactionCopyWithImpl<_ApiTransaction>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$TransactionDtoToJson(
+    return _$ApiTransactionToJson(
       this,
     );
   }
@@ -193,7 +193,7 @@ class _TransactionDto implements TransactionDto {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TransactionDto &&
+            other is _ApiTransaction &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.accountId, accountId) ||
                 other.accountId == accountId) &&
@@ -216,16 +216,16 @@ class _TransactionDto implements TransactionDto {
 
   @override
   String toString() {
-    return 'TransactionDto(id: $id, accountId: $accountId, categoryId: $categoryId, amount: $amount, transactionDate: $transactionDate, comment: $comment, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'ApiTransaction(id: $id, accountId: $accountId, categoryId: $categoryId, amount: $amount, transactionDate: $transactionDate, comment: $comment, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$TransactionDtoCopyWith<$Res>
-    implements $TransactionDtoCopyWith<$Res> {
-  factory _$TransactionDtoCopyWith(
-          _TransactionDto value, $Res Function(_TransactionDto) _then) =
-      __$TransactionDtoCopyWithImpl;
+abstract mixin class _$ApiTransactionCopyWith<$Res>
+    implements $ApiTransactionCopyWith<$Res> {
+  factory _$ApiTransactionCopyWith(
+          _ApiTransaction value, $Res Function(_ApiTransaction) _then) =
+      __$ApiTransactionCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -240,14 +240,14 @@ abstract mixin class _$TransactionDtoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$TransactionDtoCopyWithImpl<$Res>
-    implements _$TransactionDtoCopyWith<$Res> {
-  __$TransactionDtoCopyWithImpl(this._self, this._then);
+class __$ApiTransactionCopyWithImpl<$Res>
+    implements _$ApiTransactionCopyWith<$Res> {
+  __$ApiTransactionCopyWithImpl(this._self, this._then);
 
-  final _TransactionDto _self;
-  final $Res Function(_TransactionDto) _then;
+  final _ApiTransaction _self;
+  final $Res Function(_ApiTransaction) _then;
 
-  /// Create a copy of TransactionDto
+  /// Create a copy of ApiTransaction
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -261,7 +261,7 @@ class __$TransactionDtoCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
-    return _then(_TransactionDto(
+    return _then(_ApiTransaction(
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable

@@ -14,27 +14,27 @@ part of 'account_update_request.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$AccountUpdateRequest {
+mixin _$ApiAccountUpdateRequest {
   String get name;
   String get balance;
   String get currency;
 
-  /// Create a copy of AccountUpdateRequest
+  /// Create a copy of ApiAccountUpdateRequest
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $AccountUpdateRequestCopyWith<AccountUpdateRequest> get copyWith =>
-      _$AccountUpdateRequestCopyWithImpl<AccountUpdateRequest>(
-          this as AccountUpdateRequest, _$identity);
+  $ApiAccountUpdateRequestCopyWith<ApiAccountUpdateRequest> get copyWith =>
+      _$ApiAccountUpdateRequestCopyWithImpl<ApiAccountUpdateRequest>(
+          this as ApiAccountUpdateRequest, _$identity);
 
-  /// Serializes this AccountUpdateRequest to a JSON map.
+  /// Serializes this ApiAccountUpdateRequest to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AccountUpdateRequest &&
+            other is ApiAccountUpdateRequest &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.balance, balance) || other.balance == balance) &&
             (identical(other.currency, currency) ||
@@ -47,28 +47,28 @@ mixin _$AccountUpdateRequest {
 
   @override
   String toString() {
-    return 'AccountUpdateRequest(name: $name, balance: $balance, currency: $currency)';
+    return 'ApiAccountUpdateRequest(name: $name, balance: $balance, currency: $currency)';
   }
 }
 
 /// @nodoc
-abstract mixin class $AccountUpdateRequestCopyWith<$Res> {
-  factory $AccountUpdateRequestCopyWith(AccountUpdateRequest value,
-          $Res Function(AccountUpdateRequest) _then) =
-      _$AccountUpdateRequestCopyWithImpl;
+abstract mixin class $ApiAccountUpdateRequestCopyWith<$Res> {
+  factory $ApiAccountUpdateRequestCopyWith(ApiAccountUpdateRequest value,
+          $Res Function(ApiAccountUpdateRequest) _then) =
+      _$ApiAccountUpdateRequestCopyWithImpl;
   @useResult
   $Res call({String name, String balance, String currency});
 }
 
 /// @nodoc
-class _$AccountUpdateRequestCopyWithImpl<$Res>
-    implements $AccountUpdateRequestCopyWith<$Res> {
-  _$AccountUpdateRequestCopyWithImpl(this._self, this._then);
+class _$ApiAccountUpdateRequestCopyWithImpl<$Res>
+    implements $ApiAccountUpdateRequestCopyWith<$Res> {
+  _$ApiAccountUpdateRequestCopyWithImpl(this._self, this._then);
 
-  final AccountUpdateRequest _self;
-  final $Res Function(AccountUpdateRequest) _then;
+  final ApiAccountUpdateRequest _self;
+  final $Res Function(ApiAccountUpdateRequest) _then;
 
-  /// Create a copy of AccountUpdateRequest
+  /// Create a copy of ApiAccountUpdateRequest
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -96,11 +96,11 @@ class _$AccountUpdateRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _AccountUpdateRequest implements AccountUpdateRequest {
-  const _AccountUpdateRequest(
+class _ApiAccountUpdateRequest implements ApiAccountUpdateRequest {
+  const _ApiAccountUpdateRequest(
       {required this.name, required this.balance, required this.currency});
-  factory _AccountUpdateRequest.fromJson(Map<String, dynamic> json) =>
-      _$AccountUpdateRequestFromJson(json);
+  factory _ApiAccountUpdateRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountUpdateRequestFromJson(json);
 
   @override
   final String name;
@@ -109,18 +109,18 @@ class _AccountUpdateRequest implements AccountUpdateRequest {
   @override
   final String currency;
 
-  /// Create a copy of AccountUpdateRequest
+  /// Create a copy of ApiAccountUpdateRequest
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$AccountUpdateRequestCopyWith<_AccountUpdateRequest> get copyWith =>
-      __$AccountUpdateRequestCopyWithImpl<_AccountUpdateRequest>(
+  _$ApiAccountUpdateRequestCopyWith<_ApiAccountUpdateRequest> get copyWith =>
+      __$ApiAccountUpdateRequestCopyWithImpl<_ApiAccountUpdateRequest>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$AccountUpdateRequestToJson(
+    return _$ApiAccountUpdateRequestToJson(
       this,
     );
   }
@@ -129,7 +129,7 @@ class _AccountUpdateRequest implements AccountUpdateRequest {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AccountUpdateRequest &&
+            other is _ApiAccountUpdateRequest &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.balance, balance) || other.balance == balance) &&
             (identical(other.currency, currency) ||
@@ -142,30 +142,30 @@ class _AccountUpdateRequest implements AccountUpdateRequest {
 
   @override
   String toString() {
-    return 'AccountUpdateRequest(name: $name, balance: $balance, currency: $currency)';
+    return 'ApiAccountUpdateRequest(name: $name, balance: $balance, currency: $currency)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$AccountUpdateRequestCopyWith<$Res>
-    implements $AccountUpdateRequestCopyWith<$Res> {
-  factory _$AccountUpdateRequestCopyWith(_AccountUpdateRequest value,
-          $Res Function(_AccountUpdateRequest) _then) =
-      __$AccountUpdateRequestCopyWithImpl;
+abstract mixin class _$ApiAccountUpdateRequestCopyWith<$Res>
+    implements $ApiAccountUpdateRequestCopyWith<$Res> {
+  factory _$ApiAccountUpdateRequestCopyWith(_ApiAccountUpdateRequest value,
+          $Res Function(_ApiAccountUpdateRequest) _then) =
+      __$ApiAccountUpdateRequestCopyWithImpl;
   @override
   @useResult
   $Res call({String name, String balance, String currency});
 }
 
 /// @nodoc
-class __$AccountUpdateRequestCopyWithImpl<$Res>
-    implements _$AccountUpdateRequestCopyWith<$Res> {
-  __$AccountUpdateRequestCopyWithImpl(this._self, this._then);
+class __$ApiAccountUpdateRequestCopyWithImpl<$Res>
+    implements _$ApiAccountUpdateRequestCopyWith<$Res> {
+  __$ApiAccountUpdateRequestCopyWithImpl(this._self, this._then);
 
-  final _AccountUpdateRequest _self;
-  final $Res Function(_AccountUpdateRequest) _then;
+  final _ApiAccountUpdateRequest _self;
+  final $Res Function(_ApiAccountUpdateRequest) _then;
 
-  /// Create a copy of AccountUpdateRequest
+  /// Create a copy of ApiAccountUpdateRequest
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -174,7 +174,7 @@ class __$AccountUpdateRequestCopyWithImpl<$Res>
     Object? balance = null,
     Object? currency = null,
   }) {
-    return _then(_AccountUpdateRequest(
+    return _then(_ApiAccountUpdateRequest(
       name: null == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable

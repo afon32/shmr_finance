@@ -6,7 +6,7 @@ part of 'account_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_AccountDto _$AccountDtoFromJson(Map<String, dynamic> json) => _AccountDto(
+_ApiAccount _$ApiAccountFromJson(Map<String, dynamic> json) => _ApiAccount(
       id: (json['id'] as num).toInt(),
       userId: (json['userId'] as num).toInt(),
       name: json['name'] as String,
@@ -16,7 +16,7 @@ _AccountDto _$AccountDtoFromJson(Map<String, dynamic> json) => _AccountDto(
       updatedAt: json['updatedAt'] as String,
     );
 
-Map<String, dynamic> _$AccountDtoToJson(_AccountDto instance) =>
+Map<String, dynamic> _$ApiAccountToJson(_ApiAccount instance) =>
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,

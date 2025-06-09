@@ -6,15 +6,15 @@ part of 'account_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_AccountState _$AccountStateFromJson(Map<String, dynamic> json) =>
-    _AccountState(
+_ApiAccountState _$ApiAccountStateFromJson(Map<String, dynamic> json) =>
+    _ApiAccountState(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       balance: json['balance'] as String,
       currency: json['currency'] as String,
     );
 
-Map<String, dynamic> _$AccountStateToJson(_AccountState instance) =>
+Map<String, dynamic> _$ApiAccountStateToJson(_ApiAccountState instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

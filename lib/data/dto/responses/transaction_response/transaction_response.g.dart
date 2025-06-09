@@ -6,12 +6,13 @@ part of 'transaction_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_TransactionResponse _$TransactionResponseFromJson(Map<String, dynamic> json) =>
-    _TransactionResponse(
+_ApiTransactionResponse _$ApiTransactionResponseFromJson(
+        Map<String, dynamic> json) =>
+    _ApiTransactionResponse(
       id: (json['id'] as num).toInt(),
-      accountId:
-          AccountBrief.fromJson(json['accountId'] as Map<String, dynamic>),
-      category: CategoryDto.fromJson(json['category'] as Map<String, dynamic>),
+      account:
+          ApiAccountBrief.fromJson(json['account'] as Map<String, dynamic>),
+      category: ApiCategory.fromJson(json['category'] as Map<String, dynamic>),
       amount: json['amount'] as String,
       transactionDate: json['transactionDate'] as String,
       comment: json['comment'] as String?,
@@ -19,11 +20,11 @@ _TransactionResponse _$TransactionResponseFromJson(Map<String, dynamic> json) =>
       updatedAt: json['updatedAt'] as String,
     );
 
-Map<String, dynamic> _$TransactionResponseToJson(
-        _TransactionResponse instance) =>
+Map<String, dynamic> _$ApiTransactionResponseToJson(
+        _ApiTransactionResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'accountId': instance.accountId,
+      'account': instance.account,
       'category': instance.category,
       'amount': instance.amount,
       'transactionDate': instance.transactionDate,

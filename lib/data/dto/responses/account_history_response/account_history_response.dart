@@ -6,14 +6,14 @@ part 'account_history_response.freezed.dart';
 part 'account_history_response.g.dart';
 
 @freezed
-abstract class AccountHistoryResponse with _$AccountHistoryResponse {
-  const factory AccountHistoryResponse(
+abstract class ApiAccountHistoryResponse with _$ApiAccountHistoryResponse {
+  const factory ApiAccountHistoryResponse(
       {required int accountId,
       required String accountName,
       required String currency,
       required String currentBalance,
-      required List<AccountHistory> history}) = _AccountHistoryResponse;
+      required List<ApiAccountHistory> history}) = _ApiAccountHistoryResponse;
 
-  factory AccountHistoryResponse.fromJson(Map<String, dynamic> json) =>
-      _$AccountHistoryResponseFromJson(json);
+  factory ApiAccountHistoryResponse.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountHistoryResponseFromJson(json);
 }

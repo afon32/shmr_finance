@@ -14,31 +14,31 @@ part of 'account_history.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$AccountHistory {
+mixin _$ApiAccountHistory {
   int get id;
   int get accountId;
   String get changeType;
-  AccountState get previousState;
-  AccountState get newState;
+  ApiAccountState get previousState;
+  ApiAccountState get newState;
   String get changeTimestamp;
   String get createdAt;
 
-  /// Create a copy of AccountHistory
+  /// Create a copy of ApiAccountHistory
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $AccountHistoryCopyWith<AccountHistory> get copyWith =>
-      _$AccountHistoryCopyWithImpl<AccountHistory>(
-          this as AccountHistory, _$identity);
+  $ApiAccountHistoryCopyWith<ApiAccountHistory> get copyWith =>
+      _$ApiAccountHistoryCopyWithImpl<ApiAccountHistory>(
+          this as ApiAccountHistory, _$identity);
 
-  /// Serializes this AccountHistory to a JSON map.
+  /// Serializes this ApiAccountHistory to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AccountHistory &&
+            other is ApiAccountHistory &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.accountId, accountId) ||
                 other.accountId == accountId) &&
@@ -61,38 +61,38 @@ mixin _$AccountHistory {
 
   @override
   String toString() {
-    return 'AccountHistory(id: $id, accountId: $accountId, changeType: $changeType, previousState: $previousState, newState: $newState, changeTimestamp: $changeTimestamp, createdAt: $createdAt)';
+    return 'ApiAccountHistory(id: $id, accountId: $accountId, changeType: $changeType, previousState: $previousState, newState: $newState, changeTimestamp: $changeTimestamp, createdAt: $createdAt)';
   }
 }
 
 /// @nodoc
-abstract mixin class $AccountHistoryCopyWith<$Res> {
-  factory $AccountHistoryCopyWith(
-          AccountHistory value, $Res Function(AccountHistory) _then) =
-      _$AccountHistoryCopyWithImpl;
+abstract mixin class $ApiAccountHistoryCopyWith<$Res> {
+  factory $ApiAccountHistoryCopyWith(
+          ApiAccountHistory value, $Res Function(ApiAccountHistory) _then) =
+      _$ApiAccountHistoryCopyWithImpl;
   @useResult
   $Res call(
       {int id,
       int accountId,
       String changeType,
-      AccountState previousState,
-      AccountState newState,
+      ApiAccountState previousState,
+      ApiAccountState newState,
       String changeTimestamp,
       String createdAt});
 
-  $AccountStateCopyWith<$Res> get previousState;
-  $AccountStateCopyWith<$Res> get newState;
+  $ApiAccountStateCopyWith<$Res> get previousState;
+  $ApiAccountStateCopyWith<$Res> get newState;
 }
 
 /// @nodoc
-class _$AccountHistoryCopyWithImpl<$Res>
-    implements $AccountHistoryCopyWith<$Res> {
-  _$AccountHistoryCopyWithImpl(this._self, this._then);
+class _$ApiAccountHistoryCopyWithImpl<$Res>
+    implements $ApiAccountHistoryCopyWith<$Res> {
+  _$ApiAccountHistoryCopyWithImpl(this._self, this._then);
 
-  final AccountHistory _self;
-  final $Res Function(AccountHistory) _then;
+  final ApiAccountHistory _self;
+  final $Res Function(ApiAccountHistory) _then;
 
-  /// Create a copy of AccountHistory
+  /// Create a copy of ApiAccountHistory
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -121,11 +121,11 @@ class _$AccountHistoryCopyWithImpl<$Res>
       previousState: null == previousState
           ? _self.previousState
           : previousState // ignore: cast_nullable_to_non_nullable
-              as AccountState,
+              as ApiAccountState,
       newState: null == newState
           ? _self.newState
           : newState // ignore: cast_nullable_to_non_nullable
-              as AccountState,
+              as ApiAccountState,
       changeTimestamp: null == changeTimestamp
           ? _self.changeTimestamp
           : changeTimestamp // ignore: cast_nullable_to_non_nullable
@@ -137,22 +137,22 @@ class _$AccountHistoryCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of AccountHistory
+  /// Create a copy of ApiAccountHistory
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AccountStateCopyWith<$Res> get previousState {
-    return $AccountStateCopyWith<$Res>(_self.previousState, (value) {
+  $ApiAccountStateCopyWith<$Res> get previousState {
+    return $ApiAccountStateCopyWith<$Res>(_self.previousState, (value) {
       return _then(_self.copyWith(previousState: value));
     });
   }
 
-  /// Create a copy of AccountHistory
+  /// Create a copy of ApiAccountHistory
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AccountStateCopyWith<$Res> get newState {
-    return $AccountStateCopyWith<$Res>(_self.newState, (value) {
+  $ApiAccountStateCopyWith<$Res> get newState {
+    return $ApiAccountStateCopyWith<$Res>(_self.newState, (value) {
       return _then(_self.copyWith(newState: value));
     });
   }
@@ -160,8 +160,8 @@ class _$AccountHistoryCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _AccountHistory implements AccountHistory {
-  const _AccountHistory(
+class _ApiAccountHistory implements ApiAccountHistory {
+  const _ApiAccountHistory(
       {required this.id,
       required this.accountId,
       required this.changeType,
@@ -169,8 +169,8 @@ class _AccountHistory implements AccountHistory {
       required this.newState,
       required this.changeTimestamp,
       required this.createdAt});
-  factory _AccountHistory.fromJson(Map<String, dynamic> json) =>
-      _$AccountHistoryFromJson(json);
+  factory _ApiAccountHistory.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountHistoryFromJson(json);
 
   @override
   final int id;
@@ -179,25 +179,25 @@ class _AccountHistory implements AccountHistory {
   @override
   final String changeType;
   @override
-  final AccountState previousState;
+  final ApiAccountState previousState;
   @override
-  final AccountState newState;
+  final ApiAccountState newState;
   @override
   final String changeTimestamp;
   @override
   final String createdAt;
 
-  /// Create a copy of AccountHistory
+  /// Create a copy of ApiAccountHistory
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$AccountHistoryCopyWith<_AccountHistory> get copyWith =>
-      __$AccountHistoryCopyWithImpl<_AccountHistory>(this, _$identity);
+  _$ApiAccountHistoryCopyWith<_ApiAccountHistory> get copyWith =>
+      __$ApiAccountHistoryCopyWithImpl<_ApiAccountHistory>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$AccountHistoryToJson(
+    return _$ApiAccountHistoryToJson(
       this,
     );
   }
@@ -206,7 +206,7 @@ class _AccountHistory implements AccountHistory {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AccountHistory &&
+            other is _ApiAccountHistory &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.accountId, accountId) ||
                 other.accountId == accountId) &&
@@ -229,42 +229,42 @@ class _AccountHistory implements AccountHistory {
 
   @override
   String toString() {
-    return 'AccountHistory(id: $id, accountId: $accountId, changeType: $changeType, previousState: $previousState, newState: $newState, changeTimestamp: $changeTimestamp, createdAt: $createdAt)';
+    return 'ApiAccountHistory(id: $id, accountId: $accountId, changeType: $changeType, previousState: $previousState, newState: $newState, changeTimestamp: $changeTimestamp, createdAt: $createdAt)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$AccountHistoryCopyWith<$Res>
-    implements $AccountHistoryCopyWith<$Res> {
-  factory _$AccountHistoryCopyWith(
-          _AccountHistory value, $Res Function(_AccountHistory) _then) =
-      __$AccountHistoryCopyWithImpl;
+abstract mixin class _$ApiAccountHistoryCopyWith<$Res>
+    implements $ApiAccountHistoryCopyWith<$Res> {
+  factory _$ApiAccountHistoryCopyWith(
+          _ApiAccountHistory value, $Res Function(_ApiAccountHistory) _then) =
+      __$ApiAccountHistoryCopyWithImpl;
   @override
   @useResult
   $Res call(
       {int id,
       int accountId,
       String changeType,
-      AccountState previousState,
-      AccountState newState,
+      ApiAccountState previousState,
+      ApiAccountState newState,
       String changeTimestamp,
       String createdAt});
 
   @override
-  $AccountStateCopyWith<$Res> get previousState;
+  $ApiAccountStateCopyWith<$Res> get previousState;
   @override
-  $AccountStateCopyWith<$Res> get newState;
+  $ApiAccountStateCopyWith<$Res> get newState;
 }
 
 /// @nodoc
-class __$AccountHistoryCopyWithImpl<$Res>
-    implements _$AccountHistoryCopyWith<$Res> {
-  __$AccountHistoryCopyWithImpl(this._self, this._then);
+class __$ApiAccountHistoryCopyWithImpl<$Res>
+    implements _$ApiAccountHistoryCopyWith<$Res> {
+  __$ApiAccountHistoryCopyWithImpl(this._self, this._then);
 
-  final _AccountHistory _self;
-  final $Res Function(_AccountHistory) _then;
+  final _ApiAccountHistory _self;
+  final $Res Function(_ApiAccountHistory) _then;
 
-  /// Create a copy of AccountHistory
+  /// Create a copy of ApiAccountHistory
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -277,7 +277,7 @@ class __$AccountHistoryCopyWithImpl<$Res>
     Object? changeTimestamp = null,
     Object? createdAt = null,
   }) {
-    return _then(_AccountHistory(
+    return _then(_ApiAccountHistory(
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -293,11 +293,11 @@ class __$AccountHistoryCopyWithImpl<$Res>
       previousState: null == previousState
           ? _self.previousState
           : previousState // ignore: cast_nullable_to_non_nullable
-              as AccountState,
+              as ApiAccountState,
       newState: null == newState
           ? _self.newState
           : newState // ignore: cast_nullable_to_non_nullable
-              as AccountState,
+              as ApiAccountState,
       changeTimestamp: null == changeTimestamp
           ? _self.changeTimestamp
           : changeTimestamp // ignore: cast_nullable_to_non_nullable
@@ -309,22 +309,22 @@ class __$AccountHistoryCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of AccountHistory
+  /// Create a copy of ApiAccountHistory
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AccountStateCopyWith<$Res> get previousState {
-    return $AccountStateCopyWith<$Res>(_self.previousState, (value) {
+  $ApiAccountStateCopyWith<$Res> get previousState {
+    return $ApiAccountStateCopyWith<$Res>(_self.previousState, (value) {
       return _then(_self.copyWith(previousState: value));
     });
   }
 
-  /// Create a copy of AccountHistory
+  /// Create a copy of ApiAccountHistory
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AccountStateCopyWith<$Res> get newState {
-    return $AccountStateCopyWith<$Res>(_self.newState, (value) {
+  $ApiAccountStateCopyWith<$Res> get newState {
+    return $ApiAccountStateCopyWith<$Res>(_self.newState, (value) {
       return _then(_self.copyWith(newState: value));
     });
   }

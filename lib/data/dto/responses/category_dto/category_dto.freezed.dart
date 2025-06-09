@@ -14,27 +14,27 @@ part of 'category_dto.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$CategoryDto {
+mixin _$ApiCategory {
   int get id;
   String get name;
   String get emoji;
   bool get isIncome;
 
-  /// Create a copy of CategoryDto
+  /// Create a copy of ApiCategory
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $CategoryDtoCopyWith<CategoryDto> get copyWith =>
-      _$CategoryDtoCopyWithImpl<CategoryDto>(this as CategoryDto, _$identity);
+  $ApiCategoryCopyWith<ApiCategory> get copyWith =>
+      _$ApiCategoryCopyWithImpl<ApiCategory>(this as ApiCategory, _$identity);
 
-  /// Serializes this CategoryDto to a JSON map.
+  /// Serializes this ApiCategory to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is CategoryDto &&
+            other is ApiCategory &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.emoji, emoji) || other.emoji == emoji) &&
@@ -48,27 +48,27 @@ mixin _$CategoryDto {
 
   @override
   String toString() {
-    return 'CategoryDto(id: $id, name: $name, emoji: $emoji, isIncome: $isIncome)';
+    return 'ApiCategory(id: $id, name: $name, emoji: $emoji, isIncome: $isIncome)';
   }
 }
 
 /// @nodoc
-abstract mixin class $CategoryDtoCopyWith<$Res> {
-  factory $CategoryDtoCopyWith(
-          CategoryDto value, $Res Function(CategoryDto) _then) =
-      _$CategoryDtoCopyWithImpl;
+abstract mixin class $ApiCategoryCopyWith<$Res> {
+  factory $ApiCategoryCopyWith(
+          ApiCategory value, $Res Function(ApiCategory) _then) =
+      _$ApiCategoryCopyWithImpl;
   @useResult
   $Res call({int id, String name, String emoji, bool isIncome});
 }
 
 /// @nodoc
-class _$CategoryDtoCopyWithImpl<$Res> implements $CategoryDtoCopyWith<$Res> {
-  _$CategoryDtoCopyWithImpl(this._self, this._then);
+class _$ApiCategoryCopyWithImpl<$Res> implements $ApiCategoryCopyWith<$Res> {
+  _$ApiCategoryCopyWithImpl(this._self, this._then);
 
-  final CategoryDto _self;
-  final $Res Function(CategoryDto) _then;
+  final ApiCategory _self;
+  final $Res Function(ApiCategory) _then;
 
-  /// Create a copy of CategoryDto
+  /// Create a copy of ApiCategory
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -101,14 +101,14 @@ class _$CategoryDtoCopyWithImpl<$Res> implements $CategoryDtoCopyWith<$Res> {
 
 /// @nodoc
 @JsonSerializable()
-class _CategoryDto implements CategoryDto {
-  const _CategoryDto(
+class _ApiCategory implements ApiCategory {
+  const _ApiCategory(
       {required this.id,
       required this.name,
       required this.emoji,
       required this.isIncome});
-  factory _CategoryDto.fromJson(Map<String, dynamic> json) =>
-      _$CategoryDtoFromJson(json);
+  factory _ApiCategory.fromJson(Map<String, dynamic> json) =>
+      _$ApiCategoryFromJson(json);
 
   @override
   final int id;
@@ -119,17 +119,17 @@ class _CategoryDto implements CategoryDto {
   @override
   final bool isIncome;
 
-  /// Create a copy of CategoryDto
+  /// Create a copy of ApiCategory
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$CategoryDtoCopyWith<_CategoryDto> get copyWith =>
-      __$CategoryDtoCopyWithImpl<_CategoryDto>(this, _$identity);
+  _$ApiCategoryCopyWith<_ApiCategory> get copyWith =>
+      __$ApiCategoryCopyWithImpl<_ApiCategory>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$CategoryDtoToJson(
+    return _$ApiCategoryToJson(
       this,
     );
   }
@@ -138,7 +138,7 @@ class _CategoryDto implements CategoryDto {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CategoryDto &&
+            other is _ApiCategory &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.emoji, emoji) || other.emoji == emoji) &&
@@ -152,29 +152,29 @@ class _CategoryDto implements CategoryDto {
 
   @override
   String toString() {
-    return 'CategoryDto(id: $id, name: $name, emoji: $emoji, isIncome: $isIncome)';
+    return 'ApiCategory(id: $id, name: $name, emoji: $emoji, isIncome: $isIncome)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$CategoryDtoCopyWith<$Res>
-    implements $CategoryDtoCopyWith<$Res> {
-  factory _$CategoryDtoCopyWith(
-          _CategoryDto value, $Res Function(_CategoryDto) _then) =
-      __$CategoryDtoCopyWithImpl;
+abstract mixin class _$ApiCategoryCopyWith<$Res>
+    implements $ApiCategoryCopyWith<$Res> {
+  factory _$ApiCategoryCopyWith(
+          _ApiCategory value, $Res Function(_ApiCategory) _then) =
+      __$ApiCategoryCopyWithImpl;
   @override
   @useResult
   $Res call({int id, String name, String emoji, bool isIncome});
 }
 
 /// @nodoc
-class __$CategoryDtoCopyWithImpl<$Res> implements _$CategoryDtoCopyWith<$Res> {
-  __$CategoryDtoCopyWithImpl(this._self, this._then);
+class __$ApiCategoryCopyWithImpl<$Res> implements _$ApiCategoryCopyWith<$Res> {
+  __$ApiCategoryCopyWithImpl(this._self, this._then);
 
-  final _CategoryDto _self;
-  final $Res Function(_CategoryDto) _then;
+  final _ApiCategory _self;
+  final $Res Function(_ApiCategory) _then;
 
-  /// Create a copy of CategoryDto
+  /// Create a copy of ApiCategory
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -184,7 +184,7 @@ class __$CategoryDtoCopyWithImpl<$Res> implements _$CategoryDtoCopyWith<$Res> {
     Object? emoji = null,
     Object? isIncome = null,
   }) {
-    return _then(_CategoryDto(
+    return _then(_ApiCategory(
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
