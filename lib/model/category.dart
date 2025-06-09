@@ -1,3 +1,4 @@
+/// Вынесена во внешний модуль, т.к. используется в нескольких фичах.
 class Category {
   final int id;
   final String name;
