@@ -16,7 +16,7 @@ class AppNavigator {
       initialLocation: MainRoutes.expences.routeName,
       routes: [
         // рут для сплэша
-        GoRoute(path: MainRoutes.initial.routeName), //TODO: change mee
+        // GoRoute(path: MainRoutes.initial.routeName), //TODO: change mee
         // общий рут для всей аппки. Изменяется только заполнение скафолда
         ShellRoute(
             navigatorKey: _shellNavigatorKey,

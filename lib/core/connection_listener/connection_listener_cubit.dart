@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shmr_finance/data/local/abstract/local_repository.dart';
-import 'package:shmr_finance/utils/logger/logger.dart';
+import 'package:shmr_finance/data/local/abstract/local_service.dart';
+import 'package:shmr_finance/core/logger/logger.dart';
 
 part 'connection_listener_state.dart';
 part 'connection_listener_cubit.freezed.dart';
 
 class ConnectionListenerCubit extends Cubit<ConnectionState> {
-  final LocalRepository _repository;
+  final LocalService _repository;
   final Connectivity _connectivity = Connectivity();
   StreamSubscription? _subscription;
   ConnectionListenerCubit(this._repository)
