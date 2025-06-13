@@ -1,5 +1,5 @@
 import 'package:shmr_finance/data/mocked_data.dart';
-import 'package:shmr_finance/data/network/abstract/network_service.dart';
+import 'package:shmr_finance/data/network/abstract/network_repository.dart';
 
 import '../dto/requests/export.dart';
 import '../dto/responses/export.dart';

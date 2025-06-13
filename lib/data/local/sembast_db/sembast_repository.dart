@@ -1,4 +1,4 @@
-import 'package:shmr_finance/data/local/abstract/local_service.dart';
+import 'package:shmr_finance/data/local/abstract/local_repository.dart';
 
 import '../../dto/requests/export.dart';
 import '../../dto/responses/export.dart';

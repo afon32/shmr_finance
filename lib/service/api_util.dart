@@ -1,9 +1,11 @@
-import 'package:shmr_finance/data/mappers/api_account_history_response_mapper.dart';
-import 'package:shmr_finance/data/mappers/api_account_mapper.dart';
-import 'package:shmr_finance/data/mappers/api_account_response_mapper.dart';
-import 'package:shmr_finance/data/mappers/api_category_mapper.dart';
-import 'package:shmr_finance/data/mappers/api_transaction_response_mapper.dart';
-import 'package:shmr_finance/data/mappers/api_transactions_mapper.dart';
+import 'package:shmr_finance/data/local/abstract/local_repository.dart';
+import 'package:shmr_finance/service/mappers/api/api_account_history_response_mapper.dart';
+import 'package:shmr_finance/service/mappers/api/api_account_mapper.dart';
+import 'package:shmr_finance/service/mappers/api/api_account_response_mapper.dart';
+import 'package:shmr_finance/service/mappers/api/api_category_mapper.dart';
+import 'package:shmr_finance/service/mappers/api/api_transaction_response_mapper.dart';
+import 'package:shmr_finance/service/mappers/api/api_transactions_mapper.dart';
+import 'package:shmr_finance/data/network/abstract/network_repository.dart';
 import 'package:shmr_finance/features/account/data/dto/export.dart';
 import 'package:shmr_finance/features/account/domain/entities/account.dart';
 import 'package:shmr_finance/features/account/domain/entities/account_details.dart';
@@ -14,9 +16,9 @@ import 'package:shmr_finance/features/transactions/data/dto/update_transaction_u
 import 'package:shmr_finance/features/transactions/domain/entities/transaction.dart';
 import 'package:shmr_finance/features/transactions/domain/entities/transaction_details.dart';
 import 'package:shmr_finance/model/category.dart';
+import 'package:shmr_finance/service/mappers/use_cases/use_case_to_data_mappers.dart';
 
-import 'local/abstract/local_service.dart';
-import 'network/abstract/network_service.dart';
+
 
 /// Класс-прослойка между фичами и слоем данных. Будет принимать на вход методов
 /// понятные для домена значения, чтобы отправить их в сервис уже смаппленными в дто (и наоборот).

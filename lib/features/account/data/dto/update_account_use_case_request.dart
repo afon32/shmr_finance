@@ -1,4 +1,3 @@
-import 'package:shmr_finance/data/dto/requests/export.dart';
 import 'package:shmr_finance/model/common_enums/currency_enum.dart';
 
 class UpdateAccountUseCaseRequest {
@@ -14,7 +13,3 @@ class UpdateAccountUseCaseRequest {
       required this.currency});
 }
 
-extension UpdateAccountUseCaseRequestX on UpdateAccountUseCaseRequest {
-  ApiAccountUpdateRequest toData() => ApiAccountUpdateRequest(
-      name: name, balance: balance.toString(), currency: currency.code);
-}

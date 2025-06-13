@@ -1,4 +1,3 @@
-import 'package:shmr_finance/data/api_util.dart';
 import 'package:shmr_finance/features/transactions/data/dto/create_transaction_use_case_request.dart';
 import 'package:shmr_finance/features/transactions/data/dto/get_transaction_by_period_use_case_request.dart';
 
@@ -7,6 +6,7 @@ import 'package:shmr_finance/features/transactions/data/dto/update_transaction_u
 import 'package:shmr_finance/features/transactions/domain/entities/transaction.dart';
 
 import 'package:shmr_finance/features/transactions/domain/entities/transaction_details.dart';
+import 'package:shmr_finance/service/api_util.dart';
 
 import '../domain/repositories/transactions_repository.dart';
 

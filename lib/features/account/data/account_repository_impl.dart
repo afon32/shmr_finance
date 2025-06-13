@@ -1,7 +1,6 @@
-import 'package:shmr_finance/data/api_util.dart';
-
 import 'package:shmr_finance/features/account/domain/entities/account.dart';
 import 'package:shmr_finance/features/account/domain/entities/account_history.dart';
+import 'package:shmr_finance/service/api_util.dart';
 
 import '../domain/repositories/account_repository.dart';
 import 'dto/export.dart';

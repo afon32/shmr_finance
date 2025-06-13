@@ -1,4 +1,3 @@
-import 'package:shmr_finance/data/dto/requests/export.dart';
 
 class CreateTransactionUseCaseRequest {
   final int accountId;
@@ -15,11 +14,4 @@ class CreateTransactionUseCaseRequest {
       required this.comment});
 }
 
-extension CreateTransactionUseCaseRequestX on CreateTransactionUseCaseRequest {
-  ApiTransactionRequest toData() => ApiTransactionRequest(
-      accountId: accountId,
-      categoryId: categoryId,
-      amount: amount.toString(),
-      transactionDate: transactionDate.toString(),
-      comment: comment);
-}
+

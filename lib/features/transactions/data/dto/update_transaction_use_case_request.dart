@@ -1,4 +1,3 @@
-import 'package:shmr_finance/data/dto/requests/transaction_request/transaction_request.dart';
 
 class UpdateTransactionUseCaseRequest {
   final int id;
@@ -17,11 +16,4 @@ class UpdateTransactionUseCaseRequest {
       required this.comment});
 }
 
-extension UpdateTransactionUseCaseRequestX on UpdateTransactionUseCaseRequest {
-  ApiTransactionRequest toData() => ApiTransactionRequest(
-      accountId: accountId,
-      categoryId: categoryId,
-      amount: amount.toString(),
-      transactionDate: transactionDate.toString(),
-      comment: comment);
-}
+

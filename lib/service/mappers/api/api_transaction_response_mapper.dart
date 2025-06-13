@@ -1,5 +1,5 @@
 import 'package:shmr_finance/data/dto/responses/export.dart';
-import 'package:shmr_finance/data/mappers/api_category_mapper.dart';
+import 'package:shmr_finance/service/mappers/api/api_category_mapper.dart';
 
 import 'package:shmr_finance/features/transactions/domain/entities/transaction_account_brief.dart';
 import 'package:shmr_finance/features/transactions/domain/entities/transaction_details.dart';
