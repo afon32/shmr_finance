@@ -24,12 +24,12 @@ import 'package:shmr_finance/service/mappers/use_cases/use_case_to_data_mappers.
 /// понятные для домена значения, чтобы отправить их в сервис уже смаппленными в дто (и наоборот).
 /// Так же будет определять откуда брать данные из БД или с бэка и, при необходимости синхронизировать.
 class ApiUtil {
-  final NetworkService _networkService;
-  final LocalService _localService;
+  final NetworkRepository _networkService;
+  final LocalRepository _localService;
 
   ApiUtil(
-      {required NetworkService networkService,
-      required LocalService localService})
+      {required NetworkRepository networkService,
+      required LocalRepository localService})
       : _networkService = networkService,
         _localService = localService;
 
