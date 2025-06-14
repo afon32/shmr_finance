@@ -1,7 +1,7 @@
 import '../../dto/requests/export.dart';
 import '../../dto/responses/export.dart';
 
-abstract class NetworkService {
+abstract class NetworkRepository {
   // Account
   Future<ApiAccount> getAllAccounts(String token);
 

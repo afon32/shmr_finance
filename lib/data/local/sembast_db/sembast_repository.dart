@@ -7,7 +7,7 @@ import '../../mocked_data.dart';
 /// Репозиторий для локальной БДшки 
 /// Пока скопировал методы из network сервиса. Потом, наверное, придётся модифицировать
 /// to be implemented...
-class SembastService implements LocalService {
+class SembastService implements LocalRepository {
   
   @override
   void compareData() {
