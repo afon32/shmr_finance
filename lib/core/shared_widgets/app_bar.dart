@@ -24,6 +24,7 @@ class ShmrAppBar extends StatelessWidget {
         actions: [IconButton(onPressed: onTap, icon: Icon(buttonIcon))],
         backgroundColor: context.theme.appBarColor,
       ),
+      body: child,
     );
   }
 }
