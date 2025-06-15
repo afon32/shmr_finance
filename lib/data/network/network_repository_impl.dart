@@ -6,7 +6,7 @@ import '../dto/responses/export.dart';
 
 class NetworkServiceImpl implements NetworkRepository {
   // Account
-  Future<ApiAccount> getAllAccounts(String token) {
+  Future<List<ApiAccount>> getAllAccounts(String token) {
     return Future.value(MockedData.getAllAccountsMock);
   }
 

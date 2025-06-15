@@ -18,8 +18,6 @@ import 'package:shmr_finance/features/transactions/domain/entities/transaction_d
 import 'package:shmr_finance/model/category.dart';
 import 'package:shmr_finance/service/mappers/use_cases/use_case_to_data_mappers.dart';
 
-
-
 /// Класс-прослойка между фичами и слоем данных. Будет принимать на вход методов
 /// понятные для домена значения, чтобы отправить их в сервис уже смаппленными в дто (и наоборот).
 /// Так же будет определять откуда брать данные из БД или с бэка и, при необходимости синхронизировать.
@@ -38,9 +36,10 @@ class ApiUtil {
   }
 
   // Account
-  Future<Account> getAllAccounts() async {
-    final result = await _networkService.getAllAccounts('token');
-    return result.toDomain();
+  Future<List<Account>> getAllAccounts() async {
+    final list = await _networkService.getAllAccounts('token');
+    final result = list.map((e) => e.toDomain()).toList();
+    return result;
   }
 
   Future<bool> createNewAccount(CreateAccountUseCaseRequest request) async {

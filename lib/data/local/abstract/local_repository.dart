@@ -5,7 +5,7 @@ import '../../dto/responses/export.dart';
 abstract class LocalRepository {
   void compareData();
   // Account
-  Future<ApiAccount> getAllAccounts(String token);
+  Future<List<ApiAccount>> getAllAccounts(String token);
 
   Future<bool> createNewAccount(ApiAccountCreateRequest request);
 

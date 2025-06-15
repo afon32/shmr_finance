@@ -3,7 +3,7 @@ import '../../dto/responses/export.dart';
 
 abstract class NetworkRepository {
   // Account
-  Future<ApiAccount> getAllAccounts(String token);
+  Future<List<ApiAccount>> getAllAccounts(String token);
 
   Future<bool> createNewAccount(ApiAccountCreateRequest request);
 

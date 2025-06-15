@@ -15,7 +15,7 @@ class SembastRepository implements LocalRepository {
   }
 
    // Account
-  Future<ApiAccount> getAllAccounts(String token) {
+  Future<List<ApiAccount>> getAllAccounts(String token) {
     return Future.value(MockedData.getAllAccountsMock);
   }
 
