@@ -3,5 +3,9 @@
   "expences": "Расходы",
   "score": "Счёт",
   "costItems": "Статьи",
-  "settings": "Настройки"
+  "settings": "Настройки",
+
+  "expences_today": "Расходы сегодня",
+  "incomes_today": "Доходы сегодня",
+  "total" : "Всего"
 }

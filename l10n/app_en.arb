@@ -3,5 +3,9 @@
   "expences": "Expences",
   "score": "Score",
   "costItems": "Items",
-  "settings": "Settings"
+  "settings": "Settings",
+
+  "expences_today": "Expences today",
+  "incomes_today": "Incomes today",
+  "total" : "Total"
 }

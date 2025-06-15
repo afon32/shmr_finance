@@ -21,6 +21,8 @@ dependencies:
   connectivity_plus: ^6.1.4
   flutter_svg: ^2.1.0
   json_annotation: ^4.9.0
+  yx_scope: ^1.0.2
+  yx_scope_flutter: ^1.0.2
 
 dev_dependencies:
   flutter_test:
