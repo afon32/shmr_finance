@@ -35,9 +35,10 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   }
 
   @override
-  Future<List<TransactionDetails>> getTransactionHistoryByPeriod(GetTransactionByPeriodUseCaseRequest request) {
-    _apiUtil.getTransactionByPeriod(request);
-    throw UnimplementedError();
+  Future<List<TransactionDetails>> getTransactionHistoryByPeriod(
+      GetTransactionByPeriodUseCaseRequest request) async {
+    final result = await _apiUtil.getTransactionByPeriod(request);
+    return result;
   }
 
   @override
