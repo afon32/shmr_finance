@@ -18,6 +18,7 @@ class IncomesTodayCubit extends Cubit<IncomesTodayState> {
   }
 
   void getHistory() async {
+    emit(IncomesTodayState.loading());
     final request = GetTransactionByPeriodUseCaseRequest(
         accountId: 1, startDate: DateTime.now(), endDate: DateTime.now()); //mock
     try {
