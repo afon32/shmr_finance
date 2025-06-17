@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shmr_finance/core/shared_widgets/app_bar.dart';
+import 'package:shmr_finance/core/shared_widgets/list_bottom_button_wrapper/list_bottom_button_wrapper.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/universal_list_item.dart';
 import 'package:shmr_finance/pages/expences/expences_today/logic/expences_today_cubit.dart';
@@ -61,28 +62,34 @@ class __Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: items.length + 1,
-        itemBuilder: (context, index) {
-          if (index == 0) {
-            final totalItem = totalAmountItem;
-            return ShmrHeaderListItem(
-                leftTitle: S.of(context).total,
-                rigthTitle:
-                    '${totalItem.totalAmount} ${totalItem.currencySign}');
-          } else {
-            final expenceItem = items[index - 1];
+    return ShmrListBottomButtonWrapper(
+      childList: (controller) => ListView.builder(
+          controller: controller,
+          itemCount: items.length + 1,
+          itemBuilder: (context, index) {
+            if (index == 0) {
+              final totalItem = totalAmountItem;
+              return ShmrHeaderListItem(
+                  leftTitle: S.of(context).total,
+                  rigthTitle:
+                      '${totalItem.totalAmount} ${totalItem.currencySign}');
+            } else {
+              final expenceItem = items[index - 1];
 
-            return ShmrUniversalListItem(
-              leadingEmoji: expenceItem.emoji,
-              leftTitle: expenceItem.categoryName,
-              leftSubtitle: expenceItem.subtitle,
-              rigthTitle: '${expenceItem.summ} ${expenceItem.moneySign}',
-              isChevroned: true,
-              onTap: () {},
-            );
-          }
-        });
+              return ShmrUniversalListItem(
+                leadingEmoji: expenceItem.emoji,
+                leftTitle: expenceItem.categoryName,
+                leftSubtitle: expenceItem.subtitle,
+                rigthTitle: '${expenceItem.summ} ${expenceItem.moneySign}',
+                isChevroned: true,
+                onTap: () {},
+              );
+            }
+          }),
+      onTap: () {
+        print('Expence add!');
+      },
+    );
   }
 }
 
