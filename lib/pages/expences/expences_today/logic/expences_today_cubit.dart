@@ -14,12 +14,16 @@ class ExpencesTodayCubit extends Cubit<ExpencesTodayState> {
   late final GetOutcomesTransactionsHistoryByPeriodUseCase _useCase;
 
   ExpencesTodayCubit() : super(ExpencesTodayState.loading()) {
-    _useCase = AppScopeLocator.appScope.getOutcomesTransactionsByPeriodUseCaseDep.get;
+    _useCase =
+        AppScopeLocator.appScope.getOutcomesTransactionsByPeriodUseCaseDep.get;
   }
 
   void getHistory() async {
+    emit(ExpencesTodayState.loading());
     final request = GetTransactionByPeriodUseCaseRequest(
-        accountId: 1, startDate: DateTime.now(), endDate: DateTime.now()); //mock
+        accountId: 1,
+        startDate: DateTime.now(),
+        endDate: DateTime.now()); //mock
     try {
       final response = await _useCase.execute(request);
 
