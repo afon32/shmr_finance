@@ -35,9 +35,18 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   }
 
   @override
-  Future<List<TransactionDetails>> getTransactionHistoryByPeriod(
+  Future<List<TransactionDetails>> getIncomesTransactionHistoryByPeriod(
       GetTransactionByPeriodUseCaseRequest request) async {
-    final result = await _apiUtil.getTransactionByPeriod(request);
+    final response = await _apiUtil.getTransactionByPeriod(request);
+    final result = response.where((e) => e.category.isIncome).toList();
+    return result;
+  }
+
+  @override
+  Future<List<TransactionDetails>> getOutcomesTransactionHistoryByPeriod(
+      GetTransactionByPeriodUseCaseRequest request) async {
+    final response = await _apiUtil.getTransactionByPeriod(request);
+    final result = response.where((e) => !e.category.isIncome).toList();
     return result;
   }
 
