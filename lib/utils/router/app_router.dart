@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shmr_finance/core/shared_widgets/nav_bar/nav_bar.dart';
 import 'package:shmr_finance/pages/expences/expences_page.dart';
+import 'package:shmr_finance/pages/incomes/incomes_page.dart';
 import 'package:shmr_finance/utils/router/app_routes.dart';
 import 'package:shmr_finance/utils/strings/strings_provider.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
@@ -38,18 +39,23 @@ class AppNavigator {
               //             },
               //             child: Text('expences'))), //TODO: ПОКА ВИСИТ СМЕНА ТЕМЫ change mee
               //     routes: []), //TODO: change mee
+              
               // доходы
               GoRoute(
-                  path: MainRoutes.income.routeName,
-                  builder: (context, state) => Center(
-                      child: TextButton(
-                          onPressed: () {
-                            BlocProvider.of<StringsProvider>(context)
-                                .toggleLang();
-                          },
-                          child: Text(
-                              'income'))), //TODO: ПОКА ВИСИТ СМЕНА ЯЗЫКА change mee
-                  routes: []), //TODO: change mee
+                path: MainRoutes.income.routeName,
+                builder: (context, state) => IncomesPage(),
+              ),
+              // GoRoute(
+              //     path: MainRoutes.income.routeName,
+              //     builder: (context, state) => Center(
+              //         child: TextButton(
+              //             onPressed: () {
+              //               BlocProvider.of<StringsProvider>(context)
+              //                   .toggleLang();
+              //             },
+              //             child: Text(
+              //                 'income'))), //TODO: ПОКА ВИСИТ СМЕНА ЯЗЫКА change mee
+              //     routes: []), //TODO: change mee
               // счёт
               GoRoute(
                   path: MainRoutes.score.routeName,
