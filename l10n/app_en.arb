@@ -6,6 +6,11 @@
   "settings": "Settings",
 
   "expences_today": "Expences today",
+  "expences_history" : "History of expences",
   "incomes_today": "Incomes today",
-  "total" : "Total"
+  "incomes_history" : "History of incomes",
+  "total" : "Total",
+  "summ" : "Summ",
+  "start" : "Start",
+  "end" : "End"
 }

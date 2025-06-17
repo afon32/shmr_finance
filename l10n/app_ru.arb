@@ -6,6 +6,11 @@
   "settings": "Настройки",
 
   "expences_today": "Расходы сегодня",
+  "expences_history" : "История расходов",
   "incomes_today": "Доходы сегодня",
-  "total" : "Всего"
+  "incomes_history" : "История доходов",
+  "total" : "Всего",
+  "summ" : "Сумма",
+  "start" : "Начало",
+  "end" : "Конец"
 }
