@@ -27,7 +27,7 @@ class ShmrApp extends StatelessWidget {
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: themeMode,
-            routerConfig: AppNavigator.router,
+            routerConfig: AppNavigator.routerrr,
             supportedLocales: locale.supportedLocales,
             locale: locale.locale,
             localizationsDelegates: locale.localizationDelegates,

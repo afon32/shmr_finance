@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shmr_finance/core/shared_widgets/nav_bar/nav_bar.dart';
 import 'package:shmr_finance/pages/expences/expences_page.dart';
+import 'package:shmr_finance/pages/history/common_history/common_history_page.dart';
+import 'package:shmr_finance/pages/history/today_history/today_history_page.dart';
+import 'package:shmr_finance/pages/history/types/history_page_type.dart';
 import 'package:shmr_finance/pages/incomes/incomes_page.dart';
 import 'package:shmr_finance/utils/router/app_routes.dart';
 import 'package:shmr_finance/utils/strings/strings_provider.dart';
@@ -13,70 +16,112 @@ final GlobalKey<NavigatorState> _shellNavigatorKey =
     GlobalKey<NavigatorState>();
 
 class AppNavigator {
-  static final router = GoRouter(
+  // static final router = GoRouter(
+  //     navigatorKey: _rootNavigatorKey,
+  //     initialLocation: MainRoutes.expences.routeName,
+  //     routes: [
+  //       // рут для сплэша
+  //       // GoRoute(path: MainRoutes.initial.routeName), //TODO: change mee
+  //       // общий рут для всей аппки. Изменяется только заполнение скафолда
+  //       ShellRoute(
+  //           navigatorKey: _shellNavigatorKey,
+  //           builder: (context, state, child) => ShmrNavBar(child: child),
+  //           routes: [
+  //             GoRoute(
+  //               path: MainRoutes.expences.routeName,
+  //               builder: (context, state) => ExpencesPage(),
+  //             ),
+  //             // расходы
+  //             // GoRoute(
+  //             //     path: MainRoutes.expences.routeName,
+  //             //     builder: (context, state) => Center(
+  //             //         child: TextButton(
+  //             //             onPressed: () {
+  //             //               BlocProvider.of<ThemeProvider>(context)
+  //             //                   .toggleTheme();
+  //             //             },
+  //             //             child: Text('expences'))), //TODO: ПОКА ВИСИТ СМЕНА ТЕМЫ change mee
+  //             //     routes: []), //TODO: change mee
+
+  //             // доходы
+  //             GoRoute(
+  //               path: MainRoutes.income.routeName,
+  //               builder: (context, state) => IncomesPage(),
+  //             ),
+  //             // GoRoute(
+  //             //     path: MainRoutes.income.routeName,
+  //             //     builder: (context, state) => Center(
+  //             //         child: TextButton(
+  //             //             onPressed: () {
+  //             //               BlocProvider.of<StringsProvider>(context)
+  //             //                   .toggleLang();
+  //             //             },
+  //             //             child: Text(
+  //             //                 'income'))), //TODO: ПОКА ВИСИТ СМЕНА ЯЗЫКА change mee
+  //             //     routes: []), //TODO: change mee
+  //             // счёт
+  //             GoRoute(
+  //                 path: MainRoutes.score.routeName,
+  //                 builder: (context, state) => Center(
+  //                       child: Text('score'),
+  //                     ), //TODO: change mee
+  //                 routes: []), //TODO: change mee
+  //             // статьи
+  //             GoRoute(
+  //                 path: MainRoutes.costItems.routeName,
+  //                 builder: (context, state) => Center(
+  //                       child: Text('cost items'),
+  //                     ), //TODO: change mee
+  //                 routes: []), //TODO: change mee
+  //             // настройки
+  //             GoRoute(
+  //                 path: MainRoutes.settings.routeName,
+  //                 builder: (context, state) => Center(
+  //                       child: Text('settings'),
+  //                     ), //TODO: change mee
+  //                 routes: []), //TODO: change mee
+  //           ])
+  //     ]);
+
+  static final routerrr = GoRouter(
       navigatorKey: _rootNavigatorKey,
       initialLocation: MainRoutes.expences.routeName,
       routes: [
-        // рут для сплэша
-        // GoRoute(path: MainRoutes.initial.routeName), //TODO: change mee
         // общий рут для всей аппки. Изменяется только заполнение скафолда
-        ShellRoute(
-            navigatorKey: _shellNavigatorKey,
-            builder: (context, state, child) => ShmrNavBar(child: child),
-            routes: [
-              GoRoute(
-                path: MainRoutes.expences.routeName,
-                builder: (context, state) => ExpencesPage(),
-              ),
-              // расходы
-              // GoRoute(
-              //     path: MainRoutes.expences.routeName,
-              //     builder: (context, state) => Center(
-              //         child: TextButton(
-              //             onPressed: () {
-              //               BlocProvider.of<ThemeProvider>(context)
-              //                   .toggleTheme();
-              //             },
-              //             child: Text('expences'))), //TODO: ПОКА ВИСИТ СМЕНА ТЕМЫ change mee
-              //     routes: []), //TODO: change mee
-              
-              // доходы
-              GoRoute(
-                path: MainRoutes.income.routeName,
-                builder: (context, state) => IncomesPage(),
-              ),
-              // GoRoute(
-              //     path: MainRoutes.income.routeName,
-              //     builder: (context, state) => Center(
-              //         child: TextButton(
-              //             onPressed: () {
-              //               BlocProvider.of<StringsProvider>(context)
-              //                   .toggleLang();
-              //             },
-              //             child: Text(
-              //                 'income'))), //TODO: ПОКА ВИСИТ СМЕНА ЯЗЫКА change mee
-              //     routes: []), //TODO: change mee
-              // счёт
-              GoRoute(
-                  path: MainRoutes.score.routeName,
-                  builder: (context, state) => Center(
-                        child: Text('score'),
-                      ), //TODO: change mee
-                  routes: []), //TODO: change mee
-              // статьи
-              GoRoute(
-                  path: MainRoutes.costItems.routeName,
-                  builder: (context, state) => Center(
-                        child: Text('cost items'),
-                      ), //TODO: change mee
-                  routes: []), //TODO: change mee
-              // настройки
-              GoRoute(
-                  path: MainRoutes.settings.routeName,
-                  builder: (context, state) => Center(
-                        child: Text('settings'),
-                      ), //TODO: change mee
-                  routes: []), //TODO: change mee
+        StatefulShellRoute.indexedStack(
+            builder: (context, state, navigationShell) => ShmrNavBar(
+                  currentIndex: navigationShell.currentIndex,
+                  onSelect: navigationShell.goBranch,
+                  child: navigationShell,
+                ),
+            branches: [
+              StatefulShellBranch(
+                routes: [
+                GoRoute(
+                    path: MainRoutes.expences.routeName,
+                    builder: (context, state) =>
+                        TodayHistoryPage(pageType: HistoryPageType.expences),
+                    routes: [
+                      GoRoute(
+                        path: SubRoutes.commonHistory.routeName,
+                        builder: (context, state) => CommonHistoryPage(
+                            pageType: HistoryPageType.expences),
+                      )
+                    ]),
+              ]),
+              StatefulShellBranch(routes: [
+                GoRoute(
+                    path: MainRoutes.income.routeName,
+                    builder: (context, state) =>
+                        TodayHistoryPage(pageType: HistoryPageType.incomes),
+                    routes: [
+                      GoRoute(
+                        path: SubRoutes.commonHistory.routeName,
+                        builder: (context, state) => CommonHistoryPage(
+                            pageType: HistoryPageType.incomes),
+                      )
+                    ]),
+              ]),
             ])
       ]);
 }
