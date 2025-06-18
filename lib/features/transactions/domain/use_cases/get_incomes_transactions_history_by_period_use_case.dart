@@ -1,10 +1,9 @@
-import 'package:shmr_finance/core/base/use_case_abstract/base_use_case.dart';
-
 import '../../data/dto/get_transaction_by_period_use_case_request.dart';
 import '../entities/transaction_details.dart';
 import '../repositories/transactions_repository.dart';
+import 'get_transactions_history_by_period_use_case.dart';
 
-class GetIncomesTransactionsHistoryByPeriodUseCase implements BaseUseCase<List<TransactionDetails>, GetTransactionByPeriodUseCaseRequest> {
+class GetIncomesTransactionsHistoryByPeriodUseCase implements GetTransactionsHistoryByPeriodUseCase {
   final TransactionsRepository _repository;
 
   GetIncomesTransactionsHistoryByPeriodUseCase({required TransactionsRepository repository})
