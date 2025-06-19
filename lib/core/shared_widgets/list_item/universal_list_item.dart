@@ -55,8 +55,11 @@ class ShmrUniversalListItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(leftTitle),
-                              if (leftSubtitle != null) Text(leftSubtitle!)
+                              Text(leftTitle,
+                                  style: context.textTheme.bodyLarge),
+                              if (leftSubtitle != null)
+                                Text(leftSubtitle!,
+                                    style: context.textTheme.bodyMedium)
                             ],
                           )),
                       Expanded(
@@ -65,8 +68,11 @@ class ShmrUniversalListItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(rigthTitle),
-                              if (rightSubtitle != null) Text(rightSubtitle!)
+                              Text(rigthTitle,
+                                  style: context.textTheme.bodyLarge),
+                              if (rightSubtitle != null)
+                                Text(rightSubtitle!,
+                                    style: context.textTheme.bodyMedium)
                             ],
                           )),
                       isChevroned

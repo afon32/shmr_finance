@@ -51,7 +51,10 @@ class ShmrHeaderListItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(leftTitle),
+                              Text(
+                                leftTitle,
+                                style: context.textTheme.bodyLarge,
+                              ),
                             ],
                           )),
                       Expanded(
@@ -60,7 +63,8 @@ class ShmrHeaderListItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(rigthTitle),
+                              Text(rigthTitle,
+                                  style: context.textTheme.bodyLarge),
                             ],
                           )),
                       isChevroned
