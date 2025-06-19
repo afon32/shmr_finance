@@ -211,8 +211,8 @@ class __SortTypes extends StatelessWidget {
           child: Text(sortTypes[index].label,
               style: context.textTheme.bodySmall!.copyWith(
                   color: sortTypes[index] == selectedType
-                      ? Colors.red
-                      : context.textTheme.bodySmall!.color)),
+                      ? context.theme.red
+                      : context.theme.textColor)),
         );
       }),
     );
