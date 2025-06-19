@@ -35,11 +35,11 @@ extension CurrencyX on Currency {
   String get sign {
     switch (this) {
       case Currency.rub:
-        return 'R';
+        return '₽';
       case Currency.usd:
-        return "U";
+        return "\$";
       case Currency.eur:
-        return 'E';
+        return '€';
       case Currency.undefined:
         return '?';
     }

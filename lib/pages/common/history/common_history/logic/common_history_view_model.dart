@@ -1,19 +1,19 @@
 import 'package:shmr_finance/features/transactions/domain/entities/transaction_details.dart';
 import 'package:shmr_finance/model/common_enums/currency_enum.dart';
+import 'package:shmr_finance/pages/common/history/types/sort_type.dart';
 
-import 'incomes_sort_type.dart';
 
-class IncomesHistoryViewModel {
+class CommonHistoryViewModel {
   final List<ExpenceItem> items;
   final TotalAmountItem total;
 
-  IncomesHistoryViewModel._({required this.items, required this.total});
+  CommonHistoryViewModel._({required this.items, required this.total});
 
-  factory IncomesHistoryViewModel.buildWith(
+  factory CommonHistoryViewModel.buildWith(
           List<ExpenceItem> items, TotalAmountItem total) =>
-      IncomesHistoryViewModel._(items: items, total: total);
+      CommonHistoryViewModel._(items: items, total: total);
 
-  factory IncomesHistoryViewModel.fromTransactionDetails(
+  factory CommonHistoryViewModel.fromTransactionDetails(
       List<TransactionDetails> transactionDetails) {
     int amount = 0;
     String? sign;
@@ -32,26 +32,26 @@ class IncomesHistoryViewModel {
 
     final total = TotalAmountItem.buildWith(amount, sign);
 
-    return IncomesHistoryViewModel.buildWith(expences, total);
+    return CommonHistoryViewModel.buildWith(expences, total);
   }
 
-  factory IncomesHistoryViewModel.sort(args) {
+  factory CommonHistoryViewModel.sort(args) {
     final totalAmount = args['total'] as TotalAmountItem;
     final sortItems = args['items'] as List<ExpenceItem>;
-    final type = args['type'] as IncomesSortType;
+    final type = args['type'] as SortType;
     switch (type) {
-      case IncomesSortType.dateDecrease:
+      case SortType.dateDecrease:
         sortItems.sort((a, b) => b.datetime.compareTo(a.datetime));
-      case IncomesSortType.dateIncrease:
+      case SortType.dateIncrease:
         sortItems.sort((a, b) => a.datetime.compareTo(b.datetime));
-      case IncomesSortType.amountDecrease:
+      case SortType.amountDecrease:
         sortItems.sort((a, b) => b.summ.compareTo(a.summ));
-      case IncomesSortType.amountIncrease:
+      case SortType.amountIncrease:
         sortItems.sort((a, b) => a.summ.compareTo(b.summ));
-      case _: // do nothing
+      case SortType.none: // do nothing
     }
 
-    return IncomesHistoryViewModel.buildWith(sortItems, totalAmount);
+    return CommonHistoryViewModel.buildWith(sortItems, totalAmount);
   }
 }
 

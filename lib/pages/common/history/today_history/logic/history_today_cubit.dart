@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shmr_finance/di/app_scope_locator.dart';
 import 'package:shmr_finance/features/transactions/data/dto/get_transaction_by_period_use_case_request.dart';
 import 'package:shmr_finance/features/transactions/domain/use_cases/get_transactions_history_by_period_use_case.dart';
-import 'package:shmr_finance/pages/history/types/history_page_type.dart';
+import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
 
 import 'history_today_view_model.dart';
 

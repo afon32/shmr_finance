@@ -58,7 +58,7 @@ class MockedData {
                 previousState: ApiAccountState(
                     id: 1, name: 'name', balance: '200.0', currency: 'EUR'),
                 newState: ApiAccountState(
-                    id: 1, name: 'name2', balance: '2020.0', currency: 'RUB'),
+                    id: 1, name: 'name2', balance: '2020.0', currency: 'EUR'),
                 changeTimestamp: '2025-06-09 19:23:27.180',
                 createdAt: '2025-06-09 19:23:27.180')
           ]);
@@ -126,7 +126,7 @@ class MockedData {
         ApiTransactionResponse(
           id: 2,
           account: ApiAccountBrief(
-              id: 2, name: 'Account 2', balance: '1200.0', currency: 'USD'),
+              id: 2, name: 'Account 2', balance: '1200.0', currency: 'EUR'),
           category:
               ApiCategory(id: 2, name: 'Salary', emoji: '💼', isIncome: true),
           amount: '1200.0',
@@ -150,7 +150,7 @@ class MockedData {
         ApiTransactionResponse(
           id: 4,
           account: ApiAccountBrief(
-              id: 3, name: 'Account 3', balance: '300.0', currency: 'GBP'),
+              id: 3, name: 'Account 3', balance: '300.0', currency: 'EUR'),
           category: ApiCategory(
               id: 4, name: 'Entertainment', emoji: '🎬', isIncome: false),
           amount: '30.0',
@@ -162,7 +162,7 @@ class MockedData {
         ApiTransactionResponse(
           id: 5,
           account: ApiAccountBrief(
-              id: 2, name: 'Account 2', balance: '1180.0', currency: 'USD'),
+              id: 2, name: 'Account 2', balance: '1180.0', currency: 'EUR'),
           category:
               ApiCategory(id: 5, name: 'Gift', emoji: '🎁', isIncome: true),
           amount: '100.0',
@@ -186,7 +186,7 @@ class MockedData {
         ApiTransactionResponse(
           id: 7,
           account: ApiAccountBrief(
-              id: 3, name: 'Account 3', balance: '270.0', currency: 'GBP'),
+              id: 3, name: 'Account 3', balance: '270.0', currency: 'EUR'),
           category: ApiCategory(
               id: 7, name: 'Utilities', emoji: '💡', isIncome: false),
           amount: '60.0',
@@ -198,7 +198,7 @@ class MockedData {
         ApiTransactionResponse(
           id: 8,
           account: ApiAccountBrief(
-              id: 2, name: 'Account 2', balance: '1280.0', currency: 'USD'),
+              id: 2, name: 'Account 2', balance: '1280.0', currency: 'EUR'),
           category: ApiCategory(
               id: 8, name: 'Investment', emoji: '📈', isIncome: true),
           amount: '300.0',
@@ -222,7 +222,7 @@ class MockedData {
         ApiTransactionResponse(
           id: 10,
           account: ApiAccountBrief(
-              id: 3, name: 'Account 3', balance: '250.0', currency: 'GBP'),
+              id: 3, name: 'Account 3', balance: '250.0', currency: 'EUR'),
           category:
               ApiCategory(id: 10, name: 'Travel', emoji: '✈️', isIncome: false),
           amount: '150.0',
@@ -246,7 +246,7 @@ class MockedData {
         ApiTransactionResponse(
           id: 12,
           account: ApiAccountBrief(
-              id: 2, name: 'Account 2', balance: '1580.0', currency: 'USD'),
+              id: 2, name: 'Account 2', balance: '1580.0', currency: 'EUR'),
           category:
               ApiCategory(id: 12, name: 'Bonus', emoji: '🎉', isIncome: true),
           amount: '200.0',
@@ -258,7 +258,7 @@ class MockedData {
         ApiTransactionResponse(
           id: 13,
           account: ApiAccountBrief(
-              id: 3, name: 'Account 3', balance: '230.0', currency: 'GBP'),
+              id: 3, name: 'Account 3', balance: '230.0', currency: 'EUR'),
           category: ApiCategory(
               id: 13, name: 'Shopping', emoji: '🛍️', isIncome: false),
           amount: '80.0',
@@ -282,7 +282,7 @@ class MockedData {
         ApiTransactionResponse(
           id: 15,
           account: ApiAccountBrief(
-              id: 2, name: 'Account 2', balance: '1530.0', currency: 'USD'),
+              id: 2, name: 'Account 2', balance: '1530.0', currency: 'EUR'),
           category: ApiCategory(
               id: 15, name: 'Freelance', emoji: '🖥️', isIncome: true),
           amount: '400.0',
@@ -294,7 +294,7 @@ class MockedData {
         ApiTransactionResponse(
           id: 16,
           account: ApiAccountBrief(
-              id: 3, name: 'Account 3', balance: '220.0', currency: 'GBP'),
+              id: 3, name: 'Account 3', balance: '220.0', currency: 'EUR'),
           category: ApiCategory(
               id: 16, name: 'Subscription', emoji: '📺', isIncome: false),
           amount: '15.0',
@@ -318,7 +318,7 @@ class MockedData {
         ApiTransactionResponse(
           id: 18,
           account: ApiAccountBrief(
-              id: 2, name: 'Account 2', balance: '1930.0', currency: 'USD'),
+              id: 2, name: 'Account 2', balance: '1930.0', currency: 'EUR'),
           category: ApiCategory(
               id: 18, name: 'Interest', emoji: '💰', isIncome: true),
           amount: '50.0',
@@ -330,7 +330,7 @@ class MockedData {
         ApiTransactionResponse(
           id: 19,
           account: ApiAccountBrief(
-              id: 3, name: 'Account 3', balance: '205.0', currency: 'GBP'),
+              id: 3, name: 'Account 3', balance: '205.0', currency: 'EUR'),
           category:
               ApiCategory(id: 19, name: 'Repair', emoji: '🔧', isIncome: false),
           amount: '70.0',

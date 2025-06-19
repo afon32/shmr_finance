@@ -9,13 +9,21 @@ class CommonHistoryDateCubit extends Cubit<CommonHistoryDateCubitState> {
 
   void updateStartTime(DateTime? startTime) {
     if (startTime != null) {
-      emit(state.copyWith(startTime: startTime));
+      if (startTime.isAfter(state.endTime)) {
+        emit(state.copyWith(startTime: startTime, endTime: startTime));
+      } else {
+        emit(state.copyWith(startTime: startTime));
+      }
     }
   }
 
   void updateEndTime(DateTime? endTime) {
     if (endTime != null) {
-      emit(state.copyWith(startTime: endTime));
+      if (endTime.isBefore(state.startTime)) {
+        emit(state.copyWith(startTime: endTime, endTime: endTime));
+      } else {
+        emit(state.copyWith(endTime: endTime));
+      }
     }
   }
 }

@@ -5,10 +5,11 @@ import 'package:shmr_finance/core/shared_widgets/app_bar.dart';
 import 'package:shmr_finance/core/shared_widgets/list_bottom_button_wrapper/list_bottom_button_wrapper.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/universal_list_item.dart';
-import 'package:shmr_finance/pages/history/types/history_page_type.dart';
-import 'package:shmr_finance/pages/history/types/sort_type.dart';
+import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
+import 'package:shmr_finance/pages/common/history/types/sort_type.dart';
 
 import 'package:shmr_finance/utils/strings/s.dart';
+import 'package:shmr_finance/utils/themes/app_theme.dart';
 
 import 'logic/common_history_date_cubit.dart';
 import 'logic/common_history_cubit.dart';
@@ -175,8 +176,16 @@ class __DatePickers extends StatelessWidget {
           },
         ),
         ShmrHeaderListItem(
-            leftTitle: S.of(context).end,
-            rigthTitle: DateFormatter.toDayAndMonth(cubit.state.endTime)),
+          leftTitle: S.of(context).end,
+          rigthTitle: DateFormatter.toDayAndMonth(cubit.state.endTime),
+          onTap: () async {
+            final newStartTime = await showDatePicker(
+                context: context,
+                firstDate: DateTime.now().subtract(Duration(days: 365)),
+                lastDate: DateTime.now().add(Duration(days: 365)));
+            cubit.updateEndTime(newStartTime);
+          },
+        ),
       ],
     );
   }
@@ -193,18 +202,17 @@ class __SortTypes extends StatelessWidget {
     final cubit = BlocProvider.of<CommonHistoryCubit>(context);
     final sortTypes = pageType.sortTypes;
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: List.generate(sortTypes.length, (index) {
         return ElevatedButton(
           onPressed: () {
             cubit.sort(sortTypes[index]);
           },
-          child: Text(
-            sortTypes[index].name[1],
-            style: TextStyle(
-                color: sortTypes[index] == selectedType
-                    ? Colors.red
-                    : Colors.black),
-          ),
+          child: Text(sortTypes[index].label,
+              style: context.textTheme.bodySmall!.copyWith(
+                  color: sortTypes[index] == selectedType
+                      ? Colors.red
+                      : context.textTheme.bodySmall!.color)),
         );
       }),
     );

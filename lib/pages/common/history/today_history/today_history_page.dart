@@ -1,37 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shmr_finance/core/shared_widgets/app_bar.dart';
 import 'package:shmr_finance/core/shared_widgets/list_bottom_button_wrapper/list_bottom_button_wrapper.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/universal_list_item.dart';
-import 'package:shmr_finance/pages/incomes/incomes_today/logic/incomes_today_cubit.dart';
+import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
+import 'package:shmr_finance/utils/router/app_routes.dart';
 
 import 'package:shmr_finance/utils/strings/s.dart';
 
-import 'logic/incomes_today_view_model.dart';
+import 'logic/history_today_cubit.dart';
+import 'logic/history_today_view_model.dart';
 
-class TodayIncomesPage extends StatelessWidget {
-  const TodayIncomesPage({super.key});
+class TodayHistoryPage extends StatelessWidget {
+  final HistoryPageType pageType;
+  const TodayHistoryPage({required this.pageType, super.key});
 
   @override
   Widget build(BuildContext context) {
     return ShmrAppBar(
-      title: S.of(context).incomes_today,
+      title: switch (pageType) {
+        HistoryPageType.expences => S.of(context).expences_history,
+        HistoryPageType.incomes => S.of(context).incomes_history,
+      },
       buttonIcon: Icons.history,
-      onTap: () {},
-      child: _Page(),
+      onTap: () {
+        // context.push(SubRoutes.commonHistory.routeName);
+        context.push('./${SubRoutes.commonHistory.routeName}');
+      },
+      child: _Page(
+        pageType: pageType,
+      ),
     );
   }
 }
 
 class _Page extends StatelessWidget {
-  const _Page({super.key});
+  final HistoryPageType pageType;
+  const _Page({required this.pageType, super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => IncomesTodayCubit()..getHistory(),
-      child: BlocBuilder<IncomesTodayCubit, IncomesTodayState>(
+      create: (context) => HistoryTodayCubit(pageType: pageType)..getHistory(),
+      child: BlocBuilder<HistoryTodayCubit, HistoryTodayState>(
           builder: (context, state) => switch (state) {
                 Loading() => __Loading(),
                 Content() => __Content(
