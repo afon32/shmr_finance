@@ -4,9 +4,9 @@ import 'package:shmr_finance/data/network/abstract/network_repository.dart';
 import '../dto/requests/export.dart';
 import '../dto/responses/export.dart';
 
-class NetworkServiceImpl implements NetworkService {
+class NetworkServiceImpl implements NetworkRepository {
   // Account
-  Future<ApiAccount> getAllAccounts(String token) {
+  Future<List<ApiAccount>> getAllAccounts(String token) {
     return Future.value(MockedData.getAllAccountsMock);
   }
 

@@ -3,5 +3,14 @@
   "expences": "Expences",
   "score": "Score",
   "costItems": "Items",
-  "settings": "Settings"
+  "settings": "Settings",
+
+  "expences_today": "Expences today",
+  "expences_history" : "History of expences",
+  "incomes_today": "Incomes today",
+  "incomes_history" : "History of incomes",
+  "total" : "Total",
+  "summ" : "Summ",
+  "start" : "Start",
+  "end" : "End"
 }

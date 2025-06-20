@@ -1,6 +1,5 @@
 import 'package:shmr_finance/model/common_enums/currency_enum.dart';
 
-
 class Account {
   final int id;
   final int userId;
@@ -18,4 +17,9 @@ class Account {
       required this.currency,
       required this.createdAt,
       required this.updatedAt});
+
+  @override
+  String toString() {
+    return 'id : $id ; name : $name';
+  }
 }

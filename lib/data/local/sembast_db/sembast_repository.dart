@@ -7,7 +7,7 @@ import '../../mocked_data.dart';
 /// Репозиторий для локальной БДшки 
 /// Пока скопировал методы из network сервиса. Потом, наверное, придётся модифицировать
 /// to be implemented...
-class SembastService implements LocalService {
+class SembastRepository implements LocalRepository {
   
   @override
   void compareData() {
@@ -15,7 +15,7 @@ class SembastService implements LocalService {
   }
 
    // Account
-  Future<ApiAccount> getAllAccounts(String token) {
+  Future<List<ApiAccount>> getAllAccounts(String token) {
     return Future.value(MockedData.getAllAccountsMock);
   }
 

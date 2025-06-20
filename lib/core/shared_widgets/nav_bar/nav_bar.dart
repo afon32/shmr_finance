@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:shmr_finance/core/shared_widgets/nav_bar/nav_bar_items.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
 import 'package:shmr_finance/utils/themes/text_theme_extension.dart';
 
-class ShmrNavBar extends StatefulWidget {
+class ShmrNavBar extends StatelessWidget {
+  final int currentIndex;
+  final ValueChanged<int> onSelect;
   final Widget child;
-  const ShmrNavBar({required this.child, super.key});
-  @override
-  State<ShmrNavBar> createState() => _ShmrNavBarState();
-}
 
-class _ShmrNavBarState extends State<ShmrNavBar> {
-  int _selectedIndex = 0;
+  const ShmrNavBar(
+      {super.key, required this.currentIndex, required this.onSelect, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -30,17 +27,13 @@ class _ShmrNavBarState extends State<ShmrNavBar> {
               label: items[index].label,
               activeIcon: items[index].selectedIcon),
         ),
-        currentIndex: _selectedIndex,
+        currentIndex: currentIndex,
         unselectedLabelStyle: context.textTheme.labelSmall,
         selectedLabelStyle: context.textTheme.labelSmallBold,
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-          context.go(items[index].routeName);
-        },
+        onTap: onSelect,
       ),
-      body: widget.child,
+      body: child,
     );
   }
 }
+

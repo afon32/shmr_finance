@@ -31,4 +31,17 @@ extension CurrencyX on Currency {
         return 'UNDEFINED';
     }
   }
+
+  String get sign {
+    switch (this) {
+      case Currency.rub:
+        return '₽';
+      case Currency.usd:
+        return "\$";
+      case Currency.eur:
+        return '€';
+      case Currency.undefined:
+        return '?';
+    }
+  }
 }

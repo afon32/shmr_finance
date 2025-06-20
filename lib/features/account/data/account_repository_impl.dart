@@ -23,9 +23,9 @@ class AccountRepositoryImpl implements AccountRepository {
   }
 
   @override
-  Future<List<Account>> getAllAccounts() {
-    _apiUtil.getAllAccounts();
-    throw UnimplementedError();
+  Future<List<Account>> getAllAccounts() async {
+    final result = await _apiUtil.getAllAccounts();
+    return result;
   }
 
   @override

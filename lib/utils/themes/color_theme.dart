@@ -16,6 +16,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     required this.rejectButtonColor,
     required this.textContainerColor,
     required this.selectionItemsColor,
+    required this.commonListItemColor,
     this.green = const Color(0xFF6BBE1A),
     this.red = const Color(0xFFF21F1F),
     this.accentColor = const Color(0xFF0084FF),
@@ -75,6 +76,9 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
   /// Selection items color
   final Color selectionItemsColor;
 
+  /// Common list item color
+  final Color commonListItemColor;
+
   @override
   ThemeExtension<ColorTheme> copyWith({
     Color? accentColor,
@@ -91,6 +95,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     Color? rejectButtonColor,
     Color? textContainerColor,
     Color? selectionItemsColor,
+    Color? commonListItemColor,
     Color? green,
     Color? red,
     Color? disabled,
@@ -110,6 +115,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
         rejectButtonColor: rejectButtonColor ?? this.rejectButtonColor,
         textContainerColor: textContainerColor ?? this.textContainerColor,
         selectionItemsColor: selectionItemsColor ?? this.selectionItemsColor,
+        commonListItemColor: commonListItemColor ?? this.commonListItemColor,
         green: green ?? this.green,
         red: red ?? this.red,
         disabled: disabled ?? this.disabled,
@@ -139,6 +145,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
             Color.lerp(textContainerColor, other.textContainerColor, t)!,
         selectionItemsColor:
             Color.lerp(selectionItemsColor, other.selectionItemsColor, t)!,
+        commonListItemColor: Color.lerp(commonListItemColor, other.commonListItemColor, t)!,
         green: Color.lerp(green, other.green, t)!,
         red: Color.lerp(red, other.red, t)!,
         disabled: Color.lerp(disabled, other.disabled, t)!,

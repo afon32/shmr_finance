@@ -10,7 +10,7 @@ part 'connection_listener_state.dart';
 part 'connection_listener_cubit.freezed.dart';
 
 class ConnectionListenerCubit extends Cubit<ConnectionState> {
-  final LocalService _repository;
+  final LocalRepository _repository;
   final Connectivity _connectivity = Connectivity();
   StreamSubscription? _subscription;
   ConnectionListenerCubit(this._repository)

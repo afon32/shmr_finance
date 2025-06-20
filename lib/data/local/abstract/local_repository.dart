@@ -2,10 +2,10 @@ import '../../dto/requests/export.dart';
 import '../../dto/responses/export.dart';
 
 /// Репозиторий для локальной БДшки
-abstract class LocalService {
+abstract class LocalRepository {
   void compareData();
   // Account
-  Future<ApiAccount> getAllAccounts(String token);
+  Future<List<ApiAccount>> getAllAccounts(String token);
 
   Future<bool> createNewAccount(ApiAccountCreateRequest request);
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
+import 'package:shmr_finance/utils/themes/text_theme_extension.dart';
 
 class ShmrAppBar extends StatelessWidget {
   final Widget child;
@@ -17,13 +18,15 @@ class ShmrAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           title,
-          style: context.textTheme.headlineMedium,
+          style: context.textTheme.appBarTitle,
         ),
         actions: [IconButton(onPressed: onTap, icon: Icon(buttonIcon))],
         backgroundColor: context.theme.appBarColor,
       ),
+      body: child,
     );
   }
 }

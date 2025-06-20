@@ -7,4 +7,7 @@ extension TextThemeX on TextTheme {
   TextStyle get labelSmallBold =>
       labelSmall?.copyWith(fontWeight: FontWeight.w900) ??
       const TextStyle(fontWeight: FontWeight.w900);
+  TextStyle get appBarTitle =>
+      headlineSmall?.copyWith(fontWeight: FontWeight.w400, fontSize: 24) ??
+      const TextStyle(fontWeight: FontWeight.w400, fontSize: 24);
 }

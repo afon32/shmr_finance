@@ -16,5 +16,7 @@ abstract class TransactionsRepository {
 
   Future<bool> deleteTransaction(id);
 
-  Future<List<TransactionDetails>> getTransactionHistoryByPeriod(GetTransactionByPeriodUseCaseRequest request);
+  Future<List<TransactionDetails>> getIncomesTransactionHistoryByPeriod(GetTransactionByPeriodUseCaseRequest request);
+
+  Future<List<TransactionDetails>> getOutcomesTransactionHistoryByPeriod(GetTransactionByPeriodUseCaseRequest request);
 }
