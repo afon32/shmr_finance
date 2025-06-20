@@ -8,6 +8,8 @@ class CommonHistoryDateCubitState with _$CommonHistoryDateCubitState {
   CommonHistoryDateCubitState({required this.startTime, required this.endTime});
 
   factory CommonHistoryDateCubitState.initial() => CommonHistoryDateCubitState(
-      startTime: DateTime.now().copyWith(hour: 0, minute: 0),
+      startTime: DateTime.now()
+          .subtract(Duration(days: 30))
+          .copyWith(hour: 0, minute: 0),
       endTime: DateTime.now().copyWith(hour: 23, minute: 59));
 }

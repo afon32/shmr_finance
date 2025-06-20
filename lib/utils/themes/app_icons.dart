@@ -6,6 +6,7 @@ enum AppIcons {
   score._('calculator-7.svg'),
   items._('bar-chart-side-7.svg'),
   settings._('settings-7.svg'),
+  analyze._('analyze_history_7')
   ;
 
   const AppIcons._(this._asset);

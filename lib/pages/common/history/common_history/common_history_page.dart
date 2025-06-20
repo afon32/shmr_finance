@@ -26,7 +26,7 @@ class CommonHistoryPage extends StatelessWidget {
         HistoryPageType.expences => S.of(context).expences_history,
         HistoryPageType.incomes => S.of(context).incomes_history,
       },
-      buttonIcon: Icons.assignment_add,
+      buttonIcon: Icons.assignment_outlined, // чтобы сделать икноку с фигмы, надо испортить кастомный шрифт. Займусь позже
       onTap: () {},
       child: _Page(
         pageType: pageType,
@@ -156,6 +156,7 @@ class __Error extends StatelessWidget {
   }
 }
 
+/// Календари унифицирую под дизайн в след. итерации
 class __DatePickers extends StatelessWidget {
   const __DatePickers({super.key});
 
@@ -170,8 +171,11 @@ class __DatePickers extends StatelessWidget {
           onTap: () async {
             final newStartTime = await showDatePicker(
                 context: context,
+                initialEntryMode: DatePickerEntryMode.calendarOnly,
+                currentDate: cubit.state.startTime,
                 firstDate: DateTime.now().subtract(Duration(days: 365)),
-                lastDate: DateTime.now().add(Duration(days: 365)));
+                lastDate: DateTime.now().add(Duration(days: 365)),
+                helpText: null);
             cubit.updateStartTime(newStartTime);
           },
         ),
@@ -181,6 +185,7 @@ class __DatePickers extends StatelessWidget {
           onTap: () async {
             final newStartTime = await showDatePicker(
                 context: context,
+                currentDate: cubit.state.endTime,
                 firstDate: DateTime.now().subtract(Duration(days: 365)),
                 lastDate: DateTime.now().add(Duration(days: 365)));
             cubit.updateEndTime(newStartTime);
