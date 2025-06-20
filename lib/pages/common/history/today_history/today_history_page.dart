@@ -21,8 +21,8 @@ class TodayHistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShmrAppBar(
       title: switch (pageType) {
-        HistoryPageType.expences => S.of(context).expences_history,
-        HistoryPageType.incomes => S.of(context).incomes_history,
+        HistoryPageType.expences => S.of(context).expences_today,
+        HistoryPageType.incomes => S.of(context).incomes_today,
       },
       buttonIcon: Icons.history,
       onTap: () {
