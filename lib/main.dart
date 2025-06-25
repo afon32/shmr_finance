@@ -16,8 +16,8 @@ class ShmrApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => ThemeProvider()),
-          BlocProvider(create: (_) => StringsProvider()),
+          BlocProvider(create: (_) => AppScopeLocator.appScope.themeStateHolderDep.get),
+          BlocProvider(create: (_) => AppScopeLocator.appScope.langStateHolderDep.get),
         ],
         child: Builder(builder: (context) {
           final themeMode = context.watch<ThemeProvider>().state;

@@ -8,7 +8,9 @@ import 'package:shmr_finance/features/transactions/domain/use_cases/get_outcomes
 import 'package:shmr_finance/service/api_util.dart';
 import 'package:yx_scope/yx_scope.dart';
 
-class AppScopeContainer extends ScopeContainer {
+import 'ext/customize_mixin.dart';
+
+class AppScopeContainer extends ScopeContainer with CustomizeMixin {
   late final networkDatasourceRepositoryDep = dep(() => NetworkServiceImpl());
 
   late final localDataSourceRepositoryDep = dep(() => SembastRepository());

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shmr_finance/core/shared_widgets/nav_bar/nav_bar.dart';
+import 'package:shmr_finance/di/app_scope_locator.dart';
 import 'package:shmr_finance/pages/common/history/common_history/common_history_page.dart';
 import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
 import 'package:shmr_finance/pages/expences/expences_page.dart';
@@ -70,7 +71,7 @@ class AppNavigator {
                     builder: (context, state) => Center(
                         child: TextButton(
                             onPressed: () {
-                              BlocProvider.of<ThemeProvider>(context)
+                              AppScopeLocator.appScope.themeStateHolderDep.get
                                   .toggleTheme();
                             },
                             child: Text(
@@ -83,7 +84,7 @@ class AppNavigator {
                     builder: (context, state) => Center(
                         child: TextButton(
                             onPressed: () {
-                              BlocProvider.of<StringsProvider>(context)
+                           AppScopeLocator.appScope.langStateHolderDep.get
                                   .toggleLang();
                             },
                             child: Text(
