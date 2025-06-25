@@ -1,5 +1,5 @@
 import 'package:shmr_finance/model/category.dart';
-import 'package:shmr_finance/service/api_util.dart';
+import 'package:shmr_finance/service/api/api_util.dart';
 
 import '../domain/repositories/categories_repository.dart';
 

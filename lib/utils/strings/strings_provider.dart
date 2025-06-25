@@ -7,6 +7,8 @@ class StringsProvider extends Cubit<S> {
 
   S _activeLocale = S(Locale('ru'));
 
+  String get localeCode => activeLocale.localeCode;
+
   S get activeLocale => _activeLocale;
 
   void toggleLang() {

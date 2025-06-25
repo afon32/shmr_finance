@@ -5,7 +5,7 @@ import 'package:shmr_finance/features/account/domain/use_cases/get_all_accounts_
 import 'package:shmr_finance/features/transactions/data/transactions_repository_impl.dart';
 import 'package:shmr_finance/features/transactions/domain/use_cases/get_incomes_transactions_history_by_period_use_case.dart';
 import 'package:shmr_finance/features/transactions/domain/use_cases/get_outcomes_transactions_history_by_period_use_case.dart';
-import 'package:shmr_finance/service/api_util.dart';
+import 'package:shmr_finance/service/api/api_util.dart';
 import 'package:yx_scope/yx_scope.dart';
 
 import 'ext/customize_mixin.dart';
