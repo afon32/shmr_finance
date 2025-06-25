@@ -23,6 +23,10 @@ dependencies:
   json_annotation: ^4.9.0
   yx_scope: ^1.0.2
   yx_scope_flutter: ^1.0.2
+  sembast: ^3.8.3
+  synchronized: ^3.3.0+3
+  path_provider: ^2.1.5
+  rxdart: ^0.28.0
 
 dev_dependencies:
   flutter_test:
