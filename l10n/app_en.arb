@@ -12,5 +12,7 @@
   "total" : "Total",
   "summ" : "Summ",
   "start" : "Start",
-  "end" : "End"
+  "end" : "End",
+
+  "my_score" : "MyScore"
 }
