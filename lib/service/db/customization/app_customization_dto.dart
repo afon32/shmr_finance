@@ -17,7 +17,7 @@ abstract class AppCustomizationDto with _$AppCustomizationDto {
     String locale,
 
     /// Тема приложения
-    @Default(false)
+    @Default(true)
     @JsonKey(
       name: 'light_theme',
       defaultValue: true,

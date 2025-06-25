@@ -5,16 +5,14 @@ import '../abstract/a_dao.dart';
 import 'app_customization_dto.dart';
 
 class AppCustomizationDao extends ADao<AppCustomizationDto> {
-  
   AppCustomizationDao(DatabaseClient dbClient) : super(dbClient);
-  
+
   @override
   AppCustomizationDto fromJson(Map<String, Object?> json) =>
       AppCustomizationDto.fromJson(json);
 
   @override
-  String primaryKeyOf(AppCustomizationDto entity) =>
-      '${entity.userId}_customization';
+  String primaryKeyOf(AppCustomizationDto entity) => entity.userId.toString();
 
   @override
   String get storeName => 'shmr_app_customization_settings_store';

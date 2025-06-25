@@ -8,9 +8,9 @@ import 'package:shmr_finance/features/transactions/domain/use_cases/get_outcomes
 import 'package:shmr_finance/service/api/api_util.dart';
 import 'package:yx_scope/yx_scope.dart';
 
-import 'ext/customize_mixin.dart';
+import 'ext/holders_mixin.dart';
 
-class AppScopeContainer extends ScopeContainer with CustomizeMixin {
+class AppScopeContainer extends ScopeContainer with HoldersMixin {
   late final networkDatasourceRepositoryDep = dep(() => NetworkServiceImpl());
 
   late final localDataSourceRepositoryDep = dep(() => SembastRepository());
@@ -39,4 +39,9 @@ class AppScopeContainer extends ScopeContainer with CustomizeMixin {
   late final getOutcomesTransactionsByPeriodUseCaseDep = dep(() =>
       GetOutcomesTransactionsHistoryByPeriodUseCase(
           repository: transactionsRepositoryDep.get));
+
+  @override
+  List<Set<AsyncDep>> get initializeQueue => [
+        {dbInitializer}
+      ];
 }

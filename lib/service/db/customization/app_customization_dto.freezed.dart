@@ -110,7 +110,7 @@ class _AppCustomizationDto implements AppCustomizationDto {
       {required this.userId,
       @JsonKey(name: 'locale_code', defaultValue: 'ru') this.locale = 'ru',
       @JsonKey(name: 'light_theme', defaultValue: true)
-      this.isLightTheme = false});
+      this.isLightTheme = true});
   factory _AppCustomizationDto.fromJson(Map<String, dynamic> json) =>
       _$AppCustomizationDtoFromJson(json);
 

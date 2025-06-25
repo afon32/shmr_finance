@@ -1,4 +1,5 @@
-import 'package:sembast/src/api/v2/database.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:sembast/sembast_io.dart';
 import 'package:shmr_finance/utils/constants.dart';
 import 'package:shmr_finance/utils/strings/strings_provider.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
@@ -35,19 +36,23 @@ class ShmrDatabase extends ADb {
     try {
       await _restoreLocale(userId: userId);
       await _restoreTheme(userId: userId);
+
+      // всегда в конце
+      _subscribeOnChanges();
     } on Object catch (e) {
       print(e);
     }
   }
 
   @override
-  void onVersionChanged(Database db, int oldVersion, int newVersion) {
+  void onVersionChanged(DatabaseClient db, int oldVersion, int newVersion) {
     AppCustomizationDao(db).drop();
     // другие так же вставить
   }
 
   Future<void> _restoreLocale({required int userId}) async {
     final localeCode = await appCustomizationDao.getLocalCode(userId);
+    print('restore locale code : $localeCode');
     _stringsProvider.localeCode != localeCode
         ? _stringsProvider.toggleLang()
         : print('locale the same');
@@ -55,8 +60,28 @@ class ShmrDatabase extends ADb {
 
   Future<void> _restoreTheme({required int userId}) async {
     final isLightTheme = await appCustomizationDao.getTheme(userId);
+    print('restore theme light mode : $isLightTheme');
     _themeProvider.isLight != isLightTheme
         ? _themeProvider.toggleTheme()
         : print('theme the same');
+  }
+
+  /// Подписка на изменение темы и языка
+  void _subscribeOnChanges() {
+    globalSubscriptions = CompositeSubscription()
+      ..add(
+        _themeProvider.stream.asyncMap((mode) {
+          print('new theme, sync');
+          appCustomizationDao.setTheme(mode, userId);
+        }).listen((_) {}),
+      )
+      ..add(
+        _stringsProvider.stream
+            .asyncMap(
+              (strings) =>
+                  appCustomizationDao.setLocale(strings.locale, userId),
+            )
+            .listen((_) {}),
+      );
   }
 }
