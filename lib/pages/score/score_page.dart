@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shmr_finance/core/shared_widgets/app_bar.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item.dart';
+import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item_with_shaking.dart';
 import 'package:shmr_finance/di/app_scope.dart';
 import 'package:shmr_finance/pages/score/logic/score_page_cubit.dart';
 import 'package:shmr_finance/utils/strings/s.dart';
@@ -67,7 +68,7 @@ class __Content extends StatelessWidget {
     final strings = S.of(context);
     return Column(
       children: [
-        ShmrHeaderListItem(
+        ShmrHeaderListItemWithShaking(
           leadingEmoji: score.emoji,
           isGreenEmoji: false,
           leftTitle: strings.balance,
