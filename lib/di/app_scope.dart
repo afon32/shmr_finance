@@ -1,7 +1,9 @@
 import 'package:shmr_finance/data/local/sembast_db/sembast_repository.dart';
 import 'package:shmr_finance/data/network/network_repository_impl.dart';
 import 'package:shmr_finance/features/account/data/account_repository_impl.dart';
+import 'package:shmr_finance/features/account/domain/use_cases/get_account_by_id_use_case.dart';
 import 'package:shmr_finance/features/account/domain/use_cases/get_all_accounts_use_case.dart';
+import 'package:shmr_finance/features/account/domain/use_cases/update_account_use_case.dart';
 import 'package:shmr_finance/features/transactions/data/transactions_repository_impl.dart';
 import 'package:shmr_finance/features/transactions/domain/use_cases/get_incomes_transactions_history_by_period_use_case.dart';
 import 'package:shmr_finance/features/transactions/domain/use_cases/get_outcomes_transactions_history_by_period_use_case.dart';
@@ -26,6 +28,12 @@ class AppScopeContainer extends ScopeContainer with HoldersMixin {
 
   late final getAllAccountsUseCaseDep =
       dep(() => GetAllAccountsUseCase(repository: accountRepositoryDep.get));
+
+  late final getAccountByIdUseCaseDep =
+      dep(() => GetAccountByIdUseCase(repository: accountRepositoryDep.get));
+  
+  late final updateAccountByIdUseCaseDep =
+      dep(() => UpdateAccountUseCase(repository: accountRepositoryDep.get));
 
   // Transactions
 

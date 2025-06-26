@@ -53,6 +53,7 @@ enum SubRoutes {
   incomeHome,
   expencesHome,
   scoreHome,
+  scoreUpdate,
   costItemsHome,
   settingsHome,
 }
@@ -70,6 +71,8 @@ extension SubRoutesX on SubRoutes {
       //TODO: add next pages expencesHome
       case SubRoutes.scoreHome:
         return 'score_home';
+      case SubRoutes.scoreUpdate:
+        return 'score_update';
       //TODO: add next pages scoreHome
       case SubRoutes.costItemsHome:
         return 'cost_items_home';

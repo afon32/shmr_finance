@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shmr_finance/core/shared_widgets/app_bar.dart';
 import 'package:shmr_finance/core/shared_widgets/bottom_sheet/show_bottom_sheet.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/bottom_sheet_list_item.dart';
@@ -8,6 +9,7 @@ import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item_with
 import 'package:shmr_finance/di/app_scope.dart';
 import 'package:shmr_finance/model/common_enums/currency_enum.dart';
 import 'package:shmr_finance/pages/score/logic/score_page_cubit.dart';
+import 'package:shmr_finance/utils/router/app_routes.dart';
 import 'package:shmr_finance/utils/strings/s.dart';
 import 'package:yx_scope_flutter/yx_scope_flutter.dart';
 
@@ -77,6 +79,10 @@ class __Content extends StatelessWidget {
           leftTitle: strings.balance,
           rigthTitle: '${score.amount} ${score.currencySign}',
           isChevroned: true,
+          onTap: () {
+            context.push('./${SubRoutes.scoreUpdate.routeName}',
+                extra: score.id);
+          },
         ),
         ShmrHeaderListItem(
           leftTitle: strings.currency,
