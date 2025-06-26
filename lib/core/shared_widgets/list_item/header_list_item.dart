@@ -3,6 +3,7 @@ import 'package:shmr_finance/utils/themes/app_theme.dart';
 
 class ShmrHeaderListItem extends StatelessWidget {
   final String? leadingEmoji;
+  final bool isGreenEmoji;
   final String leftTitle;
   final String rigthTitle;
   final bool isChevroned;
@@ -10,6 +11,7 @@ class ShmrHeaderListItem extends StatelessWidget {
   const ShmrHeaderListItem(
       {super.key,
       this.leadingEmoji,
+      this.isGreenEmoji = true,
       required this.leftTitle,
       required this.rigthTitle,
       this.isChevroned = false,
@@ -34,7 +36,9 @@ class ShmrHeaderListItem extends StatelessWidget {
                               child: Container(
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: context.theme.commonListItemColor),
+                                    color: isGreenEmoji
+                                        ? context.theme.commonListItemColor
+                                        : context.theme.backgroundColor),
                                 constraints:
                                     BoxConstraints(maxWidth: 24, maxHeight: 24),
                                 child: FittedBox(

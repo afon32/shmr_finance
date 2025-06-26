@@ -14,5 +14,7 @@
   "start" : "Start",
   "end" : "End",
 
-  "my_score" : "MyScore"
+  "my_score" : "My Score",
+  "balance" : "Balance",
+  "currency" : "Currency"
 }

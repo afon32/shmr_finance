@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shmr_finance/core/shared_widgets/app_bar.dart';
+import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item.dart';
 import 'package:shmr_finance/di/app_scope.dart';
 import 'package:shmr_finance/pages/score/logic/score_page_cubit.dart';
 import 'package:shmr_finance/utils/strings/s.dart';
 import 'package:yx_scope_flutter/yx_scope_flutter.dart';
+
+import 'logic/score_page_view_model.dart';
 
 class ScorePage extends StatelessWidget {
   const ScorePage({super.key});
@@ -27,11 +30,14 @@ class _Page extends StatelessWidget {
     return ScopeBuilder<AppScopeContainer>.withPlaceholder(
         builder: (context, scope) => BlocProvider(
               create: (context) =>
-                  ScorePageCubit(useCase: scope.getAllAccountsUseCaseDep.get),
+                  ScorePageCubit(useCase: scope.getAllAccountsUseCaseDep.get)
+                    ..getAccount(),
               child: BlocBuilder<ScorePageCubit, ScorePageState>(
                   builder: (context, state) => switch (state) {
                         Loading() => __Loading(),
-                        Content() => __Content(),
+                        Content() => __Content(
+                            viewModel: state.content,
+                          ),
                         CustomError() => __Error(),
                         _ => __Loading()
                       }),
@@ -44,16 +50,41 @@ class __Loading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: CircularProgressIndicator(),
+    );
   }
 }
 
 class __Content extends StatelessWidget {
-  const __Content({super.key});
+  final ScorePageViewModel viewModel;
+  const __Content({required this.viewModel, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    // хз один счёт или нет
+    final score = viewModel.items.first;
+    final strings = S.of(context);
+    return Column(
+      children: [
+        ShmrHeaderListItem(
+          leadingEmoji: score.emoji,
+          isGreenEmoji: false,
+          leftTitle: strings.balance,
+          rigthTitle: '${score.amount} ${score.currencySign}',
+          isChevroned: true,
+        ),
+        ShmrHeaderListItem(
+          leftTitle: strings.currency,
+          rigthTitle: score.currencySign,
+          isChevroned: true,
+        ),
+        SizedBox(
+          height: 200,
+          child: Placeholder(),
+        )
+      ],
+    );
   }
 }
 

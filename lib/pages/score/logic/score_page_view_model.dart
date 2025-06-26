@@ -19,13 +19,18 @@ class ScorePageViewModel {
 }
 
 class AccountItem {
+  final String emoji;
   final String name;
   final int amount;
   final String currencySign;
 
   AccountItem._(
-      {required this.name, required this.amount, required this.currencySign});
+      {required this.emoji,
+      required this.name,
+      required this.amount,
+      required this.currencySign});
 
   factory AccountItem.buildWith(String name, int amount, String currencySign) =>
-      AccountItem._(name: name, amount: amount, currencySign: currencySign);
+      AccountItem._(
+          emoji: '💰', name: name, amount: amount, currencySign: currencySign);
 }

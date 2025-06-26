@@ -6,6 +6,7 @@ import 'package:shmr_finance/pages/common/history/common_history/common_history_
 import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
 import 'package:shmr_finance/pages/expences/expences_page.dart';
 import 'package:shmr_finance/pages/incomes/incomes_page.dart';
+import 'package:shmr_finance/pages/score/score_page.dart';
 import 'package:shmr_finance/utils/router/app_routes.dart';
 import 'package:shmr_finance/utils/strings/strings_provider.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
@@ -66,16 +67,20 @@ class AppNavigator {
               ]),
               StatefulShellBranch(navigatorKey: _scoreBranchKey, routes: [
                 GoRoute(
-                    path: MainRoutes.score.routeName,
-                    builder: (context, state) => Center(
-                        child: TextButton(
-                            onPressed: () {
-                              BlocProvider.of<ThemeProvider>(context)
-                                  .toggleTheme();
-                            },
-                            child: Text(
-                                'score'))), //ПОКА ВИСИТ СМЕНА ТЕМЫ change mee
-                    routes: []),
+                  path: MainRoutes.score.routeName,
+                  builder: (context, state) => ScorePage(),
+                )
+                // GoRoute(
+                //     path: MainRoutes.score.routeName,
+                //     builder: (context, state) => Center(
+                //         child: TextButton(
+                //             onPressed: () {
+                //               BlocProvider.of<ThemeProvider>(context)
+                //                   .toggleTheme();
+                //             },
+                //             child: Text(
+                //                 'score'))), //ПОКА ВИСИТ СМЕНА ТЕМЫ change mee
+                //     routes: []),
               ]),
               StatefulShellBranch(navigatorKey: _categoriesBranchKey, routes: [
                 GoRoute(
@@ -83,7 +88,7 @@ class AppNavigator {
                     builder: (context, state) => Center(
                         child: TextButton(
                             onPressed: () {
-                            BlocProvider.of<StringsProvider>(context)
+                              BlocProvider.of<StringsProvider>(context)
                                   .toggleLang();
                             },
                             child: Text(
