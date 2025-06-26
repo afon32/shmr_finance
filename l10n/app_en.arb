@@ -16,5 +16,9 @@
 
   "my_score" : "My Score",
   "balance" : "Balance",
-  "currency" : "Currency"
+  "currency" : "Currency",
+  "cancel" : "Cancel",
+  "ruble" : "Russian ruble",
+  "dollar": "American dollar",
+  "euro" : "Euro"
 }

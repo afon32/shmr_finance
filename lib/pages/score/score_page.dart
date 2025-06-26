@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shmr_finance/core/shared_widgets/app_bar.dart';
+import 'package:shmr_finance/core/shared_widgets/bottom_sheet/show_bottom_sheet.dart';
+import 'package:shmr_finance/core/shared_widgets/list_item/bottom_sheet_list_item.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item_with_shaking.dart';
 import 'package:shmr_finance/di/app_scope.dart';
+import 'package:shmr_finance/model/common_enums/currency_enum.dart';
 import 'package:shmr_finance/pages/score/logic/score_page_cubit.dart';
 import 'package:shmr_finance/utils/strings/s.dart';
 import 'package:yx_scope_flutter/yx_scope_flutter.dart';
@@ -79,13 +82,35 @@ class __Content extends StatelessWidget {
           leftTitle: strings.currency,
           rigthTitle: score.currencySign,
           isChevroned: true,
+          onTap: () => showCurrencyBottomSheet(context),
         ),
+        // плейсхолдер для графика
         SizedBox(
           height: 200,
           child: Placeholder(),
         )
       ],
     );
+  }
+
+  void showCurrencyBottomSheet(BuildContext context) {
+    final cubit = BlocProvider.of<ScorePageCubit>(context);
+    final items = List.generate(Currency.values.length, (index) {
+      if (Currency.values[index] != Currency.undefined) {
+        return ShmrBottomSheetListItem(
+          leadingIcon: Currency.values[index].iconData,
+          title: Currency.toName(Currency.values[index], context),
+          onTap: () => cubit.setCurrency(Currency.values[index]),
+        );
+      }
+      return SizedBox.shrink();
+    });
+    items.add(ShmrBottomSheetListItem(
+      leadingIcon: Icons.cancel_outlined,
+      isRejectItem: true,
+    ));
+
+    shmrShowBottomSheet(context, items);
   }
 }
 

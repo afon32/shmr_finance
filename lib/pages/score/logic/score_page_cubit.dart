@@ -27,4 +27,10 @@ class ScorePageCubit extends Cubit<ScorePageState> {
       emit(ScorePageState.error(e));
     }
   }
+
+  void setCurrency(Currency newCurrency) async {
+    print('future method from server :) $newCurrency');
+    // потом просто вызову метод с бэка для обновления данных
+    getAccount();
+  }
 }
