@@ -20,5 +20,6 @@
   "cancel" : "Cancel",
   "ruble" : "Russian ruble",
   "dollar": "American dollar",
-  "euro" : "Euro"
+  "euro" : "Euro",
+  "search_category" : "Search category"
 }

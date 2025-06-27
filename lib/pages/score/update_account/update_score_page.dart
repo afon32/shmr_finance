@@ -39,7 +39,7 @@ class _Page extends StatelessWidget {
                         Content() => __Content(
                             viewModel: state.content,
                           ),
-                        CustomError() => __Error(),
+                        CustomError() => __Error(e: state.error),
                         _ => __Loading()
                       }),
             ));
@@ -82,10 +82,13 @@ class __Content extends StatelessWidget {
 }
 
 class __Error extends StatelessWidget {
-  const __Error({super.key});
+  final Exception e;
+  const __Error({required this.e, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: Text('Error: $e'),
+    );
   }
 }

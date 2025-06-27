@@ -10,8 +10,7 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
 
   @override
   Future<List<Category>> getAllCategories() {
-    _apiUtil.getAllCategories();
-    throw UnimplementedError();
+    return _apiUtil.getAllCategories();
   }
 
   @override

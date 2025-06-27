@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shmr_finance/core/shared_widgets/nav_bar/nav_bar.dart';
+import 'package:shmr_finance/pages/categories/categories_page.dart';
 import 'package:shmr_finance/pages/common/history/common_history/common_history_page.dart';
 import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
 import 'package:shmr_finance/pages/expences/expences_page.dart';
@@ -91,17 +92,24 @@ class AppNavigator {
                 //                 'score'))), //ПОКА ВИСИТ СМЕНА ТЕМЫ change mee
                 //     routes: []),
               ]),
+              // StatefulShellBranch(navigatorKey: _categoriesBranchKey, routes: [
+              //   GoRoute(
+              //       path: MainRoutes.costItems.routeName,
+              //       builder: (context, state) => Center(
+              //           child: TextButton(
+              //               onPressed: () {
+              //                 BlocProvider.of<StringsProvider>(context)
+              //                     .toggleLang();
+              //               },
+              //               child: Text(
+              //                   'cost items'))), //ПОКА ВИСИТ СМЕНА ЛОКАЛИ change mee
+              //       routes: []),
+              // ]),
               StatefulShellBranch(navigatorKey: _categoriesBranchKey, routes: [
                 GoRoute(
                     path: MainRoutes.costItems.routeName,
-                    builder: (context, state) => Center(
-                        child: TextButton(
-                            onPressed: () {
-                              BlocProvider.of<StringsProvider>(context)
-                                  .toggleLang();
-                            },
-                            child: Text(
-                                'cost items'))), //ПОКА ВИСИТ СМЕНА ЛОКАЛИ change mee
+                    builder: (context, state) =>
+                        CategoriesPage(), 
                     routes: []),
               ]),
               StatefulShellBranch(navigatorKey: _settingsBranchKey, routes: [
