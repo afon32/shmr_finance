@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shmr_finance/core/shared_widgets/nav_bar/nav_bar.dart';
 import 'package:shmr_finance/pages/categories/categories_page.dart';
+import 'package:shmr_finance/pages/common/analyze/analyze_page.dart';
 import 'package:shmr_finance/pages/common/history/common_history/common_history_page.dart';
 import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
 import 'package:shmr_finance/pages/expences/expences_page.dart';
@@ -49,10 +50,16 @@ class AppNavigator {
                     builder: (context, state) => ExpencesPage(),
                     routes: [
                       GoRoute(
-                        path: SubRoutes.commonHistory.routeName,
-                        builder: (context, state) => CommonHistoryPage(
-                            pageType: HistoryPageType.expences),
-                      )
+                          path: SubRoutes.commonHistory.routeName,
+                          builder: (context, state) => CommonHistoryPage(
+                              pageType: HistoryPageType.expences),
+                          routes: [
+                            GoRoute(
+                              path: SubRoutes.commonAnalyze.routeName,
+                              builder: (context, state) => CommonAnalyzePage(
+                                  pageType: HistoryPageType.expences),
+                            ),
+                          ])
                     ]),
               ]),
               StatefulShellBranch(navigatorKey: _incomesBranchKey, routes: [
@@ -61,10 +68,16 @@ class AppNavigator {
                     builder: (context, state) => IncomesPage(),
                     routes: [
                       GoRoute(
-                        path: SubRoutes.commonHistory.routeName,
-                        builder: (context, state) => CommonHistoryPage(
-                            pageType: HistoryPageType.incomes),
-                      )
+                          path: SubRoutes.commonHistory.routeName,
+                          builder: (context, state) => CommonHistoryPage(
+                              pageType: HistoryPageType.incomes),
+                          routes: [
+                            GoRoute(
+                              path: SubRoutes.commonAnalyze.routeName,
+                              builder: (context, state) => CommonAnalyzePage(
+                                  pageType: HistoryPageType.incomes),
+                            ),
+                          ]),
                     ]),
               ]),
               StatefulShellBranch(navigatorKey: _scoreBranchKey, routes: [
@@ -108,15 +121,30 @@ class AppNavigator {
               StatefulShellBranch(navigatorKey: _categoriesBranchKey, routes: [
                 GoRoute(
                     path: MainRoutes.costItems.routeName,
-                    builder: (context, state) =>
-                        CategoriesPage(), 
+                    builder: (context, state) => CategoriesPage(),
                     routes: []),
               ]),
               StatefulShellBranch(navigatorKey: _settingsBranchKey, routes: [
                 GoRoute(
                     path: MainRoutes.settings.routeName,
-                    builder: (context, state) =>
-                        Center(child: Text('settings')),
+                    builder: (context, state) => Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            TextButton(
+                                onPressed: () {
+                                  BlocProvider.of<StringsProvider>(context)
+                                      .toggleLang();
+                                },
+                                child: Text('lang')),
+                            TextButton(
+                                onPressed: () {
+                                  BlocProvider.of<ThemeProvider>(context)
+                                      .toggleTheme();
+                                },
+                                child: Text('theme'))
+                          ],
+                        )), //ПОКА ВИСИТ СМЕНА ЛОКАЛИ change mee
                     routes: []),
               ]),
             ])

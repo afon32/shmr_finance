@@ -156,7 +156,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
           account: ApiAccountBrief(
               id: 1, name: 'Account 1', balance: '450.0', currency: 'EUR'),
           category: ApiCategory(
-              id: 3, name: 'Transport', emoji: '🚗', isIncome: false),
+              id: 1, name: 'Groceries', emoji: '🛒', isIncome: false),
           amount: '20.0',
           transactionDate: '2025-06-11 08:30:00.000',
           comment: 'Bus ticket',
@@ -168,7 +168,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
           account: ApiAccountBrief(
               id: 3, name: 'Account 3', balance: '300.0', currency: 'EUR'),
           category: ApiCategory(
-              id: 4, name: 'Entertainment', emoji: '🎬', isIncome: false),
+              id: 1, name: 'Groceries', emoji: '🛒', isIncome: false),
           amount: '30.0',
           transactionDate: '2025-06-11 20:00:00.000',
           comment: 'Cinema ticket',

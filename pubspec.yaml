@@ -29,6 +29,7 @@ dependencies:
   rxdart: ^0.28.0
   shake_gesture: ^1.2.0
   fuzzy: <1.0.0
+  collection: ^1.19.0
 
 dev_dependencies:
   flutter_test:

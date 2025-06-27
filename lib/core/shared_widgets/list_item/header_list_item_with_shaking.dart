@@ -113,7 +113,7 @@ class __ShakingWidgetState extends State<_ShakingWidget> {
         onShake: () {
           print('shake');
           setState(() {
-            wasShaked = !wasShaked;
+            wasShaked = !wasShaked ? true : wasShaked;
           });
         },
         child: AnimatedSwitcher(

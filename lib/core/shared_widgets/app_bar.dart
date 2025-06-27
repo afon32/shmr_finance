@@ -7,9 +7,11 @@ class ShmrAppBar extends StatelessWidget {
   final String title;
   final IconData? buttonIcon;
   final VoidCallback? onTap;
+  final bool isCommonColor;
   const ShmrAppBar(
       {required this.child,
       required this.title,
+      this.isCommonColor = false,
       this.buttonIcon,
       this.onTap,
       super.key});
@@ -24,7 +26,9 @@ class ShmrAppBar extends StatelessWidget {
           style: context.textTheme.appBarTitle,
         ),
         actions: [IconButton(onPressed: onTap, icon: Icon(buttonIcon))],
-        backgroundColor: context.theme.appBarColor,
+        backgroundColor: isCommonColor
+            ? context.theme.commonListItemColor
+            : context.theme.appBarColor,
       ),
       body: child,
     );

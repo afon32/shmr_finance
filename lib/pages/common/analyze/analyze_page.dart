@@ -1,41 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:shmr_finance/core/date_formatter/date_formatter.dart';
 import 'package:shmr_finance/core/shared_widgets/app_bar.dart';
-import 'package:shmr_finance/core/shared_widgets/list_bottom_button_wrapper/list_bottom_button_wrapper.dart';
-import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item.dart';
+import 'package:shmr_finance/core/shared_widgets/bottom_sheet/show_bottom_sheet.dart';
+
 import 'package:shmr_finance/core/shared_widgets/list_item/universal_list_item.dart';
 import 'package:shmr_finance/di/app_scope.dart';
 import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
-import 'package:shmr_finance/pages/common/history/types/sort_type.dart';
-import 'package:shmr_finance/utils/router/app_routes.dart';
 
 import 'package:shmr_finance/utils/strings/s.dart';
-import 'package:shmr_finance/utils/themes/app_theme.dart';
 import 'package:yx_scope_flutter/yx_scope_flutter.dart';
 
-import 'logic/common_history_date_cubit.dart';
-import 'logic/common_history_cubit.dart';
-import 'logic/common_history_view_model.dart';
+import 'logic/analyze_date_cubit.dart';
+import 'logic/analyze_cubit.dart';
+import 'logic/analyze_view_model.dart';
 
-class CommonHistoryPage extends StatelessWidget {
+class CommonAnalyzePage extends StatelessWidget {
   final HistoryPageType pageType;
-  const CommonHistoryPage({required this.pageType, super.key});
+  const CommonAnalyzePage({required this.pageType, super.key});
 
   @override
   Widget build(BuildContext context) {
     return ShmrAppBar(
       title: switch (pageType) {
-        HistoryPageType.expences => S.of(context).expences_history,
-        HistoryPageType.incomes => S.of(context).incomes_history,
+        HistoryPageType.expences => S.of(context).expences_analyze,
+        HistoryPageType.incomes => S.of(context).incomes_analyze,
       },
-      buttonIcon: Icons
-          .assignment_outlined, // чтобы сделать икноку с фигмы, надо испортить кастомный шрифт. Займусь позже
-      onTap: () {
-        context.push(
-            '${GoRouterState.of(context).uri.toString()}/${SubRoutes.commonAnalyze.routeName}');
-      },
+      isCommonColor: true,
       child: _Page(
         pageType: pageType,
       ),
@@ -51,27 +42,27 @@ class _Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopeBuilder<AppScopeContainer>.withPlaceholder(
         builder: (context, scope) => BlocProvider(
-              create: (context) => CommonHistoryDateCubit(),
-              child: BlocBuilder<CommonHistoryDateCubit,
-                      CommonHistoryDateCubitState>(
+              create: (context) => AnalyzeDateCubit(),
+              child: BlocBuilder<AnalyzeDateCubit,
+                      AnalyzeDateCubitState>(
                   builder: (context, state) => Column(
                         children: [
                           __DatePickers(),
                           Expanded(
                             child: BlocProvider(
-                                create: (context) => CommonHistoryCubit(
+                                create: (context) => AnalyzeCubit(
                                     pageType: pageType, scopeContainer: scope)
                                   ..getHistory(state.startTime, state.endTime),
-                                child: BlocListener<CommonHistoryDateCubit,
-                                        CommonHistoryDateCubitState>(
+                                child: BlocListener<AnalyzeDateCubit,
+                                        AnalyzeDateCubitState>(
                                     listener: (context, state) {
                                       context
-                                          .read<CommonHistoryCubit>()
+                                          .read<AnalyzeCubit>()
                                           .getHistory(
                                               state.startTime, state.endTime);
                                     },
-                                    child: BlocBuilder<CommonHistoryCubit,
-                                            CommonHistoryState>(
+                                    child: BlocBuilder<AnalyzeCubit,
+                                            AnalyzeState>(
                                         builder: (context, state) =>
                                             switch (state) {
                                               Loading() => __Loading(),
@@ -79,7 +70,6 @@ class _Page extends StatelessWidget {
                                                   totalAmountItem:
                                                       state.content.total,
                                                   items: state.content.items,
-                                                  currentType: state.sortType,
                                                   pageType: pageType,
                                                 ),
                                               CustomError() =>
@@ -107,12 +97,10 @@ class __Loading extends StatelessWidget {
 class __Content extends StatelessWidget {
   final HistoryPageType pageType;
   final TotalAmountItem totalAmountItem;
-  final List<ExpenceItem> items;
-  final SortType currentType;
+  final List<ExpenceCategoryItem> items;
   const __Content(
       {required this.totalAmountItem,
       required this.items,
-      required this.currentType,
       required this.pageType,
       super.key});
 
@@ -120,41 +108,58 @@ class __Content extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        __SortTypes(
-          selectedType: currentType,
-          pageType: pageType,
+        ShmrUniversalListItem(
+            leftTitle: S.of(context).summ,
+            rigthTitle:
+                '${totalAmountItem.totalAmount} ${totalAmountItem.currencySign}'),
+
+        // график
+
+        SizedBox(
+          height: 200,
+          child: Placeholder(),
         ),
+
+        //
         Expanded(
-            child: ShmrListBottomButtonWrapper(
-          childList: (controller) => ListView.builder(
-              controller: controller,
-              itemCount: items.length + 1,
-              itemBuilder: (context, index) {
-                if (index == 0) {
-                  final totalItem = totalAmountItem;
-                  return ShmrHeaderListItem(
-                      leftTitle: S.of(context).total,
-                      rigthTitle:
-                          '${totalItem.totalAmount} ${totalItem.currencySign}');
-                } else {
-                  final expenceItem = items[index - 1];
+            child: ListView.builder(
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  final currentItem = items[index];
 
                   return ShmrUniversalListItem(
-                    leadingEmoji: expenceItem.emoji,
-                    leftTitle: expenceItem.categoryName,
-                    leftSubtitle: expenceItem.subtitle,
-                    rigthTitle: '${expenceItem.summ} ${expenceItem.moneySign}',
-                    rightSubtitle: DateFormatter.toDateWithoutSeconds(
-                        expenceItem.datetime),
+                    leadingEmoji: currentItem.emoji,
+                    leftTitle: currentItem.categoryName,
+                    leftSubtitle: currentItem.lastTransactionSubtitle,
+                    rigthTitle: '${currentItem.percentsFromAll}%',
+                    rightSubtitle:
+                        '${currentItem.summ} ${currentItem.moneySign}',
                     isChevroned: true,
-                    onTap: () {},
+                    onTap: () {
+                      showExpenceItemsBottomSheet(
+                          context, currentItem.expenceItems);
+                    },
                   );
-                }
-              }),
-          onTap: () {},
-        ))
+                })),
       ],
     );
+  }
+
+  void showExpenceItemsBottomSheet(
+      BuildContext context, List<ExpenceItem> expenceItems) {
+    final items = List.generate((expenceItems.length), (index) {
+      final expenceItem = expenceItems[index];
+      return ShmrUniversalListItem(
+        leadingEmoji: expenceItem.emoji,
+        leftTitle: expenceItem.categoryName,
+        leftSubtitle: expenceItem.subtitle,
+        rigthTitle: '${expenceItem.summ} ${expenceItem.moneySign}',
+        rightSubtitle: DateFormatter.toDateWithoutSeconds(expenceItem.datetime),
+        isChevroned: false,
+      );
+    });
+
+    shmrShowBottomSheet(context, items);
   }
 }
 
@@ -176,11 +181,12 @@ class __DatePickers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<CommonHistoryDateCubit>(context);
+    final cubit = BlocProvider.of<AnalyzeDateCubit>(context);
     return Column(
       children: [
-        ShmrHeaderListItem(
-          leftTitle: S.of(context).start,
+        ShmrUniversalListItem(
+          leftTitle:
+              '${S.of(context).period}:${S.of(context).start.toLowerCase()}',
           rigthTitle: DateFormatter.toDayAndMonth(cubit.state.startTime),
           onTap: () async {
             final newStartTime = await showDatePicker(
@@ -193,7 +199,7 @@ class __DatePickers extends StatelessWidget {
             cubit.updateStartTime(newStartTime);
           },
         ),
-        ShmrHeaderListItem(
+        ShmrUniversalListItem(
           leftTitle: S.of(context).end,
           rigthTitle: DateFormatter.toDayAndMonth(cubit.state.endTime),
           onTap: () async {
@@ -206,34 +212,6 @@ class __DatePickers extends StatelessWidget {
           },
         ),
       ],
-    );
-  }
-}
-
-class __SortTypes extends StatelessWidget {
-  final HistoryPageType pageType;
-  final SortType selectedType;
-  const __SortTypes(
-      {required this.selectedType, required this.pageType, super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<CommonHistoryCubit>(context);
-    final sortTypes = pageType.sortTypes;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: List.generate(sortTypes.length, (index) {
-        return ElevatedButton(
-          onPressed: () {
-            cubit.sort(sortTypes[index]);
-          },
-          child: Text(sortTypes[index].label,
-              style: context.textTheme.bodySmall!.copyWith(
-                  color: sortTypes[index] == selectedType
-                      ? context.theme.red
-                      : context.theme.textColor)),
-        );
-      }),
     );
   }
 }

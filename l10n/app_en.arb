@@ -13,6 +13,7 @@
   "summ" : "Summ",
   "start" : "Start",
   "end" : "End",
+  "period": "Period",
 
   "my_score" : "My Score",
   "balance" : "Balance",
@@ -21,5 +22,8 @@
   "ruble" : "Russian ruble",
   "dollar": "American dollar",
   "euro" : "Euro",
-  "search_category" : "Search category"
+  "search_category" : "Search category",
+
+  "expences_analyze" : "Expences analyze",
+  "incomes_analyze" : "Incomes analyze"
 }

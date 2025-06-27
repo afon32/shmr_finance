@@ -13,6 +13,7 @@
   "summ" : "Сумма",
   "start" : "Начало",
   "end" : "Конец",
+  "period": "Период",
 
   "my_score" : "Мой счёт",
   "balance" : "Баланс",
@@ -21,6 +22,9 @@
   "ruble" : "Российский рубль",
   "dollar": "Американский доллар",
   "euro" : "Евро",
-  "search_category" : "Найти статью"
+  "search_category" : "Найти статью",
+
+  "expences_analyze" : "Анализ расходов",
+  "incomes_analyze" : "Анализ доходов"
   
 }
