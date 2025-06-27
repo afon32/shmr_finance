@@ -5,10 +5,12 @@ import 'package:shmr_finance/core/shared_widgets/app_bar.dart';
 import 'package:shmr_finance/core/shared_widgets/list_bottom_button_wrapper/list_bottom_button_wrapper.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/universal_list_item.dart';
+import 'package:shmr_finance/di/app_scope.dart';
 import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
 import 'package:shmr_finance/utils/router/app_routes.dart';
 
 import 'package:shmr_finance/utils/strings/s.dart';
+import 'package:yx_scope_flutter/yx_scope_flutter.dart';
 
 import 'logic/history_today_cubit.dart';
 import 'logic/history_today_view_model.dart';
@@ -42,19 +44,21 @@ class _Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HistoryTodayCubit(pageType: pageType)..getHistory(),
-      child: BlocBuilder<HistoryTodayCubit, HistoryTodayState>(
-          builder: (context, state) => switch (state) {
-                Loading() => __Loading(),
-                Content() => __Content(
-                    totalAmountItem: state.content.total,
-                    items: state.content.items,
-                  ),
-                CustomError() => __Error(e: state.error),
-                _ => __Loading()
-              }),
-    );
+    return ScopeBuilder<AppScopeContainer>.withPlaceholder(
+        builder: (context, scope) => BlocProvider(
+              create: (context) =>
+                  HistoryTodayCubit(pageType: pageType, scopeContainer: scope)..getHistory(),
+              child: BlocBuilder<HistoryTodayCubit, HistoryTodayState>(
+                  builder: (context, state) => switch (state) {
+                        Loading() => __Loading(),
+                        Content() => __Content(
+                            totalAmountItem: state.content.total,
+                            items: state.content.items,
+                          ),
+                        CustomError() => __Error(e: state.error),
+                        _ => __Loading()
+                      }),
+            ));
   }
 }
 

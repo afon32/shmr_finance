@@ -5,13 +5,13 @@ class ShmrUniversalListItem extends StatelessWidget {
   final String? leadingEmoji;
   final String leftTitle;
   final String? leftSubtitle;
-  final String rigthTitle;
+  final String? rigthTitle;
   final String? rightSubtitle;
   final bool isChevroned;
   final VoidCallback? onTap;
   const ShmrUniversalListItem(
       {required this.leftTitle,
-      required this.rigthTitle,
+       this.rigthTitle,
       this.isChevroned = false,
       this.leadingEmoji,
       this.leftSubtitle,
@@ -68,7 +68,7 @@ class ShmrUniversalListItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(rigthTitle,
+                              Text(rigthTitle ?? '',
                                   style: context.textTheme.bodyLarge),
                               if (rightSubtitle != null)
                                 Text(rightSubtitle!,

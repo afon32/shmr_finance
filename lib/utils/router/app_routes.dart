@@ -50,9 +50,11 @@ extension ExpencesRoutesX on ExpencesRoutes {
 
 enum SubRoutes {
   commonHistory,
+  commonAnalyze,
   incomeHome,
   expencesHome,
   scoreHome,
+  scoreUpdate,
   costItemsHome,
   settingsHome,
 }
@@ -62,6 +64,8 @@ extension SubRoutesX on SubRoutes {
     switch (this) {
       case SubRoutes.commonHistory:
         return 'common_history';
+      case SubRoutes.commonAnalyze:
+        return 'common_analyze';
       case SubRoutes.incomeHome:
         return 'income_home';
       //TODO: add next pages for incomeHome
@@ -70,6 +74,8 @@ extension SubRoutesX on SubRoutes {
       //TODO: add next pages expencesHome
       case SubRoutes.scoreHome:
         return 'score_home';
+      case SubRoutes.scoreUpdate:
+        return 'score_update';
       //TODO: add next pages scoreHome
       case SubRoutes.costItemsHome:
         return 'cost_items_home';

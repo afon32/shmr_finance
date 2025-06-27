@@ -1,5 +1,5 @@
 import 'package:shmr_finance/model/category.dart';
-import 'package:shmr_finance/service/api_util.dart';
+import 'package:shmr_finance/service/api/api_util.dart';
 
 import '../domain/repositories/categories_repository.dart';
 
@@ -10,8 +10,7 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
 
   @override
   Future<List<Category>> getAllCategories() {
-    _apiUtil.getAllCategories();
-    throw UnimplementedError();
+    return _apiUtil.getAllCategories();
   }
 
   @override

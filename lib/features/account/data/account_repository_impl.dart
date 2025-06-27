@@ -1,6 +1,6 @@
 import 'package:shmr_finance/features/account/domain/entities/account.dart';
 import 'package:shmr_finance/features/account/domain/entities/account_history.dart';
-import 'package:shmr_finance/service/api_util.dart';
+import 'package:shmr_finance/service/api/api_util.dart';
 
 import '../domain/repositories/account_repository.dart';
 import 'dto/export.dart';
@@ -17,9 +17,17 @@ class AccountRepositoryImpl implements AccountRepository {
   }
 
   @override
-  Future<Account> getAccountById(int id) {
-    _apiUtil.getAccountById(id);
-    throw UnimplementedError();
+  Future<Account> getAccountById(int id) async {
+    final result = await _apiUtil.getAccountById(id);
+    final account = Account(
+        id: result.id,
+        userId: result.id,
+        name: result.name,
+        balance: result.balance,
+        currency: result.currency,
+        createdAt: result.createdAt,
+        updatedAt: result.updatedAt);
+    return account;
   }
 
   @override
@@ -29,9 +37,9 @@ class AccountRepositoryImpl implements AccountRepository {
   }
 
   @override
-  Future<Account> updateAccount(UpdateAccountUseCaseRequest request) {
-    _apiUtil.updateAccount(request);
-    throw UnimplementedError();
+  Future<Account> updateAccount(UpdateAccountUseCaseRequest request) async {
+    final result = await _apiUtil.updateAccount(request);
+    return result;
   }
 
   @override

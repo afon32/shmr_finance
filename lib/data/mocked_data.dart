@@ -65,8 +65,24 @@ class MockedData {
 
   // Categories
 
-  static List<ApiCategory> get getAllCategoriesMock =>
-      [ApiCategory(id: 1, name: 'name', emoji: ')', isIncome: true)];
+static List<ApiCategory> get getAllCategoriesMock => [
+        ApiCategory(id: 1, name: 'Продукты', emoji: '🍎', isIncome: false),
+        ApiCategory(id: 2, name: 'Транспорт', emoji: '🚗', isIncome: false),
+        ApiCategory(id: 3, name: 'Зарплата', emoji: '💰', isIncome: true),
+        ApiCategory(id: 4, name: 'Развлечения', emoji: '🎉', isIncome: false),
+        ApiCategory(id: 5, name: 'Здоровье', emoji: '💊', isIncome: false),
+        ApiCategory(id: 6, name: 'Подарки', emoji: '🎁', isIncome: false),
+        ApiCategory(id: 7, name: 'Коммуналка', emoji: '🏠', isIncome: false),
+        ApiCategory(id: 8, name: 'Образование', emoji: '📚', isIncome: false),
+        ApiCategory(id: 9, name: 'Инвестиции', emoji: '📈', isIncome: true),
+        ApiCategory(id: 10, name: 'Одежда', emoji: '👕', isIncome: false),
+        ApiCategory(id: 11, name: 'Домашние животные', emoji: '🐾', isIncome: false),
+        ApiCategory(id: 12, name: 'Путешествия', emoji: '✈️', isIncome: false),
+        ApiCategory(id: 13, name: 'Спорт', emoji: '🏋️', isIncome: false),
+        ApiCategory(id: 14, name: 'Фриланс', emoji: '💻', isIncome: true),
+        ApiCategory(id: 15, name: 'Рестораны', emoji: '🍽️', isIncome: false),
+      ];
+  
   static List<ApiCategory> get getCategoriesByTypeMock =>
       [ApiCategory(id: 3, name: 'nasasdme', emoji: 's)', isIncome: true)];
 
@@ -140,7 +156,7 @@ class MockedData {
           account: ApiAccountBrief(
               id: 1, name: 'Account 1', balance: '450.0', currency: 'EUR'),
           category: ApiCategory(
-              id: 3, name: 'Transport', emoji: '🚗', isIncome: false),
+              id: 1, name: 'Groceries', emoji: '🛒', isIncome: false),
           amount: '20.0',
           transactionDate: '2025-06-11 08:30:00.000',
           comment: 'Bus ticket',
@@ -152,7 +168,7 @@ class MockedData {
           account: ApiAccountBrief(
               id: 3, name: 'Account 3', balance: '300.0', currency: 'EUR'),
           category: ApiCategory(
-              id: 4, name: 'Entertainment', emoji: '🎬', isIncome: false),
+              id: 1, name: 'Groceries', emoji: '🛒', isIncome: false),
           amount: '30.0',
           transactionDate: '2025-06-11 20:00:00.000',
           comment: 'Cinema ticket',

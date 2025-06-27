@@ -5,6 +5,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class S {
   var locale = Locale('ru');
 
+  String get localeCode => locale.languageCode;
+
   S(this.locale);
 
   final supportedLocales = [Locale('en'), Locale('ru')];

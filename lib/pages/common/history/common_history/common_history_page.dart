@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shmr_finance/core/date_formatter/date_formatter.dart';
 import 'package:shmr_finance/core/shared_widgets/app_bar.dart';
 import 'package:shmr_finance/core/shared_widgets/list_bottom_button_wrapper/list_bottom_button_wrapper.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/universal_list_item.dart';
+import 'package:shmr_finance/di/app_scope.dart';
 import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
 import 'package:shmr_finance/pages/common/history/types/sort_type.dart';
+import 'package:shmr_finance/utils/router/app_routes.dart';
 
 import 'package:shmr_finance/utils/strings/s.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
+import 'package:yx_scope_flutter/yx_scope_flutter.dart';
 
 import 'logic/common_history_date_cubit.dart';
 import 'logic/common_history_cubit.dart';
@@ -26,8 +30,12 @@ class CommonHistoryPage extends StatelessWidget {
         HistoryPageType.expences => S.of(context).expences_history,
         HistoryPageType.incomes => S.of(context).incomes_history,
       },
-      buttonIcon: Icons.assignment_outlined, // чтобы сделать икноку с фигмы, надо испортить кастомный шрифт. Займусь позже
-      onTap: () {},
+      buttonIcon: Icons
+          .assignment_outlined, // чтобы сделать икноку с фигмы, надо испортить кастомный шрифт. Займусь позже
+      onTap: () {
+        context.push(
+            '${GoRouterState.of(context).uri.toString()}/${SubRoutes.commonAnalyze.routeName}');
+      },
       child: _Page(
         pageType: pageType,
       ),
@@ -41,41 +49,47 @@ class _Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CommonHistoryDateCubit(),
-      child: BlocBuilder<CommonHistoryDateCubit, CommonHistoryDateCubitState>(
-          builder: (context, state) => Column(
-                children: [
-                  __DatePickers(),
-                  Expanded(
-                    child: BlocProvider(
-                        create: (context) =>
-                            CommonHistoryCubit(pageType: pageType)
-                              ..getHistory(state.startTime, state.endTime),
-                        child: BlocListener<CommonHistoryDateCubit,
-                                CommonHistoryDateCubitState>(
-                            listener: (context, state) {
-                              context
-                                  .read<CommonHistoryCubit>()
-                                  .getHistory(state.startTime, state.endTime);
-                            },
-                            child: BlocBuilder<CommonHistoryCubit,
-                                    CommonHistoryState>(
-                                builder: (context, state) => switch (state) {
-                                      Loading() => __Loading(),
-                                      Content() => __Content(
-                                          totalAmountItem: state.content.total,
-                                          items: state.content.items,
-                                          currentType: state.sortType,
-                                          pageType: pageType,
-                                        ),
-                                      CustomError() => __Error(e: state.error),
-                                      _ => __Loading()
-                                    }))),
-                  )
-                ],
-              )),
-    );
+    return ScopeBuilder<AppScopeContainer>.withPlaceholder(
+        builder: (context, scope) => BlocProvider(
+              create: (context) => CommonHistoryDateCubit(),
+              child: BlocBuilder<CommonHistoryDateCubit,
+                      CommonHistoryDateCubitState>(
+                  builder: (context, state) => Column(
+                        children: [
+                          __DatePickers(),
+                          Expanded(
+                            child: BlocProvider(
+                                create: (context) => CommonHistoryCubit(
+                                    pageType: pageType, scopeContainer: scope)
+                                  ..getHistory(state.startTime, state.endTime),
+                                child: BlocListener<CommonHistoryDateCubit,
+                                        CommonHistoryDateCubitState>(
+                                    listener: (context, state) {
+                                      context
+                                          .read<CommonHistoryCubit>()
+                                          .getHistory(
+                                              state.startTime, state.endTime);
+                                    },
+                                    child: BlocBuilder<CommonHistoryCubit,
+                                            CommonHistoryState>(
+                                        builder: (context, state) =>
+                                            switch (state) {
+                                              Loading() => __Loading(),
+                                              Content() => __Content(
+                                                  totalAmountItem:
+                                                      state.content.total,
+                                                  items: state.content.items,
+                                                  currentType: state.sortType,
+                                                  pageType: pageType,
+                                                ),
+                                              CustomError() =>
+                                                __Error(e: state.error),
+                                              _ => __Loading()
+                                            }))),
+                          )
+                        ],
+                      )),
+            ));
   }
 }
 
