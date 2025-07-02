@@ -25,5 +25,10 @@
   "search_category" : "Search category",
 
   "expences_analyze" : "Expences analyze",
-  "incomes_analyze" : "Incomes analyze"
+  "incomes_analyze" : "Incomes analyze",
+  
+  "costItem" : "Item",
+  "date" : "Date",
+  "time" : "Time",
+  "comment" : "Comment"
 }

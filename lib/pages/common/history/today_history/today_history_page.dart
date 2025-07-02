@@ -6,6 +6,7 @@ import 'package:shmr_finance/core/shared_widgets/list_bottom_button_wrapper/list
 import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/universal_list_item.dart';
 import 'package:shmr_finance/di/app_scope.dart';
+import 'package:shmr_finance/pages/common/add_or_edit_buy/edit_buy_screen.dart';
 import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
 import 'package:shmr_finance/utils/router/app_routes.dart';
 
@@ -28,7 +29,6 @@ class TodayHistoryPage extends StatelessWidget {
       },
       buttonIcon: Icons.history,
       onTap: () {
-        // context.push(SubRoutes.commonHistory.routeName);
         context.push('./${SubRoutes.commonHistory.routeName}');
       },
       child: _Page(
@@ -47,7 +47,8 @@ class _Page extends StatelessWidget {
     return ScopeBuilder<AppScopeContainer>.withPlaceholder(
         builder: (context, scope) => BlocProvider(
               create: (context) =>
-                  HistoryTodayCubit(pageType: pageType, scopeContainer: scope)..getHistory(),
+                  HistoryTodayCubit(pageType: pageType, scopeContainer: scope)
+                    ..getHistory(),
               child: BlocBuilder<HistoryTodayCubit, HistoryTodayState>(
                   builder: (context, state) => switch (state) {
                         Loading() => __Loading(),
@@ -96,11 +97,23 @@ class __Content extends StatelessWidget {
 
               return ShmrUniversalListItem(
                 leadingEmoji: expenceItem.emoji,
-                leftTitle: expenceItem.categoryName,
+                leftTitle: expenceItem.categoryItem.name,
                 leftSubtitle: expenceItem.subtitle,
                 rigthTitle: '${expenceItem.summ} ${expenceItem.moneySign}',
                 isChevroned: true,
-                onTap: () {},
+                onTap: () => showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  useSafeArea: true,
+                  builder: (modalContext) => EditBuyScreen(
+                    title: 'title',
+                    onExitTap: modalContext.pop,
+                    onApproveTap: () {
+                      modalContext.pop();
+                      BlocProvider.of<HistoryTodayCubit>(context).getHistory();
+                    },
+                  ),
+                ),
               );
             }
           }),

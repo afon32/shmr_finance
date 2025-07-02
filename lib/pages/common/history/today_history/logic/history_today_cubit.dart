@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shmr_finance/di/app_scope.dart';
 import 'package:shmr_finance/features/transactions/data/dto/get_transaction_by_period_use_case_request.dart';
+import 'package:shmr_finance/features/transactions/data/dto/update_transaction_use_case_request.dart';
 import 'package:shmr_finance/features/transactions/domain/use_cases/get_transactions_history_by_period_use_case.dart';
+import 'package:shmr_finance/features/transactions/domain/use_cases/update_transaction_use_case.dart';
 import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
 
 import 'history_today_view_model.dart';
@@ -15,6 +17,7 @@ class HistoryTodayCubit extends Cubit<HistoryTodayState> {
   final HistoryPageType pageType;
   final AppScopeContainer scopeContainer;
   late final GetTransactionsHistoryByPeriodUseCase _useCase;
+  late final UpdateTransactionUseCase _updateTransactionUseCase;
 
   HistoryTodayCubit({required this.pageType, required this.scopeContainer})
       : super(HistoryTodayState.loading()) {
@@ -24,6 +27,7 @@ class HistoryTodayCubit extends Cubit<HistoryTodayState> {
       case HistoryPageType.incomes:
         _useCase = scopeContainer.getIncomesTransactionsByPeriodUseCaseDep.get;
     }
+    _updateTransactionUseCase = scopeContainer.updateTransactionsUseCaseDep.get;
   }
 
   void getHistory() async {
@@ -42,5 +46,20 @@ class HistoryTodayCubit extends Cubit<HistoryTodayState> {
     } on Exception catch (e) {
       emit(HistoryTodayState.error(e));
     }
+  }
+
+  void updateBuy(int buyId, int accountId, int categoryId, double amount,
+      DateTime date, String? comment) async {
+    try {
+      final request = UpdateTransactionUseCaseRequest(
+          id: buyId,
+          accountId: accountId,
+          categoryId: categoryId,
+          amount: amount,
+          transactionDate: date,
+          comment: comment);
+
+      await _updateTransactionUseCase.execute(request);
+    } on Exception catch (e) {}
   }
 }

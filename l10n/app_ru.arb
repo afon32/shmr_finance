@@ -25,6 +25,10 @@
   "search_category" : "Найти статью",
 
   "expences_analyze" : "Анализ расходов",
-  "incomes_analyze" : "Анализ доходов"
+  "incomes_analyze" : "Анализ доходов",
   
+  "costItem" : "Статья",
+  "date" : "Дата",
+  "time" : "Время",
+  "comment" : "Комментарий"
 }
