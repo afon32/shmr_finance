@@ -3,7 +3,7 @@ import 'package:shmr_finance/features/transactions/data/dto/get_transaction_by_p
 
 import 'package:shmr_finance/features/transactions/data/dto/update_transaction_use_case_request.dart';
 
-import 'package:shmr_finance/features/transactions/domain/entities/transaction.dart';
+import 'package:shmr_finance/model/transaction.dart';
 
 import 'package:shmr_finance/features/transactions/domain/entities/transaction_details.dart';
 import 'package:shmr_finance/service/api/api_util.dart';

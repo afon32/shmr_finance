@@ -2,7 +2,7 @@ import 'package:shmr_finance/features/transactions/data/dto/get_transaction_by_p
 
 import '../../data/dto/create_transaction_use_case_request.dart';
 import '../../data/dto/update_transaction_use_case_request.dart';
-import '../entities/transaction.dart';
+import '../../../../model/transaction.dart';
 import '../entities/transaction_details.dart';
 
 abstract class TransactionsRepository {
