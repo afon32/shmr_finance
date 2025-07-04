@@ -16,9 +16,9 @@ class EditBuyScreenCubitState with _$EditBuyScreenCubitState {
       required this.comment});
 
   factory EditBuyScreenCubitState.buildWith(
-    AccountItem scoreItem,
-    CategoryItem categoryItem,
-    double amount,
+    AccountItem? scoreItem,
+    CategoryItem? categoryItem,
+    double? amount,
     DateTime date,
     String? comment,
   ) =>

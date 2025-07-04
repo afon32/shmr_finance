@@ -6,6 +6,7 @@ import 'package:shmr_finance/core/shared_widgets/list_bottom_button_wrapper/list
 import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/universal_list_item.dart';
 import 'package:shmr_finance/di/app_scope.dart';
+import 'package:shmr_finance/model/ui_items/transaction_sharing_model.dart';
 import 'package:shmr_finance/pages/common/add_or_edit_buy/edit_buy_screen.dart';
 import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
 import 'package:shmr_finance/utils/router/app_routes.dart';
@@ -84,6 +85,7 @@ class __Content extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShmrListBottomButtonWrapper(
       childList: (controller) => ListView.builder(
+          controller: controller,
           itemCount: items.length + 1,
           itemBuilder: (context, index) {
             if (index == 0) {
@@ -105,8 +107,16 @@ class __Content extends StatelessWidget {
                   context: context,
                   isScrollControlled: true,
                   useSafeArea: true,
+                  enableDrag: false,
                   builder: (modalContext) => EditBuyScreen(
                     title: 'title',
+                    transactionSharing: TransactionSharingModel(
+                      scoreItem: expenceItem.accountItem,
+                      categoryItem: expenceItem.categoryItem,
+                      amount: expenceItem.summ,
+                      date: expenceItem.date,
+                      comment: expenceItem.subtitle,
+                    ),
                     onExitTap: modalContext.pop,
                     onApproveTap: () {
                       modalContext.pop();

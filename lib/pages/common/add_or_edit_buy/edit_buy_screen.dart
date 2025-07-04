@@ -5,20 +5,23 @@ import 'package:shmr_finance/core/shared_widgets/app_bar.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/universal_list_item.dart';
 import 'package:shmr_finance/di/app_scope.dart';
 import 'package:shmr_finance/model/common_enums/currency_enum.dart';
+import 'package:shmr_finance/model/ui_items/transaction_sharing_model.dart';
 import 'package:shmr_finance/pages/common/add_or_edit_buy/logic/edit_buy_screen_cubit.dart';
 import 'package:shmr_finance/utils/strings/s.dart';
 import 'package:yx_scope_flutter/yx_scope_flutter.dart';
 
 class EditBuyScreen extends StatelessWidget {
-  
   final VoidCallback onApproveTap;
   final VoidCallback onExitTap;
   final String title;
+  final TransactionSharingModel? transactionSharing;
+
   const EditBuyScreen({
     super.key,
     required this.title,
     required this.onExitTap,
     required this.onApproveTap,
+    this.transactionSharing,
   });
 
   @override
@@ -27,23 +30,36 @@ class EditBuyScreen extends StatelessWidget {
       title: title,
       leading: IconButton(
         onPressed: onExitTap,
-        icon: Icon(Icons.cancel_outlined),
+        icon: Icon(Icons.close),
       ),
       buttonIcon: Icons.check,
       onTap: onApproveTap,
-      child: _Page(),
+      child: _Page(
+        transactionSharing: transactionSharing,
+      ),
     );
   }
 }
 
 class _Page extends StatelessWidget {
-  const _Page({super.key});
+  final TransactionSharingModel? transactionSharing;
+  const _Page({super.key, required this.transactionSharing});
 
   @override
   Widget build(BuildContext context) {
     return ScopeBuilder<AppScopeContainer>.withPlaceholder(
       builder: (context, scope) => BlocProvider(
-        create: (context) => EditBuyScreenCubit(),
+        create: (context) => EditBuyScreenCubit(
+          screenState: transactionSharing != null
+              ? EditBuyScreenCubitState.buildWith(
+                  transactionSharing!.scoreItem,
+                  transactionSharing!.categoryItem,
+                  transactionSharing!.amount,
+                  transactionSharing!.date,
+                  transactionSharing!.comment,
+                )
+              : null,
+        ),
         child: BlocBuilder<EditBuyScreenCubit, EditBuyScreenCubitState>(
           builder: (context, state) {
             final cubit = context.read<EditBuyScreenCubit>();
@@ -52,7 +68,7 @@ class _Page extends StatelessWidget {
               children: [
                 ShmrUniversalListItem(
                   leftTitle: strings.score,
-                  rigthTitle: cubit.state.categoryItem?.name ?? '-',
+                  rigthTitle: cubit.state.scoreItem?.name ?? '-',
                   isChevroned: true,
                 ),
                 ShmrUniversalListItem(

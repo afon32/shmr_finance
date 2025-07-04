@@ -27,6 +27,7 @@ class HistoryTodayViewModel {
           e.account.id,
           e.account.name,
           e.category.name,
+          e.transactionDate,
           e.comment,
           e.amount,
           e.account.currency.sign);
@@ -54,6 +55,7 @@ class ExpenceItem {
   final String emoji;
   final AccountItem accountItem;
   final CategoryItem categoryItem;
+  final DateTime date;
   final String? subtitle;
   final double summ;
   final String moneySign;
@@ -63,6 +65,7 @@ class ExpenceItem {
       required this.emoji,
       required this.accountItem,
       required this.categoryItem,
+      required this.date,
       required this.subtitle,
       required this.summ,
       required this.moneySign});
@@ -74,6 +77,7 @@ class ExpenceItem {
           int accountId,
           String accountName,
           String categoryName,
+          DateTime date,
           String? subtitle,
           double summ,
           String moneySign) =>
@@ -82,6 +86,7 @@ class ExpenceItem {
           emoji: emoji,
           accountItem: AccountItem(id: id, name: accountName),
           categoryItem: CategoryItem(id: categoryId, name: categoryName),
+          date: date,
           subtitle: subtitle,
           summ: summ,
           moneySign: moneySign);
