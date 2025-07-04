@@ -13,7 +13,7 @@ import 'package:shmr_finance/features/account/domain/entities/account_history.da
 import 'package:shmr_finance/features/transactions/data/dto/create_transaction_use_case_request.dart';
 import 'package:shmr_finance/features/transactions/data/dto/get_transaction_by_period_use_case_request.dart';
 import 'package:shmr_finance/features/transactions/data/dto/update_transaction_use_case_request.dart';
-import 'package:shmr_finance/model/transaction.dart';
+import 'package:shmr_finance/features/transactions/domain/entities/transaction.dart';
 import 'package:shmr_finance/features/transactions/domain/entities/transaction_details.dart';
 import 'package:shmr_finance/model/category.dart';
 import 'package:shmr_finance/service/api/mappers/use_cases/use_case_to_data_mappers.dart';
