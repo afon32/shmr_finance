@@ -2,8 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shmr_finance/di/app_scope.dart';
+import 'package:shmr_finance/features/transactions/data/dto/create_transaction_use_case_request.dart';
 import 'package:shmr_finance/features/transactions/data/dto/get_transaction_by_period_use_case_request.dart';
+import 'package:shmr_finance/features/transactions/data/dto/update_transaction_use_case_request.dart';
+import 'package:shmr_finance/features/transactions/domain/use_cases/create_transaction_use_case.dart';
+import 'package:shmr_finance/features/transactions/domain/use_cases/delete_transaction_use_case.dart';
 import 'package:shmr_finance/features/transactions/domain/use_cases/get_transactions_history_by_period_use_case.dart';
+import 'package:shmr_finance/features/transactions/domain/use_cases/update_transaction_use_case.dart';
 import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
 
 import 'history_today_view_model.dart';
@@ -15,6 +20,9 @@ class HistoryTodayCubit extends Cubit<HistoryTodayState> {
   final HistoryPageType pageType;
   final AppScopeContainer scopeContainer;
   late final GetTransactionsHistoryByPeriodUseCase _useCase;
+  late final UpdateTransactionUseCase _updateTransactionUseCase;
+  late final CreateTransactionUseCase _createTransactionUseCase;
+  late final DeleteTransactionUseCase _deleteTransactionUseCase;
 
   HistoryTodayCubit({required this.pageType, required this.scopeContainer})
       : super(HistoryTodayState.loading()) {
@@ -24,6 +32,9 @@ class HistoryTodayCubit extends Cubit<HistoryTodayState> {
       case HistoryPageType.incomes:
         _useCase = scopeContainer.getIncomesTransactionsByPeriodUseCaseDep.get;
     }
+    _updateTransactionUseCase = scopeContainer.updateTransactionsUseCaseDep.get;
+    _createTransactionUseCase = scopeContainer.createTransactionsUseCaseDep.get;
+    _deleteTransactionUseCase = scopeContainer.deleteTransactionsUseCaseDep.get;
   }
 
   void getHistory() async {
@@ -42,5 +53,39 @@ class HistoryTodayCubit extends Cubit<HistoryTodayState> {
     } on Exception catch (e) {
       emit(HistoryTodayState.error(e));
     }
+  }
+
+  void updateBuy(int buyId, int accountId, int categoryId, double amount,
+      DateTime date, String? comment) async {
+    try {
+      final request = UpdateTransactionUseCaseRequest(
+          id: buyId,
+          accountId: accountId,
+          categoryId: categoryId,
+          amount: amount,
+          transactionDate: date,
+          comment: comment);
+
+      await _updateTransactionUseCase.execute(request);
+    } on Exception catch (e) {}
+  }
+
+  void createBuy(int accountId, int categoryId, double amount, DateTime date,
+      String? comment) async {
+    try {
+      final request = CreateTransactionUseCaseRequest(
+          accountId: accountId,
+          categoryId: categoryId,
+          amount: amount,
+          transactionDate: date,
+          comment: comment);
+      await _createTransactionUseCase.execute(request);
+    } on Exception catch (e) {}
+  }
+
+  void deleteBuy(int id) async {
+    try {
+      await _deleteTransactionUseCase.execute(id);
+    } on Exception catch (e) {}
   }
 }

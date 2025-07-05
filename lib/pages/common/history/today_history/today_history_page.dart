@@ -6,6 +6,8 @@ import 'package:shmr_finance/core/shared_widgets/list_bottom_button_wrapper/list
 import 'package:shmr_finance/core/shared_widgets/list_item/header_list_item.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/universal_list_item.dart';
 import 'package:shmr_finance/di/app_scope.dart';
+import 'package:shmr_finance/model/ui_items/transaction_sharing_model.dart';
+import 'package:shmr_finance/pages/common/add_or_edit_buy/edit_buy_screen.dart';
 import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
 import 'package:shmr_finance/utils/router/app_routes.dart';
 
@@ -28,7 +30,6 @@ class TodayHistoryPage extends StatelessWidget {
       },
       buttonIcon: Icons.history,
       onTap: () {
-        // context.push(SubRoutes.commonHistory.routeName);
         context.push('./${SubRoutes.commonHistory.routeName}');
       },
       child: _Page(
@@ -47,7 +48,8 @@ class _Page extends StatelessWidget {
     return ScopeBuilder<AppScopeContainer>.withPlaceholder(
         builder: (context, scope) => BlocProvider(
               create: (context) =>
-                  HistoryTodayCubit(pageType: pageType, scopeContainer: scope)..getHistory(),
+                  HistoryTodayCubit(pageType: pageType, scopeContainer: scope)
+                    ..getHistory(),
               child: BlocBuilder<HistoryTodayCubit, HistoryTodayState>(
                   builder: (context, state) => switch (state) {
                         Loading() => __Loading(),
@@ -83,6 +85,7 @@ class __Content extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShmrListBottomButtonWrapper(
       childList: (controller) => ListView.builder(
+          controller: controller,
           itemCount: items.length + 1,
           itemBuilder: (context, index) {
             if (index == 0) {
@@ -96,16 +99,79 @@ class __Content extends StatelessWidget {
 
               return ShmrUniversalListItem(
                 leadingEmoji: expenceItem.emoji,
-                leftTitle: expenceItem.categoryName,
+                leftTitle: expenceItem.categoryItem.name,
                 leftSubtitle: expenceItem.subtitle,
                 rigthTitle: '${expenceItem.summ} ${expenceItem.moneySign}',
                 isChevroned: true,
-                onTap: () {},
+                onTap: () => showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  useSafeArea: true,
+                  enableDrag: false,
+                  builder: (modalContext) => EditBuyScreen(
+                      title: switch (BlocProvider.of<HistoryTodayCubit>(context)
+                          .pageType) {
+                        HistoryPageType.expences =>
+                          S.of(context).expences_today,
+                        HistoryPageType.incomes => S.of(context).incomes_today,
+                      },
+                      transactionSharing: TransactionSharingModel(
+                        id: expenceItem.id,
+                        scoreItem: expenceItem.accountItem,
+                        categoryItem: expenceItem.categoryItem,
+                        amount: expenceItem.summ,
+                        date: expenceItem.date,
+                        comment: expenceItem.subtitle,
+                      ),
+                      onExitTap: modalContext.pop,
+                      onApproveTap: (item) {
+                        modalContext.pop();
+                        BlocProvider.of<HistoryTodayCubit>(context).updateBuy(
+                            item.id!,
+                            item.scoreItem!.id,
+                            item.categoryItem!.id,
+                            item.amount!,
+                            item.date,
+                            item.comment);
+                        BlocProvider.of<HistoryTodayCubit>(context)
+                            .getHistory();
+                      },
+                      onDeleteTap: () {
+                        modalContext.pop();
+                        BlocProvider.of<HistoryTodayCubit>(context)
+                            .deleteBuy(expenceItem.id);
+                        BlocProvider.of<HistoryTodayCubit>(context)
+                            .getHistory();
+                      }),
+                ),
               );
             }
           }),
       onTap: () {
-        print('Income add!');
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          useSafeArea: true,
+          enableDrag: false,
+          builder: (modalContext) => EditBuyScreen(
+            title: switch (
+                BlocProvider.of<HistoryTodayCubit>(context).pageType) {
+              HistoryPageType.expences => S.of(context).expences_today,
+              HistoryPageType.incomes => S.of(context).incomes_today,
+            },
+            onExitTap: modalContext.pop,
+            onApproveTap: (item) {
+              modalContext.pop();
+              BlocProvider.of<HistoryTodayCubit>(context).createBuy(
+                  item.scoreItem!.id,
+                  item.categoryItem!.id,
+                  item.amount!,
+                  item.date,
+                  item.comment);
+              BlocProvider.of<HistoryTodayCubit>(context).getHistory();
+            },
+          ),
+        );
       },
     );
   }

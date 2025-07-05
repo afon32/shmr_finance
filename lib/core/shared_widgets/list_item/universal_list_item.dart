@@ -4,14 +4,18 @@ import 'package:shmr_finance/utils/themes/app_theme.dart';
 class ShmrUniversalListItem extends StatelessWidget {
   final String? leadingEmoji;
   final String leftTitle;
+  final bool leftTitleIsSecondaryStyle;
   final String? leftSubtitle;
+  final Widget? insteadRightTitle;
   final String? rigthTitle;
   final String? rightSubtitle;
   final bool isChevroned;
   final VoidCallback? onTap;
   const ShmrUniversalListItem(
       {required this.leftTitle,
-       this.rigthTitle,
+      this.leftTitleIsSecondaryStyle = false,
+      this.rigthTitle,
+      this.insteadRightTitle,
       this.isChevroned = false,
       this.leadingEmoji,
       this.leftSubtitle,
@@ -50,31 +54,46 @@ class ShmrUniversalListItem extends StatelessWidget {
                               width: 16,
                             ),
                       Expanded(
-                          flex: 3,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(leftTitle,
-                                  style: context.textTheme.bodyLarge),
-                              if (leftSubtitle != null)
-                                Text(leftSubtitle!,
-                                    style: context.textTheme.bodyMedium)
-                            ],
-                          )),
-                      Expanded(
-                          flex: 2,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(rigthTitle ?? '',
-                                  style: context.textTheme.bodyLarge),
-                              if (rightSubtitle != null)
-                                Text(rightSubtitle!,
-                                    style: context.textTheme.bodyMedium)
-                            ],
-                          )),
+                        flex: 3,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              leftTitle,
+                              style: !leftTitleIsSecondaryStyle
+                                  ? context.textTheme.bodyLarge
+                                  : context.textTheme.bodyLarge!.copyWith(
+                                      color: context.theme.secondaryTextColor),
+                            ),
+                            if (leftSubtitle != null)
+                              Text(leftSubtitle!,
+                                  style: context.textTheme.bodyMedium),
+                          ],
+                        ),
+                      ),
+                      if (insteadRightTitle == null)
+                        Expanded(
+                            flex: 2,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(rigthTitle ?? '',
+                                    style: context.textTheme.bodyLarge),
+                                if (rightSubtitle != null)
+                                  Text(rightSubtitle!,
+                                      style: context.textTheme.bodyMedium)
+                              ],
+                            ))
+                      else
+                        Expanded(
+                          flex: 6,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [insteadRightTitle!],
+                          ),
+                        ),
                       isChevroned
                           ? Expanded(
                               flex: 1,

@@ -11,6 +11,10 @@ class StringsProvider extends Cubit<S> {
 
   S get activeLocale => _activeLocale;
 
+  bool get isRu => localeCode == 'ru';
+  
+  bool get isEn => localeCode == 'en';
+
   void toggleLang() {
     _activeLocale.locale == Locale('ru')
         ? _activeLocale = S(Locale('en'))

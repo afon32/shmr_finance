@@ -4,6 +4,7 @@ import 'package:shmr_finance/utils/themes/text_theme_extension.dart';
 
 class ShmrAppBar extends StatelessWidget {
   final Widget child;
+  final Widget? leading;
   final String title;
   final IconData? buttonIcon;
   final VoidCallback? onTap;
@@ -11,6 +12,7 @@ class ShmrAppBar extends StatelessWidget {
   const ShmrAppBar(
       {required this.child,
       required this.title,
+      this.leading,
       this.isCommonColor = false,
       this.buttonIcon,
       this.onTap,
@@ -20,6 +22,7 @@ class ShmrAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: leading,
         centerTitle: true,
         title: Text(
           title,

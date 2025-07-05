@@ -1,12 +1,12 @@
 # shmr_finance
 
-#third stage
+#fourth stage
 
 Если у вас не собирается аппка (Возможно несоответствие AGP или джавы), то
 вы можете установить аппку на эмулятор через adb. Я положил актуальную версию apk
 в корень проекта, так что вам достаточно запустить эмуль и из корня проекта вызвать:
 
-C:\path-to-your-android-folder\Android\Sdk\platform-tools\adb install shmr_stage_3.apk
+C:\path-to-your-android-folder\Android\Sdk\platform-tools\adb install shmr_stage_4.apk
 
 Слои приложения:
 
