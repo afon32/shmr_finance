@@ -2,6 +2,7 @@ import 'account_item.dart';
 import 'category_item.dart';
 
 class TransactionSharingModel {
+  final int? id;
   final AccountItem? scoreItem;
   final CategoryItem? categoryItem;
   final double? amount;
@@ -9,7 +10,8 @@ class TransactionSharingModel {
   final String? comment;
 
   TransactionSharingModel(
-      {required this.scoreItem,
+      {this.id,
+      required this.scoreItem,
       required this.categoryItem,
       required this.amount,
       required this.date,

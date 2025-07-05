@@ -3,20 +3,22 @@ import 'package:shmr_finance/utils/themes/app_theme.dart';
 
 class ShmrUniversalListItemWithChanging extends StatelessWidget {
   final String? leadingEmoji;
-  final String leftTitle;
+  final String? leftTitle;
   final String? leftSubtitle;
-  final String rigthTitle;
+  final String? rigthTitle;
   final String? rightSubtitle;
+  final String? hintText;
   final bool isChevroned;
   final VoidCallback? onTap;
   final Function(String) onEnter;
   const ShmrUniversalListItemWithChanging(
       {required this.leftTitle,
-      required this.rigthTitle,
+      this.rigthTitle,
       this.isChevroned = false,
       this.leadingEmoji,
       this.leftSubtitle,
       this.rightSubtitle,
+      this.hintText,
       this.onTap,
       required this.onEnter,
       super.key});
@@ -59,25 +61,28 @@ class ShmrUniversalListItemWithChanging extends StatelessWidget {
                             children: [
                               _EditableTextField(
                                   initialText: leftTitle,
+                                  hintText: hintText,
                                   onSubmitted: (value) => onEnter(value)),
                               if (leftSubtitle != null)
                                 Text(leftSubtitle!,
                                     style: context.textTheme.bodyMedium)
                             ],
                           )),
-                      Expanded(
-                          flex: 2,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(rigthTitle,
-                                  style: context.textTheme.bodyLarge),
-                              if (rightSubtitle != null)
-                                Text(rightSubtitle!,
-                                    style: context.textTheme.bodyMedium)
-                            ],
-                          )),
+                      if (rightSubtitle != null || rigthTitle != null)
+                        Expanded(
+                            flex: 2,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                if (rigthTitle != null)
+                                  Text(rigthTitle!,
+                                      style: context.textTheme.bodyLarge),
+                                if (rightSubtitle != null)
+                                  Text(rightSubtitle!,
+                                      style: context.textTheme.bodyMedium)
+                              ],
+                            )),
                       isChevroned
                           ? Expanded(
                               flex: 1,
@@ -102,11 +107,13 @@ class ShmrUniversalListItemWithChanging extends StatelessWidget {
 }
 
 class _EditableTextField extends StatefulWidget {
-  final String initialText;
+  final String? initialText;
+  final String? hintText;
   final ValueChanged<String> onSubmitted;
 
   const _EditableTextField({
     super.key,
+    required this.hintText,
     required this.initialText,
     required this.onSubmitted,
   });
@@ -135,7 +142,11 @@ class _EditableTextFieldState extends State<_EditableTextField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: _controller,
-      decoration: const InputDecoration(
+
+      decoration: InputDecoration(
+        hintText: widget.initialText ?? widget.hintText ?? '',
+        hintStyle: context.textTheme.bodyMedium!
+            .copyWith(color: context.theme.secondaryTextColor),
         border: OutlineInputBorder(),
       ),
       // При нажатии Enter вызываем колбэк

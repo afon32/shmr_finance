@@ -6,6 +6,7 @@ class ShmrUniversalListItem extends StatelessWidget {
   final String leftTitle;
   final bool leftTitleIsSecondaryStyle;
   final String? leftSubtitle;
+  final Widget? insteadRightTitle;
   final String? rigthTitle;
   final String? rightSubtitle;
   final bool isChevroned;
@@ -14,6 +15,7 @@ class ShmrUniversalListItem extends StatelessWidget {
       {required this.leftTitle,
       this.leftTitleIsSecondaryStyle = false,
       this.rigthTitle,
+      this.insteadRightTitle,
       this.isChevroned = false,
       this.leadingEmoji,
       this.leftSubtitle,
@@ -70,19 +72,28 @@ class ShmrUniversalListItem extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Expanded(
-                          flex: 2,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(rigthTitle ?? '',
-                                  style: context.textTheme.bodyLarge),
-                              if (rightSubtitle != null)
-                                Text(rightSubtitle!,
-                                    style: context.textTheme.bodyMedium)
-                            ],
-                          )),
+                      if (insteadRightTitle == null)
+                        Expanded(
+                            flex: 2,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(rigthTitle ?? '',
+                                    style: context.textTheme.bodyLarge),
+                                if (rightSubtitle != null)
+                                  Text(rightSubtitle!,
+                                      style: context.textTheme.bodyMedium)
+                              ],
+                            ))
+                      else
+                        Expanded(
+                          flex: 6,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [insteadRightTitle!],
+                          ),
+                        ),
                       isChevroned
                           ? Expanded(
                               flex: 1,

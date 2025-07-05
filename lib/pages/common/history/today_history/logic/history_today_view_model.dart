@@ -84,7 +84,7 @@ class ExpenceItem {
       ExpenceItem._(
           id: id,
           emoji: emoji,
-          accountItem: AccountItem(id: id, name: accountName),
+          accountItem: AccountItem(id: accountId, name: accountName),
           categoryItem: CategoryItem(id: categoryId, name: categoryName),
           date: date,
           subtitle: subtitle,

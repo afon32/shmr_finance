@@ -1,7 +1,8 @@
 import 'package:shmr_finance/features/transactions/domain/entities/transaction_details.dart';
 import 'package:shmr_finance/model/common_enums/currency_enum.dart';
+import 'package:shmr_finance/model/ui_items/account_item.dart';
+import 'package:shmr_finance/model/ui_items/category_item.dart';
 import 'package:shmr_finance/pages/common/history/types/sort_type.dart';
-
 
 class CommonHistoryViewModel {
   final List<ExpenceItem> items;
@@ -23,11 +24,14 @@ class CommonHistoryViewModel {
       return ExpenceItem.buildWith(
           e.id,
           e.category.emoji,
+          e.category.id,
+          e.account.id,
+          e.account.name,
           e.category.name,
+          e.transactionDate,
           e.comment,
-          e.amount.round(),
-          e.account.currency.sign,
-          e.transactionDate);
+          e.amount,
+          e.account.currency.sign);
     }).toList();
 
     final total = TotalAmountItem.buildWith(amount, sign);
@@ -69,29 +73,41 @@ class TotalAmountItem {
 class ExpenceItem {
   final int id;
   final String emoji;
-  final String categoryName;
-  final String? subtitle;
-  final int summ;
-  final String moneySign;
+  final AccountItem accountItem;
+  final CategoryItem categoryItem;
   final DateTime datetime;
+  final String? subtitle;
+  final double summ;
+  final String moneySign;
 
   ExpenceItem._(
       {required this.id,
       required this.emoji,
-      required this.categoryName,
+      required this.accountItem,
+      required this.categoryItem,
+      required this.datetime,
       required this.subtitle,
       required this.summ,
-      required this.moneySign,
-      required this.datetime});
+      required this.moneySign});
 
-  factory ExpenceItem.buildWith(int id, String emoji, String categoryName,
-          String? subtitle, int summ, String moneySign, DateTime datetime) =>
+  factory ExpenceItem.buildWith(
+          int id,
+          String emoji,
+          int categoryId,
+          int accountId,
+          String accountName,
+          String categoryName,
+          DateTime date,
+          String? subtitle,
+          double summ,
+          String moneySign) =>
       ExpenceItem._(
           id: id,
           emoji: emoji,
-          categoryName: categoryName,
+          accountItem: AccountItem(id: accountId, name: accountName),
+          categoryItem: CategoryItem(id: categoryId, name: categoryName),
+          datetime: date,
           subtitle: subtitle,
           summ: summ,
-          moneySign: moneySign,
-          datetime: datetime);
+          moneySign: moneySign);
 }

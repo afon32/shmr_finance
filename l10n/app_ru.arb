@@ -30,5 +30,8 @@
   "costItem" : "Статья",
   "date" : "Дата",
   "time" : "Время",
-  "comment" : "Комментарий"
+  "comment" : "Комментарий",
+  "apply" : "Применить",
+  "edit_all_places" : "Заполните все поля!",
+  "delete_transaction" : "Удалить транзакцию"
 }

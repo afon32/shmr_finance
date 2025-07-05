@@ -9,6 +9,7 @@ import 'package:shmr_finance/features/categories/domain/use_cases/get_all_catego
 import 'package:shmr_finance/features/categories/domain/use_cases/get_categories_from_type_use_case.dart';
 import 'package:shmr_finance/features/transactions/data/transactions_repository_impl.dart';
 import 'package:shmr_finance/features/transactions/domain/use_cases/create_transaction_use_case.dart';
+import 'package:shmr_finance/features/transactions/domain/use_cases/delete_transaction_use_case.dart';
 import 'package:shmr_finance/features/transactions/domain/use_cases/get_incomes_transactions_history_by_period_use_case.dart';
 import 'package:shmr_finance/features/transactions/domain/use_cases/get_outcomes_transactions_history_by_period_use_case.dart';
 import 'package:shmr_finance/features/transactions/domain/use_cases/update_transaction_use_case.dart';
@@ -58,6 +59,9 @@ class AppScopeContainer extends ScopeContainer with HoldersMixin {
 
   late final createTransactionsUseCaseDep = dep(() =>
       CreateTransactionUseCase(repository: transactionsRepositoryDep.get));
+  
+  late final deleteTransactionsUseCaseDep = dep(() =>
+      DeleteTransactionUseCase(repository: transactionsRepositoryDep.get));
 
   // Categories
 

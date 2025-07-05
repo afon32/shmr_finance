@@ -30,5 +30,8 @@
   "costItem" : "Item",
   "date" : "Date",
   "time" : "Time",
-  "comment" : "Comment"
+  "comment" : "Comment",
+  "apply" : "Apply",
+  "edit_all_places" : "Edit all places!",
+  "delete_transaction" : "Delete transaction"
 }

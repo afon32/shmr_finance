@@ -109,26 +109,69 @@ class __Content extends StatelessWidget {
                   useSafeArea: true,
                   enableDrag: false,
                   builder: (modalContext) => EditBuyScreen(
-                    title: 'title',
-                    transactionSharing: TransactionSharingModel(
-                      scoreItem: expenceItem.accountItem,
-                      categoryItem: expenceItem.categoryItem,
-                      amount: expenceItem.summ,
-                      date: expenceItem.date,
-                      comment: expenceItem.subtitle,
-                    ),
-                    onExitTap: modalContext.pop,
-                    onApproveTap: () {
-                      modalContext.pop();
-                      BlocProvider.of<HistoryTodayCubit>(context).getHistory();
-                    },
-                  ),
+                      title: switch (BlocProvider.of<HistoryTodayCubit>(context)
+                          .pageType) {
+                        HistoryPageType.expences =>
+                          S.of(context).expences_today,
+                        HistoryPageType.incomes => S.of(context).incomes_today,
+                      },
+                      transactionSharing: TransactionSharingModel(
+                        id: expenceItem.id,
+                        scoreItem: expenceItem.accountItem,
+                        categoryItem: expenceItem.categoryItem,
+                        amount: expenceItem.summ,
+                        date: expenceItem.date,
+                        comment: expenceItem.subtitle,
+                      ),
+                      onExitTap: modalContext.pop,
+                      onApproveTap: (item) {
+                        modalContext.pop();
+                        BlocProvider.of<HistoryTodayCubit>(context).updateBuy(
+                            item.id!,
+                            item.scoreItem!.id,
+                            item.categoryItem!.id,
+                            item.amount!,
+                            item.date,
+                            item.comment);
+                        BlocProvider.of<HistoryTodayCubit>(context)
+                            .getHistory();
+                      },
+                      onDeleteTap: () {
+                        modalContext.pop();
+                        BlocProvider.of<HistoryTodayCubit>(context)
+                            .deleteBuy(expenceItem.id);
+                        BlocProvider.of<HistoryTodayCubit>(context)
+                            .getHistory();
+                      }),
                 ),
               );
             }
           }),
       onTap: () {
-        print('Income add!');
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          useSafeArea: true,
+          enableDrag: false,
+          builder: (modalContext) => EditBuyScreen(
+            title: switch (
+                BlocProvider.of<HistoryTodayCubit>(context).pageType) {
+              HistoryPageType.expences => S.of(context).expences_today,
+              HistoryPageType.incomes => S.of(context).incomes_today,
+            },
+            onExitTap: modalContext.pop,
+            onApproveTap: (item) {
+              modalContext.pop();
+              BlocProvider.of<HistoryTodayCubit>(context).createBuy(
+                  item.scoreItem!.id,
+                  item.categoryItem!.id,
+                  item.amount!,
+                  item.date,
+                  item.comment);
+              BlocProvider.of<HistoryTodayCubit>(context).getHistory();
+            },
+          ),
+        );
       },
     );
   }

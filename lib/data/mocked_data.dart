@@ -66,7 +66,7 @@ class MockedData {
   // Categories
 
 static List<ApiCategory> get getAllCategoriesMock => [
-        ApiCategory(id: 1, name: 'Продукты', emoji: '🍎', isIncome: false),
+        ApiCategory(id: 1, name: 'Groceries', emoji: '🍎', isIncome: false),
         ApiCategory(id: 2, name: 'Транспорт', emoji: '🚗', isIncome: false),
         ApiCategory(id: 3, name: 'Зарплата', emoji: '💰', isIncome: true),
         ApiCategory(id: 4, name: 'Развлечения', emoji: '🎉', isIncome: false),
@@ -81,6 +81,11 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiCategory(id: 13, name: 'Спорт', emoji: '🏋️', isIncome: false),
         ApiCategory(id: 14, name: 'Фриланс', emoji: '💻', isIncome: true),
         ApiCategory(id: 15, name: 'Рестораны', emoji: '🍽️', isIncome: false),
+        ApiCategory(id: 16, name: 'Путешествия', emoji: '✈️', isIncome: false),
+        ApiCategory(id: 17, name: 'Спорт', emoji: '🏋️', isIncome: false),
+        ApiCategory(id: 18, name: 'Фриланс', emoji: '💻', isIncome: true),
+        ApiCategory(id: 19, name: 'Рестораны', emoji: '🍽️', isIncome: false),
+        ApiCategory(id: 20, name: 'Рестораны', emoji: '🍽️', isIncome: false),
       ];
   
   static List<ApiCategory> get getCategoriesByTypeMock =>
@@ -142,7 +147,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 2,
           account: ApiAccountBrief(
-              id: 2, name: 'Account 2', balance: '1200.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '1200.0', currency: 'EUR'),
           category:
               ApiCategory(id: 2, name: 'Salary', emoji: '💼', isIncome: true),
           amount: '1200.0',
@@ -166,7 +171,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 4,
           account: ApiAccountBrief(
-              id: 3, name: 'Account 3', balance: '300.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '300.0', currency: 'EUR'),
           category: ApiCategory(
               id: 1, name: 'Groceries', emoji: '🛒', isIncome: false),
           amount: '30.0',
@@ -178,7 +183,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 5,
           account: ApiAccountBrief(
-              id: 2, name: 'Account 2', balance: '1180.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '1180.0', currency: 'EUR'),
           category:
               ApiCategory(id: 5, name: 'Gift', emoji: '🎁', isIncome: true),
           amount: '100.0',
@@ -190,7 +195,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 6,
           account: ApiAccountBrief(
-              id: 1, name: 'Account 1', balance: '430.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '430.0', currency: 'EUR'),
           category:
               ApiCategory(id: 6, name: 'Dining', emoji: '🍽️', isIncome: false),
           amount: '25.0',
@@ -202,7 +207,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 7,
           account: ApiAccountBrief(
-              id: 3, name: 'Account 3', balance: '270.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '270.0', currency: 'EUR'),
           category: ApiCategory(
               id: 7, name: 'Utilities', emoji: '💡', isIncome: false),
           amount: '60.0',
@@ -214,7 +219,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 8,
           account: ApiAccountBrief(
-              id: 2, name: 'Account 2', balance: '1280.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '1280.0', currency: 'EUR'),
           category: ApiCategory(
               id: 8, name: 'Investment', emoji: '📈', isIncome: true),
           amount: '300.0',
@@ -226,7 +231,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 9,
           account: ApiAccountBrief(
-              id: 1, name: 'Account 1', balance: '405.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '405.0', currency: 'EUR'),
           category:
               ApiCategory(id: 9, name: 'Health', emoji: '💊', isIncome: false),
           amount: '15.0',
@@ -238,7 +243,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 10,
           account: ApiAccountBrief(
-              id: 3, name: 'Account 3', balance: '250.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '250.0', currency: 'EUR'),
           category:
               ApiCategory(id: 10, name: 'Travel', emoji: '✈️', isIncome: false),
           amount: '150.0',
@@ -250,7 +255,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 11,
           account: ApiAccountBrief(
-              id: 1, name: 'Account 1', balance: '390.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '390.0', currency: 'EUR'),
           category: ApiCategory(
               id: 11, name: 'Education', emoji: '📚', isIncome: false),
           amount: '100.0',
@@ -262,7 +267,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 12,
           account: ApiAccountBrief(
-              id: 2, name: 'Account 2', balance: '1580.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '1580.0', currency: 'EUR'),
           category:
               ApiCategory(id: 12, name: 'Bonus', emoji: '🎉', isIncome: true),
           amount: '200.0',
@@ -274,7 +279,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 13,
           account: ApiAccountBrief(
-              id: 3, name: 'Account 3', balance: '230.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '230.0', currency: 'EUR'),
           category: ApiCategory(
               id: 13, name: 'Shopping', emoji: '🛍️', isIncome: false),
           amount: '80.0',
@@ -286,7 +291,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 14,
           account: ApiAccountBrief(
-              id: 1, name: 'Account 1', balance: '310.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '310.0', currency: 'EUR'),
           category:
               ApiCategory(id: 14, name: 'Gift', emoji: '🎁', isIncome: true),
           amount: '50.0',
@@ -298,7 +303,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 15,
           account: ApiAccountBrief(
-              id: 2, name: 'Account 2', balance: '1530.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '1530.0', currency: 'EUR'),
           category: ApiCategory(
               id: 15, name: 'Freelance', emoji: '🖥️', isIncome: true),
           amount: '400.0',
@@ -310,7 +315,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 16,
           account: ApiAccountBrief(
-              id: 3, name: 'Account 3', balance: '220.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '220.0', currency: 'EUR'),
           category: ApiCategory(
               id: 16, name: 'Subscription', emoji: '📺', isIncome: false),
           amount: '15.0',
@@ -322,7 +327,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 17,
           account: ApiAccountBrief(
-              id: 1, name: 'Account 1', balance: '295.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '295.0', currency: 'EUR'),
           category: ApiCategory(
               id: 17, name: 'Charity', emoji: '❤️', isIncome: false),
           amount: '30.0',
@@ -334,7 +339,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 18,
           account: ApiAccountBrief(
-              id: 2, name: 'Account 2', balance: '1930.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '1930.0', currency: 'EUR'),
           category: ApiCategory(
               id: 18, name: 'Interest', emoji: '💰', isIncome: true),
           amount: '50.0',
@@ -346,7 +351,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 19,
           account: ApiAccountBrief(
-              id: 3, name: 'Account 3', balance: '205.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '205.0', currency: 'EUR'),
           category:
               ApiCategory(id: 19, name: 'Repair', emoji: '🔧', isIncome: false),
           amount: '70.0',
@@ -358,7 +363,7 @@ static List<ApiCategory> get getAllCategoriesMock => [
         ApiTransactionResponse(
           id: 20,
           account: ApiAccountBrief(
-              id: 1, name: 'Account 1', balance: '265.0', currency: 'EUR'),
+              id: 1, name: 'name', balance: '265.0', currency: 'EUR'),
           category: ApiCategory(
               id: 20, name: 'Miscellaneous', emoji: '❓', isIncome: false),
           amount: '10.0',
