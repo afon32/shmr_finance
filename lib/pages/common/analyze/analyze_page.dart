@@ -1,5 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shmr_charts_package/pie_chart/animated_shmr_pie_chart.dart';
+import 'package:shmr_charts_package/pie_chart/models/section_data.dart';
+import 'package:shmr_charts_package/pie_chart/shmr_pie_chart.dart';
 import 'package:shmr_finance/core/date_formatter/date_formatter.dart';
 import 'package:shmr_finance/core/shared_widgets/app_bar.dart';
 import 'package:shmr_finance/core/shared_widgets/bottom_sheet/show_bottom_sheet.dart';
@@ -7,8 +12,10 @@ import 'package:shmr_finance/core/shared_widgets/bottom_sheet/show_bottom_sheet.
 import 'package:shmr_finance/core/shared_widgets/list_item/universal_list_item.dart';
 import 'package:shmr_finance/di/app_scope.dart';
 import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
+import 'package:shmr_finance/utils/const/pie_chart_section_colors.dart';
 
 import 'package:shmr_finance/utils/strings/s.dart';
+import 'package:shmr_finance/utils/themes/app_theme.dart';
 import 'package:yx_scope_flutter/yx_scope_flutter.dart';
 
 import 'logic/analyze_date_cubit.dart';
@@ -43,8 +50,7 @@ class _Page extends StatelessWidget {
     return ScopeBuilder<AppScopeContainer>.withPlaceholder(
         builder: (context, scope) => BlocProvider(
               create: (context) => AnalyzeDateCubit(),
-              child: BlocBuilder<AnalyzeDateCubit,
-                      AnalyzeDateCubitState>(
+              child: BlocBuilder<AnalyzeDateCubit, AnalyzeDateCubitState>(
                   builder: (context, state) => Column(
                         children: [
                           __DatePickers(),
@@ -56,26 +62,28 @@ class _Page extends StatelessWidget {
                                 child: BlocListener<AnalyzeDateCubit,
                                         AnalyzeDateCubitState>(
                                     listener: (context, state) {
-                                      context
-                                          .read<AnalyzeCubit>()
-                                          .getHistory(
-                                              state.startTime, state.endTime);
+                                      context.read<AnalyzeCubit>().getHistory(
+                                          state.startTime, state.endTime);
                                     },
-                                    child: BlocBuilder<AnalyzeCubit,
-                                            AnalyzeState>(
-                                        builder: (context, state) =>
-                                            switch (state) {
-                                              Loading() => __Loading(),
-                                              Content() => __Content(
-                                                  totalAmountItem:
-                                                      state.content.total,
-                                                  items: state.content.items,
-                                                  pageType: pageType,
-                                                ),
-                                              CustomError() =>
-                                                __Error(e: state.error),
-                                              _ => __Loading()
-                                            }))),
+                                    child:
+                                        BlocBuilder<AnalyzeCubit, AnalyzeState>(
+                                            builder: (context, state) =>
+                                                switch (state) {
+                                                  Loading() => __Loading(),
+                                                  Content() => __Content(
+                                                      totalAmountItem:
+                                                          state.content.total,
+                                                      items:
+                                                          state.content.items,
+                                                      previousItems: state
+                                                          .previousContent
+                                                          ?.items,
+                                                      pageType: pageType,
+                                                    ),
+                                                  CustomError() =>
+                                                    __Error(e: state.error),
+                                                  _ => __Loading()
+                                                }))),
                           )
                         ],
                       )),
@@ -98,9 +106,11 @@ class __Content extends StatelessWidget {
   final HistoryPageType pageType;
   final TotalAmountItem totalAmountItem;
   final List<ExpenceCategoryItem> items;
+  final List<ExpenceCategoryItem>? previousItems;
   const __Content(
       {required this.totalAmountItem,
       required this.items,
+      this.previousItems,
       required this.pageType,
       super.key});
 
@@ -117,7 +127,45 @@ class __Content extends StatelessWidget {
 
         SizedBox(
           height: 200,
-          child: Placeholder(),
+          child: previousItems == null
+              ? ShmrPieChart(
+                  sections: items.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final e = entry.value;
+                  return ShmrPieChartSectionData(
+                    value: e.summ.roundToDouble(),
+                    percent: e.percentsFromAll,
+                    name: e.categoryName,
+                    textColor: context.theme.textColor,
+                    sectionColor: pieChartSectionColors[
+                        index % pieChartSectionColors.length],
+                  );
+                }).toList())
+              : AnimatedShmrPieChart(
+                  oldData: previousItems!.asMap().entries.map((entry) {
+                    final index = entry.key;
+                    final e = entry.value;
+                    return ShmrPieChartSectionData(
+                      value: e.summ.roundToDouble(),
+                      percent: e.percentsFromAll,
+                      name: e.categoryName,
+                      textColor: context.theme.textColor,
+                      sectionColor: pieChartSectionColors[
+                          index % pieChartSectionColors.length],
+                    );
+                  }).toList(),
+                  newData: items.asMap().entries.map((entry) {
+                    final index = entry.key;
+                    final e = entry.value;
+                    return ShmrPieChartSectionData(
+                      value: e.summ.roundToDouble(),
+                      percent: e.percentsFromAll,
+                      name: e.categoryName,
+                      textColor: context.theme.textColor,
+                      sectionColor: pieChartSectionColors[
+                          index % pieChartSectionColors.length],
+                    );
+                  }).toList()),
         ),
 
         //

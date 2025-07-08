@@ -68,9 +68,10 @@ class Loading with DiagnosticableTreeMixin implements AnalyzeState {
 /// @nodoc
 
 class Content with DiagnosticableTreeMixin implements AnalyzeState {
-  const Content(this.content);
+  const Content(this.content, this.previousContent);
 
   final AnalyzeViewModel content;
+  final AnalyzeViewModel? previousContent;
 
   /// Create a copy of AnalyzeState
   /// with the given fields replaced by the non-null parameter values.
@@ -83,7 +84,8 @@ class Content with DiagnosticableTreeMixin implements AnalyzeState {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     properties
       ..add(DiagnosticsProperty('type', 'AnalyzeState.content'))
-      ..add(DiagnosticsProperty('content', content));
+      ..add(DiagnosticsProperty('content', content))
+      ..add(DiagnosticsProperty('previousContent', previousContent));
   }
 
   @override
@@ -91,15 +93,17 @@ class Content with DiagnosticableTreeMixin implements AnalyzeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Content &&
-            (identical(other.content, content) || other.content == content));
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.previousContent, previousContent) ||
+                other.previousContent == previousContent));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, content);
+  int get hashCode => Object.hash(runtimeType, content, previousContent);
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AnalyzeState.content(content: $content)';
+    return 'AnalyzeState.content(content: $content, previousContent: $previousContent)';
   }
 }
 
@@ -109,7 +113,7 @@ abstract mixin class $ContentCopyWith<$Res>
   factory $ContentCopyWith(Content value, $Res Function(Content) _then) =
       _$ContentCopyWithImpl;
   @useResult
-  $Res call({AnalyzeViewModel content});
+  $Res call({AnalyzeViewModel content, AnalyzeViewModel? previousContent});
 }
 
 /// @nodoc
@@ -124,12 +128,17 @@ class _$ContentCopyWithImpl<$Res> implements $ContentCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? content = null,
+    Object? previousContent = freezed,
   }) {
     return _then(Content(
       null == content
           ? _self.content
           : content // ignore: cast_nullable_to_non_nullable
               as AnalyzeViewModel,
+      freezed == previousContent
+          ? _self.previousContent
+          : previousContent // ignore: cast_nullable_to_non_nullable
+              as AnalyzeViewModel?,
     ));
   }
 }

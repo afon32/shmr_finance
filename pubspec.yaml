@@ -31,6 +31,9 @@ dependencies:
   fuzzy: <1.0.0
   collection: ^1.19.0
 
+  shmr_charts_package:
+    path: ./shmr_charts_package
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
