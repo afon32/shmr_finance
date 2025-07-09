@@ -15,6 +15,7 @@ import 'package:shmr_finance/features/transactions/domain/use_cases/get_incomes_
 import 'package:shmr_finance/features/transactions/domain/use_cases/get_outcomes_transactions_history_by_period_use_case.dart';
 import 'package:shmr_finance/features/transactions/domain/use_cases/update_transaction_use_case.dart';
 import 'package:shmr_finance/service/api/api_util.dart';
+import 'package:shmr_finance/service/worker_manager/worker_manager_initializer.dart';
 import 'package:yx_scope/yx_scope.dart';
 
 import 'ext/holders_mixin.dart';
@@ -82,11 +83,15 @@ class AppScopeContainer extends ScopeContainer with HoldersMixin {
   late final networkClientDep =
       dep(() => ShmrNetworkClient(secretsStateHolder.get));
 
+  late final workerManagerInitializer =
+      asyncDep(() => WorkerManagerInitializer());
+
   @override
   List<Set<AsyncDep>> get initializeQueue => [
         {
           dbInitializer,
           secretsInitializer,
+          workerManagerInitializer,
         }
       ];
 }
