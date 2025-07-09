@@ -33,5 +33,7 @@
   "comment" : "Comment",
   "apply" : "Apply",
   "edit_all_places" : "Edit all places!",
-  "delete_transaction" : "Delete transaction"
+  "delete_transaction" : "Delete transaction",
+
+  "offline_mode" : "Offline-mode is active"
 }

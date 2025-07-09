@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shmr_finance/core/connection_listener/connection_listener_cubit.dart';
+import 'package:shmr_finance/di/app_scope.dart';
+import 'package:shmr_finance/utils/strings/s.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
 import 'package:shmr_finance/utils/themes/text_theme_extension.dart';
+import 'package:yx_scope_flutter/yx_scope_flutter.dart';
 
 class ShmrAppBar extends StatelessWidget {
   final Widget child;
@@ -20,20 +24,44 @@ class ShmrAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: leading,
-        centerTitle: true,
-        title: Text(
-          title,
-          style: context.textTheme.appBarTitle,
-        ),
-        actions: [IconButton(onPressed: onTap, icon: Icon(buttonIcon))],
-        backgroundColor: isCommonColor
-            ? context.theme.commonListItemColor
-            : context.theme.appBarColor,
-      ),
-      body: child,
-    );
+    return ScopeBuilder<AppScopeContainer>.withPlaceholder(
+        builder: (context, scope) => Scaffold(
+              appBar: AppBar(
+                leading: leading,
+                centerTitle: true,
+                title: Text(
+                  title,
+                  style: context.textTheme.appBarTitle,
+                ),
+                actions: [IconButton(onPressed: onTap, icon: Icon(buttonIcon))],
+                backgroundColor: isCommonColor
+                    ? context.theme.commonListItemColor
+                    : context.theme.appBarColor,
+              ),
+              body: Column(
+                children: [
+                  Expanded(child: child),
+                  StreamBuilder(
+                    stream: scope.connectionStatusStateHolder.get.stream,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData &&
+                          snapshot.data ==
+                              ConnectionStatusState.disconnected()) {
+                        return SizedBox(
+                            height: 20,
+                            child: ColoredBox(
+                              color: context.theme.rejectButtonColor,
+                              child: Center(
+                                child: Text(S.of(context).offline_mode),
+                              ),
+                            ));
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    },
+                  ),
+                ],
+              ),
+            ));
   }
 }

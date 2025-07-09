@@ -33,5 +33,7 @@
   "comment" : "Комментарий",
   "apply" : "Применить",
   "edit_all_places" : "Заполните все поля!",
-  "delete_transaction" : "Удалить транзакцию"
+  "delete_transaction" : "Удалить транзакцию",
+
+  "offline_mode" : "Включён оффлайн-режим"
 }

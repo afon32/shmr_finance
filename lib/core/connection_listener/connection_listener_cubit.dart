@@ -9,25 +9,25 @@ import 'package:shmr_finance/core/logger/logger.dart';
 part 'connection_listener_state.dart';
 part 'connection_listener_cubit.freezed.dart';
 
-class ConnectionStatusStateHolder extends Cubit<ConnectionState> {
+class ConnectionStatusStateHolder extends Cubit<ConnectionStatusState> {
   // final LocalRepository _repository;
   final Connectivity _connectivity = Connectivity();
   StreamSubscription? _subscription;
   ConnectionStatusStateHolder(
-    // this._repository
-    )
-      : super(ConnectionState.disconnected()) {
+      // this._repository
+      )
+      : super(ConnectionStatusState.disconnected()) {
     _initNetworkListener();
   }
 
-  void _onCheckNetwork(List<ConnectivityResult> status)  {
+  void _onCheckNetwork(List<ConnectivityResult> status) {
     // final status = await _connectivity.checkConnectivity();
     if (status.first != ConnectivityResult.none &&
-        state == ConnectionState.connected()) {
-      emit(ConnectionState.connected());
+        state != ConnectionStatusState.connected()) {
+      emit(ConnectionStatusState.connected());
       // _repository.compareData();
-    } else {
-      emit(ConnectionState.disconnected());
+    } else if (status.first == ConnectivityResult.none) {
+      emit(ConnectionStatusState.disconnected());
     }
   }
 
