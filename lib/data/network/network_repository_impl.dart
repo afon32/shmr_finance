@@ -4,6 +4,7 @@ import 'package:shmr_finance/data/network/abstract/network_repository.dart';
 
 import '../dto/requests/export.dart';
 import '../dto/responses/export.dart';
+import 'api_routes/api_routes.dart';
 
 class NetworkServiceImpl implements NetworkRepository {
   final ShmrNetworkClient _networkClient;
@@ -11,7 +12,9 @@ class NetworkServiceImpl implements NetworkRepository {
   NetworkServiceImpl(this._networkClient);
 
   // Account
-  Future<List<ApiAccount>> getAllAccounts(String token) {
+  Future<List<ApiAccount>> getAllAccounts(String token) async {
+    final response = await _networkClient.dio.get(ApiRoutes.getAllAccounts.routeName);
+    print(response.data);
     return Future.value(MockedData.getAllAccountsMock);
   }
 

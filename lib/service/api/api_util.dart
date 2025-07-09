@@ -1,3 +1,4 @@
+import 'package:shmr_finance/core/connection_listener/connection_listener_cubit.dart';
 import 'package:shmr_finance/data/local/abstract/local_repository.dart';
 import 'package:shmr_finance/service/api/mappers/api/api_account_history_response_mapper.dart';
 import 'package:shmr_finance/service/api/mappers/api/api_account_mapper.dart';
@@ -22,13 +23,16 @@ import 'package:shmr_finance/service/api/mappers/use_cases/use_case_to_data_mapp
 /// понятные для домена значения, чтобы отправить их в сервис уже смаппленными в дто (и наоборот).
 /// Так же будет определять откуда брать данные из БД или с бэка и, при необходимости синхронизировать.
 class ApiUtil {
+  final ConnectionStatusStateHolder _connectionStatusStateHolder;
   final NetworkRepository _networkService;
   final LocalRepository _localService;
 
-  ApiUtil(
-      {required NetworkRepository networkService,
-      required LocalRepository localService})
-      : _networkService = networkService,
+  ApiUtil({
+    required ConnectionStatusStateHolder connectionStatusStateHolder,
+    required NetworkRepository networkService,
+    required LocalRepository localService,
+  })  : _connectionStatusStateHolder = connectionStatusStateHolder,
+        _networkService = networkService,
         _localService = localService;
 
   Future<dynamic> godMethod() {
