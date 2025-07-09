@@ -15,6 +15,7 @@ class AnalyzeCubit extends Cubit<AnalyzeState> {
   final HistoryPageType pageType;
   final AppScopeContainer scopeContainer;
   late final GetTransactionsHistoryByPeriodUseCase _useCase;
+  AnalyzeViewModel? _previousViewModel;
 
   AnalyzeCubit({required this.pageType, required this.scopeContainer})
       : super(AnalyzeState.loading()) {
@@ -27,7 +28,9 @@ class AnalyzeCubit extends Cubit<AnalyzeState> {
   }
 
   void getHistory(DateTime startDate, DateTime endDate) async {
-    print(startDate.toString());
+    if (state is Content) {
+      _previousViewModel = (state as Content).content;
+    }
     emit(AnalyzeState.loading());
     final request = GetTransactionByPeriodUseCaseRequest(
         accountId: 1, //mock
@@ -36,10 +39,10 @@ class AnalyzeCubit extends Cubit<AnalyzeState> {
     try {
       final response = await _useCase.execute(request);
 
-      final result = await compute(
-          AnalyzeViewModel.fromTransactionDetails, response);
+      final result =
+          await compute(AnalyzeViewModel.fromTransactionDetails, response);
 
-      emit(AnalyzeState.content(result));
+      emit(AnalyzeState.content(result, _previousViewModel));
     } on Exception catch (e) {
       emit(AnalyzeState.error(e));
     }
