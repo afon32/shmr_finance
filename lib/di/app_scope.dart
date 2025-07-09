@@ -59,7 +59,7 @@ class AppScopeContainer extends ScopeContainer with HoldersMixin {
 
   late final createTransactionsUseCaseDep = dep(() =>
       CreateTransactionUseCase(repository: transactionsRepositoryDep.get));
-  
+
   late final deleteTransactionsUseCaseDep = dep(() =>
       DeleteTransactionUseCase(repository: transactionsRepositoryDep.get));
 
@@ -74,8 +74,9 @@ class AppScopeContainer extends ScopeContainer with HoldersMixin {
   late final getCategoriesFromTypeUseCaseDep = dep(() =>
       GetCategoriesFromTypeUseCase(repository: categoriesRepositoryDep.get));
 
+
   @override
   List<Set<AsyncDep>> get initializeQueue => [
-        {dbInitializer}
+        {dbInitializer, secretsInitializer}
       ];
 }

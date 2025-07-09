@@ -33,6 +33,8 @@ dependencies:
 
   shmr_charts_package:
     path: ./shmr_charts_package
+  dio: ^5.8.0+1
+  flutter_dotenv: ^5.2.1
 
 dev_dependencies:
   flutter_test:
@@ -56,3 +58,4 @@ flutter:
 
   assets:
      - assets/icons/
+     - assets/.env
