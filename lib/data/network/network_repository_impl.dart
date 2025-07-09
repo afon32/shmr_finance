@@ -1,3 +1,4 @@
+import 'package:shmr_finance/core/network_client/shmr_network_client.dart';
 import 'package:shmr_finance/data/mocked_data.dart';
 import 'package:shmr_finance/data/network/abstract/network_repository.dart';
 
@@ -5,6 +6,10 @@ import '../dto/requests/export.dart';
 import '../dto/responses/export.dart';
 
 class NetworkServiceImpl implements NetworkRepository {
+  final ShmrNetworkClient _networkClient;
+
+  NetworkServiceImpl(this._networkClient);
+
   // Account
   Future<List<ApiAccount>> getAllAccounts(String token) {
     return Future.value(MockedData.getAllAccountsMock);

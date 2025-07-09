@@ -1,3 +1,4 @@
+import 'package:shmr_finance/core/network_client/shmr_network_client.dart';
 import 'package:shmr_finance/data/local/sembast_db/sembast_repository.dart';
 import 'package:shmr_finance/data/network/network_repository_impl.dart';
 import 'package:shmr_finance/features/account/data/account_repository_impl.dart';
@@ -19,7 +20,8 @@ import 'package:yx_scope/yx_scope.dart';
 import 'ext/holders_mixin.dart';
 
 class AppScopeContainer extends ScopeContainer with HoldersMixin {
-  late final networkDatasourceRepositoryDep = dep(() => NetworkServiceImpl());
+  late final networkDatasourceRepositoryDep =
+      dep(() => NetworkServiceImpl(networkClientDep.get));
 
   late final localDataSourceRepositoryDep = dep(() => SembastRepository());
 
@@ -74,9 +76,16 @@ class AppScopeContainer extends ScopeContainer with HoldersMixin {
   late final getCategoriesFromTypeUseCaseDep = dep(() =>
       GetCategoriesFromTypeUseCase(repository: categoriesRepositoryDep.get));
 
+  // Network
+
+  late final networkClientDep =
+      dep(() => ShmrNetworkClient(secretsStateHolder.get));
 
   @override
   List<Set<AsyncDep>> get initializeQueue => [
-        {dbInitializer, secretsInitializer}
+        {
+          dbInitializer,
+          secretsInitializer,
+        }
       ];
 }
