@@ -80,8 +80,11 @@ class NetworkServiceImpl implements NetworkRepository {
   }
 
   Future<ApiTransactionResponse> updateTransaction(
-      int id, ApiTransactionRequest request) {
-    return Future.value(MockedData.updateTransactionMock);
+      int id, ApiTransactionRequest request) async {
+    final response = await _networkClient.dio.put(
+        ApiRoutes.updateTransaction.routeNameWithPathParameters([id]),
+        data: request.toJson());
+    return response.data as ApiTransactionResponse;
   }
 
   Future<bool> deleteTransaction(int id) {
@@ -90,7 +93,6 @@ class NetworkServiceImpl implements NetworkRepository {
 
   Future<List<ApiTransactionResponse>> getTransactionByPeriod(
       int accountId, String? startDate, String? endDate) async {
-    print(_accountStateHolder.state);
     final response = await _networkClient.dio.get(
         ApiRoutes.getTransactionByPeriod
             .routeNameWithPathParameters([_accountStateHolder.state]),
@@ -100,7 +102,6 @@ class NetworkServiceImpl implements NetworkRepository {
                 'endDate': endDate,
               }
             : null);
-    print(response.data);
     final data = await workerManager.execute(() {
       final list = response.data as List<dynamic>;
       return list
@@ -108,7 +109,6 @@ class NetworkServiceImpl implements NetworkRepository {
               (e) => ApiTransactionResponse.fromJson(e as Map<String, dynamic>))
           .toList();
     }).future;
-    print(data);
     return data;
     // return Future.value(MockedData.getTransactionByPeriodMock);
   }

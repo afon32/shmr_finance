@@ -50,6 +50,7 @@ class EditBuyScreen extends StatelessWidget {
                             create: (context) => EditBuyScreenCubit(
                               screenState: transactionSharing != null
                                   ? EditBuyScreenCubitState.buildWith(
+                                      transactionSharing!.id,
                                       transactionSharing!.scoreItem,
                                       transactionSharing!.categoryItem,
                                       transactionSharing!.amount,
@@ -73,8 +74,9 @@ class EditBuyScreen extends StatelessWidget {
                                           final currentState = BlocProvider.of<
                                                   EditBuyScreenCubit>(context)
                                               .state;
-
+                                          print(currentState);
                                           final item = TransactionSharingModel(
+                                              id: currentState.id,
                                               scoreItem: currentState.scoreItem,
                                               categoryItem:
                                                   currentState.categoryItem,
@@ -153,21 +155,21 @@ class _Page extends StatelessWidget {
           return SingleChildScrollView(
             child: Column(
               children: [
-                ShmrUniversalListItem(
-                  leftTitle: strings.score,
-                  rigthTitle: cubit.state.scoreItem?.name ?? '-',
-                  insteadRightTitle: DropdownButton(
-                      value: state.scoreItem,
-                      items: accountsAndCategories.accountItems
-                          .map((e) =>
-                              DropdownMenuItem(value: e, child: Text(e.name)))
-                          .toList(),
-                      onChanged: (value) {
-                        if (value != null) {
-                          cubit.updateScoreItem(value.id, value.name);
-                        }
-                      }),
-                ),
+                // ShmrUniversalListItem(
+                //   leftTitle: strings.score,
+                //   rigthTitle: cubit.state.scoreItem?.name ?? '-',
+                //   insteadRightTitle: DropdownButton(
+                //       value: state.scoreItem,
+                //       items: accountsAndCategories.accountItems
+                //           .map((e) =>
+                //               DropdownMenuItem(value: e, child: Text(e.name)))
+                //           .toList(),
+                //       onChanged: (value) {
+                //         if (value != null) {
+                //           cubit.updateScoreItem(value.id, value.name);
+                //         }
+                //       }),
+                // ),
                 ShmrUniversalListItem(
                   leftTitle: S.of(context).costItem,
                   rigthTitle: cubit.state.categoryItem?.name ?? '-',

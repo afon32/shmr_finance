@@ -96,7 +96,6 @@ class __Content extends StatelessWidget {
                       '${totalItem.totalAmount} ${totalItem.currencySign}');
             } else {
               final expenceItem = items[index - 1];
-
               return ShmrUniversalListItem(
                 leadingEmoji: expenceItem.emoji,
                 leftTitle: expenceItem.categoryItem.name,

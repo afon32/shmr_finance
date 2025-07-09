@@ -18,8 +18,7 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   @override
   Future<Transaction> createTransaction(
       CreateTransactionUseCaseRequest request) {
-    _apiUtil.createNewTransaction(request);
-    throw UnimplementedError();
+    return _apiUtil.createNewTransaction(request);
   }
 
   @override
@@ -53,7 +52,6 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   @override
   Future<TransactionDetails> updateTransaction(
       UpdateTransactionUseCaseRequest request) {
-    _apiUtil.updateTransaction(request);
-    throw UnimplementedError();
+    return _apiUtil.updateTransaction(request);
   }
 }

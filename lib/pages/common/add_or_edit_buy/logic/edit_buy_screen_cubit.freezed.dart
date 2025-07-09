@@ -15,6 +15,7 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$EditBuyScreenCubitState {
+  int? get id;
   AccountItem? get scoreItem;
   CategoryItem? get categoryItem;
   double? get amount;
@@ -34,6 +35,7 @@ mixin _$EditBuyScreenCubitState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is EditBuyScreenCubitState &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.scoreItem, scoreItem) ||
                 other.scoreItem == scoreItem) &&
             (identical(other.categoryItem, categoryItem) ||
@@ -44,12 +46,12 @@ mixin _$EditBuyScreenCubitState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, scoreItem, categoryItem, amount, date, comment);
+  int get hashCode => Object.hash(
+      runtimeType, id, scoreItem, categoryItem, amount, date, comment);
 
   @override
   String toString() {
-    return 'EditBuyScreenCubitState(scoreItem: $scoreItem, categoryItem: $categoryItem, amount: $amount, date: $date, comment: $comment)';
+    return 'EditBuyScreenCubitState(id: $id, scoreItem: $scoreItem, categoryItem: $categoryItem, amount: $amount, date: $date, comment: $comment)';
   }
 }
 
@@ -60,7 +62,8 @@ abstract mixin class $EditBuyScreenCubitStateCopyWith<$Res> {
       _$EditBuyScreenCubitStateCopyWithImpl;
   @useResult
   $Res call(
-      {AccountItem? scoreItem,
+      {int? id,
+      AccountItem? scoreItem,
       CategoryItem? categoryItem,
       double? amount,
       DateTime date,
@@ -80,6 +83,7 @@ class _$EditBuyScreenCubitStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? scoreItem = freezed,
     Object? categoryItem = freezed,
     Object? amount = freezed,
@@ -87,6 +91,10 @@ class _$EditBuyScreenCubitStateCopyWithImpl<$Res>
     Object? comment = freezed,
   }) {
     return _then(EditBuyScreenCubitState(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       scoreItem: freezed == scoreItem
           ? _self.scoreItem
           : scoreItem // ignore: cast_nullable_to_non_nullable
