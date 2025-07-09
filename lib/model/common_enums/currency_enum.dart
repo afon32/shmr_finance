@@ -11,6 +11,8 @@ enum Currency {
     switch (string.toUpperCase()) {
       case 'RUB':
         return Currency.rub;
+      case '\$':
+        return Currency.usd;
       case 'USD':
         return Currency.usd;
       case 'EUR':

@@ -1,21 +1,35 @@
+import 'dart:convert';
+
+import 'package:shmr_finance/core/local_holders/account_id_state_holder.dart';
 import 'package:shmr_finance/core/network_client/shmr_network_client.dart';
 import 'package:shmr_finance/data/mocked_data.dart';
 import 'package:shmr_finance/data/network/abstract/network_repository.dart';
+import 'package:worker_manager/worker_manager.dart';
 
 import '../dto/requests/export.dart';
 import '../dto/responses/export.dart';
 import 'api_routes/api_routes.dart';
 
 class NetworkServiceImpl implements NetworkRepository {
+  final AccountStateHolder _accountStateHolder;
   final ShmrNetworkClient _networkClient;
 
-  NetworkServiceImpl(this._networkClient);
+  NetworkServiceImpl(this._networkClient, this._accountStateHolder);
 
   // Account
+  @override
   Future<List<ApiAccount>> getAllAccounts(String token) async {
-    final response = await _networkClient.dio.get(ApiRoutes.getAllAccounts.routeName);
-    print(response.data);
-    return Future.value(MockedData.getAllAccountsMock);
+    final response =
+        await _networkClient.dio.get(ApiRoutes.getAllAccounts.routeName);
+    final data = await workerManager.execute(() {
+      final list = response.data as List<dynamic>;
+      return list
+          .map((e) => ApiAccount.fromJson(e as Map<String, dynamic>))
+          .toList();
+    }).future;
+    print(data);
+    return data;
+    // return Future.value(MockedData.getAllAccountsMock);
   }
 
   Future<bool> createNewAccount(ApiAccountCreateRequest request) {
@@ -36,8 +50,19 @@ class NetworkServiceImpl implements NetworkRepository {
 
   // Categories
 
-  Future<List<ApiCategory>> getAllCategories() {
-    return Future.value(MockedData.getAllCategoriesMock);
+  Future<List<ApiCategory>> getAllCategories() async {
+    final response =
+        await _networkClient.dio.get(ApiRoutes.getAllCategories.routeName);
+
+    final data = await workerManager.execute(() {
+      final list = response.data as List<dynamic>;
+      return list
+          .map((e) => ApiCategory.fromJson(e as Map<String, dynamic>))
+          .toList();
+    }).future;
+    print(data);
+    return data;
+    // return Future.value(MockedData.getAllCategoriesMock);
   }
 
   Future<List<ApiCategory>> getCategoryByType(bool isIncome) {
@@ -64,7 +89,27 @@ class NetworkServiceImpl implements NetworkRepository {
   }
 
   Future<List<ApiTransactionResponse>> getTransactionByPeriod(
-      int accountId, String startDate, String endDate) {
-    return Future.value(MockedData.getTransactionByPeriodMock);
+      int accountId, String? startDate, String? endDate) async {
+    print(_accountStateHolder.state);
+    final response = await _networkClient.dio.get(
+        ApiRoutes.getTransactionByPeriod
+            .routeNameWithPathParameters([_accountStateHolder.state]),
+        queryParameters: (startDate != null && endDate != null)
+            ? {
+                'startDate': startDate,
+                'endDate': endDate,
+              }
+            : null);
+    print(response.data);
+    final data = await workerManager.execute(() {
+      final list = response.data as List<dynamic>;
+      return list
+          .map(
+              (e) => ApiTransactionResponse.fromJson(e as Map<String, dynamic>))
+          .toList();
+    }).future;
+    print(data);
+    return data;
+    // return Future.value(MockedData.getTransactionByPeriodMock);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:shmr_finance/core/connection_listener/connection_listener_cubit.dart';
 import 'package:shmr_finance/data/local/abstract/local_repository.dart';
 import 'package:shmr_finance/service/api/mappers/api/api_account_history_response_mapper.dart';
@@ -108,8 +109,15 @@ class ApiUtil {
 
   Future<List<TransactionDetails>> getTransactionByPeriod(
       GetTransactionByPeriodUseCaseRequest request) async {
-    final list = await _networkService.getTransactionByPeriod(request.accountId,
-        request.startDate.toString(), request.endDate.toString());
+    final list = await _networkService.getTransactionByPeriod(
+      request.accountId,
+      request.startDate != null
+          ? DateFormat('yyyy-MM-dd').format(request.startDate!)
+          : null,
+      request.endDate != null
+          ? DateFormat('yyyy-MM-dd').format(request.endDate!)
+          : null,
+    );
     final result = list.map((e) => e.toDomain()).toList();
     return result;
   }

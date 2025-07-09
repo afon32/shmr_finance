@@ -21,15 +21,18 @@ import 'package:yx_scope/yx_scope.dart';
 import 'ext/holders_mixin.dart';
 
 class AppScopeContainer extends ScopeContainer with HoldersMixin {
-  late final networkDatasourceRepositoryDep =
-      dep(() => NetworkServiceImpl(networkClientDep.get));
+  late final networkDatasourceRepositoryDep = dep(() => NetworkServiceImpl(
+        networkClientDep.get,
+        accountStateHolder.get,
+      ));
 
   late final localDataSourceRepositoryDep = dep(() => SembastRepository());
 
   late final apiUtilDep = dep(() => ApiUtil(
-      connectionStatusStateHolder: connectionStatusStateHolder.get,
-      networkService: networkDatasourceRepositoryDep.get,
-      localService: localDataSourceRepositoryDep.get));
+        connectionStatusStateHolder: connectionStatusStateHolder.get,
+        networkService: networkDatasourceRepositoryDep.get,
+        localService: localDataSourceRepositoryDep.get,
+      ));
 
   // Account
 

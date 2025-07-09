@@ -1,4 +1,5 @@
 import 'package:shmr_finance/core/connection_listener/connection_listener_cubit.dart';
+import 'package:shmr_finance/core/local_holders/account_id_state_holder.dart';
 import 'package:shmr_finance/core/local_holders/currency_state_holder.dart';
 import 'package:shmr_finance/core/local_holders/secret_state_holder.dart';
 import 'package:shmr_finance/service/db/database.dart';
@@ -26,4 +27,6 @@ mixin HoldersMixin on ScopeContainer {
       asyncDep(() => SecretInitializer(secretsStateHolder.get));
 
   late final connectionStatusStateHolder = dep(() => ConnectionStatusStateHolder());
+
+  late final accountStateHolder = dep(() => AccountStateHolder());
 }
