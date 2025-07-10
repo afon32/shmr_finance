@@ -1,4 +1,4 @@
-import 'package:shmr_finance/data/dto/responses/export.dart';
+import 'package:shmr_finance/data/network/dto/responses/export.dart';
 import 'package:shmr_finance/service/api/mappers/api/api_category_mapper.dart';
 
 import 'package:shmr_finance/features/transactions/domain/entities/transaction_account_brief.dart';

@@ -1,37 +1,37 @@
-import '../../dto/requests/export.dart';
-import '../../dto/responses/export.dart';
+import '../dto/requests/export.dart';
+import '../dto/responses/export.dart';
 
 /// Репозиторий для локальной БДшки
 abstract class LocalRepository {
   void compareData();
   // Account
-  Future<List<ApiAccount>> getAllAccounts(String token);
+  Future<List<DBAccount>> getAllAccounts();
 
-  Future<bool> createNewAccount(ApiAccountCreateRequest request);
+  // Future<bool> createNewAccount(ApiAccountCreateRequest request);
 
-  Future<ApiAccountResponse> getAccountById(int id);
+  // Future<ApiAccountResponse> getAccountById(int id);
 
-  Future<ApiAccount> updateAccount(int id, ApiAccountUpdateRequest request);
+  // Future<ApiAccount> updateAccount(int id, ApiAccountUpdateRequest request);
 
-  Future<ApiAccountHistoryResponse> getAccountHistory(int id);
+  // Future<ApiAccountHistoryResponse> getAccountHistory(int id);
 
-  // Categories
+  // // Categories
 
-  Future<List<ApiCategory>> getAllCategories();
+  // Future<List<ApiCategory>> getAllCategories();
 
-  Future<List<ApiCategory>> getCategoryByType(bool isIncome);
+  // Future<List<ApiCategory>> getCategoryByType(bool isIncome);
 
-  // Transactions
+  // // Transactions
 
-  Future<ApiTransaction> createNewTransaction(ApiTransactionRequest request);
+  Future<bool> createNewTransaction(DBTransaction request);
 
-  Future<ApiTransactionResponse> getTransactionById(int id);
+  Future<DBTransaction?> getTransactionById(int id);
 
-  Future<ApiTransactionResponse> updateTransaction(
-      int id, ApiTransactionRequest request);
+  // Future<ApiTransactionResponse> updateTransaction(
+  //     int id, ApiTransactionRequest request);
 
-  Future<bool> deleteTransaction(int id);
+  // Future<bool> deleteTransaction(int id);
 
-  Future<List<ApiTransactionResponse>> getTransactionByPeriod(
-      int accountId, String startDate, String endDate);
+  // Future<List<ApiTransactionResponse>> getTransactionByPeriod(
+  // int accountId, String startDate, String endDate);
 }

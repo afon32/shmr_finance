@@ -26,7 +26,10 @@ class AppScopeContainer extends ScopeContainer with HoldersMixin {
         accountStateHolder.get,
       ));
 
-  late final localDataSourceRepositoryDep = dep(() => SembastRepository());
+  late final localDataSourceRepositoryDep = dep(() => SembastRepository(
+        accountDao: localAccountDaoDep.get,
+        transactionDao: localTransactionDaoDep.get,
+      ));
 
   late final apiUtilDep = dep(() => ApiUtil(
         connectionStatusStateHolder: connectionStatusStateHolder.get,

@@ -2,6 +2,8 @@ import 'package:shmr_finance/core/connection_listener/connection_listener_cubit.
 import 'package:shmr_finance/core/local_holders/account_id_state_holder.dart';
 import 'package:shmr_finance/core/local_holders/currency_state_holder.dart';
 import 'package:shmr_finance/core/local_holders/secret_state_holder.dart';
+import 'package:shmr_finance/data/local/dao/account_dao.dart';
+import 'package:shmr_finance/data/local/dao/export.dart';
 import 'package:shmr_finance/service/db/database.dart';
 import 'package:shmr_finance/service/db/databse_initializer.dart';
 import 'package:shmr_finance/service/secret/secret_initializer.dart';
@@ -21,12 +23,17 @@ mixin HoldersMixin on ScopeContainer {
   late final dbDep =
       dep(() => ShmrDatabase(langStateHolderDep.get, themeStateHolderDep.get));
 
-  late final secretsStateHolder = dep(() => SecretStateHolder());
+  late final localAccountDaoDep = dep(() => AccountDao(dbDep.get.dbClient));
   
+  late final localTransactionDaoDep = dep(() => TransactionDao(dbDep.get.dbClient));
+
+  late final secretsStateHolder = dep(() => SecretStateHolder());
+
   late final secretsInitializer =
       asyncDep(() => SecretInitializer(secretsStateHolder.get));
 
-  late final connectionStatusStateHolder = dep(() => ConnectionStatusStateHolder());
+  late final connectionStatusStateHolder =
+      dep(() => ConnectionStatusStateHolder());
 
   late final accountStateHolder = dep(() => AccountStateHolder());
 }

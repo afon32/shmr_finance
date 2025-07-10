@@ -6,8 +6,8 @@ import 'package:shmr_finance/data/mocked_data.dart';
 import 'package:shmr_finance/data/network/abstract/network_repository.dart';
 import 'package:worker_manager/worker_manager.dart';
 
-import '../dto/requests/export.dart';
-import '../dto/responses/export.dart';
+import 'dto/requests/export.dart';
+import 'dto/responses/export.dart';
 import 'api_routes/api_routes.dart';
 
 class NetworkServiceImpl implements NetworkRepository {
@@ -18,7 +18,7 @@ class NetworkServiceImpl implements NetworkRepository {
 
   // Account
   @override
-  Future<List<ApiAccount>> getAllAccounts(String token) async {
+  Future<List<ApiAccount>> getAllAccounts() async {
     final response =
         await _networkClient.dio.get(ApiRoutes.getAllAccounts.routeName);
     final data = await workerManager.execute(() {

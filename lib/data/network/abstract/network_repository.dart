@@ -1,9 +1,9 @@
-import '../../dto/requests/export.dart';
-import '../../dto/responses/export.dart';
+import '../dto/requests/export.dart';
+import '../dto/responses/export.dart';
 
 abstract class NetworkRepository {
   // Account
-  Future<List<ApiAccount>> getAllAccounts(String token);
+  Future<List<ApiAccount>> getAllAccounts();
 
   Future<ApiAccount> createNewAccount(ApiAccountCreateRequest request);
 

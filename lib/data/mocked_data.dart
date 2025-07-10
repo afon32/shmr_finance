@@ -1,7 +1,7 @@
-import 'package:shmr_finance/data/dto/responses/account_response/stat_item.dart';
+import 'package:shmr_finance/data/network/dto/responses/account_response/stat_item.dart';
 
-import 'dto/requests/export.dart';
-import 'dto/responses/export.dart';
+import 'network/dto/requests/export.dart';
+import 'network/dto/responses/export.dart';
 
 /// Моки ответов с датасурсов
 class MockedData {

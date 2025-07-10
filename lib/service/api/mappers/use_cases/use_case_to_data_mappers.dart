@@ -1,6 +1,6 @@
-import 'package:shmr_finance/data/dto/requests/account_create_request/account_create_request.dart';
-import 'package:shmr_finance/data/dto/requests/account_update_request/account_update_request.dart';
-import 'package:shmr_finance/data/dto/requests/transaction_request/transaction_request.dart';
+import 'package:shmr_finance/data/network/dto/requests/account_create_request/account_create_request.dart';
+import 'package:shmr_finance/data/network/dto/requests/account_update_request/account_update_request.dart';
+import 'package:shmr_finance/data/network/dto/requests/transaction_request/transaction_request.dart';
 import 'package:shmr_finance/features/account/data/dto/create_account_use_case_request.dart';
 import 'package:shmr_finance/features/account/data/dto/update_account_use_case_request.dart';
 import 'package:shmr_finance/features/transactions/data/dto/create_transaction_use_case_request.dart';

@@ -65,6 +65,11 @@ abstract class ADao<T> {
         },
       );
 
+  Future<List<T>> getAll() => _lock.synchronized(() async {
+        final snapshots = await _store.find(_dbClient);
+        return snapshots.map((snapshot) => fromJson(snapshot.value)).toList();
+      });
+
   Future<void> drop() => _lock.synchronized(
         () => _store.drop(_dbClient),
       );
