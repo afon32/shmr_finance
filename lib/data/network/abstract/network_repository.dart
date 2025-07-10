@@ -5,7 +5,7 @@ abstract class NetworkRepository {
   // Account
   Future<List<ApiAccount>> getAllAccounts(String token);
 
-  Future<bool> createNewAccount(ApiAccountCreateRequest request);
+  Future<ApiAccount> createNewAccount(ApiAccountCreateRequest request);
 
   Future<ApiAccountResponse> getAccountById(int id);
 

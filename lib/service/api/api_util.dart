@@ -49,7 +49,7 @@ class ApiUtil {
 
   Future<bool> createNewAccount(CreateAccountUseCaseRequest request) async {
     final result = await _networkService.createNewAccount(request.toData());
-    return result;
+    return true;
   }
 
   Future<AccountDetails> getAccountById(int id) async {

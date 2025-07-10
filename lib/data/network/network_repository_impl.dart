@@ -29,23 +29,44 @@ class NetworkServiceImpl implements NetworkRepository {
     }).future;
     print(data);
     return data;
-    // return Future.value(MockedData.getAllAccountsMock);
   }
 
-  Future<bool> createNewAccount(ApiAccountCreateRequest request) {
-    return Future.value(MockedData.createNewAccountMock);
+  Future<ApiAccount> createNewAccount(ApiAccountCreateRequest request) async {
+    final response = await _networkClient.dio
+        .post(ApiRoutes.createNewAccount.routeName, data: request.toJson());
+    final data = await workerManager.execute(() {
+      return ApiAccount.fromJson(response.data);
+    });
+    return data;
   }
 
-  Future<ApiAccountResponse> getAccountById(int id) {
-    return Future.value(MockedData.getAccountByIdMock);
+  Future<ApiAccountResponse> getAccountById(int id) async {
+    final response = await _networkClient.dio.get(ApiRoutes.getAccountById
+        .routeNameWithPathParameters([_accountStateHolder.state]));
+    final data = await workerManager.execute(() {
+      return ApiAccountResponse.fromJson(response.data);
+    });
+    return data;
   }
 
-  Future<ApiAccount> updateAccount(int id, ApiAccountUpdateRequest request) {
-    return Future.value(MockedData.updateAccountMock);
+  Future<ApiAccount> updateAccount(
+      int id, ApiAccountUpdateRequest request) async {
+    final response = await _networkClient.dio.put(
+        ApiRoutes.updateAccount.routeNameWithPathParameters([id]),
+        data: request.toJson());
+    final data = await workerManager.execute(() {
+      return ApiAccount.fromJson(response.data);
+    });
+    return data;
   }
 
-  Future<ApiAccountHistoryResponse> getAccountHistory(int id) {
-    return Future.value(MockedData.getAccountHistoryMock);
+  Future<ApiAccountHistoryResponse> getAccountHistory(int id) async {
+    final response = await _networkClient.dio.get(ApiRoutes.getAccountHistory
+        .routeNameWithPathParameters([_accountStateHolder.state]));
+    final data = await workerManager.execute(() {
+      return ApiAccountHistoryResponse.fromJson(response.data);
+    });
+    return data;
   }
 
   // Categories
@@ -63,8 +84,16 @@ class NetworkServiceImpl implements NetworkRepository {
     return data;
   }
 
-  Future<List<ApiCategory>> getCategoryByType(bool isIncome) {
-    return Future.value(MockedData.getCategoriesByTypeMock);
+  Future<List<ApiCategory>> getCategoryByType(bool isIncome) async {
+    final response = await _networkClient.dio.get(
+        ApiRoutes.getCategoriesByType.routeNameWithPathParameters([isIncome]));
+    final data = await workerManager.execute(() {
+      final list = response.data as List<dynamic>;
+      return list
+          .map((e) => ApiCategory.fromJson(e as Map<String, dynamic>))
+          .toList();
+    }).future;
+    return data;
   }
 
   // Transactions
@@ -79,8 +108,13 @@ class NetworkServiceImpl implements NetworkRepository {
     return data;
   }
 
-  Future<ApiTransactionResponse> getTransactionById(int id) {
-    return Future.value(MockedData.getTransactionByIdMock);
+  Future<ApiTransactionResponse> getTransactionById(int id) async {
+    final response = await _networkClient.dio.get(ApiRoutes.getTransactionById
+        .routeNameWithPathParameters([_accountStateHolder.state]));
+    final data = await workerManager.execute(() {
+      return ApiTransactionResponse.fromJson(response.data);
+    });
+    return data;
   }
 
   Future<ApiTransactionResponse> updateTransaction(

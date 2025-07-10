@@ -122,6 +122,8 @@ class __Content extends StatelessWidget {
                         date: expenceItem.date,
                         comment: expenceItem.subtitle,
                       ),
+                      pageType:
+                          BlocProvider.of<HistoryTodayCubit>(context).pageType,
                       onExitTap: modalContext.pop,
                       onApproveTap: (item) async {
                         modalContext.pop();
@@ -163,6 +165,7 @@ class __Content extends StatelessWidget {
               HistoryPageType.expences => S.of(context).expences_today,
               HistoryPageType.incomes => S.of(context).incomes_today,
             },
+            pageType: BlocProvider.of<HistoryTodayCubit>(context).pageType,
             onExitTap: modalContext.pop,
             onApproveTap: (item) async {
               modalContext.pop();
