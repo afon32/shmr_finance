@@ -51,7 +51,8 @@ class EditBuyScreen extends StatelessWidget {
                               screenState: transactionSharing != null
                                   ? EditBuyScreenCubitState.buildWith(
                                       transactionSharing!.id,
-                                      transactionSharing!.scoreItem,
+                                      // transactionSharing!.scoreItem,
+                                      null,
                                       transactionSharing!.categoryItem,
                                       transactionSharing!.amount,
                                       transactionSharing!.date,
@@ -155,21 +156,21 @@ class _Page extends StatelessWidget {
           return SingleChildScrollView(
             child: Column(
               children: [
-                // ShmrUniversalListItem(
-                //   leftTitle: strings.score,
-                //   rigthTitle: cubit.state.scoreItem?.name ?? '-',
-                //   insteadRightTitle: DropdownButton(
-                //       value: state.scoreItem,
-                //       items: accountsAndCategories.accountItems
-                //           .map((e) =>
-                //               DropdownMenuItem(value: e, child: Text(e.name)))
-                //           .toList(),
-                //       onChanged: (value) {
-                //         if (value != null) {
-                //           cubit.updateScoreItem(value.id, value.name);
-                //         }
-                //       }),
-                // ),
+                ShmrUniversalListItem(
+                  leftTitle: strings.score,
+                  rigthTitle: cubit.state.scoreItem?.name ?? '-',
+                  insteadRightTitle: DropdownButton(
+                      value: state.scoreItem,
+                      items: accountsAndCategories.accountItems
+                          .map((e) =>
+                              DropdownMenuItem(value: e, child: Text(e.name)))
+                          .toList(),
+                      onChanged: (value) {
+                        if (value != null) {
+                          cubit.updateScoreItem(value.id, value.name);
+                        }
+                      }),
+                ),
                 ShmrUniversalListItem(
                   leftTitle: S.of(context).costItem,
                   rigthTitle: cubit.state.categoryItem?.name ?? '-',

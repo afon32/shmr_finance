@@ -37,7 +37,7 @@ class HistoryTodayCubit extends Cubit<HistoryTodayState> {
     _deleteTransactionUseCase = scopeContainer.deleteTransactionsUseCaseDep.get;
   }
 
-  void getHistory() async {
+  Future<void> getHistory() async {
     emit(HistoryTodayState.loading());
     final request = GetTransactionByPeriodUseCaseRequest(
         accountId: 1, // mock
@@ -55,7 +55,7 @@ class HistoryTodayCubit extends Cubit<HistoryTodayState> {
     }
   }
 
-  void updateBuy(int buyId, int accountId, int categoryId, double amount,
+  Future<void> updateBuy(int buyId, int accountId, int categoryId, double amount,
       DateTime date, String? comment) async {
     try {
       final request = UpdateTransactionUseCaseRequest(
@@ -70,7 +70,7 @@ class HistoryTodayCubit extends Cubit<HistoryTodayState> {
     } on Exception catch (e) {}
   }
 
-  void createBuy(int accountId, int categoryId, double amount, DateTime date,
+  Future<void> createBuy(int accountId, int categoryId, double amount, DateTime date,
       String? comment) async {
     try {
       final request = CreateTransactionUseCaseRequest(
@@ -83,7 +83,7 @@ class HistoryTodayCubit extends Cubit<HistoryTodayState> {
     } on Exception catch (e) {}
   }
 
-  void deleteBuy(int id) async {
+  Future<void> deleteBuy(int id) async {
     try {
       await _deleteTransactionUseCase.execute(id);
     } on Exception catch (e) {}

@@ -11,6 +11,7 @@ class RetryOnServerErrorInterceptor extends Interceptor {
   @override
   Future<void> onError(
       DioException err, ErrorInterceptorHandler handler) async {
+    print(err.message);
     var attempt = err.requestOptions.extra['retry_attempt'] ?? 0;
     if (retryStatusCodes.contains(err.response?.statusCode) &&
         attempt < maxAttempts) {

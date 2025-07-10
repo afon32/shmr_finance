@@ -123,24 +123,29 @@ class __Content extends StatelessWidget {
                         comment: expenceItem.subtitle,
                       ),
                       onExitTap: modalContext.pop,
-                      onApproveTap: (item) {
+                      onApproveTap: (item) async {
                         modalContext.pop();
-                        BlocProvider.of<HistoryTodayCubit>(context).updateBuy(
-                            item.id!,
-                            item.scoreItem!.id,
-                            item.categoryItem!.id,
-                            item.amount!,
-                            item.date,
-                            item.comment);
-                        BlocProvider.of<HistoryTodayCubit>(context)
-                            .getHistory();
+                        if (context.mounted) {
+                          await BlocProvider.of<HistoryTodayCubit>(context)
+                              .updateBuy(
+                                  item.id!,
+                                  item.scoreItem!.id,
+                                  item.categoryItem!.id,
+                                  item.amount!,
+                                  item.date,
+                                  item.comment);
+                          await BlocProvider.of<HistoryTodayCubit>(context)
+                              .getHistory();
+                        }
                       },
-                      onDeleteTap: () {
+                      onDeleteTap: () async {
                         modalContext.pop();
-                        BlocProvider.of<HistoryTodayCubit>(context)
-                            .deleteBuy(expenceItem.id);
-                        BlocProvider.of<HistoryTodayCubit>(context)
-                            .getHistory();
+                        if (context.mounted) {
+                          await BlocProvider.of<HistoryTodayCubit>(context)
+                              .deleteBuy(expenceItem.id);
+                          await BlocProvider.of<HistoryTodayCubit>(context)
+                              .getHistory();
+                        }
                       }),
                 ),
               );
@@ -159,15 +164,17 @@ class __Content extends StatelessWidget {
               HistoryPageType.incomes => S.of(context).incomes_today,
             },
             onExitTap: modalContext.pop,
-            onApproveTap: (item) {
+            onApproveTap: (item) async {
               modalContext.pop();
-              BlocProvider.of<HistoryTodayCubit>(context).createBuy(
-                  item.scoreItem!.id,
-                  item.categoryItem!.id,
-                  item.amount!,
-                  item.date,
-                  item.comment);
-              BlocProvider.of<HistoryTodayCubit>(context).getHistory();
+              if (context.mounted) {
+                await BlocProvider.of<HistoryTodayCubit>(context).createBuy(
+                    item.scoreItem!.id,
+                    item.categoryItem!.id,
+                    item.amount!,
+                    item.date,
+                    item.comment);
+                await BlocProvider.of<HistoryTodayCubit>(context).getHistory();
+              }
             },
           ),
         );

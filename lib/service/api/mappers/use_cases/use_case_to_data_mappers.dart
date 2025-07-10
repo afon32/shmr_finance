@@ -22,7 +22,7 @@ extension UpdateTransactionUseCaseRequestX on UpdateTransactionUseCaseRequest {
       accountId: accountId,
       categoryId: categoryId,
       amount: amount.toString(),
-      transactionDate: transactionDate.toString(),
+      transactionDate: transactionDate.toUtc().toIso8601String().toString(),
       comment: comment);
 }
 
@@ -31,6 +31,6 @@ extension CreateTransactionUseCaseRequestX on CreateTransactionUseCaseRequest {
       accountId: accountId,
       categoryId: categoryId,
       amount: amount.toString(),
-      transactionDate: transactionDate.toString(),
+      transactionDate: transactionDate.toUtc().toIso8601String().toString(),
       comment: comment);
 }

@@ -60,9 +60,7 @@ class NetworkServiceImpl implements NetworkRepository {
           .map((e) => ApiCategory.fromJson(e as Map<String, dynamic>))
           .toList();
     }).future;
-    print(data);
     return data;
-    // return Future.value(MockedData.getAllCategoriesMock);
   }
 
   Future<List<ApiCategory>> getCategoryByType(bool isIncome) {
@@ -71,8 +69,14 @@ class NetworkServiceImpl implements NetworkRepository {
 
   // Transactions
 
-  Future<ApiTransaction> createNewTransaction(ApiTransactionRequest request) {
-    return Future.value(MockedData.createNewTransactionMock);
+  Future<ApiTransaction> createNewTransaction(
+      ApiTransactionRequest request) async {
+    final response = await _networkClient.dio
+        .post(ApiRoutes.createTransaction.routeName, data: request.toJson());
+    final data = await workerManager.execute(() {
+      return ApiTransaction.fromJson(response.data);
+    });
+    return data;
   }
 
   Future<ApiTransactionResponse> getTransactionById(int id) {
@@ -84,11 +88,18 @@ class NetworkServiceImpl implements NetworkRepository {
     final response = await _networkClient.dio.put(
         ApiRoutes.updateTransaction.routeNameWithPathParameters([id]),
         data: request.toJson());
-    return response.data as ApiTransactionResponse;
+    final data = await workerManager.execute(() {
+      return ApiTransactionResponse.fromJson(response.data);
+    });
+    return data;
   }
 
-  Future<bool> deleteTransaction(int id) {
-    return Future.value(MockedData.deleteTransactionMock);
+  Future<bool> deleteTransaction(int id) async {
+    final response = await _networkClient.dio.delete(
+      ApiRoutes.deleteTransaction.routeNameWithPathParameters([id]),
+    );
+    final data = response.statusCode == 204;
+    return data;
   }
 
   Future<List<ApiTransactionResponse>> getTransactionByPeriod(
@@ -110,6 +121,5 @@ class NetworkServiceImpl implements NetworkRepository {
           .toList();
     }).future;
     return data;
-    // return Future.value(MockedData.getTransactionByPeriodMock);
   }
 }

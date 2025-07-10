@@ -17,14 +17,13 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
 
   @override
   Future<Transaction> createTransaction(
-      CreateTransactionUseCaseRequest request) {
-    return _apiUtil.createNewTransaction(request);
+      CreateTransactionUseCaseRequest request) async {
+    return await _apiUtil.createNewTransaction(request);
   }
 
   @override
   Future<bool> deleteTransaction(id) {
-    _apiUtil.deleteTransaction(id);
-    throw UnimplementedError();
+    return _apiUtil.deleteTransaction(id);
   }
 
   @override
