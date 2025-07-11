@@ -4,8 +4,8 @@ import 'transaction_account_brief.dart';
 
 class TransactionDetails {
   final int id;
-  final AccountBrief account;
-  final Category category;
+  final AccountBrief? account;
+  final Category? category;
   final double amount;
   final DateTime transactionDate;
   final String? comment;

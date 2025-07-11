@@ -20,15 +20,23 @@ class TransactionDao extends ADao<DBTransaction> {
 
   Future<List<DBTransaction>> getAllAccounts() async => await getAll();
 
-  Future<List<DBTransaction?>> getByPeriod(
+  Future<List<DBTransaction>> getByPeriod(
       {required DateTime start, required DateTime end}) async {
     final allData = await getAll();
-    final data = allData.map((e) {
+    final List<DBTransaction> data = [];
+    for (DBTransaction e in allData) {
       if (DateTime.parse(e.transactionDate).isAfter(start) &&
           DateTime.parse(e.transactionDate).isBefore(end)) {
-        return e;
+        data.add(e);
       }
-    }).toList();
+    }
+
+    // final data = allData.map((e) {
+    //   if (DateTime.parse(e.transactionDate).isAfter(start) &&
+    //       DateTime.parse(e.transactionDate).isBefore(end)) {
+    //     return e;
+    //   }
+    // }).toList();
 
     return data;
   }

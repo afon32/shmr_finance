@@ -24,6 +24,7 @@ import 'package:shmr_finance/features/transactions/domain/entities/transaction.d
 import 'package:shmr_finance/features/transactions/domain/entities/transaction_details.dart';
 import 'package:shmr_finance/model/category.dart';
 import 'package:shmr_finance/service/api/mappers/local/db_account_mapper.dart';
+import 'package:shmr_finance/service/api/mappers/local/db_transaction_mapper.dart';
 import 'package:shmr_finance/service/api/mappers/use_cases/use_case_to_data_mappers.dart';
 
 import 'events/export.dart';
@@ -144,16 +145,31 @@ class ApiUtil {
 
   Future<List<TransactionDetails>> getTransactionByPeriod(
       GetTransactionByPeriodUseCaseRequest request) async {
-    final list = await _networkService.getTransactionByPeriod(
-      request.accountId,
-      request.startDate != null
-          ? DateFormat('yyyy-MM-dd').format(request.startDate!)
-          : null,
-      request.endDate != null
-          ? DateFormat('yyyy-MM-dd').format(request.endDate!)
-          : null,
-    );
-    final result = list.map((e) => e.toDomain()).toList();
-    return result;
+    if (_connectionStatusStateHolder.state is Connected) {
+      final list = await _networkService.getTransactionByPeriod(
+        request.accountId,
+        request.startDate != null
+            ? DateFormat('yyyy-MM-dd').format(request.startDate!)
+            : null,
+        request.endDate != null
+            ? DateFormat('yyyy-MM-dd').format(request.endDate!)
+            : null,
+      );
+      final result = list.map((e) => e.toDomain()).toList();
+
+      final localTransfer = list.map((e) => e.toLocal()).toList();
+
+      final isCached = await _localService.setTransactions(localTransfer);
+
+      return result;
+    } else {
+      final list = await _localService.getTransactionByPeriod(request.accountId,
+          request.startDate!, request.endDate!); // TODO: убрать bang!!!!!
+      final result = list.map((e) async {
+        final localAccount = await _localService.getAccountById(e.accountId);
+        final localCategory = await _localService.getCategoryById(e.categoryId);
+        return e.toDomain(localAccount, localCategory);
+      }).toList();
+    }
   }
 }

@@ -1,9 +1,9 @@
 import 'package:shmr_finance/data/local/abstract/local_repository.dart';
+import 'package:shmr_finance/data/local/dao/category_dao.dart';
 
 import '../../mocked_data.dart';
 import '../dao/export.dart';
 import '../dto/models/export.dart';
-
 
 /// Репозиторий для локальной БДшки
 /// Пока скопировал методы из network сервиса. Потом, наверное, придётся модифицировать
@@ -11,10 +11,12 @@ import '../dto/models/export.dart';
 class SembastRepository implements LocalRepository {
   final AccountDao accountDao;
   final TransactionDao transactionDao;
+  final CategoryDao categoryDao;
 
   SembastRepository({
     required this.accountDao,
     required this.transactionDao,
+    required this.categoryDao,
   });
 
   @override
@@ -33,9 +35,10 @@ class SembastRepository implements LocalRepository {
   //   return Future.value(MockedData.createNewAccountMock);
   // }
 
-  // Future<ApiAccountResponse> getAccountById(int id) {
-  //   return Future.value(MockedData.getAccountByIdMock);
-  // }
+  Future<DBAccount?> getAccountById(int id) async {
+    final response = await accountDao.getById(accountId: id);
+    return response;
+  }
 
   // Future<ApiAccount> updateAccount(int id, ApiAccountUpdateRequest request) {
   //   return Future.value(MockedData.updateAccountMock);
@@ -47,13 +50,27 @@ class SembastRepository implements LocalRepository {
 
   // // Categories
 
-  // Future<List<ApiCategory>> getAllCategories() {
-  //   return Future.value(MockedData.getAllCategoriesMock);
-  // }
+  @override
+  Future<DBCategory?> getCategoryById(int id) async {
+    final response = await categoryDao.getById(categoryId: id);
+    return response;
+  }
 
-  // Future<List<ApiCategory>> getCategoryByType(bool isIncome) {
-  //   return Future.value(MockedData.getCategoriesByTypeMock);
-  // }
+  Future<List<DBCategory>> getAllCategories() async {
+    final response = await categoryDao.getAll();
+    return response;
+  }
+
+  Future<List<DBCategory>> getCategoryByType(bool isIncome) async {
+    final responseAll = await categoryDao.getAll();
+    final List<DBCategory> result = [];
+    for (DBCategory category in responseAll) {
+      if (category.isIncome == isIncome) {
+        result.add(category);
+      }
+    }
+    return result;
+  }
 
   // // Transactions
 
@@ -82,8 +99,17 @@ class SembastRepository implements LocalRepository {
   //   return Future.value(MockedData.deleteTransactionMock);
   // }
 
-  // Future<List<ApiTransactionResponse>> getTransactionByPeriod(
-  //     int accountId, String startDate, String endDate) {
-  //   return Future.value(MockedData.getTransactionByPeriodMock);
-  // }
+  @override
+  Future<List<DBTransaction>> getTransactionByPeriod(
+      int accountId, DateTime startDate, DateTime endDate) async {
+    final data =
+        await transactionDao.getByPeriod(start: startDate, end: endDate);
+    return data;
+  }
+
+  @override
+  Future<bool> setTransactions(List<DBTransaction> list) async {
+    final data = await transactionDao.addTransactions(list);
+    return data;
+  }
 }

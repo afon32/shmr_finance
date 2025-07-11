@@ -1,3 +1,4 @@
+import 'package:shmr_finance/data/local/dto/models/transaction/db_transaction.dart';
 import 'package:shmr_finance/data/network/dto/responses/export.dart';
 import 'package:shmr_finance/service/api/mappers/api/api_category_mapper.dart';
 
@@ -15,6 +16,17 @@ extension ApiTransactionResponseX on ApiTransactionResponse {
       comment: comment,
       createdAt: DateTime.parse(createdAt),
       updatedAt: DateTime.parse(updatedAt));
+
+  DBTransaction toLocal() => DBTransaction(
+        id: id,
+        accountId: account.id,
+        categoryId: category.id,
+        amount: amount,
+        transactionDate: transactionDate,
+        comment: comment,
+        createdAt: createdAt,
+        updatedAt: updatedAt,
+      );
 }
 
 extension ApiAccountBriefX on ApiAccountBrief {

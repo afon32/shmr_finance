@@ -36,7 +36,9 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   Future<List<TransactionDetails>> getIncomesTransactionHistoryByPeriod(
       GetTransactionByPeriodUseCaseRequest request) async {
     final response = await _apiUtil.getTransactionByPeriod(request);
-    final result = response.where((e) => e.category.isIncome).toList();
+    final result = response
+        .where((e) => e.category != null && e.category!.isIncome)
+        .toList();
     return result;
   }
 
@@ -44,7 +46,9 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   Future<List<TransactionDetails>> getOutcomesTransactionHistoryByPeriod(
       GetTransactionByPeriodUseCaseRequest request) async {
     final response = await _apiUtil.getTransactionByPeriod(request);
-    final result = response.where((e) => !e.category.isIncome).toList();
+    final result = response
+        .where((e) => e.category != null && !e.category!.isIncome)
+        .toList();
     return result;
   }
 
