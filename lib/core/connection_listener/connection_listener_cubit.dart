@@ -5,27 +5,29 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shmr_finance/data/local/abstract/local_repository.dart';
 import 'package:shmr_finance/core/logger/logger.dart';
+import 'package:yx_scope/yx_scope.dart';
 
 part 'connection_listener_state.dart';
 part 'connection_listener_cubit.freezed.dart';
 
-class ConnectionListenerCubit extends Cubit<ConnectionState> {
-  final LocalRepository _repository;
+class ConnectionStatusStateHolder extends Cubit<ConnectionStatusState>
+    implements AsyncLifecycle {
+  // final LocalRepository _repository;
   final Connectivity _connectivity = Connectivity();
   StreamSubscription? _subscription;
-  ConnectionListenerCubit(this._repository)
-      : super(ConnectionState.disconnected()) {
-    _initNetworkListener();
-  }
+  ConnectionStatusStateHolder(
+      // this._repository
+      )
+      : super(ConnectionStatusState.disconnected());
 
-  Future<void> _onCheckNetwork(List<ConnectivityResult> status) async {
+  void _onCheckNetwork(List<ConnectivityResult> status) {
     // final status = await _connectivity.checkConnectivity();
     if (status.first != ConnectivityResult.none &&
-        state == ConnectionState.connected()) {
-      emit(ConnectionState.connected());
-      _repository.compareData();
-    } else {
-      emit(ConnectionState.disconnected());
+        state != ConnectionStatusState.connected()) {
+      emit(ConnectionStatusState.connected());
+      // _repository.compareData();
+    } else if (status.first == ConnectivityResult.none) {
+      emit(ConnectionStatusState.disconnected());
     }
   }
 
@@ -41,5 +43,13 @@ class ConnectionListenerCubit extends Cubit<ConnectionState> {
   Future<void> close() {
     _subscription?.cancel();
     return super.close();
+  }
+
+  @override
+  Future<void> dispose() async {}
+
+  @override
+  Future<void> init() async {
+    _initNetworkListener();
   }
 }

@@ -14,11 +14,11 @@ part of 'connection_listener_cubit.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$ConnectionState {
+mixin _$ConnectionStatusState {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ConnectionState);
+        (other.runtimeType == runtimeType && other is ConnectionStatusState);
   }
 
   @override
@@ -26,19 +26,19 @@ mixin _$ConnectionState {
 
   @override
   String toString() {
-    return 'ConnectionState()';
+    return 'ConnectionStatusState()';
   }
 }
 
 /// @nodoc
-class $ConnectionStateCopyWith<$Res> {
-  $ConnectionStateCopyWith(
-      ConnectionState _, $Res Function(ConnectionState) __);
+class $ConnectionStatusStateCopyWith<$Res> {
+  $ConnectionStatusStateCopyWith(
+      ConnectionStatusState _, $Res Function(ConnectionStatusState) __);
 }
 
 /// @nodoc
 
-class Connected implements ConnectionState {
+class Connected implements ConnectionStatusState {
   const Connected();
 
   @override
@@ -52,13 +52,13 @@ class Connected implements ConnectionState {
 
   @override
   String toString() {
-    return 'ConnectionState.connected()';
+    return 'ConnectionStatusState.connected()';
   }
 }
 
 /// @nodoc
 
-class Disconnected implements ConnectionState {
+class Disconnected implements ConnectionStatusState {
   const Disconnected();
 
   @override
@@ -72,7 +72,7 @@ class Disconnected implements ConnectionState {
 
   @override
   String toString() {
-    return 'ConnectionState.disconnected()';
+    return 'ConnectionStatusState.disconnected()';
   }
 }
 

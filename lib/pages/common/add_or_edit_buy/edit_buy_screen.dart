@@ -12,6 +12,7 @@ import 'package:shmr_finance/model/common_enums/currency_enum.dart';
 import 'package:shmr_finance/model/ui_items/transaction_sharing_model.dart';
 import 'package:shmr_finance/pages/common/add_or_edit_buy/logic/edit_buy_screen_cubit.dart';
 import 'package:shmr_finance/pages/common/add_or_edit_buy/logic/get_accounts_and_categories_cubit.dart';
+import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
 import 'package:shmr_finance/utils/strings/s.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
 import 'package:yx_scope_flutter/yx_scope_flutter.dart';
@@ -24,15 +25,16 @@ class EditBuyScreen extends StatelessWidget {
   final VoidCallback? onDeleteTap;
   final String title;
   final TransactionSharingModel? transactionSharing;
+  final HistoryPageType pageType;
 
-  const EditBuyScreen({
-    super.key,
-    required this.title,
-    required this.onExitTap,
-    required this.onApproveTap,
-    this.onDeleteTap,
-    this.transactionSharing,
-  });
+  const EditBuyScreen(
+      {super.key,
+      required this.title,
+      required this.onExitTap,
+      required this.onApproveTap,
+      this.onDeleteTap,
+      this.transactionSharing,
+      required this.pageType});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,8 @@ class EditBuyScreen extends StatelessWidget {
         builder: (context, scope) => BlocProvider(
               create: (context) => GetAccountsAndCategoriesCubit(
                   getAllAccountsUseCase: scope.getAllAccountsUseCaseDep.get,
-                  getAllCategoriesUseCase: scope.getAllCategoriesUseCaseDep.get)
+                  getCategoriesFromTypeUseCase: scope.getCategoriesFromTypeUseCaseDep.get,
+                  pageType: pageType)
                 ..getData(),
               child: BlocBuilder<GetAccountsAndCategoriesCubit,
                       GetAccountsAndCategoriesState>(
@@ -50,7 +53,9 @@ class EditBuyScreen extends StatelessWidget {
                             create: (context) => EditBuyScreenCubit(
                               screenState: transactionSharing != null
                                   ? EditBuyScreenCubitState.buildWith(
-                                      transactionSharing!.scoreItem,
+                                      transactionSharing!.id,
+                                      // transactionSharing!.scoreItem,
+                                      null,
                                       transactionSharing!.categoryItem,
                                       transactionSharing!.amount,
                                       transactionSharing!.date,
@@ -73,8 +78,9 @@ class EditBuyScreen extends StatelessWidget {
                                           final currentState = BlocProvider.of<
                                                   EditBuyScreenCubit>(context)
                                               .state;
-
+                                          print(currentState);
                                           final item = TransactionSharingModel(
+                                              id: currentState.id,
                                               scoreItem: currentState.scoreItem,
                                               categoryItem:
                                                   currentState.categoryItem,

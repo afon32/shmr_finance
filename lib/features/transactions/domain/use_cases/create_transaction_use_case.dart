@@ -5,13 +5,13 @@ import '../entities/transaction.dart';
 import '../repositories/transactions_repository.dart';
 
 class CreateTransactionUseCase
-    implements BaseUseCase<Transaction, CreateTransactionUseCaseRequest> {
+    implements BaseUseCase<Transaction?, CreateTransactionUseCaseRequest> {
   final TransactionsRepository _repository;
 
   CreateTransactionUseCase({required TransactionsRepository repository})
       : _repository = repository;
 
   @override
-  Future<Transaction> execute(CreateTransactionUseCaseRequest request) =>
+  Future<Transaction?> execute(CreateTransactionUseCaseRequest request) =>
       _repository.createTransaction(request);
 }

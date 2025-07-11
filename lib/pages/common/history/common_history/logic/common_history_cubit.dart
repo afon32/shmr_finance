@@ -39,7 +39,7 @@ class CommonHistoryCubit extends Cubit<CommonHistoryState> {
   }
   SortType _currentSortType = SortType.none;
 
-  void getHistory(DateTime startDate, DateTime endDate) async {
+  Future<void> getHistory(DateTime startDate, DateTime endDate) async {
     print(startDate.toString());
     emit(CommonHistoryState.loading());
     final request = GetTransactionByPeriodUseCaseRequest(
@@ -90,7 +90,7 @@ class CommonHistoryCubit extends Cubit<CommonHistoryState> {
     }
   }
 
-  void updateBuy(int buyId, int accountId, int categoryId, double amount,
+  Future<void> updateBuy(int buyId, int accountId, int categoryId, double amount,
       DateTime date, String? comment) async {
     try {
       final request = UpdateTransactionUseCaseRequest(
@@ -105,7 +105,7 @@ class CommonHistoryCubit extends Cubit<CommonHistoryState> {
     } on Exception catch (e) {}
   }
 
-  void createBuy(int accountId, int categoryId, double amount, DateTime date,
+  Future<void> createBuy(int accountId, int categoryId, double amount, DateTime date,
       String? comment) async {
     try {
       final request = CreateTransactionUseCaseRequest(
@@ -118,7 +118,7 @@ class CommonHistoryCubit extends Cubit<CommonHistoryState> {
     } on Exception catch (e) {}
   }
 
-    void deleteBuy(int id) async {
+    Future<void> deleteBuy(int id) async {
     try {
       await _deleteTransactionUseCase.execute(id);
     } on Exception catch (e) {}

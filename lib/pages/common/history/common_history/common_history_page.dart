@@ -143,7 +143,7 @@ class __Content extends StatelessWidget {
 
                   return ShmrUniversalListItem(
                     leadingEmoji: expenceItem.emoji,
-                    leftTitle: expenceItem.categoryItem.name,
+                    leftTitle: expenceItem.categoryItem?.name ?? 'undef',
                     leftSubtitle: expenceItem.subtitle,
                     rigthTitle: '${expenceItem.summ} ${expenceItem.moneySign}',
                     rightSubtitle: DateFormatter.toDateWithoutSeconds(
@@ -171,42 +171,48 @@ class __Content extends StatelessWidget {
                             date: expenceItem.datetime,
                             comment: expenceItem.subtitle,
                           ),
+                          pageType: BlocProvider.of<CommonHistoryCubit>(context)
+                              .pageType,
                           onExitTap: modalContext.pop,
-                          onApproveTap: (item) {
+                          onApproveTap: (item) async {
                             modalContext.pop();
-                            BlocProvider.of<CommonHistoryCubit>(context)
-                                .updateBuy(
-                                    item.id!,
-                                    item.scoreItem!.id,
-                                    item.categoryItem!.id,
-                                    item.amount!,
-                                    item.date,
-                                    item.comment);
-                            BlocProvider.of<CommonHistoryCubit>(context)
-                                .getHistory(
-                                    BlocProvider.of<CommonHistoryDateCubit>(
-                                            context)
-                                        .state
-                                        .startTime,
-                                    BlocProvider.of<CommonHistoryDateCubit>(
-                                            context)
-                                        .state
-                                        .startTime);
+                            if (context.mounted) {
+                              await BlocProvider.of<CommonHistoryCubit>(context)
+                                  .updateBuy(
+                                      item.id!,
+                                      item.scoreItem!.id,
+                                      item.categoryItem!.id,
+                                      item.amount!,
+                                      item.date,
+                                      item.comment);
+                              await BlocProvider.of<CommonHistoryCubit>(context)
+                                  .getHistory(
+                                      BlocProvider.of<CommonHistoryDateCubit>(
+                                              context)
+                                          .state
+                                          .startTime,
+                                      BlocProvider.of<CommonHistoryDateCubit>(
+                                              context)
+                                          .state
+                                          .endTime);
+                            }
                           },
-                          onDeleteTap: () {
+                          onDeleteTap: () async {
                             modalContext.pop();
-                            BlocProvider.of<CommonHistoryCubit>(context)
-                                .deleteBuy(expenceItem.id);
-                            BlocProvider.of<CommonHistoryCubit>(context)
-                                .getHistory(
-                                    BlocProvider.of<CommonHistoryDateCubit>(
-                                            context)
-                                        .state
-                                        .startTime,
-                                    BlocProvider.of<CommonHistoryDateCubit>(
-                                            context)
-                                        .state
-                                        .startTime);
+                            if (context.mounted) {
+                              await BlocProvider.of<CommonHistoryCubit>(context)
+                                  .deleteBuy(expenceItem.id);
+                              await BlocProvider.of<CommonHistoryCubit>(context)
+                                  .getHistory(
+                                      BlocProvider.of<CommonHistoryDateCubit>(
+                                              context)
+                                          .state
+                                          .startTime,
+                                      BlocProvider.of<CommonHistoryDateCubit>(
+                                              context)
+                                          .state
+                                          .endTime);
+                            }
                           }),
                     ),
                   );
@@ -224,22 +230,23 @@ class __Content extends StatelessWidget {
                   HistoryPageType.expences => S.of(context).expences_history,
                   HistoryPageType.incomes => S.of(context).incomes_history,
                 },
+                pageType: BlocProvider.of<CommonHistoryCubit>(context).pageType,
                 onExitTap: modalContext.pop,
-                onApproveTap: (item) {
+                onApproveTap: (item) async {
                   modalContext.pop();
-                  BlocProvider.of<CommonHistoryCubit>(context).createBuy(
-                      item.scoreItem!.id,
-                      item.categoryItem!.id,
-                      item.amount!,
-                      item.date,
-                      item.comment);
-                  BlocProvider.of<CommonHistoryCubit>(context).getHistory(
-                      BlocProvider.of<CommonHistoryDateCubit>(context)
-                          .state
-                          .startTime,
-                      BlocProvider.of<CommonHistoryDateCubit>(context)
-                          .state
-                          .startTime);
+                  if (context.mounted) {
+                    await BlocProvider.of<CommonHistoryCubit>(context)
+                        .createBuy(item.scoreItem!.id, item.categoryItem!.id,
+                            item.amount!, item.date, item.comment);
+                    await BlocProvider.of<CommonHistoryCubit>(context)
+                        .getHistory(
+                            BlocProvider.of<CommonHistoryDateCubit>(context)
+                                .state
+                                .startTime,
+                            BlocProvider.of<CommonHistoryDateCubit>(context)
+                                .state
+                                .endTime);
+                  }
                 },
               ),
             );

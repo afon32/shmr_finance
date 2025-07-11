@@ -1,4 +1,4 @@
-import 'package:shmr_finance/data/dto/responses/export.dart';
+import 'package:shmr_finance/data/network/dto/responses/export.dart';
 import 'package:shmr_finance/features/account/domain/entities/account_history.dart';
 import 'package:shmr_finance/features/account/domain/entities/account_history_item.dart';
 import 'package:shmr_finance/features/account/domain/entities/account_state.dart';

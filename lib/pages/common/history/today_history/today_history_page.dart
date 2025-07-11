@@ -96,10 +96,9 @@ class __Content extends StatelessWidget {
                       '${totalItem.totalAmount} ${totalItem.currencySign}');
             } else {
               final expenceItem = items[index - 1];
-
               return ShmrUniversalListItem(
                 leadingEmoji: expenceItem.emoji,
-                leftTitle: expenceItem.categoryItem.name,
+                leftTitle: expenceItem.categoryItem?.name ?? 'undef',
                 leftSubtitle: expenceItem.subtitle,
                 rigthTitle: '${expenceItem.summ} ${expenceItem.moneySign}',
                 isChevroned: true,
@@ -123,25 +122,32 @@ class __Content extends StatelessWidget {
                         date: expenceItem.date,
                         comment: expenceItem.subtitle,
                       ),
+                      pageType:
+                          BlocProvider.of<HistoryTodayCubit>(context).pageType,
                       onExitTap: modalContext.pop,
-                      onApproveTap: (item) {
+                      onApproveTap: (item) async {
                         modalContext.pop();
-                        BlocProvider.of<HistoryTodayCubit>(context).updateBuy(
-                            item.id!,
-                            item.scoreItem!.id,
-                            item.categoryItem!.id,
-                            item.amount!,
-                            item.date,
-                            item.comment);
-                        BlocProvider.of<HistoryTodayCubit>(context)
-                            .getHistory();
+                        if (context.mounted) {
+                          await BlocProvider.of<HistoryTodayCubit>(context)
+                              .updateBuy(
+                                  item.id!,
+                                  item.scoreItem!.id,
+                                  item.categoryItem!.id,
+                                  item.amount!,
+                                  item.date,
+                                  item.comment);
+                          await BlocProvider.of<HistoryTodayCubit>(context)
+                              .getHistory();
+                        }
                       },
-                      onDeleteTap: () {
+                      onDeleteTap: () async {
                         modalContext.pop();
-                        BlocProvider.of<HistoryTodayCubit>(context)
-                            .deleteBuy(expenceItem.id);
-                        BlocProvider.of<HistoryTodayCubit>(context)
-                            .getHistory();
+                        if (context.mounted) {
+                          await BlocProvider.of<HistoryTodayCubit>(context)
+                              .deleteBuy(expenceItem.id);
+                          await BlocProvider.of<HistoryTodayCubit>(context)
+                              .getHistory();
+                        }
                       }),
                 ),
               );
@@ -159,16 +165,19 @@ class __Content extends StatelessWidget {
               HistoryPageType.expences => S.of(context).expences_today,
               HistoryPageType.incomes => S.of(context).incomes_today,
             },
+            pageType: BlocProvider.of<HistoryTodayCubit>(context).pageType,
             onExitTap: modalContext.pop,
-            onApproveTap: (item) {
+            onApproveTap: (item) async {
               modalContext.pop();
-              BlocProvider.of<HistoryTodayCubit>(context).createBuy(
-                  item.scoreItem!.id,
-                  item.categoryItem!.id,
-                  item.amount!,
-                  item.date,
-                  item.comment);
-              BlocProvider.of<HistoryTodayCubit>(context).getHistory();
+              if (context.mounted) {
+                await BlocProvider.of<HistoryTodayCubit>(context).createBuy(
+                    item.scoreItem!.id,
+                    item.categoryItem!.id,
+                    item.amount!,
+                    item.date,
+                    item.comment);
+                await BlocProvider.of<HistoryTodayCubit>(context).getHistory();
+              }
             },
           ),
         );

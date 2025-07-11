@@ -16,16 +16,14 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   TransactionsRepositoryImpl({required ApiUtil apiUtil}) : _apiUtil = apiUtil;
 
   @override
-  Future<Transaction> createTransaction(
-      CreateTransactionUseCaseRequest request) {
-    _apiUtil.createNewTransaction(request);
-    throw UnimplementedError();
+  Future<Transaction?> createTransaction(
+      CreateTransactionUseCaseRequest request) async {
+    return await _apiUtil.createNewTransaction(request);
   }
 
   @override
   Future<bool> deleteTransaction(id) {
-    _apiUtil.deleteTransaction(id);
-    throw UnimplementedError();
+    return _apiUtil.deleteTransaction(id);
   }
 
   @override
@@ -38,7 +36,9 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   Future<List<TransactionDetails>> getIncomesTransactionHistoryByPeriod(
       GetTransactionByPeriodUseCaseRequest request) async {
     final response = await _apiUtil.getTransactionByPeriod(request);
-    final result = response.where((e) => e.category.isIncome).toList();
+    final result = response
+        .where((e) => e.category != null && e.category!.isIncome)
+        .toList();
     return result;
   }
 
@@ -46,14 +46,15 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   Future<List<TransactionDetails>> getOutcomesTransactionHistoryByPeriod(
       GetTransactionByPeriodUseCaseRequest request) async {
     final response = await _apiUtil.getTransactionByPeriod(request);
-    final result = response.where((e) => !e.category.isIncome).toList();
+    final result = response
+        .where((e) => e.category != null && !e.category!.isIncome)
+        .toList();
     return result;
   }
 
   @override
-  Future<TransactionDetails> updateTransaction(
+  Future<bool> updateTransaction(
       UpdateTransactionUseCaseRequest request) {
-    _apiUtil.updateTransaction(request);
-    throw UnimplementedError();
+    return _apiUtil.updateTransaction(request);
   }
 }

@@ -1,5 +1,5 @@
-import 'package:shmr_finance/data/dto/responses/account_response/stat_item.dart';
-import 'package:shmr_finance/data/dto/responses/export.dart';
+import 'package:shmr_finance/data/network/dto/responses/account_response/stat_item.dart';
+import 'package:shmr_finance/data/network/dto/responses/export.dart';
 import 'package:shmr_finance/features/account/domain/entities/account_details.dart';
 import 'package:shmr_finance/features/account/domain/entities/stat_item.dart';
 import 'package:shmr_finance/model/common_enums/currency_enum.dart';

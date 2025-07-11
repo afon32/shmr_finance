@@ -9,11 +9,17 @@ enum Currency {
 
   static Currency fromString(String string) {
     switch (string.toUpperCase()) {
+      case '₽':
+        return Currency.rub;
       case 'RUB':
         return Currency.rub;
+      case '\$':
+        return Currency.usd;
       case 'USD':
         return Currency.usd;
       case 'EUR':
+        return Currency.eur;
+      case '€':
         return Currency.eur;
       default:
         return Currency.undefined;

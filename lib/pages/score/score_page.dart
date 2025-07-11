@@ -35,9 +35,10 @@ class _Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScopeBuilder<AppScopeContainer>.withPlaceholder(
         builder: (context, scope) => BlocProvider(
-              create: (context) =>
-                  ScorePageCubit(useCase: scope.getAllAccountsUseCaseDep.get)
-                    ..getAccount(),
+              create: (context) => ScorePageCubit(
+                useCase: scope.getAllAccountsUseCaseDep.get,
+                updateAccountUseCase: scope.updateAccountByIdUseCaseDep.get,
+              )..getAccount(),
               child: BlocBuilder<ScorePageCubit, ScorePageState>(
                   builder: (context, state) => switch (state) {
                         Loading() => __Loading(),

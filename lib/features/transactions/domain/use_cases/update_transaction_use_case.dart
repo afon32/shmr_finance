@@ -6,13 +6,13 @@ import '../repositories/transactions_repository.dart';
 
 class UpdateTransactionUseCase
     implements
-        BaseUseCase<TransactionDetails, UpdateTransactionUseCaseRequest> {
+        BaseUseCase<bool, UpdateTransactionUseCaseRequest> {
   final TransactionsRepository _repository;
 
   UpdateTransactionUseCase({required TransactionsRepository repository})
       : _repository = repository;
 
   @override
-  Future<TransactionDetails> execute(UpdateTransactionUseCaseRequest request) =>
+  Future<bool> execute(UpdateTransactionUseCaseRequest request) =>
       _repository.updateTransaction(request);
 }

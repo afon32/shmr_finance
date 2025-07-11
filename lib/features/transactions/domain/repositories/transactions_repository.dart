@@ -6,12 +6,12 @@ import '../entities/transaction.dart';
 import '../entities/transaction_details.dart';
 
 abstract class TransactionsRepository {
-  Future<Transaction> createTransaction(
+  Future<Transaction?> createTransaction(
       CreateTransactionUseCaseRequest request);
 
   Future<TransactionDetails> getTransactionById(int id);
 
-  Future<TransactionDetails> updateTransaction(
+  Future<bool> updateTransaction(
       UpdateTransactionUseCaseRequest request);
 
   Future<bool> deleteTransaction(id);

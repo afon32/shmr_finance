@@ -24,6 +24,17 @@ abstract class ADao<T> {
   RecordRef<String, Map<String, Object?>> _recordRef(T value) =>
       _store.record(primaryKeyOf(value));
 
+  Future<void> delete({required String key}) => _lock.synchronized(
+        () async {
+          try {
+            await _store.record(key).delete(_dbClient);
+          } on Object catch (e) {
+            print(e);
+            rethrow;
+          }
+        },
+      );
+
   Future<void> add(T value) => _lock.synchronized(
         () async {
           try {
@@ -64,6 +75,11 @@ abstract class ADao<T> {
           }
         },
       );
+
+  Future<List<T>> getAll() => _lock.synchronized(() async {
+        final snapshots = await _store.find(_dbClient);
+        return snapshots.map((snapshot) => fromJson(snapshot.value)).toList();
+      });
 
   Future<void> drop() => _lock.synchronized(
         () => _store.drop(_dbClient),

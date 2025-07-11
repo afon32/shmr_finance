@@ -1,3 +1,4 @@
+import 'package:shmr_finance/core/network_client/shmr_network_client.dart';
 import 'package:shmr_finance/data/local/sembast_db/sembast_repository.dart';
 import 'package:shmr_finance/data/network/network_repository_impl.dart';
 import 'package:shmr_finance/features/account/data/account_repository_impl.dart';
@@ -14,18 +15,31 @@ import 'package:shmr_finance/features/transactions/domain/use_cases/get_incomes_
 import 'package:shmr_finance/features/transactions/domain/use_cases/get_outcomes_transactions_history_by_period_use_case.dart';
 import 'package:shmr_finance/features/transactions/domain/use_cases/update_transaction_use_case.dart';
 import 'package:shmr_finance/service/api/api_util.dart';
+import 'package:shmr_finance/service/worker_manager/worker_manager_initializer.dart';
 import 'package:yx_scope/yx_scope.dart';
 
 import 'ext/holders_mixin.dart';
 
 class AppScopeContainer extends ScopeContainer with HoldersMixin {
-  late final networkDatasourceRepositoryDep = dep(() => NetworkServiceImpl());
+  late final networkDatasourceRepositoryDep = dep(() => NetworkServiceImpl(
+        networkClientDep.get,
+        accountStateHolder.get,
+      ));
 
-  late final localDataSourceRepositoryDep = dep(() => SembastRepository());
+  late final localDataSourceRepositoryDep = dep(() => SembastRepository(
+        accountDao: localAccountDaoDep.get,
+        transactionDao: localTransactionDaoDep.get,
+        categoryDao: localCategoryDaoDep.get,
+        
+      ));
 
-  late final apiUtilDep = dep(() => ApiUtil(
-      networkService: networkDatasourceRepositoryDep.get,
-      localService: localDataSourceRepositoryDep.get));
+  late final apiUtilDep = asyncDep(() => ApiUtil(
+        connectionStatusStateHolder: connectionStatusStateHolder.get,
+        networkService: networkDatasourceRepositoryDep.get,
+        localService: localDataSourceRepositoryDep.get,
+        coldBootStateHolder: coldBootStateHolder.get,
+        localTransactionIdHolder: localTransactionIdHolder.get,
+      ));
 
   // Account
 
@@ -59,7 +73,7 @@ class AppScopeContainer extends ScopeContainer with HoldersMixin {
 
   late final createTransactionsUseCaseDep = dep(() =>
       CreateTransactionUseCase(repository: transactionsRepositoryDep.get));
-  
+
   late final deleteTransactionsUseCaseDep = dep(() =>
       DeleteTransactionUseCase(repository: transactionsRepositoryDep.get));
 
@@ -74,8 +88,24 @@ class AppScopeContainer extends ScopeContainer with HoldersMixin {
   late final getCategoriesFromTypeUseCaseDep = dep(() =>
       GetCategoriesFromTypeUseCase(repository: categoriesRepositoryDep.get));
 
+  // Network
+
+  late final networkClientDep =
+      dep(() => ShmrNetworkClient(secretsStateHolder.get));
+
+  late final workerManagerInitializer =
+      asyncDep(() => WorkerManagerInitializer());
+
   @override
   List<Set<AsyncDep>> get initializeQueue => [
-        {dbInitializer}
+        {
+          dbInitializer,
+          secretsInitializer,
+          workerManagerInitializer,
+          connectionStatusStateHolder,
+        },
+        {
+          apiUtilDep,
+        },
       ];
 }

@@ -1,4 +1,4 @@
-import 'package:shmr_finance/data/dto/requests/export.dart';
+import 'package:shmr_finance/data/network/dto/requests/export.dart';
 import 'package:shmr_finance/features/transactions/domain/entities/transaction.dart';
 
 extension ApiTransactionsX on ApiTransaction {

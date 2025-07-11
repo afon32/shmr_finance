@@ -15,7 +15,6 @@ class CategoriesRepositoryImpl implements CategoriesRepository {
 
   @override
   Future<List<Category>> getCategoriesFromType(bool isIncome) {
-    _apiUtil.getCategoryByType(isIncome);
-    throw UnimplementedError();
+    return _apiUtil.getCategoryByType(isIncome);
   }
 }

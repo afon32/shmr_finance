@@ -1,37 +1,51 @@
-import '../../dto/requests/export.dart';
-import '../../dto/responses/export.dart';
+import '../dto/models/export.dart';
 
 /// Репозиторий для локальной БДшки
 abstract class LocalRepository {
   void compareData();
   // Account
-  Future<List<ApiAccount>> getAllAccounts(String token);
+  Future<List<DBAccount>> getAllAccounts();
 
-  Future<bool> createNewAccount(ApiAccountCreateRequest request);
+  // Future<bool> createNewAccount(ApiAccountCreateRequest request);
 
-  Future<ApiAccountResponse> getAccountById(int id);
+  Future<DBAccount?> getAccountById(int id);
 
-  Future<ApiAccount> updateAccount(int id, ApiAccountUpdateRequest request);
+  Future<bool> setAccounts(List<DBAccount> list);
 
-  Future<ApiAccountHistoryResponse> getAccountHistory(int id);
+  Future<DBAccount> updateAccount(int id, DBAccount request);
 
-  // Categories
+  // Future<ApiAccountHistoryResponse> getAccountHistory(int id);
 
-  Future<List<ApiCategory>> getAllCategories();
+  // // Categories
 
-  Future<List<ApiCategory>> getCategoryByType(bool isIncome);
+  Future<DBCategory?> getCategoryById(int id);
 
-  // Transactions
+  Future<List<DBCategory>> getAllCategories();
 
-  Future<ApiTransaction> createNewTransaction(ApiTransactionRequest request);
+  Future<List<DBCategory>> getCategoryByType(bool isIncome);
 
-  Future<ApiTransactionResponse> getTransactionById(int id);
+  Future<bool> setCategories(List<DBCategory> list);
 
-  Future<ApiTransactionResponse> updateTransaction(
-      int id, ApiTransactionRequest request);
+  // // Transactions
+
+  Future<bool> createNewTransaction(DBTransaction request);
+
+  Future<DBTransaction?> getTransactionById(int id);
+
+  Future<bool> updateTransaction(int id, DBTransaction request);
 
   Future<bool> deleteTransaction(int id);
 
-  Future<List<ApiTransactionResponse>> getTransactionByPeriod(
-      int accountId, String startDate, String endDate);
+  Future<List<DBTransaction>> getTransactionByPeriod(
+      int accountId, DateTime startDate, DateTime endDate);
+
+  Future<bool> setTransactions(List<DBTransaction> list);
+
+  Future<List<DBTransaction>> getAllTransactions();
+  
+  Future<void> dropAllTransactions();
+
+  // Future<List<DBEvent>> getEvents();
+
+  // Future<bool> setEvent(DBEvent event);
 }

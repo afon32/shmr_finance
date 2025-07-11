@@ -1,11 +1,11 @@
-import '../../dto/requests/export.dart';
-import '../../dto/responses/export.dart';
+import '../dto/requests/export.dart';
+import '../dto/responses/export.dart';
 
 abstract class NetworkRepository {
   // Account
-  Future<List<ApiAccount>> getAllAccounts(String token);
+  Future<List<ApiAccount>> getAllAccounts();
 
-  Future<bool> createNewAccount(ApiAccountCreateRequest request);
+  Future<ApiAccount> createNewAccount(ApiAccountCreateRequest request);
 
   Future<ApiAccountResponse> getAccountById(int id);
 
@@ -29,5 +29,7 @@ abstract class NetworkRepository {
 
   Future<bool> deleteTransaction(int id);
 
-  Future<List<ApiTransactionResponse>> getTransactionByPeriod(int accountId, String startDate, String endDate);
+  Future<List<ApiTransactionResponse>> getTransactionByPeriod(int accountId, String? startDate, String? endDate);
+
+  // Future<bool> dirtyPost();
 }

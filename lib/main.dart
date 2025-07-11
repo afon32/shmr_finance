@@ -7,7 +7,7 @@ import 'package:shmr_finance/utils/strings/strings_provider.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
 import 'package:yx_scope_flutter/yx_scope_flutter.dart';
 
-void main() async {
+void main(){
   runApp(const ShmrApp());
 }
 
