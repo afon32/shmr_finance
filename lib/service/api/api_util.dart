@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:shmr_finance/core/base/event_abstract/base_event.dart';
 import 'package:shmr_finance/core/connection_listener/connection_listener_cubit.dart';
+import 'package:shmr_finance/core/local_holders/cold_boot_holder.dart';
 import 'package:shmr_finance/data/local/abstract/local_repository.dart';
 import 'package:shmr_finance/data/local/dao/account_dao.dart';
 import 'package:shmr_finance/service/api/mappers/api/api_account_history_response_mapper.dart';
@@ -34,16 +35,18 @@ class ApiUtil {
   final ConnectionStatusStateHolder _connectionStatusStateHolder;
   final NetworkRepository _networkService;
   final LocalRepository _localService;
-
+  final ColdBootStateHolder _coldBootStateHolder;
   final StreamController<BaseEvent> eventsStreamController = StreamController();
 
   ApiUtil({
     required ConnectionStatusStateHolder connectionStatusStateHolder,
     required NetworkRepository networkService,
     required LocalRepository localService,
+    required ColdBootStateHolder coldBootStateHolder,
   })  : _connectionStatusStateHolder = connectionStatusStateHolder,
         _networkService = networkService,
-        _localService = localService {
+        _localService = localService,
+        _coldBootStateHolder = coldBootStateHolder {
     _startListen();
   }
 

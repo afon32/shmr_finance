@@ -1,5 +1,7 @@
 import 'package:rxdart/rxdart.dart';
 import 'package:sembast/sembast_io.dart';
+import 'package:shmr_finance/core/local_holders/cold_boot_holder.dart';
+import 'package:shmr_finance/service/db/cold_boot/cold_boot_dao.dart';
 import 'package:shmr_finance/utils/constants.dart';
 import 'package:shmr_finance/utils/strings/strings_provider.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
@@ -18,8 +20,13 @@ class ShmrDatabase extends ADb {
 
   final StringsProvider _stringsProvider;
   final ThemeProvider _themeProvider;
+  final ColdBootStateHolder _coldBootStateHolder;
 
-  ShmrDatabase(this._stringsProvider, this._themeProvider);
+  ShmrDatabase(
+    this._stringsProvider,
+    this._themeProvider,
+    this._coldBootStateHolder,
+  );
 
   /// аксесс обжект для кастомизации
   AppCustomizationDao? _appCustomizationDao;
@@ -29,6 +36,16 @@ class ShmrDatabase extends ADb {
       throw Exception('DataBase is not ready');
     }
     return _appCustomizationDao ??= AppCustomizationDao(dbClient);
+  }
+
+  /// аксесс обжект для cold boot
+  ColdBootDao? _coldBootDao;
+
+  ColdBootDao get coldBootDao {
+    if (!isReady) {
+      throw Exception('DataBase is not ready');
+    }
+    return _coldBootDao ??= ColdBootDao(dbClient);
   }
 
   @override
@@ -52,7 +69,6 @@ class ShmrDatabase extends ADb {
 
   Future<void> _restoreLocale({required int userId}) async {
     final localeCode = await appCustomizationDao.getLocalCode(userId);
-    print('restore locale code : $localeCode');
     _stringsProvider.localeCode != localeCode
         ? _stringsProvider.toggleLang()
         : print('locale the same');
@@ -60,7 +76,6 @@ class ShmrDatabase extends ADb {
 
   Future<void> _restoreTheme({required int userId}) async {
     final isLightTheme = await appCustomizationDao.getTheme(userId);
-    print('restore theme light mode : $isLightTheme');
     _themeProvider.isLight != isLightTheme
         ? _themeProvider.toggleTheme()
         : print('theme the same');
@@ -71,7 +86,6 @@ class ShmrDatabase extends ADb {
     globalSubscriptions = CompositeSubscription()
       ..add(
         _themeProvider.stream.asyncMap((mode) {
-          print('new theme, sync');
           appCustomizationDao.setTheme(mode, userId);
         }).listen((_) {}),
       )
@@ -80,6 +94,13 @@ class ShmrDatabase extends ADb {
             .asyncMap(
               (strings) =>
                   appCustomizationDao.setLocale(strings.locale, userId),
+            )
+            .listen((_) {}),
+      )
+      ..add(
+        _coldBootStateHolder.stream
+            .asyncMap(
+              (isCold) => coldBootDao.setColdBoot(isCold, userId),
             )
             .listen((_) {}),
       );

@@ -35,6 +35,7 @@ class AppScopeContainer extends ScopeContainer with HoldersMixin {
         connectionStatusStateHolder: connectionStatusStateHolder.get,
         networkService: networkDatasourceRepositoryDep.get,
         localService: localDataSourceRepositoryDep.get,
+        coldBootStateHolder: coldBootStateHolder.get
       ));
 
   // Account
