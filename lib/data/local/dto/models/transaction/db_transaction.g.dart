@@ -8,9 +8,10 @@ part of 'db_transaction.dart';
 
 _DBTransaction _$DBTransactionFromJson(Map<String, dynamic> json) =>
     _DBTransaction(
-      id: (json['id'] as num).toInt(),
+      id: json['id'] as String,
       accountId: (json['accountId'] as num).toInt(),
       categoryId: (json['categoryId'] as num).toInt(),
+      isIncome: json['isIncome'] as bool?,
       amount: json['amount'] as String,
       transactionDate: json['transactionDate'] as String,
       comment: json['comment'] as String?,
@@ -23,6 +24,7 @@ Map<String, dynamic> _$DBTransactionToJson(_DBTransaction instance) =>
       'id': instance.id,
       'accountId': instance.accountId,
       'categoryId': instance.categoryId,
+      'isIncome': instance.isIncome,
       'amount': instance.amount,
       'transactionDate': instance.transactionDate,
       'comment': instance.comment,

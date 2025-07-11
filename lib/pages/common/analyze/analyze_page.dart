@@ -199,7 +199,7 @@ class __Content extends StatelessWidget {
       final expenceItem = expenceItems[index];
       return ShmrUniversalListItem(
         leadingEmoji: expenceItem.emoji,
-        leftTitle: expenceItem.categoryName,
+        leftTitle: expenceItem.categoryName ?? 'undef',
         leftSubtitle: expenceItem.subtitle,
         rigthTitle: '${expenceItem.summ} ${expenceItem.moneySign}',
         rightSubtitle: DateFormatter.toDateWithoutSeconds(expenceItem.datetime),

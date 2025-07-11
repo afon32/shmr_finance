@@ -40,6 +40,12 @@ class SembastRepository implements LocalRepository {
     return response;
   }
 
+  @override
+  Future<bool> setAccounts(List<DBAccount> list) async {
+    final data = await accountDao.addAccounts(list);
+    return data;
+  }
+
   // Future<ApiAccount> updateAccount(int id, ApiAccountUpdateRequest request) {
   //   return Future.value(MockedData.updateAccountMock);
   // }
@@ -72,6 +78,12 @@ class SembastRepository implements LocalRepository {
     return result;
   }
 
+  @override
+  Future<bool> setCategories(List<DBCategory> list) async {
+    final data = await categoryDao.addCategories(list);
+    return data;
+  }
+
   // // Transactions
 
   @override
@@ -90,10 +102,10 @@ class SembastRepository implements LocalRepository {
     return data;
   }
 
-  // Future<ApiTransactionResponse> updateTransaction(
-  //     int id, ApiTransactionRequest request) {
-  //   return Future.value(MockedData.updateTransactionMock);
-  // }
+  Future<bool> updateTransaction(int id, DBTransaction request) async {
+    final data = await transactionDao.updateTransaction(request);
+    return data;
+  }
 
   // Future<bool> deleteTransaction(int id) {
   //   return Future.value(MockedData.deleteTransactionMock);

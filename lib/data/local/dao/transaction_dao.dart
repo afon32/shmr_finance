@@ -10,7 +10,7 @@ class TransactionDao extends ADao<DBTransaction> {
       DBTransaction.fromJson(json);
 
   @override
-  String primaryKeyOf(entity) => entity.id.toString();
+  String primaryKeyOf(entity) => entity.id;
 
   @override
   String get storeName => 'shmr_transaction_store';
@@ -18,7 +18,7 @@ class TransactionDao extends ADao<DBTransaction> {
   @override
   Map<String, Object?> toJson(DBTransaction data) => data.toJson();
 
-  Future<List<DBTransaction>> getAllAccounts() async => await getAll();
+  Future<List<DBTransaction>> getAllTransactions() async => await getAll();
 
   Future<List<DBTransaction>> getByPeriod(
       {required DateTime start, required DateTime end}) async {
@@ -31,19 +31,12 @@ class TransactionDao extends ADao<DBTransaction> {
       }
     }
 
-    // final data = allData.map((e) {
-    //   if (DateTime.parse(e.transactionDate).isAfter(start) &&
-    //       DateTime.parse(e.transactionDate).isBefore(end)) {
-    //     return e;
-    //   }
-    // }).toList();
-
     return data;
   }
 
   Future<bool> addTransactions(List<DBTransaction> data) async {
     try {
-      data.map((e) async => await add(e));
+      await Future.wait(data.map((e) => add(e)));
       return true;
     } catch (_) {
       return false;
@@ -52,4 +45,13 @@ class TransactionDao extends ADao<DBTransaction> {
 
   Future<DBTransaction?> getById({required int transactionId}) async =>
       await getByKey(key: transactionId.toString());
+
+  Future<bool> updateTransaction(DBTransaction transaction) async {
+    try {
+      await put(transaction);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
 }

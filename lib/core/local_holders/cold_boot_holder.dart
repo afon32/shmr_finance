@@ -7,4 +7,8 @@ class ColdBootStateHolder extends Cubit<bool> {
     final newState = false;
     emit(newState);
   }
+  void setTrue() {
+    final newState = true;
+    emit(newState);
+  }
 }

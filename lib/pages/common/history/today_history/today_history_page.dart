@@ -98,7 +98,7 @@ class __Content extends StatelessWidget {
               final expenceItem = items[index - 1];
               return ShmrUniversalListItem(
                 leadingEmoji: expenceItem.emoji,
-                leftTitle: expenceItem.categoryItem.name,
+                leftTitle: expenceItem.categoryItem?.name ?? 'undef',
                 leftSubtitle: expenceItem.subtitle,
                 rigthTitle: '${expenceItem.summ} ${expenceItem.moneySign}',
                 isChevroned: true,

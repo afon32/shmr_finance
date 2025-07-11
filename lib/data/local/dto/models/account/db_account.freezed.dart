@@ -16,12 +16,12 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DBAccount {
   int get id;
-  int get userId;
+  int? get userId;
   String get name;
   String get balance;
   String get currency;
-  String get createdAt;
-  String get updatedAt;
+  String? get createdAt;
+  String? get updatedAt;
 
   /// Create a copy of DBAccount
   /// with the given fields replaced by the non-null parameter values.
@@ -68,12 +68,12 @@ abstract mixin class $DBAccountCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      int userId,
+      int? userId,
       String name,
       String balance,
       String currency,
-      String createdAt,
-      String updatedAt});
+      String? createdAt,
+      String? updatedAt});
 }
 
 /// @nodoc
@@ -89,22 +89,22 @@ class _$DBAccountCopyWithImpl<$Res> implements $DBAccountCopyWith<$Res> {
   @override
   $Res call({
     Object? id = null,
-    Object? userId = null,
+    Object? userId = freezed,
     Object? name = null,
     Object? balance = null,
     Object? currency = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      userId: null == userId
+      userId: freezed == userId
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: null == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -117,14 +117,14 @@ class _$DBAccountCopyWithImpl<$Res> implements $DBAccountCopyWith<$Res> {
           ? _self.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _self.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -146,7 +146,7 @@ class _DBAccount implements DBAccount {
   @override
   final int id;
   @override
-  final int userId;
+  final int? userId;
   @override
   final String name;
   @override
@@ -154,9 +154,9 @@ class _DBAccount implements DBAccount {
   @override
   final String currency;
   @override
-  final String createdAt;
+  final String? createdAt;
   @override
-  final String updatedAt;
+  final String? updatedAt;
 
   /// Create a copy of DBAccount
   /// with the given fields replaced by the non-null parameter values.
@@ -211,12 +211,12 @@ abstract mixin class _$DBAccountCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      int userId,
+      int? userId,
       String name,
       String balance,
       String currency,
-      String createdAt,
-      String updatedAt});
+      String? createdAt,
+      String? updatedAt});
 }
 
 /// @nodoc
@@ -232,22 +232,22 @@ class __$DBAccountCopyWithImpl<$Res> implements _$DBAccountCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
-    Object? userId = null,
+    Object? userId = freezed,
     Object? name = null,
     Object? balance = null,
     Object? currency = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_DBAccount(
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      userId: null == userId
+      userId: freezed == userId
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: null == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -260,14 +260,14 @@ class __$DBAccountCopyWithImpl<$Res> implements _$DBAccountCopyWith<$Res> {
           ? _self.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
+              as String?,
+      updatedAt: freezed == updatedAt
           ? _self.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }

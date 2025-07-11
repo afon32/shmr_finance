@@ -19,11 +19,11 @@ class CategoryDao extends ADao<DBCategory> {
   @override
   Map<String, Object?> toJson(DBCategory data) => data.toJson();
 
-  Future<List<DBCategory>> getAllAccounts() async => await getAll();
+  Future<List<DBCategory>> getAllCategories() async => await getAll();
 
-  Future<bool> addAccounts(List<DBCategory> data) async {
+  Future<bool> addCategories(List<DBCategory> data) async {
     try {
-      data.map((e) async => await add(e));
+      await Future.wait(data.map((e) => add(e)));
       return true;
     } catch (_) {
       return false;

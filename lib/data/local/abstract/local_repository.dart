@@ -10,6 +10,8 @@ abstract class LocalRepository {
 
   Future<DBAccount?> getAccountById(int id);
 
+  Future<bool> setAccounts(List<DBAccount> list);
+
   // Future<ApiAccount> updateAccount(int id, ApiAccountUpdateRequest request);
 
   // Future<ApiAccountHistoryResponse> getAccountHistory(int id);
@@ -22,14 +24,15 @@ abstract class LocalRepository {
 
   Future<List<DBCategory>> getCategoryByType(bool isIncome);
 
+  Future<bool> setCategories(List<DBCategory> list);
+
   // // Transactions
 
   Future<bool> createNewTransaction(DBTransaction request);
 
   Future<DBTransaction?> getTransactionById(int id);
 
-  // Future<ApiTransactionResponse> updateTransaction(
-  //     int id, ApiTransactionRequest request);
+  Future<bool> updateTransaction(int id, DBTransaction request);
 
   // Future<bool> deleteTransaction(int id);
 

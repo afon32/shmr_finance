@@ -15,7 +15,7 @@ class AnalyzeViewModel {
 
   factory AnalyzeViewModel.fromTransactionDetails(
       List<TransactionDetails> transactionDetails) {
-    final grouped = groupBy(transactionDetails, (e) => e.category.id);
+    final grouped = groupBy(transactionDetails, (e) => e.category?.id ?? -1);
     int totalAmount = 0;
     String? sign;
     for (List<TransactionDetails> details in grouped.values) {
@@ -30,21 +30,21 @@ class AnalyzeViewModel {
       String? moneySign;
       final categoriesExpences = entry.value.map((e) {
         categoryAmount += e.amount.round();
-        moneySign ??= e.account.currency.sign;
-        categoryName ??= e.category.name;
-        emoji ??= e.category.emoji;
-        moneySign ??= e.account.currency.sign;
-        sign ??= e.account.currency.sign;
+        moneySign ??= e.account?.currency.sign;
+        categoryName ??= e.category?.name;
+        emoji ??= e.category?.emoji;
+        moneySign ??= e.account?.currency.sign;
+        sign ??= e.account?.currency.sign;
         return ExpenceItem.buildWith(
             e.id,
-            e.category.emoji,
-            e.category.name,
+            e.category?.emoji,
+            e.category?.name,
             e.comment,
             e.amount.round(),
-            e.account.currency.sign,
+            e.account?.currency.sign,
             e.transactionDate);
       }).toList();
-      
+
       categoriesExpences.sort((a, b) => b.datetime.compareTo(a.datetime));
 
       final categoryItem = ExpenceCategoryItem._(
@@ -119,11 +119,11 @@ class ExpenceCategoryItem {
 
 class ExpenceItem {
   final int id;
-  final String emoji;
-  final String categoryName;
+  final String? emoji;
+  final String? categoryName;
   final String? subtitle;
   final int summ;
-  final String moneySign;
+  final String? moneySign;
   final DateTime datetime;
 
   ExpenceItem._(
@@ -135,8 +135,15 @@ class ExpenceItem {
       required this.moneySign,
       required this.datetime});
 
-  factory ExpenceItem.buildWith(int id, String emoji, String categoryName,
-          String? subtitle, int summ, String moneySign, DateTime datetime) =>
+  factory ExpenceItem.buildWith(
+    int id,
+    String? emoji,
+    String? categoryName,
+    String? subtitle,
+    int summ,
+    String? moneySign,
+    DateTime datetime,
+  ) =>
       ExpenceItem._(
           id: id,
           emoji: emoji,

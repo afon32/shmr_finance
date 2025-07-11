@@ -19,18 +19,18 @@ class HistoryTodayViewModel {
     String? sign;
     final expences = transactionDetails.map((e) {
       amount += e.amount.round();
-      sign ??= e.account.currency.sign;
+      sign ??= e.account?.currency.sign;
       return ExpenceItem.buildWith(
           e.id,
-          e.category.emoji,
-          e.category.id,
-          e.account.id,
-          e.account.name,
-          e.category.name,
+          e.category?.emoji,
+          e.category?.id,
+          e.account?.id,
+          e.account?.name,
+          e.category?.name,
           e.transactionDate,
           e.comment,
           e.amount,
-          e.account.currency.sign);
+          e.account?.currency.sign);
     }).toList();
 
     final total = TotalAmountItem.buildWith(amount, sign);
@@ -52,13 +52,13 @@ class TotalAmountItem {
 
 class ExpenceItem {
   final int id;
-  final String emoji;
-  final AccountItem accountItem;
-  final CategoryItem categoryItem;
+  final String? emoji;
+  final AccountItem? accountItem;
+  final CategoryItem? categoryItem;
   final DateTime date;
   final String? subtitle;
   final double summ;
-  final String moneySign;
+  final String? moneySign;
 
   ExpenceItem._(
       {required this.id,
@@ -72,20 +72,24 @@ class ExpenceItem {
 
   factory ExpenceItem.buildWith(
           int id,
-          String emoji,
-          int categoryId,
-          int accountId,
-          String accountName,
-          String categoryName,
+          String? emoji,
+          int? categoryId,
+          int? accountId,
+          String? accountName,
+          String? categoryName,
           DateTime date,
           String? subtitle,
           double summ,
-          String moneySign) =>
+          String? moneySign) =>
       ExpenceItem._(
           id: id,
           emoji: emoji,
-          accountItem: AccountItem(id: accountId, name: accountName),
-          categoryItem: CategoryItem(id: categoryId, name: categoryName),
+          accountItem: (accountId != null && accountName != null)
+              ? AccountItem(id: accountId, name: accountName)
+              : null,
+          categoryItem: (categoryId != null && categoryName != null)
+              ? CategoryItem(id: categoryId, name: categoryName)
+              : null,
           date: date,
           subtitle: subtitle,
           summ: summ,

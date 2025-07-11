@@ -8,12 +8,12 @@ part of 'db_account.dart';
 
 _DBAccount _$DBAccountFromJson(Map<String, dynamic> json) => _DBAccount(
       id: (json['id'] as num).toInt(),
-      userId: (json['userId'] as num).toInt(),
+      userId: (json['userId'] as num?)?.toInt(),
       name: json['name'] as String,
       balance: json['balance'] as String,
       currency: json['currency'] as String,
-      createdAt: json['createdAt'] as String,
-      updatedAt: json['updatedAt'] as String,
+      createdAt: json['createdAt'] as String?,
+      updatedAt: json['updatedAt'] as String?,
     );
 
 Map<String, dynamic> _$DBAccountToJson(_DBAccount instance) =>

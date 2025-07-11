@@ -25,4 +25,9 @@ class ColdBootDao extends ADao<ColdBootDto> {
     final newAppData = currentAppData.copyWith(isColdBoot: isCold);
     await put(newAppData);
   }
+
+    Future<bool> getColdBootFlag(int userId) async {
+    final currentAppData = await _get(userId: userId);
+    return currentAppData.isColdBoot;
+  }
 }

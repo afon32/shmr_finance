@@ -2,8 +2,6 @@ import 'package:shmr_finance/service/db/abstract/a_dao.dart';
 
 import '../dto/models/account/db_account.dart';
 
-
-
 class AccountDao extends ADao<DBAccount> {
   AccountDao(super.dbClient);
 
@@ -23,7 +21,7 @@ class AccountDao extends ADao<DBAccount> {
 
   Future<bool> addAccounts(List<DBAccount> data) async {
     try {
-      data.map((e) async => await add(e));
+      await Future.wait(data.map((e) => add(e)));
       return true;
     } catch (_) {
       return false;
@@ -32,4 +30,13 @@ class AccountDao extends ADao<DBAccount> {
 
   Future<DBAccount?> getById({required int accountId}) async =>
       await getByKey(key: accountId.toString());
+
+  Future<bool> updateAccount(DBAccount account) async {
+    try {
+      await put(account);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
 }

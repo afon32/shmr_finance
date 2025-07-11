@@ -15,9 +15,10 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$DBTransaction {
-  int get id;
+  String get id;
   int get accountId;
   int get categoryId;
+  bool? get isIncome;
   String get amount;
   String get transactionDate;
   String? get comment;
@@ -45,6 +46,8 @@ mixin _$DBTransaction {
                 other.accountId == accountId) &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId) &&
+            (identical(other.isIncome, isIncome) ||
+                other.isIncome == isIncome) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.transactionDate, transactionDate) ||
                 other.transactionDate == transactionDate) &&
@@ -58,11 +61,11 @@ mixin _$DBTransaction {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, accountId, categoryId,
-      amount, transactionDate, comment, createdAt, updatedAt);
+      isIncome, amount, transactionDate, comment, createdAt, updatedAt);
 
   @override
   String toString() {
-    return 'DBTransaction(id: $id, accountId: $accountId, categoryId: $categoryId, amount: $amount, transactionDate: $transactionDate, comment: $comment, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'DBTransaction(id: $id, accountId: $accountId, categoryId: $categoryId, isIncome: $isIncome, amount: $amount, transactionDate: $transactionDate, comment: $comment, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
@@ -73,9 +76,10 @@ abstract mixin class $DBTransactionCopyWith<$Res> {
       _$DBTransactionCopyWithImpl;
   @useResult
   $Res call(
-      {int id,
+      {String id,
       int accountId,
       int categoryId,
+      bool? isIncome,
       String amount,
       String transactionDate,
       String? comment,
@@ -99,6 +103,7 @@ class _$DBTransactionCopyWithImpl<$Res>
     Object? id = null,
     Object? accountId = null,
     Object? categoryId = null,
+    Object? isIncome = freezed,
     Object? amount = null,
     Object? transactionDate = null,
     Object? comment = freezed,
@@ -109,7 +114,7 @@ class _$DBTransactionCopyWithImpl<$Res>
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       accountId: null == accountId
           ? _self.accountId
           : accountId // ignore: cast_nullable_to_non_nullable
@@ -118,6 +123,10 @@ class _$DBTransactionCopyWithImpl<$Res>
           ? _self.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
               as int,
+      isIncome: freezed == isIncome
+          ? _self.isIncome
+          : isIncome // ignore: cast_nullable_to_non_nullable
+              as bool?,
       amount: null == amount
           ? _self.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -149,6 +158,7 @@ class _DBTransaction implements DBTransaction {
       {required this.id,
       required this.accountId,
       required this.categoryId,
+      this.isIncome,
       required this.amount,
       required this.transactionDate,
       required this.comment,
@@ -158,11 +168,13 @@ class _DBTransaction implements DBTransaction {
       _$DBTransactionFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
   final int accountId;
   @override
   final int categoryId;
+  @override
+  final bool? isIncome;
   @override
   final String amount;
   @override
@@ -199,6 +211,8 @@ class _DBTransaction implements DBTransaction {
                 other.accountId == accountId) &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId) &&
+            (identical(other.isIncome, isIncome) ||
+                other.isIncome == isIncome) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.transactionDate, transactionDate) ||
                 other.transactionDate == transactionDate) &&
@@ -212,11 +226,11 @@ class _DBTransaction implements DBTransaction {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, accountId, categoryId,
-      amount, transactionDate, comment, createdAt, updatedAt);
+      isIncome, amount, transactionDate, comment, createdAt, updatedAt);
 
   @override
   String toString() {
-    return 'DBTransaction(id: $id, accountId: $accountId, categoryId: $categoryId, amount: $amount, transactionDate: $transactionDate, comment: $comment, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'DBTransaction(id: $id, accountId: $accountId, categoryId: $categoryId, isIncome: $isIncome, amount: $amount, transactionDate: $transactionDate, comment: $comment, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
@@ -229,9 +243,10 @@ abstract mixin class _$DBTransactionCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {String id,
       int accountId,
       int categoryId,
+      bool? isIncome,
       String amount,
       String transactionDate,
       String? comment,
@@ -255,6 +270,7 @@ class __$DBTransactionCopyWithImpl<$Res>
     Object? id = null,
     Object? accountId = null,
     Object? categoryId = null,
+    Object? isIncome = freezed,
     Object? amount = null,
     Object? transactionDate = null,
     Object? comment = freezed,
@@ -265,7 +281,7 @@ class __$DBTransactionCopyWithImpl<$Res>
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       accountId: null == accountId
           ? _self.accountId
           : accountId // ignore: cast_nullable_to_non_nullable
@@ -274,6 +290,10 @@ class __$DBTransactionCopyWithImpl<$Res>
           ? _self.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
               as int,
+      isIncome: freezed == isIncome
+          ? _self.isIncome
+          : isIncome // ignore: cast_nullable_to_non_nullable
+              as bool?,
       amount: null == amount
           ? _self.amount
           : amount // ignore: cast_nullable_to_non_nullable

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$DBTransaction {
-  int get id;
+  String get id;
   int get accountId;
   int get categoryId;
   String get amount;
@@ -67,7 +67,7 @@ abstract mixin class $DBTransactionCopyWith<$Res> {
       _$DBTransactionCopyWithImpl;
   @useResult
   $Res call(
-      {int id,
+      {String id,
       int accountId,
       int categoryId,
       String amount,
@@ -99,7 +99,7 @@ class _$DBTransactionCopyWithImpl<$Res>
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       accountId: null == accountId
           ? _self.accountId
           : accountId // ignore: cast_nullable_to_non_nullable
@@ -138,7 +138,7 @@ class _DBTransaction implements DBTransaction {
       _$DBTransactionFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
   final int accountId;
   @override
@@ -201,7 +201,7 @@ abstract mixin class _$DBTransactionCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {String id,
       int accountId,
       int categoryId,
       String amount,
@@ -233,7 +233,7 @@ class __$DBTransactionCopyWithImpl<$Res>
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       accountId: null == accountId
           ? _self.accountId
           : accountId // ignore: cast_nullable_to_non_nullable

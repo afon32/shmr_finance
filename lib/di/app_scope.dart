@@ -29,13 +29,15 @@ class AppScopeContainer extends ScopeContainer with HoldersMixin {
   late final localDataSourceRepositoryDep = dep(() => SembastRepository(
         accountDao: localAccountDaoDep.get,
         transactionDao: localTransactionDaoDep.get,
+        categoryDao: localCategoryDaoDep.get,
       ));
 
-  late final apiUtilDep = dep(() => ApiUtil(
+  late final apiUtilDep = asyncDep(() => ApiUtil(
         connectionStatusStateHolder: connectionStatusStateHolder.get,
         networkService: networkDatasourceRepositoryDep.get,
         localService: localDataSourceRepositoryDep.get,
-        coldBootStateHolder: coldBootStateHolder.get
+        coldBootStateHolder: coldBootStateHolder.get,
+        localTransactionIdHolder: localTransactionIdHolder.get,
       ));
 
   // Account
@@ -99,6 +101,10 @@ class AppScopeContainer extends ScopeContainer with HoldersMixin {
           dbInitializer,
           secretsInitializer,
           workerManagerInitializer,
-        }
+          connectionStatusStateHolder,
+        },
+        {
+          apiUtilDep,
+        },
       ];
 }

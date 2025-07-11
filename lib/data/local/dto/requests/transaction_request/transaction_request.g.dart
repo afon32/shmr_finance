@@ -8,7 +8,7 @@ part of 'transaction_request.dart';
 
 _DBTransaction _$DBTransactionFromJson(Map<String, dynamic> json) =>
     _DBTransaction(
-      id: (json['id'] as num).toInt(),
+      id: json['id'] as String,
       accountId: (json['accountId'] as num).toInt(),
       categoryId: (json['categoryId'] as num).toInt(),
       amount: json['amount'] as String,

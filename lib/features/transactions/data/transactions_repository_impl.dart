@@ -16,7 +16,7 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   TransactionsRepositoryImpl({required ApiUtil apiUtil}) : _apiUtil = apiUtil;
 
   @override
-  Future<Transaction> createTransaction(
+  Future<Transaction?> createTransaction(
       CreateTransactionUseCaseRequest request) async {
     return await _apiUtil.createNewTransaction(request);
   }
@@ -53,7 +53,7 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
   }
 
   @override
-  Future<TransactionDetails> updateTransaction(
+  Future<bool> updateTransaction(
       UpdateTransactionUseCaseRequest request) {
     return _apiUtil.updateTransaction(request);
   }

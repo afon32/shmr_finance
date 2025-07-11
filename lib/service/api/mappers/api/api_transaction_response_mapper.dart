@@ -18,9 +18,10 @@ extension ApiTransactionResponseX on ApiTransactionResponse {
       updatedAt: DateTime.parse(updatedAt));
 
   DBTransaction toLocal() => DBTransaction(
-        id: id,
+        id: id.toString(),
         accountId: account.id,
         categoryId: category.id,
+        isIncome: category.isIncome,
         amount: amount,
         transactionDate: transactionDate,
         comment: comment,

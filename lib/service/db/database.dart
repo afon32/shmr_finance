@@ -1,7 +1,10 @@
 import 'package:rxdart/rxdart.dart';
 import 'package:sembast/sembast_io.dart';
 import 'package:shmr_finance/core/local_holders/cold_boot_holder.dart';
+import 'package:shmr_finance/core/local_holders/local_transaction_id_holder.dart';
 import 'package:shmr_finance/service/db/cold_boot/cold_boot_dao.dart';
+import 'package:shmr_finance/service/db/local_transaction_id/local_transaction_id_dao.dart';
+import 'package:shmr_finance/service/db/local_transaction_id/local_transaction_id_dto.dart';
 import 'package:shmr_finance/utils/constants.dart';
 import 'package:shmr_finance/utils/strings/strings_provider.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
@@ -21,11 +24,13 @@ class ShmrDatabase extends ADb {
   final StringsProvider _stringsProvider;
   final ThemeProvider _themeProvider;
   final ColdBootStateHolder _coldBootStateHolder;
+  final LocalTransactionIdHolder _localTransactionIdHolder;
 
   ShmrDatabase(
     this._stringsProvider,
     this._themeProvider,
     this._coldBootStateHolder,
+    this._localTransactionIdHolder,
   );
 
   /// аксесс обжект для кастомизации
@@ -48,11 +53,22 @@ class ShmrDatabase extends ADb {
     return _coldBootDao ??= ColdBootDao(dbClient);
   }
 
+  /// аксесс обжект для id транзакции
+  LocalTransactionIdDao? _localTransactionIdDao;
+
+  LocalTransactionIdDao get localTransactionIdDao {
+    if (!isReady) {
+      throw Exception('DataBase is not ready');
+    }
+    return _localTransactionIdDao ??= LocalTransactionIdDao(dbClient);
+  }
+
   @override
   Future<void> onReady() async {
     try {
       await _restoreLocale(userId: userId);
       await _restoreTheme(userId: userId);
+      await _restoreColdBootFlag(userId: userId);
 
       // всегда в конце
       _subscribeOnChanges();
@@ -81,6 +97,18 @@ class ShmrDatabase extends ADb {
         : print('theme the same');
   }
 
+  Future<void> _restoreColdBootFlag({required int userId}) async {
+    final isColdBoot = await coldBootDao.getColdBootFlag(userId);
+    !isColdBoot
+        ? _coldBootStateHolder.setNot()
+        : _coldBootStateHolder.setTrue();
+  }
+
+  Future<void> _restoreTransactionId({required int userId}) async {
+    final id = await localTransactionIdDao.getId(userId);
+    _localTransactionIdHolder.restore(id);
+  }
+
   /// Подписка на изменение темы и языка
   void _subscribeOnChanges() {
     globalSubscriptions = CompositeSubscription()
@@ -101,6 +129,13 @@ class ShmrDatabase extends ADb {
         _coldBootStateHolder.stream
             .asyncMap(
               (isCold) => coldBootDao.setColdBoot(isCold, userId),
+            )
+            .listen((_) {}),
+      )
+      ..add(
+        _localTransactionIdHolder.stream
+            .asyncMap(
+              (id) => localTransactionIdDao.setId(id, userId),
             )
             .listen((_) {}),
       );

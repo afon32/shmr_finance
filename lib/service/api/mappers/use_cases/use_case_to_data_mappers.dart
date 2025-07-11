@@ -1,3 +1,4 @@
+import 'package:shmr_finance/data/local/dto/models/transaction/db_transaction.dart';
 import 'package:shmr_finance/data/network/dto/requests/account_create_request/account_create_request.dart';
 import 'package:shmr_finance/data/network/dto/requests/account_update_request/account_update_request.dart';
 import 'package:shmr_finance/data/network/dto/requests/transaction_request/transaction_request.dart';
@@ -6,6 +7,8 @@ import 'package:shmr_finance/features/account/data/dto/update_account_use_case_r
 import 'package:shmr_finance/features/transactions/data/dto/create_transaction_use_case_request.dart';
 import 'package:shmr_finance/features/transactions/data/dto/update_transaction_use_case_request.dart';
 import 'package:shmr_finance/model/common_enums/currency_enum.dart';
+
+import 'package:uuid/uuid.dart';
 
 extension CreateAccountUseCaseRequestX on CreateAccountUseCaseRequest {
   ApiAccountCreateRequest toData() => ApiAccountCreateRequest(
@@ -24,6 +27,17 @@ extension UpdateTransactionUseCaseRequestX on UpdateTransactionUseCaseRequest {
       amount: amount.toString(),
       transactionDate: transactionDate.toUtc().toIso8601String().toString(),
       comment: comment);
+
+  DBTransaction toLocal() => DBTransaction(
+        id: id.toString(),
+        accountId: accountId,
+        categoryId: categoryId,
+        amount: amount.toString(),
+        transactionDate: transactionDate.toUtc().toIso8601String().toString(),
+        comment: comment,
+        createdAt: null,
+        updatedAt: null,
+      );
 }
 
 extension CreateTransactionUseCaseRequestX on CreateTransactionUseCaseRequest {
@@ -33,4 +47,15 @@ extension CreateTransactionUseCaseRequestX on CreateTransactionUseCaseRequest {
       amount: amount.toString(),
       transactionDate: transactionDate.toUtc().toIso8601String().toString(),
       comment: comment);
+
+  DBTransaction toLocal(int localId) => DBTransaction(
+        id: localId.toString(),
+        accountId: accountId,
+        categoryId: categoryId,
+        amount: amount.toString(),
+        transactionDate: transactionDate.toUtc().toIso8601String().toString(),
+        comment: comment,
+        createdAt: null,
+        updatedAt: null,
+      );
 }

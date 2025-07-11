@@ -7,12 +7,12 @@ part 'db_account.g.dart';
 abstract class DBAccount with _$DBAccount {
   const factory DBAccount({
     required int id,
-    required int userId,
+    required int? userId,
     required String name,
     required String balance,
     required String currency,
-    required String createdAt,
-    required String updatedAt,
+    required String? createdAt,
+    required String? updatedAt,
   }) = _DBAccount;
 
   factory DBAccount.fromJson(Map<String, dynamic> json) => _$DBAccountFromJson(json);
