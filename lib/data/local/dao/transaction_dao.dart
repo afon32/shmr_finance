@@ -1,5 +1,6 @@
-import 'package:shmr_finance/data/local/dto/requests/transaction_request/transaction_request.dart';
 import 'package:shmr_finance/service/db/abstract/a_dao.dart';
+
+import '../dto/models/transaction/db_transaction.dart';
 
 class TransactionDao extends ADao<DBTransaction> {
   TransactionDao(super.dbClient);

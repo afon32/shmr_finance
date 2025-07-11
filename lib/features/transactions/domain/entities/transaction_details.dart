@@ -9,8 +9,8 @@ class TransactionDetails {
   final double amount;
   final DateTime transactionDate;
   final String? comment;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   TransactionDetails(
       {required this.id,

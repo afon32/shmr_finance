@@ -1,5 +1,4 @@
-import '../dto/requests/export.dart';
-import '../dto/responses/export.dart';
+import '../dto/models/export.dart';
 
 /// Репозиторий для локальной БДшки
 abstract class LocalRepository {

@@ -2,8 +2,8 @@ import 'package:shmr_finance/data/local/abstract/local_repository.dart';
 
 import '../../mocked_data.dart';
 import '../dao/export.dart';
-import '../dto/requests/export.dart';
-import '../dto/responses/export.dart';
+import '../dto/models/export.dart';
+
 
 /// Репозиторий для локальной БДшки
 /// Пока скопировал методы из network сервиса. Потом, наверное, придётся модифицировать

@@ -1,6 +1,8 @@
 import 'package:shmr_finance/service/db/abstract/a_dao.dart';
 
-import '../dto/responses/account_dto/account_dto.dart';
+import '../dto/models/account/db_account.dart';
+
+
 
 class AccountDao extends ADao<DBAccount> {
   AccountDao(super.dbClient);
