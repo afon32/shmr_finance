@@ -30,4 +30,6 @@ abstract class NetworkRepository {
   Future<bool> deleteTransaction(int id);
 
   Future<List<ApiTransactionResponse>> getTransactionByPeriod(int accountId, String? startDate, String? endDate);
+
+  // Future<bool> dirtyPost();
 }

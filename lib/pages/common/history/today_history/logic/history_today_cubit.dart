@@ -42,7 +42,7 @@ class HistoryTodayCubit extends Cubit<HistoryTodayState> {
     final request = GetTransactionByPeriodUseCaseRequest(
         accountId: 1, // mock
         startDate: DateTime.now().copyWith(hour: 0, minute: 0),
-        endDate: DateTime.now().copyWith(hour: 0, minute: 0));
+        endDate: DateTime.now().copyWith(hour: 23, minute: 59));
     try {
       final response = await _useCase.execute(request);
 

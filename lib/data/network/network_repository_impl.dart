@@ -156,4 +156,9 @@ class NetworkServiceImpl implements NetworkRepository {
     }).future;
     return data;
   }
+
+  // @override
+  // Future<bool> dirtyPost() async{
+  //   await _networkClient.dio()
+  // }
 }

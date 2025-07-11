@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shmr_finance/data/local/dto/models/common/modify.dart';
 
 part 'db_account.freezed.dart';
 part 'db_account.g.dart';
@@ -13,6 +14,7 @@ abstract class DBAccount with _$DBAccount {
     required String currency,
     required String? createdAt,
     required String? updatedAt,
+    required Modification modification,
   }) = _DBAccount;
 
   factory DBAccount.fromJson(Map<String, dynamic> json) => _$DBAccountFromJson(json);

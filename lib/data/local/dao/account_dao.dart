@@ -31,12 +31,14 @@ class AccountDao extends ADao<DBAccount> {
   Future<DBAccount?> getById({required int accountId}) async =>
       await getByKey(key: accountId.toString());
 
-  Future<bool> updateAccount(DBAccount account) async {
-    try {
-      await put(account);
-      return true;
-    } catch (_) {
-      return false;
-    }
+  Future<DBAccount> updateAccount(DBAccount account) async {
+    final oldData = await getById(accountId: account.id);
+    final modifiedData = oldData!.copyWith(
+        name: account.name,
+        currency: account.currency,
+        modification: account.modification);
+    await put(modifiedData);
+    final newData = await getById(accountId: account.id);
+    return newData!;
   }
 }

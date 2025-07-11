@@ -17,6 +17,7 @@ _DBTransaction _$DBTransactionFromJson(Map<String, dynamic> json) =>
       comment: json['comment'] as String?,
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
+      modification: $enumDecode(_$ModificationEnumMap, json['modification']),
     );
 
 Map<String, dynamic> _$DBTransactionToJson(_DBTransaction instance) =>
@@ -30,4 +31,12 @@ Map<String, dynamic> _$DBTransactionToJson(_DBTransaction instance) =>
       'comment': instance.comment,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
+      'modification': _$ModificationEnumMap[instance.modification]!,
     };
+
+const _$ModificationEnumMap = {
+  Modification.created: 'created',
+  Modification.updated: 'updated',
+  Modification.deleted: 'deleted',
+  Modification.restored: 'restored',
+};

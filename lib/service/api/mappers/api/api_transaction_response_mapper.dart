@@ -1,3 +1,4 @@
+import 'package:shmr_finance/data/local/dto/models/common/modify.dart';
 import 'package:shmr_finance/data/local/dto/models/transaction/db_transaction.dart';
 import 'package:shmr_finance/data/network/dto/responses/export.dart';
 import 'package:shmr_finance/service/api/mappers/api/api_category_mapper.dart';
@@ -27,6 +28,7 @@ extension ApiTransactionResponseX on ApiTransactionResponse {
         comment: comment,
         createdAt: createdAt,
         updatedAt: updatedAt,
+        modification: Modification.restored,
       );
 }
 

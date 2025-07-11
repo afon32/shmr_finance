@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shmr_finance/data/local/dto/models/common/modify.dart';
 
 part 'db_transaction.freezed.dart';
 part 'db_transaction.g.dart';
@@ -15,6 +16,7 @@ abstract class DBTransaction with _$DBTransaction {
     required String? comment,
     required String? createdAt,
     required String? updatedAt,
+    required Modification modification,
   }) = _DBTransaction;
 
   factory DBTransaction.fromJson(Map<String, dynamic> json) =>

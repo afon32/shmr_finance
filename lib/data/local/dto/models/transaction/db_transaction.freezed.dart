@@ -24,6 +24,7 @@ mixin _$DBTransaction {
   String? get comment;
   String? get createdAt;
   String? get updatedAt;
+  Modification get modification;
 
   /// Create a copy of DBTransaction
   /// with the given fields replaced by the non-null parameter values.
@@ -55,17 +56,29 @@ mixin _$DBTransaction {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.modification, modification) ||
+                other.modification == modification));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, accountId, categoryId,
-      isIncome, amount, transactionDate, comment, createdAt, updatedAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      accountId,
+      categoryId,
+      isIncome,
+      amount,
+      transactionDate,
+      comment,
+      createdAt,
+      updatedAt,
+      modification);
 
   @override
   String toString() {
-    return 'DBTransaction(id: $id, accountId: $accountId, categoryId: $categoryId, isIncome: $isIncome, amount: $amount, transactionDate: $transactionDate, comment: $comment, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'DBTransaction(id: $id, accountId: $accountId, categoryId: $categoryId, isIncome: $isIncome, amount: $amount, transactionDate: $transactionDate, comment: $comment, createdAt: $createdAt, updatedAt: $updatedAt, modification: $modification)';
   }
 }
 
@@ -84,7 +97,8 @@ abstract mixin class $DBTransactionCopyWith<$Res> {
       String transactionDate,
       String? comment,
       String? createdAt,
-      String? updatedAt});
+      String? updatedAt,
+      Modification modification});
 }
 
 /// @nodoc
@@ -109,6 +123,7 @@ class _$DBTransactionCopyWithImpl<$Res>
     Object? comment = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? modification = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -147,6 +162,10 @@ class _$DBTransactionCopyWithImpl<$Res>
           ? _self.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      modification: null == modification
+          ? _self.modification
+          : modification // ignore: cast_nullable_to_non_nullable
+              as Modification,
     ));
   }
 }
@@ -163,7 +182,8 @@ class _DBTransaction implements DBTransaction {
       required this.transactionDate,
       required this.comment,
       required this.createdAt,
-      required this.updatedAt});
+      required this.updatedAt,
+      required this.modification});
   factory _DBTransaction.fromJson(Map<String, dynamic> json) =>
       _$DBTransactionFromJson(json);
 
@@ -185,6 +205,8 @@ class _DBTransaction implements DBTransaction {
   final String? createdAt;
   @override
   final String? updatedAt;
+  @override
+  final Modification modification;
 
   /// Create a copy of DBTransaction
   /// with the given fields replaced by the non-null parameter values.
@@ -220,17 +242,29 @@ class _DBTransaction implements DBTransaction {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.modification, modification) ||
+                other.modification == modification));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, accountId, categoryId,
-      isIncome, amount, transactionDate, comment, createdAt, updatedAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      accountId,
+      categoryId,
+      isIncome,
+      amount,
+      transactionDate,
+      comment,
+      createdAt,
+      updatedAt,
+      modification);
 
   @override
   String toString() {
-    return 'DBTransaction(id: $id, accountId: $accountId, categoryId: $categoryId, isIncome: $isIncome, amount: $amount, transactionDate: $transactionDate, comment: $comment, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'DBTransaction(id: $id, accountId: $accountId, categoryId: $categoryId, isIncome: $isIncome, amount: $amount, transactionDate: $transactionDate, comment: $comment, createdAt: $createdAt, updatedAt: $updatedAt, modification: $modification)';
   }
 }
 
@@ -251,7 +285,8 @@ abstract mixin class _$DBTransactionCopyWith<$Res>
       String transactionDate,
       String? comment,
       String? createdAt,
-      String? updatedAt});
+      String? updatedAt,
+      Modification modification});
 }
 
 /// @nodoc
@@ -276,6 +311,7 @@ class __$DBTransactionCopyWithImpl<$Res>
     Object? comment = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? modification = null,
   }) {
     return _then(_DBTransaction(
       id: null == id
@@ -314,6 +350,10 @@ class __$DBTransactionCopyWithImpl<$Res>
           ? _self.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      modification: null == modification
+          ? _self.modification
+          : modification // ignore: cast_nullable_to_non_nullable
+              as Modification,
     ));
   }
 }

@@ -19,6 +19,8 @@ enum Currency {
         return Currency.usd;
       case 'EUR':
         return Currency.eur;
+      case '€':
+        return Currency.eur;
       default:
         return Currency.undefined;
     }

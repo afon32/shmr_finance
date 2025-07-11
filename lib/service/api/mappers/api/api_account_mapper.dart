@@ -13,13 +13,4 @@ extension ApiAccountX on ApiAccount {
       currency: Currency.fromString(currency),
       createdAt: DateTime.parse(createdAt),
       updatedAt: DateTime.parse(updatedAt));
-
-  DBAccount toLocal() => DBAccount(
-      id: id,
-      userId: userId,
-      name: name,
-      balance: balance,
-      currency: currency,
-      createdAt: createdAt,
-      updatedAt: updatedAt);
 }

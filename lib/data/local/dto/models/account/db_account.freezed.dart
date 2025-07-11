@@ -22,6 +22,7 @@ mixin _$DBAccount {
   String get currency;
   String? get createdAt;
   String? get updatedAt;
+  Modification get modification;
 
   /// Create a copy of DBAccount
   /// with the given fields replaced by the non-null parameter values.
@@ -47,17 +48,19 @@ mixin _$DBAccount {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.modification, modification) ||
+                other.modification == modification));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, userId, name, balance, currency, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, userId, name, balance,
+      currency, createdAt, updatedAt, modification);
 
   @override
   String toString() {
-    return 'DBAccount(id: $id, userId: $userId, name: $name, balance: $balance, currency: $currency, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'DBAccount(id: $id, userId: $userId, name: $name, balance: $balance, currency: $currency, createdAt: $createdAt, updatedAt: $updatedAt, modification: $modification)';
   }
 }
 
@@ -73,7 +76,8 @@ abstract mixin class $DBAccountCopyWith<$Res> {
       String balance,
       String currency,
       String? createdAt,
-      String? updatedAt});
+      String? updatedAt,
+      Modification modification});
 }
 
 /// @nodoc
@@ -95,6 +99,7 @@ class _$DBAccountCopyWithImpl<$Res> implements $DBAccountCopyWith<$Res> {
     Object? currency = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? modification = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -125,6 +130,10 @@ class _$DBAccountCopyWithImpl<$Res> implements $DBAccountCopyWith<$Res> {
           ? _self.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      modification: null == modification
+          ? _self.modification
+          : modification // ignore: cast_nullable_to_non_nullable
+              as Modification,
     ));
   }
 }
@@ -139,7 +148,8 @@ class _DBAccount implements DBAccount {
       required this.balance,
       required this.currency,
       required this.createdAt,
-      required this.updatedAt});
+      required this.updatedAt,
+      required this.modification});
   factory _DBAccount.fromJson(Map<String, dynamic> json) =>
       _$DBAccountFromJson(json);
 
@@ -157,6 +167,8 @@ class _DBAccount implements DBAccount {
   final String? createdAt;
   @override
   final String? updatedAt;
+  @override
+  final Modification modification;
 
   /// Create a copy of DBAccount
   /// with the given fields replaced by the non-null parameter values.
@@ -187,17 +199,19 @@ class _DBAccount implements DBAccount {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.modification, modification) ||
+                other.modification == modification));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, userId, name, balance, currency, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, id, userId, name, balance,
+      currency, createdAt, updatedAt, modification);
 
   @override
   String toString() {
-    return 'DBAccount(id: $id, userId: $userId, name: $name, balance: $balance, currency: $currency, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'DBAccount(id: $id, userId: $userId, name: $name, balance: $balance, currency: $currency, createdAt: $createdAt, updatedAt: $updatedAt, modification: $modification)';
   }
 }
 
@@ -216,7 +230,8 @@ abstract mixin class _$DBAccountCopyWith<$Res>
       String balance,
       String currency,
       String? createdAt,
-      String? updatedAt});
+      String? updatedAt,
+      Modification modification});
 }
 
 /// @nodoc
@@ -238,6 +253,7 @@ class __$DBAccountCopyWithImpl<$Res> implements _$DBAccountCopyWith<$Res> {
     Object? currency = null,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? modification = null,
   }) {
     return _then(_DBAccount(
       id: null == id
@@ -268,6 +284,10 @@ class __$DBAccountCopyWithImpl<$Res> implements _$DBAccountCopyWith<$Res> {
           ? _self.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      modification: null == modification
+          ? _self.modification
+          : modification // ignore: cast_nullable_to_non_nullable
+              as Modification,
     ));
   }
 }

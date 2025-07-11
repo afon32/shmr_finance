@@ -30,6 +30,7 @@ class AppScopeContainer extends ScopeContainer with HoldersMixin {
         accountDao: localAccountDaoDep.get,
         transactionDao: localTransactionDaoDep.get,
         categoryDao: localCategoryDaoDep.get,
+        
       ));
 
   late final apiUtilDep = asyncDep(() => ApiUtil(

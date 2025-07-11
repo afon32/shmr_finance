@@ -24,6 +24,17 @@ abstract class ADao<T> {
   RecordRef<String, Map<String, Object?>> _recordRef(T value) =>
       _store.record(primaryKeyOf(value));
 
+  Future<void> delete({required String key}) => _lock.synchronized(
+        () async {
+          try {
+            await _store.record(key).delete(_dbClient);
+          } on Object catch (e) {
+            print(e);
+            rethrow;
+          }
+        },
+      );
+
   Future<void> add(T value) => _lock.synchronized(
         () async {
           try {

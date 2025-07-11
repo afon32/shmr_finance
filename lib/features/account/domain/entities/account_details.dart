@@ -9,8 +9,8 @@ class AccountDetails {
   final Currency currency;
   final List<StatItem> incomeStats;
   final List<StatItem> expenseStats;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   AccountDetails(
       {required this.id,

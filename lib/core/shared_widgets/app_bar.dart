@@ -56,7 +56,19 @@ class ShmrAppBar extends StatelessWidget {
                               ),
                             ));
                       } else {
-                        return const SizedBox.shrink();
+                        if (scope.connectionStatusStateHolder.get.state ==
+                            ConnectionStatusState.disconnected()) {
+                          return SizedBox(
+                              height: 20,
+                              child: ColoredBox(
+                                color: context.theme.rejectButtonColor,
+                                child: Center(
+                                  child: Text(S.of(context).offline_mode),
+                                ),
+                              ));
+                        } else {
+                          return const SizedBox.shrink();
+                        }
                       }
                     },
                   ),

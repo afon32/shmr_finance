@@ -7,8 +7,10 @@ import 'package:shmr_finance/core/local_holders/cold_boot_holder.dart';
 import 'package:shmr_finance/core/local_holders/local_transaction_id_holder.dart';
 import 'package:shmr_finance/data/local/abstract/local_repository.dart';
 import 'package:shmr_finance/data/local/dao/account_dao.dart';
+import 'package:shmr_finance/data/local/dto/models/common/modify.dart';
 import 'package:shmr_finance/data/local/dto/models/export.dart';
 import 'package:shmr_finance/data/network/dto/responses/export.dart';
+import 'package:shmr_finance/model/common_enums/currency_enum.dart';
 import 'package:shmr_finance/service/api/mappers/api/api_account_history_response_mapper.dart';
 import 'package:shmr_finance/service/api/mappers/api/api_account_mapper.dart';
 import 'package:shmr_finance/service/api/mappers/api/api_account_response_mapper.dart';
@@ -57,9 +59,7 @@ class ApiUtil implements AsyncLifecycle {
         _networkService = networkService,
         _localService = localService,
         _coldBootStateHolder = coldBootStateHolder,
-        _localTransactionIdHolder = localTransactionIdHolder {
-    _startListen();
-  }
+        _localTransactionIdHolder = localTransactionIdHolder;
 
   @override
   Future<void> dispose() {
@@ -68,8 +68,8 @@ class ApiUtil implements AsyncLifecycle {
   }
 
   @override
-  Future<void> init() async {
-    if (_coldBootStateHolder.state) {
+  Future<void> init([bool anyWay = false]) async {
+    if (_coldBootStateHolder.state || anyWay) {
       final categories = await getAllCategories();
       final accounts = await getAllAccounts();
       if (categories.isNotEmpty && accounts.isNotEmpty) {
@@ -86,19 +86,70 @@ class ApiUtil implements AsyncLifecycle {
         }
       }
     }
+    if (!anyWay) {
+      _startListen();
+    }
   }
 
   void _startListen() {
     eventsStreamController.stream.listen((event) {
       switch (event.runtimeType) {
         case CreateTransactionEvent e:
-          createNewTransaction2(e);
+          createNewTransaction(e.request);
+      }
+    });
+
+    _connectionStatusStateHolder.stream.listen((status) {
+      if (status is Connected) {
+        syncEvents();
       }
     });
   }
 
-  Future<dynamic> godMethod() {
-    return Future.value(true);
+  Future<void> syncEvents() async {
+    final localTransactions = await _localService.getAllTransactions();
+    for (DBTransaction e in localTransactions) {
+      switch (e.modification) {
+        case Modification.created:
+          await createNewTransaction(CreateTransactionUseCaseRequest(
+              accountId: e.accountId,
+              categoryId: e.categoryId,
+              amount: double.parse(e.amount),
+              transactionDate: DateTime.parse(e.transactionDate),
+              comment: e.comment));
+        case Modification.updated:
+          await updateTransaction(UpdateTransactionUseCaseRequest(
+              accountId: e.accountId,
+              categoryId: e.categoryId,
+              amount: double.parse(e.amount),
+              transactionDate: DateTime.parse(e.transactionDate),
+              comment: e.comment,
+              id: int.parse(e.id)));
+        case Modification.deleted:
+          await deleteTransaction(int.parse(e.id));
+        case Modification.restored:
+      }
+    }
+    final localAccounts = await _localService.getAllAccounts();
+    for (DBAccount e in localAccounts) {
+      switch (e.modification) {
+        case Modification.created:
+          await createNewAccount(CreateAccountUseCaseRequest(
+              name: e.name,
+              balance: double.parse(e.balance),
+              currency: Currency.fromString(e.currency)));
+        case Modification.updated:
+          await updateAccount(UpdateAccountUseCaseRequest(
+              id: e.id,
+              name: e.name,
+              balance: double.parse(e.balance),
+              currency: Currency.fromString(e.currency)));
+        case Modification.deleted:
+        case Modification.restored:
+      }
+    }
+    await init(true);
+    // final events = await _localService.getEvents();
   }
 
   // Account
@@ -120,14 +171,25 @@ class ApiUtil implements AsyncLifecycle {
   }
 
   Future<AccountDetails> getAccountById(int id) async {
-    final result = await _networkService.getAccountById(id);
-    return result.toDomain();
+    if (_connectionStatusStateHolder.state is Connected) {
+      final result = await _networkService.getAccountById(id);
+      return result.toDomain();
+    } else {
+      final response = await _localService.getAccountById(id);
+      return response!.toDomainDetails();
+    }
   }
 
   Future<Account> updateAccount(UpdateAccountUseCaseRequest request) async {
-    final result =
-        await _networkService.updateAccount(request.id, request.toData());
-    return result.toDomain();
+    if (_connectionStatusStateHolder.state is Connected) {
+      final result =
+          await _networkService.updateAccount(request.id, request.toData());
+      return result.toDomain();
+    } else {
+      final response =
+          await _localService.updateAccount(request.id, request.toLocal());
+      return response.toDomain();
+    }
   }
 
   Future<AccountHistory> getAccountHistory(int id) async {
@@ -192,19 +254,16 @@ class ApiUtil implements AsyncLifecycle {
       final response =
           await _networkService.createNewTransaction(request.toData());
       final result = response.toDomain();
+
+      await _localService.createNewTransaction(request.toLocal(result.id));
       return result;
     } else {
       final response = await _localService.createNewTransaction(
           request.toLocal(_localTransactionIdHolder.newT()));
+
+      // await _localService.setEvent(DBEvent(request: request.toData().toJson()));
     }
     return null;
-  }
-
-  Future<Transaction> createNewTransaction2(
-      CreateTransactionEvent event) async {
-    final result =
-        await _networkService.createNewTransaction(event.request.toData());
-    return result.toDomain();
   }
 
   Future<TransactionDetails> getTransactionById(int id) async {
@@ -217,19 +276,36 @@ class ApiUtil implements AsyncLifecycle {
     if (_connectionStatusStateHolder.state is Connected) {
       final response =
           await _networkService.updateTransaction(request.id, request.toData());
-      // final result = response.toDomain();
+      final result = response.toDomain();
+      await _localService.updateTransaction(
+          result.id, request.toLocal(Modification.restored));
       return true;
     } else {
-      final response =
-          await _localService.updateTransaction(request.id, request.toLocal());
-      // final result = response.toDomain();
-      return response;
+      final currentTransaction =
+          await _localService.getTransactionById(request.id);
+      final isCreated =
+          currentTransaction?.modification == Modification.created;
+      if (currentTransaction != null) {
+        final response = await _localService.updateTransaction(
+            request.id,
+            request.toLocal(
+              isCreated ? Modification.created : Modification.updated,
+            ));
+        return response;
+      } else {
+        return false;
+      }
     }
   }
 
   Future<bool> deleteTransaction(int id) async {
-    final result = await _networkService.deleteTransaction(id);
-    return result;
+    if (_connectionStatusStateHolder.state is Connected) {
+      final result = await _networkService.deleteTransaction(id);
+      return result;
+    } else {
+      final result = await _localService.deleteTransaction(id);
+      return result;
+    }
   }
 
   Future<List<TransactionDetails>> getTransactionByPeriod(
@@ -247,6 +323,7 @@ class ApiUtil implements AsyncLifecycle {
       );
       final result = list.map((e) => e.toDomain()).toList();
       if (needCache) {
+        await _localService.dropAllTransactions();
         final localTransfer = list.map((e) => e.toLocal()).toList();
         _localTransactionIdHolder.restore(localTransfer.length);
         final isCached = await _localService.setTransactions(localTransfer);

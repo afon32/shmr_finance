@@ -14,6 +14,7 @@ _DBAccount _$DBAccountFromJson(Map<String, dynamic> json) => _DBAccount(
       currency: json['currency'] as String,
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
+      modification: $enumDecode(_$ModificationEnumMap, json['modification']),
     );
 
 Map<String, dynamic> _$DBAccountToJson(_DBAccount instance) =>
@@ -25,4 +26,12 @@ Map<String, dynamic> _$DBAccountToJson(_DBAccount instance) =>
       'currency': instance.currency,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
+      'modification': _$ModificationEnumMap[instance.modification]!,
     };
+
+const _$ModificationEnumMap = {
+  Modification.created: 'created',
+  Modification.updated: 'updated',
+  Modification.deleted: 'deleted',
+  Modification.restored: 'restored',
+};
