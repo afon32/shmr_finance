@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shmr_finance/core/local_holders/main_color_holder.dart';
 import 'package:shmr_finance/core/shared_widgets/nav_bar/nav_bar.dart';
 import 'package:shmr_finance/pages/categories/categories_page.dart';
 import 'package:shmr_finance/pages/common/analyze/analyze_page.dart';
@@ -129,7 +131,7 @@ class AppNavigator {
                     path: MainRoutes.settings.routeName,
                     builder: (context, state) => Center(
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextButton(
                                 onPressed: () {
@@ -142,7 +144,31 @@ class AppNavigator {
                                   BlocProvider.of<ThemeProvider>(context)
                                       .toggleTheme();
                                 },
-                                child: Text('theme'))
+                                child: Text('theme')),
+                            TextButton(
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          content: SizedBox(
+                                            height: 250,
+                                            child: SlidePicker(
+                                              pickerColor: BlocProvider.of<
+                                                      MainColorHolder>(context)
+                                                  .state,
+                                              onColorChanged: (color) =>
+                                                  BlocProvider.of<
+                                                              MainColorHolder>(
+                                                          context)
+                                                      .setColor(color.value),
+                                              enableAlpha: false,
+                                            ),
+                                          ),
+                                        );
+                                      });
+                                },
+                                child: Text('color')),
                           ],
                         )), //ПОКА ВИСИТ СМЕНА ЛОКАЛИ change mee
                     routes: []),
