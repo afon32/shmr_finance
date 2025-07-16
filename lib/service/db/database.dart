@@ -1,6 +1,7 @@
 import 'package:rxdart/rxdart.dart';
 import 'package:sembast/sembast_io.dart';
 import 'package:shmr_finance/core/local_holders/cold_boot_holder.dart';
+import 'package:shmr_finance/core/local_holders/haptick_permission_holder.dart';
 import 'package:shmr_finance/core/local_holders/local_transaction_id_holder.dart';
 import 'package:shmr_finance/core/local_holders/main_color_holder.dart';
 import 'package:shmr_finance/service/db/cold_boot/cold_boot_dao.dart';
@@ -25,6 +26,7 @@ class ShmrDatabase extends ADb {
   final StringsProvider _stringsProvider;
   final ThemeProvider _themeProvider;
   final MainColorHolder _mainColorHolder;
+  final HaptickPermissionHolder _haptickPermissionHolder;
   final ColdBootStateHolder _coldBootStateHolder;
   final LocalTransactionIdHolder _localTransactionIdHolder;
 
@@ -32,6 +34,7 @@ class ShmrDatabase extends ADb {
     this._stringsProvider,
     this._themeProvider,
     this._mainColorHolder,
+    this._haptickPermissionHolder,
     this._coldBootStateHolder,
     this._localTransactionIdHolder,
   );
@@ -72,6 +75,7 @@ class ShmrDatabase extends ADb {
       await _restoreLocale(userId: userId);
       await _restoreTheme(userId: userId);
       await _restoreColor(userId: userId);
+      await _restoreHapticks(userId: userId);
       await _restoreColdBootFlag(userId: userId);
       await _restoreTransactionId(userId: userId);
 
@@ -107,6 +111,11 @@ class ShmrDatabase extends ADb {
     _mainColorHolder.setColor(hexColor);
   }
 
+  Future<void> _restoreHapticks({required int userId}) async {
+    final isOn = await appCustomizationDao.getHapticks(userId);
+    _haptickPermissionHolder.setValue(isOn);
+  }
+
   Future<void> _restoreColdBootFlag({required int userId}) async {
     final isColdBoot = await coldBootDao.getColdBootFlag(userId);
     !isColdBoot
@@ -130,6 +139,11 @@ class ShmrDatabase extends ADb {
       ..add(
         _mainColorHolder.stream.asyncMap((color) {
           appCustomizationDao.setTint(color.value, userId);
+        }).listen((_) {}),
+      )
+      ..add(
+        _haptickPermissionHolder.stream.asyncMap((isOn) {
+          appCustomizationDao.setHapticks(isOn, userId);
         }).listen((_) {}),
       )
       ..add(

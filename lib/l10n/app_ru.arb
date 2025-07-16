@@ -35,5 +35,12 @@
   "edit_all_places" : "Заполните все поля!",
   "delete_transaction" : "Удалить транзакцию",
 
-  "offline_mode" : "Включён оффлайн-режим"
+  "offline_mode" : "Включён оффлайн-режим",
+  "system_theme" : "Системная тема",
+  "main_color" : "Основной цвет",
+  "hapticks" : "Хаптики",
+  "secure" : "Безопасность",
+  "language" : "Язык",
+  "english" : "English",
+  "russian" : "Русский"
 }

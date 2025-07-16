@@ -57,4 +57,15 @@ class AppCustomizationDao extends ADao<AppCustomizationDto> {
     final currentAppData = await _get(userId: userId);
     return currentAppData.tintColor;
   }
+
+  Future<void> setHapticks(bool isOn, int userId) async {
+    final currentAppData = await _get(userId: userId);
+    final newAppData = currentAppData.copyWith(hapticksIsOn: isOn);
+    await put(newAppData);
+  }
+
+  Future<bool> getHapticks(int userId) async {
+    final currentAppData = await _get(userId: userId);
+    return currentAppData.hapticksIsOn;
+  }
 }

@@ -103,4 +103,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get offline_mode => 'Offline-mode is active';
+
+  @override
+  String get system_theme => 'System theme';
+
+  @override
+  String get main_color => 'Main color';
+
+  @override
+  String get hapticks => 'Hapticks';
+
+  @override
+  String get secure => 'Secure';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get russian => 'Russian';
 }

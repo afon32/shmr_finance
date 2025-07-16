@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shmr_finance/core/local_holders/haptick_permission_holder.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
 import 'package:shmr_finance/utils/themes/color_blend_extension.dart';
 
 class ShmrListBottomButtonWrapper extends StatefulWidget {
-  final VoidCallback? onTap;
+  final VoidCallback onTap;
   final Widget Function(ScrollController controller) childList;
 
   const ShmrListBottomButtonWrapper(
-      {Key? key, this.onTap, required this.childList})
-      : super(key: key);
+      {super.key, required this.onTap, required this.childList});
 
   @override
   State<ShmrListBottomButtonWrapper> createState() =>
@@ -47,6 +49,7 @@ class _ShmrListBottomButtonWrapperState
 
   @override
   Widget build(BuildContext context) {
+    final hapticksIsOn = context.watch<HaptickPermissionHolder>().state;
     return Stack(
       children: [
         widget.childList(_scrollController),
@@ -61,7 +64,12 @@ class _ShmrListBottomButtonWrapperState
               opacity: _showButton ? 1.0 : 0.0,
               duration: Duration(milliseconds: 300),
               child: InkWell(
-                onTap: widget.onTap,
+                onTap: () {
+                  widget.onTap!();
+                  if (hapticksIsOn) {
+                    HapticFeedback.heavyImpact();
+                  }
+                },
                 child: Container(
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,

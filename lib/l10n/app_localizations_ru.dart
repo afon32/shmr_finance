@@ -103,4 +103,25 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get offline_mode => 'Включён оффлайн-режим';
+
+  @override
+  String get system_theme => 'Системная тема';
+
+  @override
+  String get main_color => 'Основной цвет';
+
+  @override
+  String get hapticks => 'Хаптики';
+
+  @override
+  String get secure => 'Безопасность';
+
+  @override
+  String get language => 'Язык';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get russian => 'Русский';
 }

@@ -79,7 +79,7 @@ class _App extends StatelessWidget {
                     theme: AppTheme.lightTheme,
                     darkTheme: AppTheme.darkTheme,
                     themeMode: themeMode,
-                    routerConfig: AppNavigator.routerrr,
+                    routerConfig: AppNavigator.router,
                     supportedLocales: locale.supportedLocales,
                     locale: locale.locale,
                     localizationsDelegates: locale.localizationDelegates,

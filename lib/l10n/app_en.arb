@@ -35,5 +35,12 @@
   "edit_all_places" : "Edit all places!",
   "delete_transaction" : "Delete transaction",
 
-  "offline_mode" : "Offline-mode is active"
+  "offline_mode" : "Offline-mode is active",
+  "system_theme" : "System theme",
+  "main_color" : "Main color",
+  "hapticks" : "Hapticks",
+  "secure" : "Secure",
+  "language" : "Language",
+  "english" : "English",
+  "russian" : "Russian"
 }
