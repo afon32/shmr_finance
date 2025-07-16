@@ -2,6 +2,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:sembast/sembast_io.dart';
 import 'package:shmr_finance/core/local_holders/cold_boot_holder.dart';
 import 'package:shmr_finance/core/local_holders/local_transaction_id_holder.dart';
+import 'package:shmr_finance/core/local_holders/main_color_holder.dart';
 import 'package:shmr_finance/service/db/cold_boot/cold_boot_dao.dart';
 import 'package:shmr_finance/service/db/local_transaction_id/local_transaction_id_dao.dart';
 import 'package:shmr_finance/service/db/local_transaction_id/local_transaction_id_dto.dart';
@@ -23,12 +24,14 @@ class ShmrDatabase extends ADb {
 
   final StringsProvider _stringsProvider;
   final ThemeProvider _themeProvider;
+  final MainColorHolder _mainColorHolder;
   final ColdBootStateHolder _coldBootStateHolder;
   final LocalTransactionIdHolder _localTransactionIdHolder;
 
   ShmrDatabase(
     this._stringsProvider,
     this._themeProvider,
+    this._mainColorHolder,
     this._coldBootStateHolder,
     this._localTransactionIdHolder,
   );
@@ -68,7 +71,9 @@ class ShmrDatabase extends ADb {
     try {
       await _restoreLocale(userId: userId);
       await _restoreTheme(userId: userId);
+      await _restoreColor(userId: userId);
       await _restoreColdBootFlag(userId: userId);
+      await _restoreTransactionId(userId: userId);
 
       // всегда в конце
       _subscribeOnChanges();
@@ -97,6 +102,11 @@ class ShmrDatabase extends ADb {
         : print('theme the same');
   }
 
+  Future<void> _restoreColor({required int userId}) async {
+    final hexColor = await appCustomizationDao.getTint(userId);
+    _mainColorHolder.setColor(hexColor);
+  }
+
   Future<void> _restoreColdBootFlag({required int userId}) async {
     final isColdBoot = await coldBootDao.getColdBootFlag(userId);
     !isColdBoot
@@ -115,6 +125,11 @@ class ShmrDatabase extends ADb {
       ..add(
         _themeProvider.stream.asyncMap((mode) {
           appCustomizationDao.setTheme(mode, userId);
+        }).listen((_) {}),
+      )
+      ..add(
+        _mainColorHolder.stream.asyncMap((color) {
+          appCustomizationDao.setTint(color.value, userId);
         }).listen((_) {}),
       )
       ..add(

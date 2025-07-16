@@ -5,4 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainColorHolder extends Cubit<Color> {
   MainColorHolder() : super(Color.fromARGB(255, 42, 232, 129));
+
+  void setColor(int hex){
+    final newColor = Color(hex);
+    emit(newColor);
+  }
 }

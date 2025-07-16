@@ -27,6 +27,7 @@ mixin HoldersMixin on ScopeContainer {
   late final dbDep = dep(() => ShmrDatabase(
         langStateHolderDep.get,
         themeStateHolderDep.get,
+        mainTintColorHolder.get,
         coldBootStateHolder.get,
         localTransactionIdHolder.get,
       ));

@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_customization_dto.freezed.dart';
@@ -23,6 +24,14 @@ abstract class AppCustomizationDto with _$AppCustomizationDto {
       defaultValue: true,
     )
     bool isLightTheme,
+
+    /// Цвет тинта
+    @Default(0xFF2AE881)
+    @JsonKey(
+      name: 'tint_color',
+      defaultValue: 0xFF2AE881,
+    )
+    int tintColor,
   }) = _AppCustomizationDto;
 
   factory AppCustomizationDto.fromJson(Map<String, dynamic> json) => _$AppCustomizationDtoFromJson(json);

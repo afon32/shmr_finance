@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -25,6 +24,10 @@ mixin _$AppCustomizationDto {
   @JsonKey(name: 'light_theme', defaultValue: true)
   bool get isLightTheme;
 
+  /// Цвет тинта
+  @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
+  int get tintColor;
+
   /// Create a copy of AppCustomizationDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -44,16 +47,19 @@ mixin _$AppCustomizationDto {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.locale, locale) || other.locale == locale) &&
             (identical(other.isLightTheme, isLightTheme) ||
-                other.isLightTheme == isLightTheme));
+                other.isLightTheme == isLightTheme) &&
+            (identical(other.tintColor, tintColor) ||
+                other.tintColor == tintColor));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, locale, isLightTheme);
+  int get hashCode =>
+      Object.hash(runtimeType, userId, locale, isLightTheme, tintColor);
 
   @override
   String toString() {
-    return 'AppCustomizationDto(userId: $userId, locale: $locale, isLightTheme: $isLightTheme)';
+    return 'AppCustomizationDto(userId: $userId, locale: $locale, isLightTheme: $isLightTheme, tintColor: $tintColor)';
   }
 }
 
@@ -66,7 +72,8 @@ abstract mixin class $AppCustomizationDtoCopyWith<$Res> {
   $Res call(
       {int userId,
       @JsonKey(name: 'locale_code', defaultValue: 'ru') String locale,
-      @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme});
+      @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme,
+      @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881) int tintColor});
 }
 
 /// @nodoc
@@ -85,6 +92,7 @@ class _$AppCustomizationDtoCopyWithImpl<$Res>
     Object? userId = null,
     Object? locale = null,
     Object? isLightTheme = null,
+    Object? tintColor = null,
   }) {
     return _then(_self.copyWith(
       userId: null == userId
@@ -99,7 +107,189 @@ class _$AppCustomizationDtoCopyWithImpl<$Res>
           ? _self.isLightTheme
           : isLightTheme // ignore: cast_nullable_to_non_nullable
               as bool,
+      tintColor: null == tintColor
+          ? _self.tintColor
+          : tintColor // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [AppCustomizationDto].
+extension AppCustomizationDtoPatterns on AppCustomizationDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_AppCustomizationDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AppCustomizationDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_AppCustomizationDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AppCustomizationDto():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_AppCustomizationDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AppCustomizationDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            int userId,
+            @JsonKey(name: 'locale_code', defaultValue: 'ru') String locale,
+            @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme,
+            @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
+            int tintColor)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AppCustomizationDto() when $default != null:
+        return $default(
+            _that.userId, _that.locale, _that.isLightTheme, _that.tintColor);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            int userId,
+            @JsonKey(name: 'locale_code', defaultValue: 'ru') String locale,
+            @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme,
+            @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
+            int tintColor)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AppCustomizationDto():
+        return $default(
+            _that.userId, _that.locale, _that.isLightTheme, _that.tintColor);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            int userId,
+            @JsonKey(name: 'locale_code', defaultValue: 'ru') String locale,
+            @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme,
+            @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
+            int tintColor)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AppCustomizationDto() when $default != null:
+        return $default(
+            _that.userId, _that.locale, _that.isLightTheme, _that.tintColor);
+      case _:
+        return null;
+    }
   }
 }
 
@@ -110,7 +300,9 @@ class _AppCustomizationDto implements AppCustomizationDto {
       {required this.userId,
       @JsonKey(name: 'locale_code', defaultValue: 'ru') this.locale = 'ru',
       @JsonKey(name: 'light_theme', defaultValue: true)
-      this.isLightTheme = true});
+      this.isLightTheme = true,
+      @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
+      this.tintColor = 0xFF2AE881});
   factory _AppCustomizationDto.fromJson(Map<String, dynamic> json) =>
       _$AppCustomizationDtoFromJson(json);
 
@@ -126,6 +318,11 @@ class _AppCustomizationDto implements AppCustomizationDto {
   @override
   @JsonKey(name: 'light_theme', defaultValue: true)
   final bool isLightTheme;
+
+  /// Цвет тинта
+  @override
+  @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
+  final int tintColor;
 
   /// Create a copy of AppCustomizationDto
   /// with the given fields replaced by the non-null parameter values.
@@ -151,16 +348,19 @@ class _AppCustomizationDto implements AppCustomizationDto {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.locale, locale) || other.locale == locale) &&
             (identical(other.isLightTheme, isLightTheme) ||
-                other.isLightTheme == isLightTheme));
+                other.isLightTheme == isLightTheme) &&
+            (identical(other.tintColor, tintColor) ||
+                other.tintColor == tintColor));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, locale, isLightTheme);
+  int get hashCode =>
+      Object.hash(runtimeType, userId, locale, isLightTheme, tintColor);
 
   @override
   String toString() {
-    return 'AppCustomizationDto(userId: $userId, locale: $locale, isLightTheme: $isLightTheme)';
+    return 'AppCustomizationDto(userId: $userId, locale: $locale, isLightTheme: $isLightTheme, tintColor: $tintColor)';
   }
 }
 
@@ -175,7 +375,8 @@ abstract mixin class _$AppCustomizationDtoCopyWith<$Res>
   $Res call(
       {int userId,
       @JsonKey(name: 'locale_code', defaultValue: 'ru') String locale,
-      @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme});
+      @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme,
+      @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881) int tintColor});
 }
 
 /// @nodoc
@@ -194,6 +395,7 @@ class __$AppCustomizationDtoCopyWithImpl<$Res>
     Object? userId = null,
     Object? locale = null,
     Object? isLightTheme = null,
+    Object? tintColor = null,
   }) {
     return _then(_AppCustomizationDto(
       userId: null == userId
@@ -208,6 +410,10 @@ class __$AppCustomizationDtoCopyWithImpl<$Res>
           ? _self.isLightTheme
           : isLightTheme // ignore: cast_nullable_to_non_nullable
               as bool,
+      tintColor: null == tintColor
+          ? _self.tintColor
+          : tintColor // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }

@@ -46,4 +46,15 @@ class AppCustomizationDao extends ADao<AppCustomizationDto> {
     final currentAppData = await _get(userId: userId);
     return currentAppData.locale;
   }
+
+  Future<void> setTint(int tintColor, int userId) async {
+    final currentAppData = await _get(userId: userId);
+    final newAppData = currentAppData.copyWith(tintColor: tintColor);
+    await put(newAppData);
+  }
+
+  Future<int> getTint(int userId) async {
+    final currentAppData = await _get(userId: userId);
+    return currentAppData.tintColor;
+  }
 }
