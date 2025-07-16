@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
+import 'package:shmr_finance/utils/themes/color_blend_extension.dart';
 
 class ShmrHeaderListItem extends StatelessWidget {
   final String? leadingEmoji;
@@ -27,7 +28,8 @@ class ShmrHeaderListItem extends StatelessWidget {
               children: [
                 Expanded(
                     child: ColoredBox(
-                  color: context.theme.selectionItemsColor,
+                  // color: context.theme.selectionItemsColor,
+                  color: context.theme.mainThemeColor.withMainTintBlend(context, 70),
                   child: Row(
                     children: [
                       leadingEmoji != null

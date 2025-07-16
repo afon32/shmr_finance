@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
+import 'package:shmr_finance/utils/themes/color_blend_extension.dart';
 
 class ShmrListBottomButtonWrapper extends StatefulWidget {
   final VoidCallback? onTap;
@@ -63,7 +64,9 @@ class _ShmrListBottomButtonWrapperState
                 onTap: widget.onTap,
                 child: Container(
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: context.theme.appBarColor),
+                      shape: BoxShape.circle,
+                      color: context.theme.mainThemeColor
+                          .withMainTintBlend(context, 255)),
                   width: 56,
                   height: 56,
                   child: Icon(

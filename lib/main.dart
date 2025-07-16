@@ -52,6 +52,7 @@ class _App extends StatelessWidget {
                 providers: [
                   BlocProvider(create: (_) => scope.themeStateHolderDep.get),
                   BlocProvider(create: (_) => scope.langStateHolderDep.get),
+                  BlocProvider(create: (_) => scope.mainTintColorHolder.get),
                 ],
                 child: Builder(builder: (context) {
                   final themeMode = context.watch<ThemeProvider>().state;

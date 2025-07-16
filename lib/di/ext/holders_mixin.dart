@@ -3,6 +3,7 @@ import 'package:shmr_finance/core/local_holders/account_id_state_holder.dart';
 import 'package:shmr_finance/core/local_holders/cold_boot_holder.dart';
 import 'package:shmr_finance/core/local_holders/currency_state_holder.dart';
 import 'package:shmr_finance/core/local_holders/local_transaction_id_holder.dart';
+import 'package:shmr_finance/core/local_holders/main_color_holder.dart';
 import 'package:shmr_finance/core/local_holders/secret_state_holder.dart';
 import 'package:shmr_finance/data/local/dao/account_dao.dart';
 import 'package:shmr_finance/data/local/dao/category_dao.dart';
@@ -50,4 +51,6 @@ mixin HoldersMixin on ScopeContainer {
   late final coldBootStateHolder = dep(() => ColdBootStateHolder());
 
   late final localTransactionIdHolder = dep(() => LocalTransactionIdHolder());
+
+  late final mainTintColorHolder = dep(() => MainColorHolder());
 }
