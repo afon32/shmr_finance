@@ -11,8 +11,8 @@ class ThemeProvider extends Cubit<ThemeMode> {
 
   void toggleTheme() {
     _activeMode = switch (_activeMode) {
-      ThemeMode.dark => ThemeMode.light,
-      _ => ThemeMode.dark,
+      ThemeMode.system => ThemeMode.light,
+      _ => ThemeMode.system,
     };
     emit(_activeMode);
   }
