@@ -1,7 +1,9 @@
 import 'package:shmr_finance/core/connection_listener/connection_listener_cubit.dart';
 import 'package:shmr_finance/core/local_holders/account_id_state_holder.dart';
+import 'package:shmr_finance/core/local_holders/app_lifecycle_holder.dart';
 import 'package:shmr_finance/core/local_holders/cold_boot_holder.dart';
 import 'package:shmr_finance/core/local_holders/currency_state_holder.dart';
+import 'package:shmr_finance/core/local_holders/haptick_permission_holder.dart';
 import 'package:shmr_finance/core/local_holders/local_transaction_id_holder.dart';
 import 'package:shmr_finance/core/local_holders/main_color_holder.dart';
 import 'package:shmr_finance/core/local_holders/secret_state_holder.dart';
@@ -28,6 +30,7 @@ mixin HoldersMixin on ScopeContainer {
         langStateHolderDep.get,
         themeStateHolderDep.get,
         mainTintColorHolder.get,
+        haptickPermissionHolder.get,
         coldBootStateHolder.get,
         localTransactionIdHolder.get,
       ));
@@ -54,4 +57,8 @@ mixin HoldersMixin on ScopeContainer {
   late final localTransactionIdHolder = dep(() => LocalTransactionIdHolder());
 
   late final mainTintColorHolder = dep(() => MainColorHolder());
+
+  late final haptickPermissionHolder = dep(() => HaptickPermissionHolder());
+
+  late final appLifecycleStateHolder = dep(() => AppLifecycleStateHolder());
 }
