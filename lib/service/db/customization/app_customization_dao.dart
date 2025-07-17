@@ -69,12 +69,12 @@ class AppCustomizationDao extends ADao<AppCustomizationDto> {
     return currentAppData.hapticksIsOn;
   }
 
-  Future<String?> getPinCode(int userId) async {
+  Future<String> getPinCode(int userId) async {
     final currentAppData = await _get(userId: userId);
     return currentAppData.securePin;
-  }
+  } 
 
-  Future<void> setPinCode(String? pin, int userId) async {
+  Future<void> setPinCode(String pin, int userId) async {
     final currentAppData = await _get(userId: userId);
     final newAppData = currentAppData.copyWith(securePin: pin);
     await put(newAppData);

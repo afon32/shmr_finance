@@ -124,4 +124,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get russian => 'Russian';
+
+  @override
+  String get biometry => 'Biometry';
+
+  @override
+  String get pin_code => 'Pin-code';
+
+  @override
+  String get biometry_reason => 'Enter your biometry, please';
 }

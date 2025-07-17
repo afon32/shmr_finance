@@ -7,11 +7,11 @@ part 'secure_data.g.dart';
 abstract class SecureData with _$SecureData {
   const factory SecureData({
     required bool bioIsOn,
-    required String? pin,
+    required String pin,
   }) = _SecureData;
 
   factory SecureData.fromJson(Map<String, dynamic> json) =>
       _$SecureDataFromJson(json);
 
-  factory SecureData.initial() => SecureData(bioIsOn: false, pin: null);
+  factory SecureData.initial() => SecureData(bioIsOn: false, pin: 'none');
 }

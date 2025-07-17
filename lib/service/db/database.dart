@@ -162,9 +162,9 @@ class ShmrDatabase extends ADb {
         }).listen((_) {}),
       )
       ..add(
-        _secureDataHolder.stream.asyncMap((data) {
-          appCustomizationDao.setPinCode(data.pin, userId);
-          appCustomizationDao.setBiometry(data.bioIsOn, userId);
+        _secureDataHolder.stream.asyncMap((data) async {
+        await  appCustomizationDao.setPinCode(data.pin, userId);
+        await  appCustomizationDao.setBiometry(data.bioIsOn, userId);
         }).listen((_) {}),
       )
       ..add(

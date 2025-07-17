@@ -328,6 +328,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Russian'**
   String get russian;
+
+  /// No description provided for @biometry.
+  ///
+  /// In en, this message translates to:
+  /// **'Biometry'**
+  String get biometry;
+
+  /// No description provided for @pin_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin-code'**
+  String get pin_code;
+
+  /// No description provided for @biometry_reason.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your biometry, please'**
+  String get biometry_reason;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

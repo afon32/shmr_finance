@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shmr_finance/core/local_holders/app_lifecycle_holder.dart';
 import 'package:shmr_finance/core/shared_widgets/common_screens/secure_screen.dart';
+import 'package:shmr_finance/core/shared_widgets/local_auth/local_auth_screen.dart';
 import 'package:shmr_finance/di/app_scope.dart';
 import 'package:shmr_finance/di/app_scope_holder.dart';
 import 'package:shmr_finance/utils/router/app_router.dart';
@@ -70,7 +71,6 @@ class _App extends StatelessWidget {
                 child: Builder(builder: (context) {
                   final themeMode = context.watch<ThemeProvider>().state;
                   final locale = context.watch<StringsProvider>().state;
-                  final st =  context.watch<AppLifecycleStateHolder>().state;
                   final isHidden =
                       context.watch<AppLifecycleStateHolder>().state ==
                           AppLifecycleState.inactive;
@@ -85,7 +85,7 @@ class _App extends StatelessWidget {
                     localizationsDelegates: locale.localizationDelegates,
                     builder: (context, child) => Stack(
                       children: [
-                        child!,
+                        ShmrBiometricAuthScreen(child: child!),
                         if (isHidden) ShmrSecureScreen(),
                       ],
                     ),

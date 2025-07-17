@@ -42,12 +42,12 @@ abstract class AppCustomizationDto with _$AppCustomizationDto {
     bool hapticksIsOn,
     
     /// Пин код
-    @Default(null)
+    @Default('none')
     @JsonKey(
-      name: 'pin_code',
-      defaultValue: null,
+      name: 'user_pin_code',
+      defaultValue: 'none',
     )
-    String? securePin,
+    String securePin,
   
     /// Биометрия
     @Default(false)

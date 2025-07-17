@@ -42,5 +42,8 @@
   "secure" : "Безопасность",
   "language" : "Язык",
   "english" : "English",
-  "russian" : "Русский"
+  "russian" : "Русский",
+  "biometry" : "Биометрия",
+  "pin_code" : "Пин-код",
+  "biometry_reason" : "Пожалуйста, подтвердите вход по биометрии"
 }

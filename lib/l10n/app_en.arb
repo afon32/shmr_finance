@@ -42,5 +42,8 @@
   "secure" : "Secure",
   "language" : "Language",
   "english" : "English",
-  "russian" : "Russian"
+  "russian" : "Russian",
+  "biometry" : "Biometry",
+  "pin_code" : "Pin-code",
+  "biometry_reason" : "Enter your biometry, please"
 }

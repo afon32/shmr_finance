@@ -8,7 +8,7 @@ part of 'secure_data.dart';
 
 _SecureData _$SecureDataFromJson(Map<String, dynamic> json) => _SecureData(
       bioIsOn: json['bioIsOn'] as bool,
-      pin: json['pin'] as String?,
+      pin: json['pin'] as String,
     );
 
 Map<String, dynamic> _$SecureDataToJson(_SecureData instance) =>

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shmr_finance/core/shared_widgets/app_bar.dart';
+import 'package:shmr_finance/core/shared_widgets/bottom_sheet/show_bottom_sheet.dart';
 import 'package:shmr_finance/core/shared_widgets/list_item/universal_list_item.dart';
+import 'package:shmr_finance/core/shared_widgets/local_auth/components/pin_input_screen.dart';
 import 'package:shmr_finance/di/app_scope.dart';
 import 'package:shmr_finance/utils/strings/s.dart';
 import 'package:yx_scope_flutter/yx_scope_flutter.dart';
@@ -33,6 +36,7 @@ class _Page extends StatelessWidget {
           mainColorHolder: scope.mainTintColorHolder.get,
           hapticksIsOn: scope.haptickPermissionHolder.get,
           stringsProvider: scope.langStateHolderDep.get,
+          secureDataHolder: scope.secureDataHolder.get,
         ),
         child: _SettingsList(),
       ),
@@ -53,6 +57,7 @@ class _SettingsList extends StatelessWidget {
     final mainColor = state.mainColor;
     final hapticksIsOn = state.hapticksOn;
     final isEnglish = state.isEnglish;
+    final bioIsOn = state.biometryOn;
     return Column(
       children: [
         // Тема
@@ -93,10 +98,18 @@ class _SettingsList extends StatelessWidget {
                   ? cubit.setHapticksPermissionIsOn()
                   : cubit.setHapticksPermissionIsOff()),
         ),
-        // Безопасность
+        // Пин код
         ShmrUniversalListItem(
-          leftTitle: strings.secure,
+          leftTitle: strings.pin_code,
           isChevroned: true,
+          onTap: () => shmrShowBottomSheet(context, [
+            PinInputScreen(
+              onAccept: (pin) {
+                cubit.setPinCode(pin);
+                context.pop();
+              },
+            ),
+          ]),
         ),
         // Язык
         ShmrUniversalListItem(
@@ -105,6 +118,15 @@ class _SettingsList extends StatelessWidget {
           insteadRightTitle: Switch(
             value: isEnglish,
             onChanged: (_) => cubit.toggleLang(),
+          ),
+        ),
+        // Биометрия
+        ShmrUniversalListItem(
+          leftTitle: strings.biometry,
+          insteadRightTitle: Switch(
+            value: bioIsOn,
+            onChanged: (value) =>
+                value == true ? cubit.setBioIsOn() : cubit.setBioIsOff(),
           ),
         ),
       ],

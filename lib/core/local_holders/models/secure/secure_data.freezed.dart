@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SecureData {
   bool get bioIsOn;
-  String? get pin;
+  String get pin;
 
   /// Create a copy of SecureData
   /// with the given fields replaced by the non-null parameter values.
@@ -52,7 +52,7 @@ abstract mixin class $SecureDataCopyWith<$Res> {
           SecureData value, $Res Function(SecureData) _then) =
       _$SecureDataCopyWithImpl;
   @useResult
-  $Res call({bool bioIsOn, String? pin});
+  $Res call({bool bioIsOn, String pin});
 }
 
 /// @nodoc
@@ -68,17 +68,17 @@ class _$SecureDataCopyWithImpl<$Res> implements $SecureDataCopyWith<$Res> {
   @override
   $Res call({
     Object? bioIsOn = null,
-    Object? pin = freezed,
+    Object? pin = null,
   }) {
     return _then(_self.copyWith(
       bioIsOn: null == bioIsOn
           ? _self.bioIsOn
           : bioIsOn // ignore: cast_nullable_to_non_nullable
               as bool,
-      pin: freezed == pin
+      pin: null == pin
           ? _self.pin
           : pin // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -176,7 +176,7 @@ extension SecureDataPatterns on SecureData {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool bioIsOn, String? pin)? $default, {
+    TResult Function(bool bioIsOn, String pin)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
@@ -203,7 +203,7 @@ extension SecureDataPatterns on SecureData {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool bioIsOn, String? pin) $default,
+    TResult Function(bool bioIsOn, String pin) $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -228,7 +228,7 @@ extension SecureDataPatterns on SecureData {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool bioIsOn, String? pin)? $default,
+    TResult? Function(bool bioIsOn, String pin)? $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -250,7 +250,7 @@ class _SecureData implements SecureData {
   @override
   final bool bioIsOn;
   @override
-  final String? pin;
+  final String pin;
 
   /// Create a copy of SecureData
   /// with the given fields replaced by the non-null parameter values.
@@ -294,7 +294,7 @@ abstract mixin class _$SecureDataCopyWith<$Res>
       __$SecureDataCopyWithImpl;
   @override
   @useResult
-  $Res call({bool bioIsOn, String? pin});
+  $Res call({bool bioIsOn, String pin});
 }
 
 /// @nodoc
@@ -310,17 +310,17 @@ class __$SecureDataCopyWithImpl<$Res> implements _$SecureDataCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? bioIsOn = null,
-    Object? pin = freezed,
+    Object? pin = null,
   }) {
     return _then(_SecureData(
       bioIsOn: null == bioIsOn
           ? _self.bioIsOn
           : bioIsOn // ignore: cast_nullable_to_non_nullable
               as bool,
-      pin: freezed == pin
+      pin: null == pin
           ? _self.pin
           : pin // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }

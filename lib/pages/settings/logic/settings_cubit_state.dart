@@ -10,11 +10,15 @@ class SettingsCubitState with _$SettingsCubitState{
   final Color mainColor;
   final bool hapticksOn;
   final bool isEnglish;
+  final String? pinCode;
+  final bool biometryOn;
 
   SettingsCubitState({
     required this.isSystemTheme,
     required this.mainColor,
     required this.hapticksOn,
     required this.isEnglish,
+    required this.pinCode,
+    required this.biometryOn,
   });
 }

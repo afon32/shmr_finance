@@ -18,6 +18,8 @@ mixin _$SettingsCubitState {
   Color get mainColor;
   bool get hapticksOn;
   bool get isEnglish;
+  String? get pinCode;
+  bool get biometryOn;
 
   /// Create a copy of SettingsCubitState
   /// with the given fields replaced by the non-null parameter values.
@@ -39,16 +41,19 @@ mixin _$SettingsCubitState {
             (identical(other.hapticksOn, hapticksOn) ||
                 other.hapticksOn == hapticksOn) &&
             (identical(other.isEnglish, isEnglish) ||
-                other.isEnglish == isEnglish));
+                other.isEnglish == isEnglish) &&
+            (identical(other.pinCode, pinCode) || other.pinCode == pinCode) &&
+            (identical(other.biometryOn, biometryOn) ||
+                other.biometryOn == biometryOn));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isSystemTheme, mainColor, hapticksOn, isEnglish);
+  int get hashCode => Object.hash(runtimeType, isSystemTheme, mainColor,
+      hapticksOn, isEnglish, pinCode, biometryOn);
 
   @override
   String toString() {
-    return 'SettingsCubitState(isSystemTheme: $isSystemTheme, mainColor: $mainColor, hapticksOn: $hapticksOn, isEnglish: $isEnglish)';
+    return 'SettingsCubitState(isSystemTheme: $isSystemTheme, mainColor: $mainColor, hapticksOn: $hapticksOn, isEnglish: $isEnglish, pinCode: $pinCode, biometryOn: $biometryOn)';
   }
 }
 
@@ -59,7 +64,12 @@ abstract mixin class $SettingsCubitStateCopyWith<$Res> {
       _$SettingsCubitStateCopyWithImpl;
   @useResult
   $Res call(
-      {bool isSystemTheme, Color mainColor, bool hapticksOn, bool isEnglish});
+      {bool isSystemTheme,
+      Color mainColor,
+      bool hapticksOn,
+      bool isEnglish,
+      String? pinCode,
+      bool biometryOn});
 }
 
 /// @nodoc
@@ -79,6 +89,8 @@ class _$SettingsCubitStateCopyWithImpl<$Res>
     Object? mainColor = null,
     Object? hapticksOn = null,
     Object? isEnglish = null,
+    Object? pinCode = freezed,
+    Object? biometryOn = null,
   }) {
     return _then(SettingsCubitState(
       isSystemTheme: null == isSystemTheme
@@ -96,6 +108,14 @@ class _$SettingsCubitStateCopyWithImpl<$Res>
       isEnglish: null == isEnglish
           ? _self.isEnglish
           : isEnglish // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pinCode: freezed == pinCode
+          ? _self.pinCode
+          : pinCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      biometryOn: null == biometryOn
+          ? _self.biometryOn
+          : biometryOn // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }

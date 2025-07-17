@@ -33,8 +33,8 @@ mixin _$AppCustomizationDto {
   bool get hapticksIsOn;
 
   /// Пин код
-  @JsonKey(name: 'pin_code', defaultValue: null)
-  String? get securePin;
+  @JsonKey(name: 'pin_code', defaultValue: 'none')
+  String get securePin;
 
   /// Биометрия
   @JsonKey(name: 'bio_on', defaultValue: false)
@@ -92,7 +92,7 @@ abstract mixin class $AppCustomizationDtoCopyWith<$Res> {
       @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme,
       @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881) int tintColor,
       @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
-      @JsonKey(name: 'pin_code', defaultValue: null) String? securePin,
+      @JsonKey(name: 'pin_code', defaultValue: 'none') String securePin,
       @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn});
 }
 
@@ -114,7 +114,7 @@ class _$AppCustomizationDtoCopyWithImpl<$Res>
     Object? isLightTheme = null,
     Object? tintColor = null,
     Object? hapticksIsOn = null,
-    Object? securePin = freezed,
+    Object? securePin = null,
     Object? bioIsOn = null,
   }) {
     return _then(_self.copyWith(
@@ -138,10 +138,10 @@ class _$AppCustomizationDtoCopyWithImpl<$Res>
           ? _self.hapticksIsOn
           : hapticksIsOn // ignore: cast_nullable_to_non_nullable
               as bool,
-      securePin: freezed == securePin
+      securePin: null == securePin
           ? _self.securePin
           : securePin // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       bioIsOn: null == bioIsOn
           ? _self.bioIsOn
           : bioIsOn // ignore: cast_nullable_to_non_nullable
@@ -250,7 +250,7 @@ extension AppCustomizationDtoPatterns on AppCustomizationDto {
             @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
             int tintColor,
             @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
-            @JsonKey(name: 'pin_code', defaultValue: null) String? securePin,
+            @JsonKey(name: 'pin_code', defaultValue: 'none') String securePin,
             @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn)?
         $default, {
     required TResult orElse(),
@@ -293,7 +293,7 @@ extension AppCustomizationDtoPatterns on AppCustomizationDto {
             @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
             int tintColor,
             @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
-            @JsonKey(name: 'pin_code', defaultValue: null) String? securePin,
+            @JsonKey(name: 'pin_code', defaultValue: 'none') String securePin,
             @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn)
         $default,
   ) {
@@ -334,7 +334,7 @@ extension AppCustomizationDtoPatterns on AppCustomizationDto {
             @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
             int tintColor,
             @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
-            @JsonKey(name: 'pin_code', defaultValue: null) String? securePin,
+            @JsonKey(name: 'pin_code', defaultValue: 'none') String securePin,
             @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn)?
         $default,
   ) {
@@ -367,7 +367,7 @@ class _AppCustomizationDto implements AppCustomizationDto {
       this.tintColor = 0xFF2AE881,
       @JsonKey(name: 'hapricks_on', defaultValue: true)
       this.hapticksIsOn = true,
-      @JsonKey(name: 'pin_code', defaultValue: null) this.securePin = null,
+      @JsonKey(name: 'pin_code', defaultValue: 'none') this.securePin = 'none',
       @JsonKey(name: 'bio_on', defaultValue: false) this.bioIsOn = false});
   factory _AppCustomizationDto.fromJson(Map<String, dynamic> json) =>
       _$AppCustomizationDtoFromJson(json);
@@ -397,8 +397,8 @@ class _AppCustomizationDto implements AppCustomizationDto {
 
   /// Пин код
   @override
-  @JsonKey(name: 'pin_code', defaultValue: null)
-  final String? securePin;
+  @JsonKey(name: 'pin_code', defaultValue: 'none')
+  final String securePin;
 
   /// Биометрия
   @override
@@ -464,7 +464,7 @@ abstract mixin class _$AppCustomizationDtoCopyWith<$Res>
       @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme,
       @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881) int tintColor,
       @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
-      @JsonKey(name: 'pin_code', defaultValue: null) String? securePin,
+      @JsonKey(name: 'pin_code', defaultValue: 'none') String securePin,
       @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn});
 }
 
@@ -486,7 +486,7 @@ class __$AppCustomizationDtoCopyWithImpl<$Res>
     Object? isLightTheme = null,
     Object? tintColor = null,
     Object? hapticksIsOn = null,
-    Object? securePin = freezed,
+    Object? securePin = null,
     Object? bioIsOn = null,
   }) {
     return _then(_AppCustomizationDto(
@@ -510,10 +510,10 @@ class __$AppCustomizationDtoCopyWithImpl<$Res>
           ? _self.hapticksIsOn
           : hapticksIsOn // ignore: cast_nullable_to_non_nullable
               as bool,
-      securePin: freezed == securePin
+      securePin: null == securePin
           ? _self.securePin
           : securePin // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       bioIsOn: null == bioIsOn
           ? _self.bioIsOn
           : bioIsOn // ignore: cast_nullable_to_non_nullable
