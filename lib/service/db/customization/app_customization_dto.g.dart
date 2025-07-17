@@ -13,6 +13,8 @@ _AppCustomizationDto _$AppCustomizationDtoFromJson(Map<String, dynamic> json) =>
       isLightTheme: json['light_theme'] as bool? ?? true,
       tintColor: (json['tint_color'] as num?)?.toInt() ?? 4281002113,
       hapticksIsOn: json['hapricks_on'] as bool? ?? true,
+      securePin: json['pin_code'] as String? ?? null,
+      bioIsOn: json['bio_on'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$AppCustomizationDtoToJson(
@@ -23,4 +25,6 @@ Map<String, dynamic> _$AppCustomizationDtoToJson(
       'light_theme': instance.isLightTheme,
       'tint_color': instance.tintColor,
       'hapricks_on': instance.hapticksIsOn,
+      'pin_code': instance.securePin,
+      'bio_on': instance.bioIsOn,
     };

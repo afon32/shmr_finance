@@ -68,4 +68,26 @@ class AppCustomizationDao extends ADao<AppCustomizationDto> {
     final currentAppData = await _get(userId: userId);
     return currentAppData.hapticksIsOn;
   }
+
+  Future<String?> getPinCode(int userId) async {
+    final currentAppData = await _get(userId: userId);
+    return currentAppData.securePin;
+  }
+
+  Future<void> setPinCode(String? pin, int userId) async {
+    final currentAppData = await _get(userId: userId);
+    final newAppData = currentAppData.copyWith(securePin: pin);
+    await put(newAppData);
+  }
+
+  Future<bool> getBiomety(int userId) async {
+    final currentAppData = await _get(userId: userId);
+    return currentAppData.bioIsOn;
+  }
+
+  Future<void> setBiometry(bool isOn, int userId) async {
+    final currentAppData = await _get(userId: userId);
+    final newAppData = currentAppData.copyWith(bioIsOn: isOn);
+    await put(newAppData);
+  }
 }

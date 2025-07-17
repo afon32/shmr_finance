@@ -4,6 +4,7 @@ import 'package:shmr_finance/core/local_holders/cold_boot_holder.dart';
 import 'package:shmr_finance/core/local_holders/haptick_permission_holder.dart';
 import 'package:shmr_finance/core/local_holders/local_transaction_id_holder.dart';
 import 'package:shmr_finance/core/local_holders/main_color_holder.dart';
+import 'package:shmr_finance/core/local_holders/secure_data_holder.dart';
 import 'package:shmr_finance/service/db/cold_boot/cold_boot_dao.dart';
 import 'package:shmr_finance/service/db/local_transaction_id/local_transaction_id_dao.dart';
 import 'package:shmr_finance/service/db/local_transaction_id/local_transaction_id_dto.dart';
@@ -27,6 +28,7 @@ class ShmrDatabase extends ADb {
   final ThemeProvider _themeProvider;
   final MainColorHolder _mainColorHolder;
   final HaptickPermissionHolder _haptickPermissionHolder;
+  final SecureDataHolder _secureDataHolder;
   final ColdBootStateHolder _coldBootStateHolder;
   final LocalTransactionIdHolder _localTransactionIdHolder;
 
@@ -35,6 +37,7 @@ class ShmrDatabase extends ADb {
     this._themeProvider,
     this._mainColorHolder,
     this._haptickPermissionHolder,
+    this._secureDataHolder,
     this._coldBootStateHolder,
     this._localTransactionIdHolder,
   );
@@ -76,6 +79,8 @@ class ShmrDatabase extends ADb {
       await _restoreTheme(userId: userId);
       await _restoreColor(userId: userId);
       await _restoreHapticks(userId: userId);
+      await _restorePinCode(userId: userId);
+      await _restoreBiometry(userId: userId);
       await _restoreColdBootFlag(userId: userId);
       await _restoreTransactionId(userId: userId);
 
@@ -116,6 +121,16 @@ class ShmrDatabase extends ADb {
     _haptickPermissionHolder.setValue(isOn);
   }
 
+  Future<void> _restorePinCode({required int userId}) async {
+    final pin = await appCustomizationDao.getPinCode(userId);
+    _secureDataHolder.setPin(pin);
+  }
+
+  Future<void> _restoreBiometry({required int userId}) async {
+    final isOn = await appCustomizationDao.getBiomety(userId);
+    _secureDataHolder.setBio(isOn);
+  }
+
   Future<void> _restoreColdBootFlag({required int userId}) async {
     final isColdBoot = await coldBootDao.getColdBootFlag(userId);
     !isColdBoot
@@ -128,7 +143,7 @@ class ShmrDatabase extends ADb {
     _localTransactionIdHolder.restore(id);
   }
 
-  /// Подписка на изменение темы и языка
+  /// Подписка на изменение локальных изменений кастомизации
   void _subscribeOnChanges() {
     globalSubscriptions = CompositeSubscription()
       ..add(
@@ -144,6 +159,12 @@ class ShmrDatabase extends ADb {
       ..add(
         _haptickPermissionHolder.stream.asyncMap((isOn) {
           appCustomizationDao.setHapticks(isOn, userId);
+        }).listen((_) {}),
+      )
+      ..add(
+        _secureDataHolder.stream.asyncMap((data) {
+          appCustomizationDao.setPinCode(data.pin, userId);
+          appCustomizationDao.setBiometry(data.bioIsOn, userId);
         }).listen((_) {}),
       )
       ..add(

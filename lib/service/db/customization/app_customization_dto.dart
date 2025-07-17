@@ -40,6 +40,22 @@ abstract class AppCustomizationDto with _$AppCustomizationDto {
       defaultValue: true,
     )
     bool hapticksIsOn,
+    
+    /// Пин код
+    @Default(null)
+    @JsonKey(
+      name: 'pin_code',
+      defaultValue: null,
+    )
+    String? securePin,
+  
+    /// Биометрия
+    @Default(false)
+    @JsonKey(
+      name: 'bio_on',
+      defaultValue: false,
+    )
+    bool bioIsOn,
   }) = _AppCustomizationDto;
 
   factory AppCustomizationDto.fromJson(Map<String, dynamic> json) => _$AppCustomizationDtoFromJson(json);

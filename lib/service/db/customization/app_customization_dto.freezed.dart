@@ -32,6 +32,14 @@ mixin _$AppCustomizationDto {
   @JsonKey(name: 'hapricks_on', defaultValue: true)
   bool get hapticksIsOn;
 
+  /// Пин код
+  @JsonKey(name: 'pin_code', defaultValue: null)
+  String? get securePin;
+
+  /// Биометрия
+  @JsonKey(name: 'bio_on', defaultValue: false)
+  bool get bioIsOn;
+
   /// Create a copy of AppCustomizationDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -55,17 +63,20 @@ mixin _$AppCustomizationDto {
             (identical(other.tintColor, tintColor) ||
                 other.tintColor == tintColor) &&
             (identical(other.hapticksIsOn, hapticksIsOn) ||
-                other.hapticksIsOn == hapticksIsOn));
+                other.hapticksIsOn == hapticksIsOn) &&
+            (identical(other.securePin, securePin) ||
+                other.securePin == securePin) &&
+            (identical(other.bioIsOn, bioIsOn) || other.bioIsOn == bioIsOn));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, userId, locale, isLightTheme, tintColor, hapticksIsOn);
+  int get hashCode => Object.hash(runtimeType, userId, locale, isLightTheme,
+      tintColor, hapticksIsOn, securePin, bioIsOn);
 
   @override
   String toString() {
-    return 'AppCustomizationDto(userId: $userId, locale: $locale, isLightTheme: $isLightTheme, tintColor: $tintColor, hapticksIsOn: $hapticksIsOn)';
+    return 'AppCustomizationDto(userId: $userId, locale: $locale, isLightTheme: $isLightTheme, tintColor: $tintColor, hapticksIsOn: $hapticksIsOn, securePin: $securePin, bioIsOn: $bioIsOn)';
   }
 }
 
@@ -80,7 +91,9 @@ abstract mixin class $AppCustomizationDtoCopyWith<$Res> {
       @JsonKey(name: 'locale_code', defaultValue: 'ru') String locale,
       @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme,
       @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881) int tintColor,
-      @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn});
+      @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
+      @JsonKey(name: 'pin_code', defaultValue: null) String? securePin,
+      @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn});
 }
 
 /// @nodoc
@@ -101,6 +114,8 @@ class _$AppCustomizationDtoCopyWithImpl<$Res>
     Object? isLightTheme = null,
     Object? tintColor = null,
     Object? hapticksIsOn = null,
+    Object? securePin = freezed,
+    Object? bioIsOn = null,
   }) {
     return _then(_self.copyWith(
       userId: null == userId
@@ -122,6 +137,14 @@ class _$AppCustomizationDtoCopyWithImpl<$Res>
       hapticksIsOn: null == hapticksIsOn
           ? _self.hapticksIsOn
           : hapticksIsOn // ignore: cast_nullable_to_non_nullable
+              as bool,
+      securePin: freezed == securePin
+          ? _self.securePin
+          : securePin // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bioIsOn: null == bioIsOn
+          ? _self.bioIsOn
+          : bioIsOn // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -226,16 +249,23 @@ extension AppCustomizationDtoPatterns on AppCustomizationDto {
             @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme,
             @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
             int tintColor,
-            @JsonKey(name: 'hapricks_on', defaultValue: true)
-            bool hapticksIsOn)?
+            @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
+            @JsonKey(name: 'pin_code', defaultValue: null) String? securePin,
+            @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _AppCustomizationDto() when $default != null:
-        return $default(_that.userId, _that.locale, _that.isLightTheme,
-            _that.tintColor, _that.hapticksIsOn);
+        return $default(
+            _that.userId,
+            _that.locale,
+            _that.isLightTheme,
+            _that.tintColor,
+            _that.hapticksIsOn,
+            _that.securePin,
+            _that.bioIsOn);
       case _:
         return orElse();
     }
@@ -262,14 +292,22 @@ extension AppCustomizationDtoPatterns on AppCustomizationDto {
             @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme,
             @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
             int tintColor,
-            @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn)
+            @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
+            @JsonKey(name: 'pin_code', defaultValue: null) String? securePin,
+            @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _AppCustomizationDto():
-        return $default(_that.userId, _that.locale, _that.isLightTheme,
-            _that.tintColor, _that.hapticksIsOn);
+        return $default(
+            _that.userId,
+            _that.locale,
+            _that.isLightTheme,
+            _that.tintColor,
+            _that.hapticksIsOn,
+            _that.securePin,
+            _that.bioIsOn);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -295,15 +333,22 @@ extension AppCustomizationDtoPatterns on AppCustomizationDto {
             @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme,
             @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
             int tintColor,
-            @JsonKey(name: 'hapricks_on', defaultValue: true)
-            bool hapticksIsOn)?
+            @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
+            @JsonKey(name: 'pin_code', defaultValue: null) String? securePin,
+            @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _AppCustomizationDto() when $default != null:
-        return $default(_that.userId, _that.locale, _that.isLightTheme,
-            _that.tintColor, _that.hapticksIsOn);
+        return $default(
+            _that.userId,
+            _that.locale,
+            _that.isLightTheme,
+            _that.tintColor,
+            _that.hapticksIsOn,
+            _that.securePin,
+            _that.bioIsOn);
       case _:
         return null;
     }
@@ -321,7 +366,9 @@ class _AppCustomizationDto implements AppCustomizationDto {
       @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
       this.tintColor = 0xFF2AE881,
       @JsonKey(name: 'hapricks_on', defaultValue: true)
-      this.hapticksIsOn = true});
+      this.hapticksIsOn = true,
+      @JsonKey(name: 'pin_code', defaultValue: null) this.securePin = null,
+      @JsonKey(name: 'bio_on', defaultValue: false) this.bioIsOn = false});
   factory _AppCustomizationDto.fromJson(Map<String, dynamic> json) =>
       _$AppCustomizationDtoFromJson(json);
 
@@ -347,6 +394,16 @@ class _AppCustomizationDto implements AppCustomizationDto {
   @override
   @JsonKey(name: 'hapricks_on', defaultValue: true)
   final bool hapticksIsOn;
+
+  /// Пин код
+  @override
+  @JsonKey(name: 'pin_code', defaultValue: null)
+  final String? securePin;
+
+  /// Биометрия
+  @override
+  @JsonKey(name: 'bio_on', defaultValue: false)
+  final bool bioIsOn;
 
   /// Create a copy of AppCustomizationDto
   /// with the given fields replaced by the non-null parameter values.
@@ -376,17 +433,20 @@ class _AppCustomizationDto implements AppCustomizationDto {
             (identical(other.tintColor, tintColor) ||
                 other.tintColor == tintColor) &&
             (identical(other.hapticksIsOn, hapticksIsOn) ||
-                other.hapticksIsOn == hapticksIsOn));
+                other.hapticksIsOn == hapticksIsOn) &&
+            (identical(other.securePin, securePin) ||
+                other.securePin == securePin) &&
+            (identical(other.bioIsOn, bioIsOn) || other.bioIsOn == bioIsOn));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, userId, locale, isLightTheme, tintColor, hapticksIsOn);
+  int get hashCode => Object.hash(runtimeType, userId, locale, isLightTheme,
+      tintColor, hapticksIsOn, securePin, bioIsOn);
 
   @override
   String toString() {
-    return 'AppCustomizationDto(userId: $userId, locale: $locale, isLightTheme: $isLightTheme, tintColor: $tintColor, hapticksIsOn: $hapticksIsOn)';
+    return 'AppCustomizationDto(userId: $userId, locale: $locale, isLightTheme: $isLightTheme, tintColor: $tintColor, hapticksIsOn: $hapticksIsOn, securePin: $securePin, bioIsOn: $bioIsOn)';
   }
 }
 
@@ -403,7 +463,9 @@ abstract mixin class _$AppCustomizationDtoCopyWith<$Res>
       @JsonKey(name: 'locale_code', defaultValue: 'ru') String locale,
       @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme,
       @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881) int tintColor,
-      @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn});
+      @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
+      @JsonKey(name: 'pin_code', defaultValue: null) String? securePin,
+      @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn});
 }
 
 /// @nodoc
@@ -424,6 +486,8 @@ class __$AppCustomizationDtoCopyWithImpl<$Res>
     Object? isLightTheme = null,
     Object? tintColor = null,
     Object? hapticksIsOn = null,
+    Object? securePin = freezed,
+    Object? bioIsOn = null,
   }) {
     return _then(_AppCustomizationDto(
       userId: null == userId
@@ -445,6 +509,14 @@ class __$AppCustomizationDtoCopyWithImpl<$Res>
       hapticksIsOn: null == hapticksIsOn
           ? _self.hapticksIsOn
           : hapticksIsOn // ignore: cast_nullable_to_non_nullable
+              as bool,
+      securePin: freezed == securePin
+          ? _self.securePin
+          : securePin // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bioIsOn: null == bioIsOn
+          ? _self.bioIsOn
+          : bioIsOn // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
