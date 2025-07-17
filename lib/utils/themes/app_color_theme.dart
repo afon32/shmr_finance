@@ -3,10 +3,11 @@ part of 'app_theme.dart';
 extension AppColorTheme on ThemeExtension<ColorTheme> {
   static ColorTheme? _darkTheme;
   static ColorTheme get dark => _darkTheme ??= const ColorTheme(
+        mainThemeColor: Colors.black,
         backgroundColor: Color(0xFF0F0F0F),
         containerColor: Color(0xFF1B1B1B),
         foregroundColor: Color(0xFF2C2C2D),
-        dividerColor: Color.fromARGB(255, 202, 196, 208),
+        dividerColor: Color.fromARGB(255, 43, 42, 44),
         iconColor: Color(0xFFF4F4F4),
         textColor: Color(0xFFF4F4F4),
         secondaryTextColor: Color(0x99DFDFDF),
@@ -17,11 +18,13 @@ extension AppColorTheme on ThemeExtension<ColorTheme> {
         selectionItemsColor: Color.fromARGB(255, 212, 250, 230),
         textContainerColor: Color.fromARGB(255, 68, 235, 144),
         rejectButtonColor: Color.fromARGB(255, 228, 105, 98),
-        commonListItemColor: Color.fromARGB(255, 254, 247, 255),
+        commonListItemColor: Color.fromARGB(255, 1, 8, 0)
+
       );
 
   static ColorTheme? _lightTheme;
   static ColorTheme get light => _lightTheme ??= const ColorTheme(
+        mainThemeColor: Colors.white,
         backgroundColor: Color(0xFFFCFCFC),
         containerColor: Color(0xFFF3F3F3),
         foregroundColor: Color(0xFFECECEC),
@@ -32,7 +35,7 @@ extension AppColorTheme on ThemeExtension<ColorTheme> {
         disabled: Color(0xFFECECEC),
         mainLogoColor: Color.fromARGB(255, 55, 87, 161),
         appBarColor: Color.fromARGB(255, 42, 232, 129),
-        bottomNavBarColor: Color.fromARGB(255,243, 237, 247),
+        bottomNavBarColor: Color.fromARGB(255, 243, 237, 247),
         selectionItemsColor: Color.fromARGB(255, 212, 250, 230),
         textContainerColor: Color.fromARGB(255, 68, 235, 144),
         rejectButtonColor: Color.fromARGB(255, 228, 105, 98),

@@ -2,6 +2,7 @@ part of 'app_theme.dart';
 
 class ColorTheme extends ThemeExtension<ColorTheme> {
   const ColorTheme({
+    required this.mainThemeColor,
     required this.backgroundColor,
     required this.containerColor,
     required this.foregroundColor,
@@ -22,6 +23,8 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     this.accentColor = const Color(0xFF0084FF),
     this.whiteText = const Color(0xFFF4F4F4),
   });
+
+  final Color mainThemeColor;
 
   final Color mainLogoColor;
 
@@ -81,6 +84,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
 
   @override
   ThemeExtension<ColorTheme> copyWith({
+    Color? mainThemeColor,
     Color? accentColor,
     Color? whiteText,
     Color? backgroundColor,
@@ -101,6 +105,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
     Color? disabled,
   }) =>
       ColorTheme(
+        mainThemeColor: mainThemeColor ?? this.mainThemeColor,
         accentColor: accentColor ?? this.accentColor,
         whiteText: whiteText ?? this.whiteText,
         backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -127,6 +132,7 @@ class ColorTheme extends ThemeExtension<ColorTheme> {
       covariant ThemeExtension<ColorTheme>? other, double t) {
     if (other is! ColorTheme) return this;
     return ColorTheme(
+        mainThemeColor: Color.lerp(mainThemeColor, other.mainThemeColor, t)!,
         accentColor: Color.lerp(accentColor, other.accentColor, t)!,
         whiteText: Color.lerp(whiteText, other.whiteText, t)!,
         backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,

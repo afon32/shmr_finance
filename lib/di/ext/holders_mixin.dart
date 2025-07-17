@@ -1,9 +1,13 @@
 import 'package:shmr_finance/core/connection_listener/connection_listener_cubit.dart';
 import 'package:shmr_finance/core/local_holders/account_id_state_holder.dart';
+import 'package:shmr_finance/core/local_holders/app_lifecycle_holder.dart';
 import 'package:shmr_finance/core/local_holders/cold_boot_holder.dart';
 import 'package:shmr_finance/core/local_holders/currency_state_holder.dart';
+import 'package:shmr_finance/core/local_holders/haptick_permission_holder.dart';
 import 'package:shmr_finance/core/local_holders/local_transaction_id_holder.dart';
+import 'package:shmr_finance/core/local_holders/main_color_holder.dart';
 import 'package:shmr_finance/core/local_holders/secret_state_holder.dart';
+import 'package:shmr_finance/core/local_holders/secure_data_holder.dart';
 import 'package:shmr_finance/data/local/dao/account_dao.dart';
 import 'package:shmr_finance/data/local/dao/category_dao.dart';
 import 'package:shmr_finance/data/local/dao/export.dart';
@@ -26,6 +30,9 @@ mixin HoldersMixin on ScopeContainer {
   late final dbDep = dep(() => ShmrDatabase(
         langStateHolderDep.get,
         themeStateHolderDep.get,
+        mainTintColorHolder.get,
+        haptickPermissionHolder.get,
+        secureDataHolder.get,
         coldBootStateHolder.get,
         localTransactionIdHolder.get,
       ));
@@ -50,4 +57,12 @@ mixin HoldersMixin on ScopeContainer {
   late final coldBootStateHolder = dep(() => ColdBootStateHolder());
 
   late final localTransactionIdHolder = dep(() => LocalTransactionIdHolder());
+
+  late final mainTintColorHolder = dep(() => MainColorHolder());
+
+  late final haptickPermissionHolder = dep(() => HaptickPermissionHolder());
+
+  late final secureDataHolder = dep(() => SecureDataHolder());
+
+  late final appLifecycleStateHolder = dep(() => AppLifecycleStateHolder());
 }

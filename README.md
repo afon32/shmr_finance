@@ -1,16 +1,20 @@
 # shmr_finance
 
-#fifth stage
+#sixth stage
 
 необходимо создать файл assets/.env куда прописать:
     API_KEY='your_token'
     API_URL='https://shmr-finance.ru/api/v1'
 
+Перед запуском вызовите:
+    flutter pub get
+    flutter gen-l10n
+
 Если у вас не собирается аппка (Возможно несоответствие AGP или джавы), то
 вы можете установить аппку на эмулятор через adb. Я положил актуальную версию apk
 в корень проекта, так что вам достаточно запустить эмуль и из корня проекта вызвать:
 
-C:\path-to-your-android-folder\Android\Sdk\platform-tools\adb install shmr_stage_5.apk
+C:\path-to-your-android-folder\Android\Sdk\platform-tools\adb install shmr_stage_6.apk
 
 Слои приложения:
 

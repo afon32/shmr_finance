@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shmr_finance/core/local_holders/main_color_holder.dart';
 import 'package:shmr_finance/core/shared_widgets/nav_bar/nav_bar.dart';
 import 'package:shmr_finance/pages/categories/categories_page.dart';
 import 'package:shmr_finance/pages/common/analyze/analyze_page.dart';
@@ -10,6 +12,7 @@ import 'package:shmr_finance/pages/expences/expences_page.dart';
 import 'package:shmr_finance/pages/incomes/incomes_page.dart';
 import 'package:shmr_finance/pages/score/score_page.dart';
 import 'package:shmr_finance/pages/score/update_account/update_score_page.dart';
+import 'package:shmr_finance/pages/settings/settings_page.dart';
 import 'package:shmr_finance/utils/router/app_routes.dart';
 import 'package:shmr_finance/utils/strings/strings_provider.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
@@ -31,7 +34,7 @@ final GlobalKey<NavigatorState> _settingsBranchKey =
     GlobalKey<NavigatorState>(debugLabel: 'settings_branch_key');
 
 class AppNavigator {
-  static final routerrr = GoRouter(
+  static final router = GoRouter(
       navigatorKey: _rootNavigatorKey,
       initialLocation: MainRoutes.expences.routeName,
       routes: [
@@ -93,31 +96,7 @@ class AppNavigator {
                         },
                       )
                     ])
-                // GoRoute(
-                //     path: MainRoutes.score.routeName,
-                //     builder: (context, state) => Center(
-                //         child: TextButton(
-                //             onPressed: () {
-                //               BlocProvider.of<ThemeProvider>(context)
-                //                   .toggleTheme();
-                //             },
-                //             child: Text(
-                //                 'score'))), //ПОКА ВИСИТ СМЕНА ТЕМЫ change mee
-                //     routes: []),
               ]),
-              // StatefulShellBranch(navigatorKey: _categoriesBranchKey, routes: [
-              //   GoRoute(
-              //       path: MainRoutes.costItems.routeName,
-              //       builder: (context, state) => Center(
-              //           child: TextButton(
-              //               onPressed: () {
-              //                 BlocProvider.of<StringsProvider>(context)
-              //                     .toggleLang();
-              //               },
-              //               child: Text(
-              //                   'cost items'))), //ПОКА ВИСИТ СМЕНА ЛОКАЛИ change mee
-              //       routes: []),
-              // ]),
               StatefulShellBranch(navigatorKey: _categoriesBranchKey, routes: [
                 GoRoute(
                     path: MainRoutes.costItems.routeName,
@@ -127,24 +106,7 @@ class AppNavigator {
               StatefulShellBranch(navigatorKey: _settingsBranchKey, routes: [
                 GoRoute(
                     path: MainRoutes.settings.routeName,
-                    builder: (context, state) => Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            TextButton(
-                                onPressed: () {
-                                  BlocProvider.of<StringsProvider>(context)
-                                      .toggleLang();
-                                },
-                                child: Text('lang')),
-                            TextButton(
-                                onPressed: () {
-                                  BlocProvider.of<ThemeProvider>(context)
-                                      .toggleTheme();
-                                },
-                                child: Text('theme'))
-                          ],
-                        )), //ПОКА ВИСИТ СМЕНА ЛОКАЛИ change mee
+                    builder: (context, state) => SettingsPage(),
                     routes: []),
               ]),
             ])

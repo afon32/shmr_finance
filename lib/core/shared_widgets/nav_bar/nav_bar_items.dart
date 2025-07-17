@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shmr_finance/utils/router/app_routes.dart';
 import 'package:shmr_finance/utils/strings/s.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
+import 'package:shmr_finance/utils/themes/color_blend_extension.dart';
 
 class NavBarItem {
   final Widget icon;
@@ -26,7 +27,8 @@ abstract class NavBarItems {
           icon: _IconContainer(isSelected: false, child: AppIcons.expences.svg),
           selectedIcon: _IconContainer(
             isSelected: true,
-            child: AppIcons.expences.svgWithTint(theme.appBarColor),
+            child: AppIcons.expences.svgWithTint(
+                theme.mainThemeColor.withMainTintBlend(context, 200)),
           ),
           label: S.of(context).expences,
           routeName: MainRoutes.expences.routeName),
@@ -34,7 +36,8 @@ abstract class NavBarItems {
           icon: _IconContainer(isSelected: false, child: AppIcons.income.svg),
           selectedIcon: _IconContainer(
             isSelected: true,
-            child: AppIcons.income.svgWithTint(theme.appBarColor),
+            child: AppIcons.income.svgWithTint(
+                theme.mainThemeColor.withMainTintBlend(context, 200)),
           ),
           label: strings.income,
           routeName: MainRoutes.income.routeName),
@@ -42,7 +45,8 @@ abstract class NavBarItems {
           icon: _IconContainer(isSelected: false, child: AppIcons.score.svg),
           selectedIcon: _IconContainer(
             isSelected: true,
-            child: AppIcons.score.svgWithTint(theme.appBarColor),
+            child: AppIcons.score.svgWithTint(
+                theme.mainThemeColor.withMainTintBlend(context, 200)),
           ),
           label: strings.score,
           routeName: MainRoutes.score.routeName),
@@ -50,7 +54,8 @@ abstract class NavBarItems {
           icon: _IconContainer(isSelected: false, child: AppIcons.items.svg),
           selectedIcon: _IconContainer(
             isSelected: true,
-            child: AppIcons.items.svgWithTint(theme.appBarColor),
+            child: AppIcons.items.svgWithTint(
+                theme.mainThemeColor.withMainTintBlend(context, 200)),
           ),
           label: strings.costItems,
           routeName: MainRoutes.costItems.routeName),
@@ -58,7 +63,8 @@ abstract class NavBarItems {
           icon: _IconContainer(isSelected: false, child: AppIcons.settings.svg),
           selectedIcon: _IconContainer(
             isSelected: true,
-            child: AppIcons.settings.svgWithTint(theme.appBarColor),
+            child: AppIcons.settings.svgWithTint(
+                theme.mainThemeColor.withMainTintBlend(context, 200)),
           ),
           label: strings.settings,
           routeName: MainRoutes.settings.routeName),
@@ -76,7 +82,9 @@ class _IconContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: isSelected ? context.theme.selectionItemsColor : null,
+          color: isSelected
+              ? context.theme.mainThemeColor.withMainTintBlend(context, 70)
+              : null,
           borderRadius: BorderRadius.circular(15)),
       child: Padding(
         padding: EdgeInsets.only(top: 5, bottom: 5, left: 20, right: 20),

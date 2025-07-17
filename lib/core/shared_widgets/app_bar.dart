@@ -3,6 +3,7 @@ import 'package:shmr_finance/core/connection_listener/connection_listener_cubit.
 import 'package:shmr_finance/di/app_scope.dart';
 import 'package:shmr_finance/utils/strings/s.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
+import 'package:shmr_finance/utils/themes/color_blend_extension.dart';
 import 'package:shmr_finance/utils/themes/text_theme_extension.dart';
 import 'package:yx_scope_flutter/yx_scope_flutter.dart';
 
@@ -33,10 +34,18 @@ class ShmrAppBar extends StatelessWidget {
                   title,
                   style: context.textTheme.appBarTitle,
                 ),
-                actions: [IconButton(onPressed: onTap, icon: Icon(buttonIcon))],
+                actions: [
+                  IconButton(
+                      onPressed: onTap,
+                      icon: Icon(
+                        buttonIcon,
+                        color: context.theme.textColor,
+                      ))
+                ],
                 backgroundColor: isCommonColor
                     ? context.theme.commonListItemColor
-                    : context.theme.appBarColor,
+                    : context.theme.mainThemeColor
+                        .withMainTintBlend(context, 200),
               ),
               body: Column(
                 children: [
