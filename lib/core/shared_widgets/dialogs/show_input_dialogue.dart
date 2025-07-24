@@ -30,6 +30,7 @@ Future<void> shmrShowInputDoubleDialog({
       return AlertDialog(
         title: Text(title),
         content: TextField(
+          key: ValueKey('set_amount_dialogue_input_area'),
           controller: _controller,
           keyboardType: onlyNumbers
               ? TextInputType.numberWithOptions(decimal: true)
@@ -67,6 +68,7 @@ Future<void> shmrShowInputDoubleDialog({
         ),
         actions: [
           TextButton(
+            key: ValueKey('set_amount_dialogue_apply_button'),
             onPressed: () {
               final text = _controller.text.trim();
               Navigator.of(context).pop();

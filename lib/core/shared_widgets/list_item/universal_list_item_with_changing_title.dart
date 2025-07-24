@@ -141,6 +141,7 @@ class _EditableTextFieldState extends State<_EditableTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      key: ValueKey('universal_list_item_with_changing_title_input_key'),
       controller: _controller,
 
       decoration: InputDecoration(

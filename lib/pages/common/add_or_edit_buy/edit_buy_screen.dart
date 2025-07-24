@@ -73,6 +73,7 @@ class EditBuyScreen extends StatelessWidget {
                                         icon: Icon(Icons.close),
                                       ),
                                       buttonIcon: Icons.check,
+                                      buttonKey: ValueKey('accept_buy_button_key'),
                                       onTap: () {
                                         if (BlocProvider.of<EditBuyScreenCubit>(
                                                 context)
@@ -169,8 +170,10 @@ class _Page extends StatelessWidget {
                       key: EditBuyScreenKeys.scoreDropDownItem.key,
                       value: state.scoreItem,
                       items: accountsAndCategories.accountItems
-                          .map((e) =>
-                              DropdownMenuItem(value: e, child: Text(e.name)))
+                          .map((e) => DropdownMenuItem(
+                              key: ValueKey('score_name'),
+                              value: e,
+                              child: Text(e.name)))
                           .toList(),
                       onChanged: (value) {
                         if (value != null) {
@@ -186,8 +189,10 @@ class _Page extends StatelessWidget {
                     key: EditBuyScreenKeys.categoryDropDownItem.key,
                     value: state.categoryItem,
                     items: accountsAndCategories.categoryItems
-                        .map((e) =>
-                            DropdownMenuItem(value: e, child: Text(e.name)))
+                        .map((e) => DropdownMenuItem(
+                            key: ValueKey('category_item_${e.id}'),
+                            value: e,
+                            child: Text(e.name)))
                         .toList(),
                     onChanged: (value) {
                       if (value != null) {

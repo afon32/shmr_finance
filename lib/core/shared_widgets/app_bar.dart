@@ -14,13 +14,16 @@ class ShmrAppBar extends StatelessWidget {
   final IconData? buttonIcon;
   final VoidCallback? onTap;
   final bool isCommonColor;
-  const ShmrAppBar(
+  Key? buttonKey;
+
+  ShmrAppBar(
       {required this.child,
       required this.title,
       this.leading,
       this.isCommonColor = false,
       this.buttonIcon,
       this.onTap,
+      this.buttonKey,
       super.key});
 
   @override
@@ -36,6 +39,7 @@ class ShmrAppBar extends StatelessWidget {
                 ),
                 actions: [
                   IconButton(
+                      key: buttonKey,
                       onPressed: onTap,
                       icon: Icon(
                         buttonIcon,
