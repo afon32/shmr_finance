@@ -11,6 +11,7 @@ import 'package:shmr_finance/di/app_scope.dart';
 import 'package:shmr_finance/model/common_enums/currency_enum.dart';
 import 'package:shmr_finance/model/ui_items/transaction_sharing_model.dart';
 import 'package:shmr_finance/pages/common/add_or_edit_buy/logic/edit_buy_screen_cubit.dart';
+import 'package:shmr_finance/pages/common/add_or_edit_buy/logic/edit_buy_screen_keys.dart';
 import 'package:shmr_finance/pages/common/add_or_edit_buy/logic/get_accounts_and_categories_cubit.dart';
 import 'package:shmr_finance/pages/common/history/types/history_page_type.dart';
 import 'package:shmr_finance/utils/strings/s.dart';
@@ -42,7 +43,8 @@ class EditBuyScreen extends StatelessWidget {
         builder: (context, scope) => BlocProvider(
               create: (context) => GetAccountsAndCategoriesCubit(
                   getAllAccountsUseCase: scope.getAllAccountsUseCaseDep.get,
-                  getCategoriesFromTypeUseCase: scope.getCategoriesFromTypeUseCaseDep.get,
+                  getCategoriesFromTypeUseCase:
+                      scope.getCategoriesFromTypeUseCaseDep.get,
                   pageType: pageType)
                 ..getData(),
               child: BlocBuilder<GetAccountsAndCategoriesCubit,
@@ -160,9 +162,11 @@ class _Page extends StatelessWidget {
             child: Column(
               children: [
                 ShmrUniversalListItem(
+                  key: EditBuyScreenKeys.scoreItem.key,
                   leftTitle: strings.score,
                   rigthTitle: cubit.state.scoreItem?.name ?? '-',
                   insteadRightTitle: DropdownButton(
+                      key: EditBuyScreenKeys.scoreDropDownItem.key,
                       value: state.scoreItem,
                       items: accountsAndCategories.accountItems
                           .map((e) =>
@@ -175,9 +179,11 @@ class _Page extends StatelessWidget {
                       }),
                 ),
                 ShmrUniversalListItem(
+                  key: EditBuyScreenKeys.categoryItem.key,
                   leftTitle: S.of(context).costItem,
                   rigthTitle: cubit.state.categoryItem?.name ?? '-',
                   insteadRightTitle: DropdownButton(
+                    key: EditBuyScreenKeys.categoryDropDownItem.key,
                     value: state.categoryItem,
                     items: accountsAndCategories.categoryItems
                         .map((e) =>
@@ -191,6 +197,7 @@ class _Page extends StatelessWidget {
                   ),
                 ),
                 ShmrUniversalListItem(
+                  key: EditBuyScreenKeys.amountItem.key,
                   leftTitle: S.of(context).summ,
                   rigthTitle:
                       '${cubit.state.amount?.toString() ?? '-'} ${scope.currencyStateHolderDep.get.state.sign}',
@@ -208,6 +215,7 @@ class _Page extends StatelessWidget {
                   ),
                 ),
                 ShmrUniversalListItem(
+                  key: EditBuyScreenKeys.dateSelectorItem.key,
                   leftTitle: S.of(context).date,
                   rigthTitle: DateFormatter.toDayMonthYear(cubit.state.date),
                   isChevroned: true,
@@ -222,6 +230,7 @@ class _Page extends StatelessWidget {
                   },
                 ),
                 ShmrUniversalListItem(
+                  key: EditBuyScreenKeys.timeSelectorItem.key,
                   leftTitle: S.of(context).time,
                   rigthTitle: DateFormatter.toHoursAndMinutes(cubit.state.date),
                   isChevroned: true,
@@ -234,6 +243,7 @@ class _Page extends StatelessWidget {
                   },
                 ),
                 ShmrUniversalListItemWithChanging(
+                  key: EditBuyScreenKeys.commentItem.key,
                   leftTitle: state.comment,
                   hintText: strings.comment,
                   onEnter: (comment) {
