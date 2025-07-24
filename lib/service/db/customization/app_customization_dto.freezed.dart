@@ -33,7 +33,7 @@ mixin _$AppCustomizationDto {
   bool get hapticksIsOn;
 
   /// Пин код
-  @JsonKey(name: 'pin_code', defaultValue: 'none')
+  @JsonKey(name: 'user_pin_code', defaultValue: 'none')
   String get securePin;
 
   /// Биометрия
@@ -92,7 +92,7 @@ abstract mixin class $AppCustomizationDtoCopyWith<$Res> {
       @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme,
       @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881) int tintColor,
       @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
-      @JsonKey(name: 'pin_code', defaultValue: 'none') String securePin,
+      @JsonKey(name: 'user_pin_code', defaultValue: 'none') String securePin,
       @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn});
 }
 
@@ -250,7 +250,8 @@ extension AppCustomizationDtoPatterns on AppCustomizationDto {
             @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
             int tintColor,
             @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
-            @JsonKey(name: 'pin_code', defaultValue: 'none') String securePin,
+            @JsonKey(name: 'user_pin_code', defaultValue: 'none')
+            String securePin,
             @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn)?
         $default, {
     required TResult orElse(),
@@ -293,7 +294,8 @@ extension AppCustomizationDtoPatterns on AppCustomizationDto {
             @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
             int tintColor,
             @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
-            @JsonKey(name: 'pin_code', defaultValue: 'none') String securePin,
+            @JsonKey(name: 'user_pin_code', defaultValue: 'none')
+            String securePin,
             @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn)
         $default,
   ) {
@@ -334,7 +336,8 @@ extension AppCustomizationDtoPatterns on AppCustomizationDto {
             @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881)
             int tintColor,
             @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
-            @JsonKey(name: 'pin_code', defaultValue: 'none') String securePin,
+            @JsonKey(name: 'user_pin_code', defaultValue: 'none')
+            String securePin,
             @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn)?
         $default,
   ) {
@@ -367,7 +370,8 @@ class _AppCustomizationDto implements AppCustomizationDto {
       this.tintColor = 0xFF2AE881,
       @JsonKey(name: 'hapricks_on', defaultValue: true)
       this.hapticksIsOn = true,
-      @JsonKey(name: 'pin_code', defaultValue: 'none') this.securePin = 'none',
+      @JsonKey(name: 'user_pin_code', defaultValue: 'none')
+      this.securePin = 'none',
       @JsonKey(name: 'bio_on', defaultValue: false) this.bioIsOn = false});
   factory _AppCustomizationDto.fromJson(Map<String, dynamic> json) =>
       _$AppCustomizationDtoFromJson(json);
@@ -397,7 +401,7 @@ class _AppCustomizationDto implements AppCustomizationDto {
 
   /// Пин код
   @override
-  @JsonKey(name: 'pin_code', defaultValue: 'none')
+  @JsonKey(name: 'user_pin_code', defaultValue: 'none')
   final String securePin;
 
   /// Биометрия
@@ -464,7 +468,7 @@ abstract mixin class _$AppCustomizationDtoCopyWith<$Res>
       @JsonKey(name: 'light_theme', defaultValue: true) bool isLightTheme,
       @JsonKey(name: 'tint_color', defaultValue: 0xFF2AE881) int tintColor,
       @JsonKey(name: 'hapricks_on', defaultValue: true) bool hapticksIsOn,
-      @JsonKey(name: 'pin_code', defaultValue: 'none') String securePin,
+      @JsonKey(name: 'user_pin_code', defaultValue: 'none') String securePin,
       @JsonKey(name: 'bio_on', defaultValue: false) bool bioIsOn});
 }
 

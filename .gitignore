@@ -46,3 +46,8 @@ app.*.map.json
 /android/app/release
 
 .env
+
+# Ignore non-CI golden files and failures
+test/**/goldens/**/*.png 
+test/**/failures/**/*.png 
+!test/**/goldens/ci/*.png

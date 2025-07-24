@@ -5,6 +5,8 @@ import 'package:shmr_finance/core/local_holders/haptick_permission_holder.dart';
 import 'package:shmr_finance/utils/themes/app_theme.dart';
 import 'package:shmr_finance/utils/themes/color_blend_extension.dart';
 
+import 'keys.dart';
+
 class ShmrListBottomButtonWrapper extends StatefulWidget {
   final VoidCallback onTap;
   final Widget Function(ScrollController controller) childList;
@@ -64,6 +66,7 @@ class _ShmrListBottomButtonWrapperState
               opacity: _showButton ? 1.0 : 0.0,
               duration: Duration(milliseconds: 300),
               child: InkWell(
+                key: ShmrListBottomButtonWrapperKeys.addButton.key,
                 onTap: () {
                   widget.onTap!();
                   if (hapticksIsOn) {
