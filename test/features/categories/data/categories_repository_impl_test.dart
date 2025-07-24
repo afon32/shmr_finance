@@ -4,11 +4,11 @@ import 'package:shmr_finance/features/categories/data/categories_repository_impl
 import 'package:shmr_finance/service/api/api_util.dart';
 
 import '../../../core/connection_listener/fake_connection_listener_cubit.dart';
-import '../../../core/local_holders/cold_boot_holder_test.dart';
-import '../../../core/local_holders/local_transaction_id_holder_test.dart';
-import '../../../data/local/local_repository_impl_test.dart';
+import '../../../core/local_holders/cold_boot_holder_mock.dart';
+import '../../../core/local_holders/local_transaction_id_holder_mock.dart';
+import '../../../data/local/local_repository_impl_mock.dart';
 import '../../../data/local/responses/all_accounts_response_mock.dart';
-import '../../../data/network/network_repository_impl_test.dart';
+import '../../../data/network/network_repository_impl_mock.dart';
 import '../../../data/network/responses/all_accounts_response_mock.dart';
 
 void main() {
