@@ -82,7 +82,7 @@ void main() {
 
       /// Метод получения категорий по типу true с сервера
       test(
-        'Должен сходить в сервер и вытащить оттуда только isIncome категории.',
+        'Должен сходить в сервер и вытащить оттуда только isIncome категории, правильно спарсить к доменной сущности.',
         () async {
           // ARRANGE - готовим инстансы и задаём ответ на вызов метода
 
@@ -103,11 +103,17 @@ void main() {
           final allTrue = result.every((e) => e.isIncome);
 
           expect(allTrue, isTrue);
+
+          expect(
+            result,
+            equals(getCategoriesByTrueTypeNetworkToDomainMock),
+          );
         },
       );
+
       /// Метод получения категорий по типу false с БД
       test(
-        'Должен сходить в БД и вытащить оттуда только НЕ isIncome категории.',
+        'Должен сходить в БД и вытащить оттуда только НЕ isIncome категории, правильно спарсить к доменной сущности.',
         () async {
           // ARRANGE - готовим инстансы и задаём ответ на вызов метода
 
@@ -128,6 +134,11 @@ void main() {
           final allTrue = result.every((e) => !e.isIncome);
 
           expect(allTrue, isTrue);
+
+          expect(
+            result,
+            equals(getCategoriesByFalseTrueDBToDomainMock),
+          );
         },
       );
     },

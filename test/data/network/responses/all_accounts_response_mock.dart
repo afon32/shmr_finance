@@ -1,4 +1,5 @@
 import 'package:shmr_finance/data/network/dto/responses/export.dart';
+import 'package:shmr_finance/model/category.dart';
 
 final List<ApiCategory> getAllCategoriesNetworkMock = [
   ApiCategory(id: 1, name: 'Groceries', emoji: '🍎', isIncome: false),
@@ -28,4 +29,11 @@ final List<ApiCategory> getCategoriesByTrueTypeNetworkMock = [
   ApiCategory(id: 9, name: 'Инвестиции', emoji: '📈', isIncome: true),
   ApiCategory(id: 14, name: 'Фриланс', emoji: '💻', isIncome: true),
   ApiCategory(id: 18, name: 'Фриланс', emoji: '💻', isIncome: true),
+];
+
+final List<Category> getCategoriesByTrueTypeNetworkToDomainMock = [
+  Category(id: 3, name: 'Зарплата', emoji: '💰', isIncome: true),
+  Category(id: 9, name: 'Инвестиции', emoji: '📈', isIncome: true),
+  Category(id: 14, name: 'Фриланс', emoji: '💻', isIncome: true),
+  Category(id: 18, name: 'Фриланс', emoji: '💻', isIncome: true),
 ];
